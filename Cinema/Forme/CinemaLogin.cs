@@ -98,7 +98,9 @@ namespace Cinema.Forme
 
         private void button1_Click(object sender, EventArgs e)
         {
-            provjeriKorisnika(txtKorisnicko.Text,txtLozinka.Text);    
+            BlagajnaForm novaForma = new BlagajnaForm();
+            novaForma.ShowDialog();
+            // provjeriKorisnika(txtKorisnicko.Text,txtLozinka.Text);    
         }
 
         private void provjeriKorisnika(string Korisnicko,string Lozinka)
@@ -151,7 +153,8 @@ namespace Cinema.Forme
             }
             if(jobtitle == "Blagajnik")
             {
-                MessageBox.Show("Otvorice formu blagajnik");
+                BlagajnaForm novaForma = new BlagajnaForm();
+                novaForma.ShowDialog();
             }else
             {
                 // otvori formu za administratora

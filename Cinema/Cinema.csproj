@@ -66,6 +66,18 @@
     <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributeClass\SqlNameAttribute.cs" />
+    <Compile Include="Forme\AdministracijaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\AdministracijaForm.Designer.cs">
+      <DependentUpon>AdministracijaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forme\BlagajnaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\BlagajnaForm.Designer.cs">
+      <DependentUpon>BlagajnaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\CinemaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +108,12 @@
     <Compile Include="PropertyClass\ZanroviFilmovaPropertyClass.cs" />
     <Compile Include="PropertyClass\ZaposleniPropertyClass.cs" />
     <Compile Include="PropertyInterface.cs" />
+    <EmbeddedResource Include="Forme\AdministracijaForm.resx">
+      <DependentUpon>AdministracijaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forme\BlagajnaForm.resx">
+      <DependentUpon>BlagajnaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\CinemaLogin.resx">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </EmbeddedResource>
