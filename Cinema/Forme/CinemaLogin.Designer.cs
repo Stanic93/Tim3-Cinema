@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CinemaLogin));
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtKorisnicko = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtLozinka = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -55,19 +55,19 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // textBox1
+            // txtKorisnicko
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(102, 194);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 22);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Korisnicko ime";
-            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
+            this.txtKorisnicko.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.txtKorisnicko.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtKorisnicko.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtKorisnicko.ForeColor = System.Drawing.Color.White;
+            this.txtKorisnicko.Location = new System.Drawing.Point(102, 194);
+            this.txtKorisnicko.Name = "txtKorisnicko";
+            this.txtKorisnicko.Size = new System.Drawing.Size(206, 22);
+            this.txtKorisnicko.TabIndex = 2;
+            this.txtKorisnicko.Text = "Korisnicko ime";
+            this.txtKorisnicko.Click += new System.EventHandler(this.textBox1_Click);
+            this.txtKorisnicko.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // panel1
             // 
@@ -85,19 +85,20 @@
             this.panel2.Size = new System.Drawing.Size(250, 1);
             this.panel2.TabIndex = 6;
             // 
-            // textBox2
+            // txtLozinka
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(102, 254);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(206, 22);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "Lozinka";
-            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.txtLozinka.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(95)))), ((int)(((byte)(95)))));
+            this.txtLozinka.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLozinka.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtLozinka.ForeColor = System.Drawing.Color.White;
+            this.txtLozinka.Location = new System.Drawing.Point(102, 254);
+            this.txtLozinka.Name = "txtLozinka";
+            this.txtLozinka.Size = new System.Drawing.Size(206, 22);
+            this.txtLozinka.TabIndex = 5;
+            this.txtLozinka.Text = "Lozinka";
+            this.txtLozinka.UseSystemPasswordChar = true;
+            this.txtLozinka.Click += new System.EventHandler(this.textBox2_Click);
+            this.txtLozinka.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // pictureBox1
             // 
@@ -121,6 +122,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Nastavi";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel3
             // 
@@ -140,9 +142,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(315, 5);
+            this.button2.Location = new System.Drawing.Point(309, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(28, 29);
+            this.button2.Size = new System.Drawing.Size(34, 30);
             this.button2.TabIndex = 10;
             this.button2.Text = "X";
             this.button2.UseVisualStyleBackColor = false;
@@ -168,10 +170,10 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtLozinka);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtKorisnicko);
             this.Controls.Add(this.pictureBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CinemaLogin";
@@ -190,10 +192,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtKorisnicko;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtLozinka;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
