@@ -44,12 +44,28 @@
             this.lblBlagajna = new System.Windows.Forms.Label();
             this.lblCinema = new System.Windows.Forms.Label();
             this.pBoxLogo = new System.Windows.Forms.PictureBox();
-            this.repertoarControl1 = new Cinema.Controle.RepertoarControl();
-            this.repertoarControl2 = new Cinema.Controle.RepertoarControl();
+            this.gbKarta = new System.Windows.Forms.GroupBox();
+            this.btnNovaKarta = new System.Windows.Forms.Button();
+            this.dtpDatumProdukcije = new System.Windows.Forms.DateTimePicker();
+            this.lblDatumProdukcije = new System.Windows.Forms.Label();
+            this.gbPregled = new System.Windows.Forms.GroupBox();
+            this.dgvPregled = new System.Windows.Forms.DataGridView();
+            this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.btnPrikaziSve = new System.Windows.Forms.Button();
+            this.btnPretrazi = new System.Windows.Forms.Button();
+            this.txtNaziv = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gbDetaljno = new System.Windows.Forms.GroupBox();
+            this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
+            this.gbKarta.SuspendLayout();
+            this.gbPregled.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).BeginInit();
+            this.gbPretraga.SuspendLayout();
+            this.gbDetaljno.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -227,19 +243,141 @@
             this.pBoxLogo.TabIndex = 2;
             this.pBoxLogo.TabStop = false;
             // 
-            // repertoarControl1
+            // gbKarta
             // 
-            this.repertoarControl1.Location = new System.Drawing.Point(267, 142);
-            this.repertoarControl1.Name = "repertoarControl1";
-            this.repertoarControl1.Size = new System.Drawing.Size(876, 502);
-            this.repertoarControl1.TabIndex = 2;
+            this.gbKarta.Controls.Add(this.btnNovaKarta);
+            this.gbKarta.Controls.Add(this.dtpDatumProdukcije);
+            this.gbKarta.Controls.Add(this.lblDatumProdukcije);
+            this.gbKarta.Location = new System.Drawing.Point(266, 531);
+            this.gbKarta.Name = "gbKarta";
+            this.gbKarta.Size = new System.Drawing.Size(312, 119);
+            this.gbKarta.TabIndex = 7;
+            this.gbKarta.TabStop = false;
+            this.gbKarta.Text = "Karta";
             // 
-            // repertoarControl2
+            // btnNovaKarta
             // 
-            this.repertoarControl2.Location = new System.Drawing.Point(266, 153);
-            this.repertoarControl2.Name = "repertoarControl2";
-            this.repertoarControl2.Size = new System.Drawing.Size(876, 502);
-            this.repertoarControl2.TabIndex = 2;
+            this.btnNovaKarta.Location = new System.Drawing.Point(143, 73);
+            this.btnNovaKarta.Name = "btnNovaKarta";
+            this.btnNovaKarta.Size = new System.Drawing.Size(149, 40);
+            this.btnNovaKarta.TabIndex = 12;
+            this.btnNovaKarta.Text = "Nova karta";
+            this.btnNovaKarta.UseVisualStyleBackColor = true;
+            // 
+            // dtpDatumProdukcije
+            // 
+            this.dtpDatumProdukcije.Location = new System.Drawing.Point(143, 30);
+            this.dtpDatumProdukcije.MaxDate = new System.DateTime(2018, 12, 21, 0, 0, 0, 0);
+            this.dtpDatumProdukcije.MinDate = new System.DateTime(2018, 12, 16, 0, 0, 0, 0);
+            this.dtpDatumProdukcije.Name = "dtpDatumProdukcije";
+            this.dtpDatumProdukcije.Size = new System.Drawing.Size(149, 20);
+            this.dtpDatumProdukcije.TabIndex = 10;
+            this.dtpDatumProdukcije.Value = new System.DateTime(2018, 12, 16, 0, 0, 0, 0);
+            // 
+            // lblDatumProdukcije
+            // 
+            this.lblDatumProdukcije.AutoSize = true;
+            this.lblDatumProdukcije.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatumProdukcije.Location = new System.Drawing.Point(23, 30);
+            this.lblDatumProdukcije.Name = "lblDatumProdukcije";
+            this.lblDatumProdukcije.Size = new System.Drawing.Size(114, 17);
+            this.lblDatumProdukcije.TabIndex = 8;
+            this.lblDatumProdukcije.Text = "Datum produkcije";
+            // 
+            // gbPregled
+            // 
+            this.gbPregled.Controls.Add(this.dgvPregled);
+            this.gbPregled.Location = new System.Drawing.Point(587, 248);
+            this.gbPregled.Name = "gbPregled";
+            this.gbPregled.Size = new System.Drawing.Size(548, 399);
+            this.gbPregled.TabIndex = 6;
+            this.gbPregled.TabStop = false;
+            this.gbPregled.Text = "Pregled";
+            // 
+            // dgvPregled
+            // 
+            this.dgvPregled.AllowUserToAddRows = false;
+            this.dgvPregled.AllowUserToDeleteRows = false;
+            this.dgvPregled.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPregled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPregled.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPregled.Location = new System.Drawing.Point(3, 16);
+            this.dgvPregled.Name = "dgvPregled";
+            this.dgvPregled.ReadOnly = true;
+            this.dgvPregled.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvPregled.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvPregled.RowTemplate.DefaultCellStyle.NullValue = "/";
+            this.dgvPregled.Size = new System.Drawing.Size(542, 380);
+            this.dgvPregled.TabIndex = 0;
+            this.dgvPregled.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregled_CellClick);
+            // 
+            // gbPretraga
+            // 
+            this.gbPretraga.Controls.Add(this.btnPrikaziSve);
+            this.gbPretraga.Controls.Add(this.btnPretrazi);
+            this.gbPretraga.Controls.Add(this.txtNaziv);
+            this.gbPretraga.Controls.Add(this.label1);
+            this.gbPretraga.Location = new System.Drawing.Point(584, 152);
+            this.gbPretraga.Name = "gbPretraga";
+            this.gbPretraga.Size = new System.Drawing.Size(551, 90);
+            this.gbPretraga.TabIndex = 5;
+            this.gbPretraga.TabStop = false;
+            this.gbPretraga.Text = "Pretraga";
+            // 
+            // btnPrikaziSve
+            // 
+            this.btnPrikaziSve.Location = new System.Drawing.Point(233, 50);
+            this.btnPrikaziSve.Name = "btnPrikaziSve";
+            this.btnPrikaziSve.Size = new System.Drawing.Size(148, 34);
+            this.btnPrikaziSve.TabIndex = 7;
+            this.btnPrikaziSve.Text = "Prikazi sve";
+            this.btnPrikaziSve.UseVisualStyleBackColor = true;
+            this.btnPrikaziSve.Click += new System.EventHandler(this.btnPrikaziSve_Click);
+            // 
+            // btnPretrazi
+            // 
+            this.btnPretrazi.Location = new System.Drawing.Point(336, 19);
+            this.btnPretrazi.Name = "btnPretrazi";
+            this.btnPretrazi.Size = new System.Drawing.Size(134, 23);
+            this.btnPretrazi.TabIndex = 6;
+            this.btnPretrazi.Text = "Pretrazi";
+            this.btnPretrazi.UseVisualStyleBackColor = true;
+            this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
+            // 
+            // txtNaziv
+            // 
+            this.txtNaziv.Location = new System.Drawing.Point(163, 20);
+            this.txtNaziv.Name = "txtNaziv";
+            this.txtNaziv.Size = new System.Drawing.Size(129, 20);
+            this.txtNaziv.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(108, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Naziv";
+            // 
+            // gbDetaljno
+            // 
+            this.gbDetaljno.Controls.Add(this.flpDetaljno);
+            this.gbDetaljno.Location = new System.Drawing.Point(266, 152);
+            this.gbDetaljno.Name = "gbDetaljno";
+            this.gbDetaljno.Size = new System.Drawing.Size(312, 373);
+            this.gbDetaljno.TabIndex = 4;
+            this.gbDetaljno.TabStop = false;
+            this.gbDetaljno.Text = "Detaljno";
+            // 
+            // flpDetaljno
+            // 
+            this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpDetaljno.Location = new System.Drawing.Point(7, 20);
+            this.flpDetaljno.Name = "flpDetaljno";
+            this.flpDetaljno.Size = new System.Drawing.Size(299, 347);
+            this.flpDetaljno.TabIndex = 0;
             // 
             // BlagajnaForm
             // 
@@ -247,7 +385,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1136, 662);
-            this.Controls.Add(this.repertoarControl2);
+            this.Controls.Add(this.gbKarta);
+            this.Controls.Add(this.gbPregled);
+            this.Controls.Add(this.gbPretraga);
+            this.Controls.Add(this.gbDetaljno);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -261,6 +402,13 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).EndInit();
+            this.gbKarta.ResumeLayout(false);
+            this.gbKarta.PerformLayout();
+            this.gbPregled.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).EndInit();
+            this.gbPretraga.ResumeLayout(false);
+            this.gbPretraga.PerformLayout();
+            this.gbDetaljno.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -282,7 +430,18 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.Label lblRadnik;
-        private Controle.RepertoarControl repertoarControl1;
-        private Controle.RepertoarControl repertoarControl2;
+        private System.Windows.Forms.GroupBox gbKarta;
+        private System.Windows.Forms.Button btnNovaKarta;
+        private System.Windows.Forms.DateTimePicker dtpDatumProdukcije;
+        private System.Windows.Forms.Label lblDatumProdukcije;
+        private System.Windows.Forms.GroupBox gbPregled;
+        private System.Windows.Forms.DataGridView dgvPregled;
+        private System.Windows.Forms.GroupBox gbPretraga;
+        private System.Windows.Forms.Button btnPrikaziSve;
+        private System.Windows.Forms.Button btnPretrazi;
+        private System.Windows.Forms.TextBox txtNaziv;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbDetaljno;
+        private System.Windows.Forms.FlowLayoutPanel flpDetaljno;
     }
 }

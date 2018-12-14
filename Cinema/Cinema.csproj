@@ -72,12 +72,6 @@
     <Compile Include="Controle\DateTimeControl.Designer.cs">
       <DependentUpon>DateTimeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controle\RepertoarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controle\RepertoarControl.Designer.cs">
-      <DependentUpon>RepertoarControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controle\RichTextBoxControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,9 +129,6 @@
     <Compile Include="PropertyInterface.cs" />
     <EmbeddedResource Include="Controle\DateTimeControl.resx">
       <DependentUpon>DateTimeControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controle\RepertoarControl.resx">
-      <DependentUpon>RepertoarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controle\RichTextBoxControl.resx">
       <DependentUpon>RichTextBoxControl.cs</DependentUpon>

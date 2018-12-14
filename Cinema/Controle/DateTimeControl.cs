@@ -20,13 +20,17 @@ namespace Cinema.Controle
         {
             lblNaziv.Text = value;
         }
-        public void SetVrijednost(DateTime value)
+        public void SetVrijednost(string value)
         {
-            dtpVrijednost.Value = value;
+            dtpVrijednost.Text = value;
         }
-        public DateTime GetVrijednost()
+        public string GetVrijednost()
         {
-            return dtpVrijednost.Value;
+            return dtpVrijednost.Text;
+        }
+        public void ReadOnly()
+        {
+            dtpVrijednost.Enabled = false;
         }
     }
 }

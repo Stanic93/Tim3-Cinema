@@ -29,5 +29,9 @@ namespace Cinema.Controle
         {
             return rtxtVrijednost.Text;
         }
+        public void ReadOnly()
+        {
+            rtxtVrijednost.ReadOnly = true;
+        }
     }
 }
