@@ -17,6 +17,10 @@ namespace Cinema.Forme
             InitializeComponent();
         }
 
-     
+        private void btnZaposleni_Click(object sender, EventArgs e)
+        {
+             
+
+        }
     }
 }
