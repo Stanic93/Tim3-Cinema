@@ -18,6 +18,7 @@ namespace Cinema.PropertyClass
         private string opis;
         private string reziser;
         private bool aktivan;
+        private int godina;
         #endregion
 
         #region properties
@@ -106,13 +107,26 @@ namespace Cinema.PropertyClass
                 aktivan = value;
             }
         }
+        [SqlName("Godina")]
+        [DisplayName("Godina")]
+        public int Godina
+        {
+            get
+            {
+                return godina;
+            }
+            set
+            {
+                godina = value;
+            }
+        }
 
         #endregion
 
         #region queries
         public string GetSelectQuery()
         {
-            return @"Select FilmID,Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan from dbo.Film";
+            return @"Select FilmID,Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina from dbo.Film";
         }
         public string GetDeleteQuery()
         {
@@ -120,7 +134,8 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Film (Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan) values (@Naziv,@DuzinaTrajanja,@Opis,@Reziser,@Aktivan)";
+            return @"Insert into dbo.Film (Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina) 
+                        values (@Naziv,@DuzinaTrajanja,@Opis,@Reziser,@Aktivan,@Godina)";
         }
         public string GetUpdateQuery()
         {
@@ -129,7 +144,8 @@ namespace Cinema.PropertyClass
                         Naziv = @Naziv,
                         DuzinaTrajanja = @DuzinaTrajanja,
                         Opis = @Opis,
-                        Reziser = @Reziser,                        
+                        Reziser = @Reziser,      
+                        Godina=@Godina,
                         where FilmID = @FilmID";
         }
         #endregion
@@ -174,6 +190,11 @@ namespace Cinema.PropertyClass
                 parameter.Value = aktivan;
                 parameters.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.Bit);
+                parameter.Value = godina;
+                parameters.Add(parameter);
+            }
             return parameters;
         }
 
@@ -208,6 +229,11 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@Aktivan", System.Data.SqlDbType.Bit);
                 parameter.Value = aktivan;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.Bit);
+                parameter.Value = godina;
                 parameters.Add(parameter);
             }
             return parameters;

@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bunifu_UI_v1.5.3">
-      <HintPath>..\..\..\Downloads\Bunifu_UI_v1.5.3.dll</HintPath>
-    </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
     </Reference>
@@ -63,9 +60,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeClass\CheckBoxAttribute.cs" />
+    <Compile Include="AttributeClass\DateTimeAttribute.cs" />
     <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
+    <Compile Include="AttributeClass\RichTextBoxAttribute.cs" />
     <Compile Include="AttributeClass\SqlNameAttribute.cs" />
+    <Compile Include="Controle\DateTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\DateTimeControl.Designer.cs">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\RepertoarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\RepertoarControl.Designer.cs">
+      <DependentUpon>RepertoarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\RichTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\RichTextBoxControl.Designer.cs">
+      <DependentUpon>RichTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controle\TextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\TextBoxControl.Designer.cs">
+      <DependentUpon>TextBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\AdministracijaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +123,7 @@
     <Compile Include="PropertyClass\LoginPropertyClass.cs" />
     <Compile Include="PropertyClass\ProjekcijaPropertyClass.cs" />
     <Compile Include="PropertyClass\RacunPropertyClass.cs" />
+    <Compile Include="PropertyClass\RepertoarPropertyClass.cs" />
     <Compile Include="PropertyClass\RezervacijaPropertyClass.cs" />
     <Compile Include="PropertyClass\SalaPropertyClass.cs" />
     <Compile Include="PropertyClass\FilmPropertyClass.cs" />
@@ -108,6 +133,18 @@
     <Compile Include="PropertyClass\ZanroviFilmovaPropertyClass.cs" />
     <Compile Include="PropertyClass\ZaposleniPropertyClass.cs" />
     <Compile Include="PropertyInterface.cs" />
+    <EmbeddedResource Include="Controle\DateTimeControl.resx">
+      <DependentUpon>DateTimeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\RepertoarControl.resx">
+      <DependentUpon>RepertoarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\RichTextBoxControl.resx">
+      <DependentUpon>RichTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controle\TextBoxControl.resx">
+      <DependentUpon>TextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\AdministracijaForm.resx">
       <DependentUpon>AdministracijaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,5 +180,6 @@
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlagajnaForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblRadnik = new System.Windows.Forms.Label();
+            this.lblKorisnickoIme = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnRacun = new System.Windows.Forms.Button();
@@ -40,10 +44,8 @@
             this.lblBlagajna = new System.Windows.Forms.Label();
             this.lblCinema = new System.Windows.Forms.Label();
             this.pBoxLogo = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.lblRadnik = new System.Windows.Forms.Label();
+            this.repertoarControl1 = new Cinema.Controle.RepertoarControl();
+            this.repertoarControl2 = new Cinema.Controle.RepertoarControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -65,8 +67,46 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(260, 557);
+            this.panel1.Size = new System.Drawing.Size(260, 662);
             this.panel1.TabIndex = 0;
+            // 
+            // lblRadnik
+            // 
+            this.lblRadnik.AutoSize = true;
+            this.lblRadnik.Location = new System.Drawing.Point(91, 134);
+            this.lblRadnik.Name = "lblRadnik";
+            this.lblRadnik.Size = new System.Drawing.Size(41, 13);
+            this.lblRadnik.TabIndex = 6;
+            this.lblRadnik.Text = "Radnik";
+            // 
+            // lblKorisnickoIme
+            // 
+            this.lblKorisnickoIme.AutoSize = true;
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(91, 112);
+            this.lblKorisnickoIme.Name = "lblKorisnickoIme";
+            this.lblKorisnickoIme.Size = new System.Drawing.Size(75, 13);
+            this.lblKorisnickoIme.TabIndex = 5;
+            this.lblKorisnickoIme.Text = "Korisnicko ime";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Red;
+            this.panel6.ForeColor = System.Drawing.Color.White;
+            this.panel6.Location = new System.Drawing.Point(5, 348);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(6, 50);
+            this.panel6.TabIndex = 4;
+            this.panel6.Visible = false;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Red;
+            this.panel5.ForeColor = System.Drawing.Color.White;
+            this.panel5.Location = new System.Drawing.Point(5, 277);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(6, 50);
+            this.panel5.TabIndex = 3;
+            this.panel5.Visible = false;
             // 
             // pBoxAvatar
             // 
@@ -82,7 +122,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Red;
             this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(3, 202);
+            this.panel4.Location = new System.Drawing.Point(5, 202);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(6, 50);
             this.panel4.TabIndex = 2;
@@ -141,7 +181,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(260, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(802, 6);
+            this.panel2.Size = new System.Drawing.Size(876, 6);
             this.panel2.TabIndex = 0;
             // 
             // panel3
@@ -187,54 +227,31 @@
             this.pBoxLogo.TabIndex = 2;
             this.pBoxLogo.TabStop = false;
             // 
-            // panel5
+            // repertoarControl1
             // 
-            this.panel5.BackColor = System.Drawing.Color.Red;
-            this.panel5.ForeColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(3, 277);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(6, 50);
-            this.panel5.TabIndex = 3;
-            this.panel5.Visible = false;
+            this.repertoarControl1.Location = new System.Drawing.Point(267, 142);
+            this.repertoarControl1.Name = "repertoarControl1";
+            this.repertoarControl1.Size = new System.Drawing.Size(876, 502);
+            this.repertoarControl1.TabIndex = 2;
             // 
-            // panel6
+            // repertoarControl2
             // 
-            this.panel6.BackColor = System.Drawing.Color.Red;
-            this.panel6.ForeColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(3, 348);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(6, 50);
-            this.panel6.TabIndex = 4;
-            this.panel6.Visible = false;
-            // 
-            // lblKorisnickoIme
-            // 
-            this.lblKorisnickoIme.AutoSize = true;
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(91, 112);
-            this.lblKorisnickoIme.Name = "lblKorisnickoIme";
-            this.lblKorisnickoIme.Size = new System.Drawing.Size(75, 13);
-            this.lblKorisnickoIme.TabIndex = 5;
-            this.lblKorisnickoIme.Text = "Korisnicko ime";
-            // 
-            // lblRadnik
-            // 
-            this.lblRadnik.AutoSize = true;
-            this.lblRadnik.Location = new System.Drawing.Point(91, 134);
-            this.lblRadnik.Name = "lblRadnik";
-            this.lblRadnik.Size = new System.Drawing.Size(41, 13);
-            this.lblRadnik.TabIndex = 6;
-            this.lblRadnik.Text = "Radnik";
+            this.repertoarControl2.Location = new System.Drawing.Point(266, 153);
+            this.repertoarControl2.Name = "repertoarControl2";
+            this.repertoarControl2.Size = new System.Drawing.Size(876, 502);
+            this.repertoarControl2.TabIndex = 2;
             // 
             // BlagajnaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1062, 557);
+            this.ClientSize = new System.Drawing.Size(1136, 662);
+            this.Controls.Add(this.repertoarControl2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BlagajnaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BlagajnaForm";
@@ -265,5 +282,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.Label lblRadnik;
+        private Controle.RepertoarControl repertoarControl1;
+        private Controle.RepertoarControl repertoarControl2;
     }
 }
