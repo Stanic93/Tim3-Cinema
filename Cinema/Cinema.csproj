@@ -104,7 +104,7 @@
     <Compile Include="PropertyClass\FilmPropertyClass.cs" />
     <Compile Include="PropertyClass\KartaPropertyClass.cs" />
     <Compile Include="PropertyClass\SjedistePropertyClass.cs" />
-    <Compile Include="PropertyClass\Zanr.cs" />
+    <Compile Include="PropertyClass\ZanrPropertyClass.cs" />
     <Compile Include="PropertyClass\ZanroviFilmovaPropertyClass.cs" />
     <Compile Include="PropertyClass\ZaposleniPropertyClass.cs" />
     <Compile Include="PropertyInterface.cs" />

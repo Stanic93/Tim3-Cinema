@@ -49,15 +49,18 @@
             this.btnProjekcija = new System.Windows.Forms.Button();
             this.btnZaposleni = new System.Windows.Forms.Button();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
-            this.gbPrikaz = new System.Windows.Forms.GroupBox();
-            this.panelDetalji = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panelDetalji = new System.Windows.Forms.Panel();
+            this.gbPrikaz = new System.Windows.Forms.GroupBox();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.panelMeni.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.gbDetaljno.SuspendLayout();
+            this.gbPrikaz.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLogo
@@ -294,7 +297,6 @@
             this.btnZaposleni.Text = "             ZAPOSLENI";
             this.btnZaposleni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnZaposleni.UseVisualStyleBackColor = true;
-            this.btnZaposleni.Click += new System.EventHandler(this.btnZaposleni_Click);
             // 
             // gbDetaljno
             // 
@@ -308,23 +310,6 @@
             this.gbDetaljno.TabStop = false;
             this.gbDetaljno.Text = "Detaljno";
             // 
-            // gbPrikaz
-            // 
-            this.gbPrikaz.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.gbPrikaz.Location = new System.Drawing.Point(558, 318);
-            this.gbPrikaz.Name = "gbPrikaz";
-            this.gbPrikaz.Size = new System.Drawing.Size(594, 370);
-            this.gbPrikaz.TabIndex = 6;
-            this.gbPrikaz.TabStop = false;
-            this.gbPrikaz.Text = "Prikaz";
-            // 
-            // panelDetalji
-            // 
-            this.panelDetalji.Location = new System.Drawing.Point(7, 20);
-            this.panelDetalji.Name = "panelDetalji";
-            this.panelDetalji.Size = new System.Drawing.Size(273, 372);
-            this.panelDetalji.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(7, 399);
@@ -333,6 +318,24 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // panelDetalji
+            // 
+            this.panelDetalji.Location = new System.Drawing.Point(7, 20);
+            this.panelDetalji.Name = "panelDetalji";
+            this.panelDetalji.Size = new System.Drawing.Size(273, 372);
+            this.panelDetalji.TabIndex = 0;
+            // 
+            // gbPrikaz
+            // 
+            this.gbPrikaz.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.gbPrikaz.Controls.Add(this.dgvPrikaz);
+            this.gbPrikaz.Location = new System.Drawing.Point(558, 318);
+            this.gbPrikaz.Name = "gbPrikaz";
+            this.gbPrikaz.Size = new System.Drawing.Size(594, 370);
+            this.gbPrikaz.TabIndex = 6;
+            this.gbPrikaz.TabStop = false;
+            this.gbPrikaz.Text = "Prikaz";
             // 
             // gbPretraga
             // 
@@ -343,6 +346,14 @@
             this.gbPretraga.TabIndex = 7;
             this.gbPretraga.TabStop = false;
             this.gbPretraga.Text = "Pretraga";
+            // 
+            // dgvPrikaz
+            // 
+            this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrikaz.Location = new System.Drawing.Point(6, 19);
+            this.dgvPrikaz.Name = "dgvPrikaz";
+            this.dgvPrikaz.Size = new System.Drawing.Size(582, 345);
+            this.dgvPrikaz.TabIndex = 0;
             // 
             // AdministracijaForm
             // 
@@ -365,6 +376,8 @@
             this.panelMeni.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.gbDetaljno.ResumeLayout(false);
+            this.gbPrikaz.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +408,6 @@
         private System.Windows.Forms.GroupBox gbPrikaz;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox gbPretraga;
+        private System.Windows.Forms.DataGridView dgvPrikaz;
     }
 }
