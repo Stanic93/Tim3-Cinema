@@ -307,6 +307,7 @@
             this.dgvPregled.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPregled.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvPregled.RowTemplate.DefaultCellStyle.NullValue = "/";
+            this.dgvPregled.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.dgvPregled.Size = new System.Drawing.Size(542, 380);
             this.dgvPregled.TabIndex = 0;
             this.dgvPregled.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregled_CellClick);
@@ -350,6 +351,7 @@
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(129, 20);
             this.txtNaziv.TabIndex = 4;
+            this.txtNaziv.TextChanged += new System.EventHandler(this.txtNaziv_TextChanged);
             // 
             // label1
             // 

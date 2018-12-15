@@ -25,6 +25,10 @@ namespace Cinema.Forme
             prikaziKolone();
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPregled.MultiSelect = false;
+            btnRepertor.Enabled = true;
+            btnKarta.Enabled = false;
+            btnRacun.Enabled = false;
+            btnPretrazi.Enabled = false;
             popuniRepertoarControle(property);
         }
         
@@ -209,6 +213,7 @@ namespace Cinema.Forme
 
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
+           
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
@@ -234,6 +239,19 @@ namespace Cinema.Forme
             dgvPregled.DataSource = dt;
 
             prikaziKolone();
+            txtNaziv.Text = "";
+        }
+
+        private void txtNaziv_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNaziv.Text == "" || txtNaziv.Text == " ")
+            {
+                btnPretrazi.Enabled = false;
+            }
+            else
+            {
+                btnPretrazi.Enabled = true;
+            }
         }
     }
 
