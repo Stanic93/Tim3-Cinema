@@ -18,20 +18,34 @@ namespace Cinema.Forme
     public partial class BlagajnaForm : Form
     {
         PropertyInterface property = new RepertoarPropertyClass();
+        ActiveTab activeTab;
+        int filmID = 0;
         public BlagajnaForm()
         {
             InitializeComponent();
             popuniPregledRepertoar();
             prikaziKolone();
+            OsnovnaPodesavanja();
+            
+        }
+        public void OsnovnaPodesavanja()
+        {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPregled.MultiSelect = false;
             btnRepertor.Enabled = true;
             btnKarta.Enabled = false;
             btnRacun.Enabled = false;
-            btnPretrazi.Enabled = false;
-            popuniRepertoarControle(property);
+            btnNovaKarta.Enabled = false;
+            popuniControle(property);
+            dtpDatumProdukcije.Enabled = false;
+            toolStripKarta.Visible = false;
+            btnPotvrdi.Visible = false;
+            flpDetaljno.Dock = DockStyle.Fill;
+            activeTab = ActiveTab.Repertoar;
+            lblNazivFilma.Visible = false;
+            lblZanrFilma.Visible = false;
         }
-        
+
         private void popuniPregledRepertoar()
         {
             DataTable dt = new DataTable();
@@ -70,14 +84,17 @@ namespace Cinema.Forme
 
         }
 
-        private void popuniRepertoarControle(PropertyInterface property)
+        private void popuniControle(PropertyInterface property)
         {
             var properties = property.GetType().GetProperties();
             foreach (PropertyInfo item in properties)
             {
-                if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
+                if (activeTab == ActiveTab.Repertoar)
                 {
-                    continue;
+                    if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
+                    {
+                        continue;
+                    }
                 }
                 if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                 {
@@ -112,9 +129,21 @@ namespace Cinema.Forme
 
         private void dgvPregled_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            PopulatePropertyInterface(property);
-            popuniDetaljno(property);
-            setujGraniceDatumProdukcije(property);
+            if (activeTab == ActiveTab.Karta)
+            {
+                btnNovaKarta.Enabled = true;
+            }
+            else
+            {                
+                PopulatePropertyInterface(property);
+                popuniDetaljno(property);
+                setujGraniceDatumProdukcije(property);
+                filmID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value);
+                lblNazivFilma.Text = dgvPregled.SelectedRows[0].Cells["Film"].Value.ToString();
+                lblZanrFilma.Text = dgvPregled.SelectedRows[0].Cells["Zanr"].Value.ToString();
+            }
+            dtpDatumProdukcije.Enabled = true;
+            btnNovaKarta.Enabled = true;
         }
 
         private void PopulatePropertyInterface(PropertyInterface property)
@@ -252,6 +281,93 @@ namespace Cinema.Forme
             {
                 btnPretrazi.Enabled = true;
             }
+        }
+
+        private void btnNovaKarta_Click(object sender, EventArgs e)
+        {
+            activeTab = ActiveTab.Karta;
+            kreirajRacun();
+            btnNovaKarta.Enabled = false;
+            btnRepertor.Enabled = false;
+            lblNazivFilma.Visible = true;
+            lblZanrFilma.Visible = true;
+            activeTab = ActiveTab.Karta;
+            btnKarta.Enabled = true;
+            btnRacun.Enabled = false;
+            btnNovaKarta.Enabled = true;
+            btnNovaKarta.Text = "Nastavi";
+            dtpDatumProdukcije.Enabled = true;
+            toolStripKarta.Visible = true;
+            btnPotvrdi.Visible = true;
+            flpDetaljno.Dock = DockStyle.None;
+            panel4.Visible = false;
+            panel5.Visible = true;
+            txtNaziv.ReadOnly = true;
+            txtNaziv.TextAlign = HorizontalAlignment.Center;
+            lblNaziv.Text = "Broj";
+            gbDetaljno.Enabled = false;
+            dgvPregled.DataSource = null;
+            flpDetaljno.Controls.Clear();
+            panelPretraga.Visible = false;
+            gbPretraga.Text = "Info";
+            tsbtnIzmjein.Visible = false;
+            tsbtnObrisi.Visible = false;
+            popuniPregledProdukcija();
+        }
+
+        private void kreirajRacun()
+        {
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"Insert into dbo.Racun (UkupnaCijena,DatumIzdavanja,ZaposleniID) values (null,null,null)";
+            command.Connection = connection;
+            DataTable dt = new DataTable();
+            SqlDataReader reader;
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+
+            }
+            catch
+            {
+                MessageBox.Show("Connection can not open");
+            }
+        }
+        private void popuniPregledProdukcija()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"select * from vPregledProjekcije (@Date,@FilmID)";
+            SqlParameter parameter = new SqlParameter("@Date", SqlDbType.Date);
+            SqlParameter parameter2 = new SqlParameter("@FilmID", SqlDbType.Int);
+            parameter.Value = dtpDatumProdukcije.Value;
+            parameter2.Value = filmID;
+            command.Parameters.Add(parameter);
+            command.Parameters.Add(parameter2);
+
+            command.Connection = connection;
+            SqlDataReader reader;
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            dgvPregled.DataSource = dt;
         }
     }
 

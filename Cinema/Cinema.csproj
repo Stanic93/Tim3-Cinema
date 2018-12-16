@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveTab.cs" />
     <Compile Include="AttributeClass\CheckBoxAttribute.cs" />
     <Compile Include="AttributeClass\DateTimeAttribute.cs" />
     <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
