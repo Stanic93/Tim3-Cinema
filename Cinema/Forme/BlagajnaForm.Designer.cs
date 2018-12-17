@@ -45,6 +45,7 @@
             this.lblCinema = new System.Windows.Forms.Label();
             this.pBoxLogo = new System.Windows.Forms.PictureBox();
             this.gbKarta = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnNovaKarta = new System.Windows.Forms.Button();
             this.dtpDatumProdukcije = new System.Windows.Forms.DateTimePicker();
             this.lblDatumProdukcije = new System.Windows.Forms.Label();
@@ -71,7 +72,7 @@
             this.lblStatusSale = new System.Windows.Forms.Label();
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -274,6 +275,15 @@
             this.gbKarta.TabIndex = 7;
             this.gbKarta.TabStop = false;
             this.gbKarta.Text = "Karta";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 38);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Rezervacija";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnNovaKarta
             // 
@@ -539,14 +549,15 @@
             this.panelPregledRacuna.Size = new System.Drawing.Size(562, 411);
             this.panelPregledRacuna.TabIndex = 12;
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(6, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 38);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Rezervacija";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(521, 49);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // BlagajnaForm
             // 
@@ -554,6 +565,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1146, 659);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.panelPregledRacuna);
             this.Controls.Add(this.lblStanjeSale);
             this.Controls.Add(this.lblStatusSale);
@@ -637,5 +649,6 @@
         private System.Windows.Forms.Panel panelPretraga;
         private System.Windows.Forms.Panel panelPregledRacuna;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

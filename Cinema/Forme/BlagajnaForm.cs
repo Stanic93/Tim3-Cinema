@@ -369,6 +369,12 @@ namespace Cinema.Forme
             }
             dgvPregled.DataSource = dt;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AdministracijaForm nova = new AdministracijaForm();
+            nova.Show();
+        }
     }
 
 }
