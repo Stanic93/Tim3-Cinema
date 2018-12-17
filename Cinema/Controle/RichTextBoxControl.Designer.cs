@@ -36,7 +36,7 @@
             // 
             this.lblNaziv.AutoSize = true;
             this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblNaziv.Location = new System.Drawing.Point(8, 60);
+            this.lblNaziv.Location = new System.Drawing.Point(3, 86);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(45, 17);
             this.lblNaziv.TabIndex = 0;
@@ -47,7 +47,7 @@
             this.rtxtVrijednost.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.rtxtVrijednost.Location = new System.Drawing.Point(91, 4);
             this.rtxtVrijednost.Name = "rtxtVrijednost";
-            this.rtxtVrijednost.Size = new System.Drawing.Size(200, 122);
+            this.rtxtVrijednost.Size = new System.Drawing.Size(207, 174);
             this.rtxtVrijednost.TabIndex = 1;
             this.rtxtVrijednost.Text = "";
             // 
@@ -58,7 +58,7 @@
             this.Controls.Add(this.rtxtVrijednost);
             this.Controls.Add(this.lblNaziv);
             this.Name = "RichTextBoxControl";
-            this.Size = new System.Drawing.Size(297, 129);
+            this.Size = new System.Drawing.Size(301, 181);
             this.ResumeLayout(false);
             this.PerformLayout();
 
