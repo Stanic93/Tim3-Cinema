@@ -27,6 +27,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("TerminID")]
         [DisplayName("Termin ID")]
+        [LookUpKey]
         public short TerminID
         {
             get
@@ -40,6 +41,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("VrijemePrikazivanja")]
         [DisplayName("Vrijeme prikazivanja")]
+        [LookUpValue]
         public TimeSpan VrijemePrikazivanja
         {
             get
@@ -113,11 +115,11 @@ namespace Cinema.PropertyClass
         {
             get
             {
-                return CijenaID;
+                return cijenaID;
             }
             set
             {
-                CijenaID = value;
+                cijenaID = value;
             }
         }
         [PrimaryKey]
@@ -129,11 +131,11 @@ namespace Cinema.PropertyClass
         {
             get
             {
-                return ProjekcijaID;
+                return projekcijaID;
             }
             set
             {
-                ProjekcijaID = value;
+                projekcijaID = value;
             }
         }
         #endregion

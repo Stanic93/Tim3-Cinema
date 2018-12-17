@@ -91,6 +91,10 @@ namespace Cinema.PropertyClass
         {
             return @"SELECT RacunID, DatumIzdavanja, ZaposleniID, UkupnaCijena from dbo.Racun";
         }
+        public string GetMaxIDQuery()
+        {
+            return @"SELECT Max(RacunID) as [RacunID] from dbo.Racun";
+        }
 
         public string GetDeleteQuery()
         {

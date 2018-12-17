@@ -20,15 +20,20 @@ namespace Cinema.Forme
         PropertyInterface property = new RepertoarPropertyClass();
         ActiveTab activeTab;
         int filmID = 0;
-        public BlagajnaForm()
+        int racunID = 0;
+        int zaposleniID = 0;
+        string FullName = "";
+        public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
             InitializeComponent();
             popuniPregled(property);
             prikaziKolone();
             OsnovnaPodesavanja();
+            this.zaposleniID = zaposleniID;
+            FullName = imeIprezime;
 
         }
-        #region repertoar metode
+
         public void OsnovnaPodesavanja()
         {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -46,8 +51,6 @@ namespace Cinema.Forme
             lblNazivFilma.Visible = false;
             lblZanrFilma.Visible = false;
         }
-        #endregion
-
 
         private void popuniPregled(PropertyInterface property)
         {
@@ -84,6 +87,7 @@ namespace Cinema.Forme
             {
                 dgvPregled.Columns["FilmID"].Visible = false;
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
+                //    dgvPregled.Columns["TerminID"].Visible = false;
             }
         }
 
@@ -105,7 +109,7 @@ namespace Cinema.Forme
                     continue;
                 }
 
-                if (item.GetCustomAttribute<VisibleAttribute>() != null )
+                if (item.GetCustomAttribute<VisibleAttribute>() != null)
                 {
                     continue;
                 }
@@ -146,6 +150,7 @@ namespace Cinema.Forme
             if (activeTab == ActiveTab.Karta)
             {
                 btnNovaKarta.Enabled = true;
+                setujKontroleKarta();
             }
             else
             {
@@ -169,7 +174,7 @@ namespace Cinema.Forme
             foreach (PropertyInfo item in properties)
             {
                 string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
-                    .Value.ToString();
+                   .Value.ToString();
                 if (item.GetCustomAttribute<SqlNameAttribute>().Naziv == "DuzinaTrajanja")
                 {
                     TimeSpan time = TimeSpan.Parse(value);
@@ -300,8 +305,8 @@ namespace Cinema.Forme
 
         private void btnNovaKarta_Click(object sender, EventArgs e)
         {
-            
             activeTab = ActiveTab.Karta;
+            racunID = 0;
             kreirajRacun();
             property = new KartaPropertyClass();
             btnRepertor.Enabled = false;
@@ -330,17 +335,115 @@ namespace Cinema.Forme
             tsbtnObrisi.Visible = false;
             popuniPregledProjekcija();
             popuniControle(property);
+            setujKontroleKarta();
         }
 
         private void kreirajRacun()
         {
             property = new RacunPropertyClass();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(),property.GetInsertParameters().ToArray());
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
             DataTable dt = new DataTable();
             dt.Load(reader);
             reader.Close();
+            RacunPropertyClass pomocni = property as RacunPropertyClass;
+            reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pomocni.GetMaxIDQuery());
+            dt = new DataTable();
+
+            dt.Load(reader);
+            foreach (DataRow row in dt.Rows)
+            {
+                racunID = row.Field<short>("RacunID");
+            }
+
+            reader.Close();
         }
 
+        private void setujKontroleKarta()
+        {
+            foreach (var item in flpDetaljno.Controls)
+            {
+                if (item.GetType() == typeof(UserLookUpControl))
+                {
+                    UserLookUpControl ulup = item as UserLookUpControl;
+                    
+                    if (ulup.Name == "ProjekcijaID")
+                    {
+
+                        ulup.Enabled = false;
+                        ulup.SetKey(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
+                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
+                    }
+                    if (ulup.Name == "TerminID")
+                    {
+
+                        ulup.Enabled = false;
+                        ulup.SetKey(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
+                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
+                    }
+                    if (ulup.Name == "RacunID")
+                    {
+
+                        ulup.Enabled = false;
+                        ulup.SetKey("" + racunID);
+                        ulup.SetValue("" + racunID);
+                    }
+                }
+                if (item.GetType() == typeof(TextBoxControl))
+                {
+                    TextBoxControl textBox = item as TextBoxControl;
+                    if (textBox.Name == "VrijemeIzdavanja")
+                    {
+                        DateTime datum = DateTime.Now;
+                        textBox.SetTextBox("" + datum);
+                        textBox.ReadOnly();
+                    }
+
+                }
+            }
+        }
+        private void populateKartaInterface(PropertyInterface Myproperty)
+        {
+            
+            var properties = property.GetType().GetProperties();
+            string value = "";
+            foreach (PropertyInfo item in properties)
+            {
+                value = "";
+                if (item.Name == "KartaID")
+                {
+                    continue;
+                }
+                foreach (var item2 in flpDetaljno.Controls)
+                {
+                    if (item2.GetType() == typeof(UserLookUpControl))
+                    {
+                        UserLookUpControl ulup = item2 as UserLookUpControl;
+                        if (ulup.Name == item.Name)
+                        {
+                            value = ulup.getKey();
+                        }
+                    }
+
+                    if (item2.GetType() == typeof(TextBoxControl))
+                    {
+                        TextBoxControl textBox = item2 as TextBoxControl;
+                        if (textBox.Name == item.Name)
+                        {
+                            value = textBox.GetTextBox();
+                        }
+                    }
+                }
+                if (item.GetCustomAttribute<SqlNameAttribute>().Naziv == "VrijemePrikazivanja")
+                {
+                    TimeSpan time = TimeSpan.Parse(value);
+                    item.SetValue(property, Convert.ChangeType(time, item.PropertyType));
+                    continue;
+                }
+                item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+
+
+            }
+        }
         private void popuniPregledProjekcija()
         {
             DataTable dt = new DataTable();
@@ -387,7 +490,30 @@ namespace Cinema.Forme
                 popuniPregledProjekcija();
             }
         }
-    }
 
+        private void btnPotvrdi_Click(object sender, EventArgs e)
+        {
+            populateKartaInterface(property);
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            reader.Close();
+            foreach (var item in flpDetaljno.Controls)
+            {
+                if (item.GetType() == typeof(UserLookUpControl))
+                {
+                    UserLookUpControl ulup = item as UserLookUpControl;
+                    if (ulup.Name == "SjedisteID")
+                    {
+
+                        ulup.SetKey("");
+                        ulup.SetValue("");
+                    }
+
+                }
+            }
+        }
+
+    }
 }
 

@@ -35,15 +35,17 @@ namespace Cinema.Controle
             txtValue.Text = Value;
             txtKeyValue.Text = Key;
         }
-
-        private void txtValue_TextChanged(object sender, EventArgs e)
+        public void SetValue(string value)
         {
-
+            txtValue.Text = value;
         }
-
-        private void txtKeyValue_TextChanged(object sender, EventArgs e)
+        public void SetKey(string key)
         {
-
+            txtKeyValue.Text = key;
+        }
+        public string getKey()
+        {
+            return txtKeyValue.Text;
         }
     }
 }

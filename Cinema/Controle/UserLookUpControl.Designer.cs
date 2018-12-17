@@ -49,7 +49,6 @@
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(37, 20);
             this.txtKeyValue.TabIndex = 1;
-            this.txtKeyValue.TextChanged += new System.EventHandler(this.txtKeyValue_TextChanged);
             // 
             // btnFind
             // 
@@ -68,7 +67,6 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(137, 20);
             this.txtValue.TabIndex = 3;
-            this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 
             // UserLookUpControl
             // 
