@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cinema.PropertyClass
 {
-    class Zanr : PropertyInterface
+    class ZanrPropertyClass : PropertyInterface
     {
         #region attribute
 
