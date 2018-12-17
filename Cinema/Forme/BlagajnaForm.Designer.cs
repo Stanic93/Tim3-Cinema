@@ -228,7 +228,7 @@
             this.panel3.Controls.Add(this.pBoxLogo);
             this.panel3.Location = new System.Drawing.Point(266, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(115, 124);
+            this.panel3.Size = new System.Drawing.Size(117, 145);
             this.panel3.TabIndex = 1;
             // 
             // lblBlagajna
