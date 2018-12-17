@@ -10,6 +10,12 @@ namespace Cinema
     {
         Repertoar,
         Karta,
-        Racun
+        Racun,
+        Zaposleni,
+        Film,
+        Termini,
+        Projekcija,
+        Zanr,
+        Login
     }
 }
