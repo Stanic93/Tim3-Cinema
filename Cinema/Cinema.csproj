@@ -69,6 +69,7 @@
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributeClass\RichTextBoxAttribute.cs" />
     <Compile Include="AttributeClass\SqlNameAttribute.cs" />
+    <Compile Include="AttributeClass\VisibleAttribute.cs" />
     <Compile Include="Controle\DateTimeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,10 +113,10 @@
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
-    <Compile Include="LookUpForm.cs">
+    <Compile Include="Forme\LookUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LookUpForm.Designer.cs">
+    <Compile Include="Forme\LookUpForm.Designer.cs">
       <DependentUpon>LookUpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="PropertyClass\FilmPropertyClass.cs" />
     <Compile Include="PropertyClass\KartaPropertyClass.cs" />
     <Compile Include="PropertyClass\SjedistePropertyClass.cs" />
+    <Compile Include="PropertyClass\TerminPropertyClass.cs" />
     <Compile Include="PropertyClass\ZanrPropertyClass.cs" />
     <Compile Include="PropertyClass\ZanroviFilmovaPropertyClass.cs" />
     <Compile Include="PropertyClass\ZaposleniPropertyClass.cs" />
@@ -157,7 +159,7 @@
     <EmbeddedResource Include="Forme\CinemaLogin.resx">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LookUpForm.resx">
+    <EmbeddedResource Include="Forme\LookUpForm.resx">
       <DependentUpon>LookUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

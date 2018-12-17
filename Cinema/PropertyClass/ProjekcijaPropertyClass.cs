@@ -28,6 +28,7 @@ namespace Cinema.PropertyClass
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
         [LookUpKey]
+        [LookUpValue]
         public short ProjekcijaID
         {
             get
@@ -164,7 +165,7 @@ namespace Cinema.PropertyClass
         #region queries
         public string GetSelectQuery()
         {
-            return @"Select ProjekcijaID,FilmID,CijenaID,VrijemePrikazivanja,DatumPrvogPrikazivanja,SalaID,Projekcija3D,Premijera,DatumPosljednjegPrikazivanja from dbo.Projekcija";
+            return @"Select ProjekcijaID,FilmID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja from dbo.Projekcija";
         }
         public string GetDeleteQuery()
         {

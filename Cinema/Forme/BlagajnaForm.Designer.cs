@@ -45,7 +45,7 @@
             this.lblCinema = new System.Windows.Forms.Label();
             this.pBoxLogo = new System.Windows.Forms.PictureBox();
             this.gbKarta = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRezervacija = new System.Windows.Forms.Button();
             this.btnNovaKarta = new System.Windows.Forms.Button();
             this.dtpDatumProdukcije = new System.Windows.Forms.DateTimePicker();
             this.lblDatumProdukcije = new System.Windows.Forms.Label();
@@ -265,7 +265,7 @@
             // 
             // gbKarta
             // 
-            this.gbKarta.Controls.Add(this.button1);
+            this.gbKarta.Controls.Add(this.btnRezervacija);
             this.gbKarta.Controls.Add(this.btnNovaKarta);
             this.gbKarta.Controls.Add(this.dtpDatumProdukcije);
             this.gbKarta.Controls.Add(this.lblDatumProdukcije);
@@ -276,14 +276,14 @@
             this.gbKarta.TabStop = false;
             this.gbKarta.Text = "Karta";
             // 
-            // button1
+            // btnRezervacija
             // 
-            this.button1.Location = new System.Drawing.Point(6, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 38);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Rezervacija";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRezervacija.Location = new System.Drawing.Point(6, 41);
+            this.btnRezervacija.Name = "btnRezervacija";
+            this.btnRezervacija.Size = new System.Drawing.Size(139, 38);
+            this.btnRezervacija.TabIndex = 13;
+            this.btnRezervacija.Text = "Rezervacija";
+            this.btnRezervacija.UseVisualStyleBackColor = true;
             // 
             // btnNovaKarta
             // 
@@ -649,7 +649,7 @@
         private System.Windows.Forms.Label lblStanjeSale;
         private System.Windows.Forms.Panel panelPretraga;
         private System.Windows.Forms.Panel panelPregledRacuna;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRezervacija;
         private System.Windows.Forms.Button button2;
     }
 }

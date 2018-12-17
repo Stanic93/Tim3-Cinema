@@ -28,6 +28,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
+        [Visible]
         public short FilmID
         {
             get
@@ -113,6 +114,7 @@ namespace Cinema.PropertyClass
         [SqlName("Aktivan")]
         [DisplayName("Aktivan")]
         [CheckBoxAttribute]
+        [Visible]
         public bool Aktivan
         {
             get
@@ -127,6 +129,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Godina")]
         [DisplayName("Godina")]
+        [Visible]
         public short Godina
         {
             get
@@ -143,11 +146,13 @@ namespace Cinema.PropertyClass
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
         [DateTimeAttribute]
+        
         public DateTime DatumPrvogPrikazivanja { get; set; }
 
         [SqlName("DatumPosljednjegPrikazivanja")]
         [DisplayName("Datum posljednjeg prikazivanja")]
         [DateTimeAttribute]
+        
         public DateTime DatumPosljednjegPrikazivanja { get; set; }
 
         #endregion
@@ -163,7 +168,7 @@ namespace Cinema.PropertyClass
         }
         public string GetSelectQuery()
         {
-            throw new NotImplementedException();
+            return @"Select FilmID,Film,Zanr,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja from dbo.vRepertoar";
         }
         public string GetUpdateQuery()
         {

@@ -33,6 +33,7 @@ namespace Cinema.Controle
             Key = novaForma.Key;
             Value = novaForma.Value;
             txtValue.Text = Value;
+            txtKeyValue.Text = Key;
         }
 
         private void txtValue_TextChanged(object sender, EventArgs e)

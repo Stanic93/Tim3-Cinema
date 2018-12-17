@@ -43,6 +43,7 @@
             this.dgvPregledLookUp.Location = new System.Drawing.Point(13, 13);
             this.dgvPregledLookUp.Name = "dgvPregledLookUp";
             this.dgvPregledLookUp.ReadOnly = true;
+            this.dgvPregledLookUp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPregledLookUp.Size = new System.Drawing.Size(411, 209);
             this.dgvPregledLookUp.TabIndex = 0;
             // 

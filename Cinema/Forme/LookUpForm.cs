@@ -27,11 +27,12 @@ namespace Cinema
 
         public void GetSelectAll()
         {
+            dgvPregledLookUp.DataSource = null;
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetSelectQuery());
             dt.Load(reader);
             reader.Close();
-
+           
             dgvPregledLookUp.DataSource = dt;
             //izvuci display name
             var type = myProperty.GetType();

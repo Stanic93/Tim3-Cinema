@@ -45,7 +45,7 @@
             // 
             // txtKeyValue
             // 
-            this.txtKeyValue.Location = new System.Drawing.Point(85, 7);
+            this.txtKeyValue.Location = new System.Drawing.Point(73, 7);
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(37, 20);
             this.txtKeyValue.TabIndex = 1;
@@ -53,7 +53,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(128, 6);
+            this.btnFind.Location = new System.Drawing.Point(116, 6);
             this.btnFind.Name = "btnFind";
             this.btnFind.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnFind.Size = new System.Drawing.Size(33, 20);
@@ -64,9 +64,9 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(167, 7);
+            this.txtValue.Location = new System.Drawing.Point(155, 7);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(117, 20);
+            this.txtValue.Size = new System.Drawing.Size(137, 20);
             this.txtValue.TabIndex = 3;
             this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 

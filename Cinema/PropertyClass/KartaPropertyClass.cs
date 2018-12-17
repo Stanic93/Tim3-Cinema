@@ -19,6 +19,7 @@ namespace Cinema.PropertyClass
         private DateTime vrijemeIzdavanja;
         private short sjedisteID;
         private short racunID;
+        private short terminID;
 
         #endregion
 
@@ -36,6 +37,21 @@ namespace Cinema.PropertyClass
             set
             {
                 kartaID = value;
+            }
+        }
+        [PrimaryKey]
+        [SqlName("TerminID")]
+        [DisplayName("Termin ID")]
+        [ForeignKey("dbo.Termin", "TerminID", "Cinema.PropertyClass.TerminPropertyClass")]
+        public short TerminID
+        {
+            get
+            {
+                return terminID;
+            }
+            set
+            {
+                terminID = value;
             }
         }
 
