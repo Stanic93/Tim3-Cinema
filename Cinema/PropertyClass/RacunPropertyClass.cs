@@ -22,6 +22,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("RacunID")]
         [DisplayName("Racun ID")]
+        [LookUpKey]
         public short RacuniID
         {
             get
@@ -36,6 +37,7 @@ namespace Cinema.PropertyClass
         
         [SqlName("VrijemeIzdavanja")]
         [DisplayName("Vrijeme izdavanja")]
+        [LookUpValue]
         public DateTime VrijemeIzdavanja
         {
             get

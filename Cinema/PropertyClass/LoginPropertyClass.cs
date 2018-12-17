@@ -111,8 +111,7 @@ namespace Cinema.PropertyClass
             return @"SELECT LoginID, ZaposleniID, KorisnickoIme, Lozinka, RadnoMjesto from dbo.Login";
         }
 
-
-
+       
         public string GetUpdateQuery()
         {
             return @"UPDATE

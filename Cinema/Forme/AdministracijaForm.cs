@@ -48,7 +48,7 @@ namespace Cinema.Forme
 
             dt.Load(reader);
             reader.Close();
-
+            dgvPrikaz.DataSource = null;
             dgvPrikaz.DataSource = dt;
             var prop = property.GetType().GetProperties();
 

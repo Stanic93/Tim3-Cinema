@@ -64,6 +64,8 @@
     <Compile Include="AttributeClass\CheckBoxAttribute.cs" />
     <Compile Include="AttributeClass\DateTimeAttribute.cs" />
     <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
+    <Compile Include="AttributeClass\LookUpKeyAttribute.cs" />
+    <Compile Include="AttributeClass\LookUpValueAttribute.cs" />
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributeClass\RichTextBoxAttribute.cs" />
     <Compile Include="AttributeClass\SqlNameAttribute.cs" />
@@ -85,6 +87,12 @@
     <Compile Include="Controle\TextBoxControl.Designer.cs">
       <DependentUpon>TextBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controle\UserLookUpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controle\UserLookUpControl.Designer.cs">
+      <DependentUpon>UserLookUpControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\AdministracijaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +112,12 @@
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
+    <Compile Include="LookUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookUpForm.Designer.cs">
+      <DependentUpon>LookUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\ReflectionClass.cs" />
@@ -131,6 +145,9 @@
     <EmbeddedResource Include="Controle\TextBoxControl.resx">
       <DependentUpon>TextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controle\UserLookUpControl.resx">
+      <DependentUpon>UserLookUpControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\AdministracijaForm.resx">
       <DependentUpon>AdministracijaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\CinemaLogin.resx">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LookUpForm.resx">
+      <DependentUpon>LookUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

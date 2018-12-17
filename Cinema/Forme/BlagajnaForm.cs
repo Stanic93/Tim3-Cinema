@@ -72,23 +72,41 @@ namespace Cinema.Forme
 
         private void prikaziKolone()
         {
-            dgvPregled.Columns["FilmID"].Visible = false;
-            dgvPregled.Columns["DatumPrvogPrikazivanja"].Visible = false;
-            dgvPregled.Columns["DatumPosljednjegPrikazivanja"].Visible = false;
-            dgvPregled.Columns["Aktivan"].Visible = false;
-            dgvPregled.Columns["Reziser"].Visible = false;
-            dgvPregled.Columns["Godina"].Width = 50;
-            dgvPregled.Columns["Film"].Width = 145;
-
-
-
+            if (activeTab == ActiveTab.Repertoar)
+            {
+                dgvPregled.Columns["FilmID"].Visible = false;
+                dgvPregled.Columns["DatumPrvogPrikazivanja"].Visible = false;
+                dgvPregled.Columns["DatumPosljednjegPrikazivanja"].Visible = false;
+                dgvPregled.Columns["Aktivan"].Visible = false;
+                dgvPregled.Columns["Reziser"].Visible = false;
+                dgvPregled.Columns["Godina"].Width = 50;
+                dgvPregled.Columns["Film"].Width = 145;
+                return;
+            }
+            if(activeTab == ActiveTab.Karta)
+            {
+                dgvPregled.Columns["FilmID"].Visible = false;
+                dgvPregled.Columns["ProjekcijaID"].Visible = false;
+            }
         }
 
         private void popuniControle(PropertyInterface property)
         {
             var properties = property.GetType().GetProperties();
+            
             foreach (PropertyInfo item in properties)
             {
+                if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
+                {
+                    PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
+                        CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
+                        as PropertyInterface;
+                    UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
+                    ul.Name = item.Name;
+                    ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                    flpDetaljno.Controls.Add(ul);
+                    continue;
+                }
                 if (activeTab == ActiveTab.Repertoar)
                 {
                     if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
@@ -137,8 +155,9 @@ namespace Cinema.Forme
             {                
                 PopulatePropertyInterface(property);
                 popuniDetaljno(property);
-                setujGraniceDatumProdukcije(property);
-                filmID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value);
+                setujGraniceDatumProdukcije(property);    
+                
+                filmID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value);                                
                 lblNazivFilma.Text = dgvPregled.SelectedRows[0].Cells["Film"].Value.ToString();
                 lblZanrFilma.Text = dgvPregled.SelectedRows[0].Cells["Zanr"].Value.ToString();
             }
@@ -305,7 +324,7 @@ namespace Cinema.Forme
             txtNaziv.ReadOnly = true;
             txtNaziv.TextAlign = HorizontalAlignment.Center;
             lblNaziv.Text = "Broj";
-            gbDetaljno.Enabled = false;
+            gbDetaljno.Enabled = true;
             dgvPregled.DataSource = null;
             flpDetaljno.Controls.Clear();
             panelPretraga.Visible = false;
@@ -313,8 +332,9 @@ namespace Cinema.Forme
             tsbtnIzmjein.Visible = false;
             tsbtnObrisi.Visible = false;
             popuniPregledProdukcija();
+            popuniControle(new KartaPropertyClass());
         }
-
+       
         private void kreirajRacun()
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
@@ -344,7 +364,7 @@ namespace Cinema.Forme
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"select * from vPregledProjekcije (@Date,@FilmID)";
+            command.CommandText = @"select * from vPregledProjekcije (@Date,@FilmID) order by VrijemePrikazivanja";
             SqlParameter parameter = new SqlParameter("@Date", SqlDbType.Date);
             SqlParameter parameter2 = new SqlParameter("@FilmID", SqlDbType.Int);
             parameter.Value = dtpDatumProdukcije.Value;
@@ -368,12 +388,22 @@ namespace Cinema.Forme
                 MessageBox.Show("Can not open connection");
             }
             dgvPregled.DataSource = dt;
+            prikaziKolone();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             AdministracijaForm nova = new AdministracijaForm();
             nova.Show();
+        }
+
+        private void dtpDatumProdukcije_ValueChanged(object sender, EventArgs e)
+        {
+            if (activeTab == ActiveTab.Karta)
+            {
+                dgvPregled.DataSource = null;
+                popuniPregledProdukcija();
+            }
         }
     }
 

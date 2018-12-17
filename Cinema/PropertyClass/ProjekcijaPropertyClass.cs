@@ -27,6 +27,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
+        [LookUpKey]
         public short ProjekcijaID
         {
             get

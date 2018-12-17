@@ -306,6 +306,7 @@
             this.dtpDatumProdukcije.Size = new System.Drawing.Size(149, 20);
             this.dtpDatumProdukcije.TabIndex = 10;
             this.dtpDatumProdukcije.Value = new System.DateTime(2018, 12, 16, 0, 0, 0, 0);
+            this.dtpDatumProdukcije.ValueChanged += new System.EventHandler(this.dtpDatumProdukcije_ValueChanged);
             // 
             // lblDatumProdukcije
             // 
