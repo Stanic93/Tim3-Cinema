@@ -14,13 +14,8 @@ namespace Cinema.PropertyClass
         #region attribute
         private short projekcijaID;
         private short filmID;
-        private short cijenaID;
-        private DateTime vrijemePrikazivanja;
         private DateTime datumPrvogPrikazivanja;
         private DateTime datumPosljednjegPrikazivanja;
-        private short salaID;
-        private bool projekcija3D;
-        private bool premijera;
         #endregion
 
         #region properties
@@ -55,38 +50,9 @@ namespace Cinema.PropertyClass
             {
                 filmID = value;
             }
-        }
+        }      
 
-        [SqlName("CijenaID")]
-        [DisplayName("Cijena ID")]
-        [PrimaryKey]
-        [ForeignKey("dbo.Cijena", "CijenaID", "Cinema.PropertyClass.CijenaPropertyClass")]
-        public short CijenaID
-        {
-            get
-            {
-                return cijenaID;
-            }
-            set
-            {
-                cijenaID = value;
-            }
-        }
-
-        [SqlName("VrijemePrikazivanja")]
-        [DisplayName("Vrijeme prikazivanja")]
-        public DateTime VrijemePrikazivanja
-        {
-            get
-            {
-                return vrijemePrikazivanja;
-            }
-            set
-            {
-                vrijemePrikazivanja = value;
-            }
-        }
-
+        
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
         public DateTime DatumPrvogPrikazivanja
@@ -113,52 +79,9 @@ namespace Cinema.PropertyClass
             {
                 datumPosljednjegPrikazivanja = value;
             }
-        }
+        }    
 
-        [SqlName("SalaID")]
-        [DisplayName("Sala ID")]
-        [PrimaryKey]
-        [ForeignKey("dbo.Sala", "SalaID", "Cinema.PropertyClass.SalaPropertyClass")]
-        public short SalaID
-        {
-            get
-            {
-                return salaID;
-            }
-            set
-            {
-                salaID = value;
-            }
-        }
-
-        [SqlName("Projekcija3D")]
-        [DisplayName("Projekcija 3D")]
-        public bool Projekcija3D
-        {
-            get
-            {
-                return projekcija3D;
-            }
-            set
-            {
-                projekcija3D = value;
-            }
-        }
-
-        [SqlName("Premijera")]
-        [DisplayName("Premijera")]
-        public bool Premijera
-        {
-            get
-            {
-                return premijera;
-            }
-            set
-            {
-                premijera = value;
-
-            }
-        }
+       
 
         #endregion
 
@@ -173,17 +96,13 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Projekcija (FilmID,CijenaID,VrijemePrikazivanja,DatumPrvogPrikazivanja,SalaID,Projekcija3D,Premijera,DatumPosljednjegPrikazivanja) values (@FilmID,@CijenaID,@VrijemePrikazivanja,@DatumPrvogPrikazivanja,@SalaID,@Projekcija3D,@DatumPosljednjegPrikazivanja)";
+            return @"Insert into dbo.Projekcija (FilmID,CijenaID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja) values (@FilmID,@CijenaID,@DatumPrvogPrikazivanja,@DatumPosljednjegPrikazivanja)";
         }
         public string GetUpdateQuery()
         {
             return @"Update dbo>Projekcija set  FilmID = @FilmID,
-                                                CijenaID = @CijenaID,
-                                                VrijemePrikazivanja = @VrijemePrikazivanja,
+                                                CijenaID = @CijenaID,                                               
                                                 DatumPrvogPrikazivanja = @DatumPrvogPrikazivanja,
-                                                SalaID = @SalaID,
-                                                Projekcija3D = @Projekcija3D,
-                                                Premijera = @Premijera,
                                                 DatumPosljednjegPrikazivanja = @DatumPosljednjegPrikazivanja
                                         where ProjekcijaID = @ProjekcijaID
                                                 ";
@@ -210,36 +129,13 @@ namespace Cinema.PropertyClass
                 parameter.Value = filmID;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@CijenaID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = cijenaID;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@VrijemePrikazivanja", System.Data.SqlDbType.Time);
-                parameter.Value = vrijemePrikazivanja;
-                parameters.Add(parameter);
-            }
+            
             {
                 SqlParameter parameter = new SqlParameter("@DatumPrvogPrikazivanja", System.Data.SqlDbType.DateTime);
                 parameter.Value = datumPrvogPrikazivanja;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@SalaID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = salaID;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Projekcija3D", System.Data.SqlDbType.Bit);
-                parameter.Value = projekcija3D;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Premijera", System.Data.SqlDbType.Bit);
-                parameter.Value = premijera;
-                parameters.Add(parameter);
-            }
+            
             {
                 SqlParameter parameter = new SqlParameter("@DatumPosljednjegPrikazivanja", System.Data.SqlDbType.Date);
                 parameter.Value = datumPosljednjegPrikazivanja;
@@ -257,46 +153,19 @@ namespace Cinema.PropertyClass
                 parameter.Value = filmID;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@CijenaID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = cijenaID;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@VrijemePrikazivanja", System.Data.SqlDbType.Time);
-                parameter.Value = vrijemePrikazivanja;
-                parameters.Add(parameter);
-            }
+           
             {
                 SqlParameter parameter = new SqlParameter("@DatumPrvogPrikazivanja", System.Data.SqlDbType.DateTime);
                 parameter.Value = datumPrvogPrikazivanja;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@SalaID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = salaID;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Projekcija3D", System.Data.SqlDbType.Bit);
-                parameter.Value = projekcija3D;
-                parameters.Add(parameter);
-            }
-            {
-                SqlParameter parameter = new SqlParameter("@Premijera", System.Data.SqlDbType.Bit);
-                parameter.Value = premijera;
-                parameters.Add(parameter);
-            }
+           
             {
                 SqlParameter parameter = new SqlParameter("@DatumPosljednjegPrikazivanja", System.Data.SqlDbType.Date);
                 parameter.Value = datumPosljednjegPrikazivanja;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = projekcija3D;
-                parameters.Add(parameter);
-            }
+           
             return parameters;
         }
 
