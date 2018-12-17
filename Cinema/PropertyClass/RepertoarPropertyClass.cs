@@ -16,7 +16,7 @@ namespace Cinema.PropertyClass
         private short filmID;
         private string film;
         private string zanr;
-        private DateTime duzinaTrajanja;
+        private System.TimeSpan duzinaTrajanja;
         private string opis;
         private string reziser;
         private bool aktivan;
@@ -70,7 +70,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("DuzinaTrajanja")]
         [DisplayName("Duzina trajanja")]
-        public DateTime DuzinaTrajanja {
+        public System.TimeSpan DuzinaTrajanja {
             get
             {
                 return duzinaTrajanja;

@@ -32,7 +32,7 @@ namespace Cinema.Forme
 
         private void CinemaLogin_Load(object sender, EventArgs e)
         {
-            this.Location = Screen.AllScreens[1].WorkingArea.Location; // form load on current working monitor
+          //  this.Location = Screen.AllScreens[1].WorkingArea.Location; // form load on current working monitor
         }
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)

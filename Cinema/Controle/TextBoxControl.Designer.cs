@@ -35,18 +35,19 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblNaziv.Location = new System.Drawing.Point(3, 6);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(41, 16);
+            this.lblNaziv.Size = new System.Drawing.Size(45, 17);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // txtVrijednost
             // 
+            this.txtVrijednost.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtVrijednost.Location = new System.Drawing.Point(154, 3);
             this.txtVrijednost.Name = "txtVrijednost";
-            this.txtVrijednost.Size = new System.Drawing.Size(137, 20);
+            this.txtVrijednost.Size = new System.Drawing.Size(137, 21);
             this.txtVrijednost.TabIndex = 1;
             // 
             // TextBoxControl

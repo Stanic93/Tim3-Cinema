@@ -35,19 +35,21 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
+            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblNaziv.Location = new System.Drawing.Point(3, 10);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(35, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(45, 17);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // dtpVrijednost
             // 
             this.dtpVrijednost.CustomFormat = "dd.MM.yyyy";
+            this.dtpVrijednost.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpVrijednost.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVrijednost.Location = new System.Drawing.Point(179, 4);
+            this.dtpVrijednost.Location = new System.Drawing.Point(204, 4);
             this.dtpVrijednost.Name = "dtpVrijednost";
-            this.dtpVrijednost.Size = new System.Drawing.Size(116, 20);
+            this.dtpVrijednost.Size = new System.Drawing.Size(91, 21);
             this.dtpVrijednost.TabIndex = 1;
             // 
             // DateTimeControl
