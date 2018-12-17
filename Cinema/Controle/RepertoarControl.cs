@@ -17,7 +17,7 @@ namespace Cinema.Controle
     public partial class RepertoarControl : UserControl
     {
         bool selektovan = false;
-        
+
         public RepertoarControl()
         {
             InitializeComponent();
@@ -71,7 +71,7 @@ namespace Cinema.Controle
             var properties = property.GetType().GetProperties();
             foreach (PropertyInfo item in properties)
             {
-                if(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
+                if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
                 {
                     continue;
                 }
@@ -101,8 +101,8 @@ namespace Cinema.Controle
                     TextBoxControl uc = new TextBoxControl();
                     uc.Name = item.Name;
                     uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    if(selektovan)
-                    uc.SetTextBox(item.GetValue(property).ToString());
+                    if (selektovan)
+                        uc.SetTextBox(item.GetValue(property).ToString());
                     flpDetaljno.Controls.Add(uc);
                 }
             }
@@ -114,7 +114,7 @@ namespace Cinema.Controle
                 return;
             string provjera = "";
             DataGridViewRow row = dgvPregled.SelectedRows[0];
-            foreach(DataGridViewCell cell in row.Cells)
+            foreach (DataGridViewCell cell in row.Cells)
             {
                 provjera += cell.Value.ToString() + " ";
             }
@@ -137,8 +137,11 @@ namespace Cinema.Controle
             {
                 string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
                     .Value.ToString();
-                if(value != "")
-                item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+                if (value == "")
+                {
+                    value = "01/01/2018";
+                    item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+                }
             }
 
             popuniControle(property);
