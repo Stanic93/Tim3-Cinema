@@ -133,7 +133,7 @@ namespace Cinema.Forme
                 command.Dispose();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -160,6 +160,12 @@ namespace Cinema.Forme
                 // otvori formu za administratora
                 MessageBox.Show("Otvorice formu administrator");
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoginForm a = new LoginForm();
+            a.Show();
         }
     }
 }

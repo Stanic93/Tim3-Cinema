@@ -63,7 +63,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -261,7 +261,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -363,7 +363,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }

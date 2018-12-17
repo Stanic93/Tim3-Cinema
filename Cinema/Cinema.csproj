@@ -103,6 +103,12 @@
     <Compile Include="Forme\CinemaLogin.Designer.cs">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DataReaderToDataSource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -140,6 +146,9 @@
     <EmbeddedResource Include="Forme\CinemaLogin.resx">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -148,6 +157,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -165,6 +175,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\x-mark.png" />
+    <None Include="Resources\logo-cine_23-2147503279 %281%29.jpg" />
+    <None Include="Resources\lock %281%29.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\user %281%29.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\logo-cine_23-21475032791.jpg" />
+    <None Include="Resources\logo-cine_23-2147503279.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
