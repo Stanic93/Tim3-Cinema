@@ -17,7 +17,7 @@ namespace Cinema
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdministracijaForm());
+            Application.Run(new CinemaLogin());
         }
     }
 }
