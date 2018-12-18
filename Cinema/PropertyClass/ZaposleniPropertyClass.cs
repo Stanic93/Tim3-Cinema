@@ -66,6 +66,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Godiste")]
         [DisplayName("Godiste")]
+        [DateTime]
         public DateTime Godiste
         {
             get

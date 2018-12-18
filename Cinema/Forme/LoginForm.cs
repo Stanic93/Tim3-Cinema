@@ -23,7 +23,7 @@ namespace Cinema.Forme
 
         private void provjeriKorisnika(string Korisnicko, string Lozinka)
         {
-            if (Korisnicko == "Korisnicko ime" || Korisnicko == "Korisnicko ime" && Lozinka == "Lozinka")
+           if (Korisnicko == "Korisnicko ime" || Korisnicko == "Korisnicko ime" && Lozinka == "Lozinka")
             {
                 MessageBox.Show("Unesite korisnicko ime i lozinku", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -89,10 +89,12 @@ namespace Cinema.Forme
 
         private void btnNastavi_Click(object sender, EventArgs e)
         {
-            
-            provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
-          
-               
+
+            //provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
+            AdministracijaForm novaForma = new AdministracijaForm();
+            novaForma.ShowDialog();
+
+
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Cinema.Forme
     {
 
         PropertyInterface property = new ZaposleniPropertyClass();
-        ActiveTab activeTab;
+       // ActiveTab activeTab;
         public AdministracijaForm()
         {
             InitializeComponent();
@@ -28,10 +28,10 @@ namespace Cinema.Forme
             btnProjekcija.Click += Btn_Click;
             btnLogin.Click += Btn_Click;
             btnFilm.Click += Btn_Click;
-
+            popuniControle(property);
             OsnovnaPodesavanja();
 
-            #region PocetnoUcitavanja
+            #region PocetnoUcitavanjaDataGrid
             DataTable dt = new DataTable();
 
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSelectQuery());
@@ -64,13 +64,13 @@ namespace Cinema.Forme
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            PropertyInterface property = new FilmPropertyClass();
+            
             if (btnFilm == sender as Button)
             {
                 property = new FilmPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelFilmSelected.Visible = true;
-                activeTab = ActiveTab.Film;
+                
             }
 
             else if (btnLogin == sender as Button)
@@ -78,28 +78,28 @@ namespace Cinema.Forme
                 property = new LoginPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelLoginSelected.Visible = true;
-                activeTab = ActiveTab.Login;
+                
             }
             else if (btnTermini == sender as Button)
             {
                 //property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
-                activeTab = ActiveTab.Termini;
+                
             }
             else if (btnProjekcija == sender as Button)
             {
                 property = new ProjekcijaPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelProjekcijaSelected.Visible = true;
-                activeTab = ActiveTab.Projekcija;
+                
             }
             else if (btnZanr == sender as Button)
             {
                 property = new ZanrPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZanrSelected.Visible = true;
-                activeTab = ActiveTab.Zanr;
+               
             }
 
             else if (btnZaposleni == sender as Button)
@@ -107,8 +107,9 @@ namespace Cinema.Forme
                 property = new ZaposleniPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZaposleniSelected.Visible = true;
-                activeTab = ActiveTab.Zaposleni;
+                
             }
+            popuniControle(property);
             DataTable dt = new DataTable();
             
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSelectQuery());
@@ -129,18 +130,11 @@ namespace Cinema.Forme
 
         private void popuniControle(PropertyInterface property)
         {
+            ocistiKontrole();
             var properties = property.GetType().GetProperties();
             foreach (PropertyInfo item in properties)
             {
-                //if (activeTab == ActiveTab.Karta)
-                //{
-                //    if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Aktivan" 
-                //        || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Film ID" 
-                //        || item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Godina")
-                //    {
-                //        continue;
-                //    }
-                //}
+                
                 if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                 {
                     RichTextBoxControl rc = new RichTextBoxControl();
@@ -169,12 +163,17 @@ namespace Cinema.Forme
                     uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(uc);
                 }
+                
             }
+        }
+        public void ocistiKontrole() {
+            flpDetaljno.Controls.Clear();
         }
 
         private void dgvPrikaz_Click(object sender, EventArgs e)
         {
-            popuniControle(new ZaposleniPropertyClass());
+           
+            popuniControle(property);
         }
 
         

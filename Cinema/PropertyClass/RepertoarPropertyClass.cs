@@ -142,12 +142,12 @@ namespace Cinema.PropertyClass
 
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
-        [DateTimeAttribute]
+        [DateTime]
         public DateTime DatumPrvogPrikazivanja { get; set; }
 
         [SqlName("DatumPosljednjegPrikazivanja")]
         [DisplayName("Datum posljednjeg prikazivanja")]
-        [DateTimeAttribute]
+        [DateTime]
         public DateTime DatumPosljednjegPrikazivanja { get; set; }
 
         #endregion

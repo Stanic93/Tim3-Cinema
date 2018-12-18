@@ -81,6 +81,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Zauzeto")]
         [DisplayName("Zauzeto")]
+        [CheckBox]
         public bool Zauzeto
         {
             get

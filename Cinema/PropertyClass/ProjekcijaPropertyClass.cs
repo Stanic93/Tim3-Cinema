@@ -52,6 +52,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
+        [DateTime]
         public DateTime DatumPrvogPrikazivanja
         {
             get
@@ -66,6 +67,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("DatumPosljednjegPrikazivanja")]
         [DisplayName("Datum posljednjeg prikazivanja")]
+        [DateTime]
         public DateTime DatumPosljednjegPrikazivanja
         {
             get
