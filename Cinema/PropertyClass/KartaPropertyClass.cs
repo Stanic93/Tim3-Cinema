@@ -131,7 +131,7 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Karta (ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID) values (@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RacunID)";
+            return @"Insert into dbo.Karta (ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID,TerminID) values (@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RacunID,@TerminID)";
         }
         public string GetUpdateQuery()
         {
@@ -188,6 +188,11 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@RacunID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = racunID;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@TerminID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = terminID;
                 parameters.Add(parameter);
             }
             return parameters;

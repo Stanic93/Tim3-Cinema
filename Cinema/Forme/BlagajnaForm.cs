@@ -360,6 +360,10 @@ namespace Cinema.Forme
 
         private void setujKontroleKarta()
         {
+           if(dgvPregled.SelectedRows.Count == 0)
+            {
+                return;
+            }
             foreach (var item in flpDetaljno.Controls)
             {
                 if (item.GetType() == typeof(UserLookUpControl))
@@ -375,7 +379,6 @@ namespace Cinema.Forme
                     }
                     if (ulup.Name == "TerminID")
                     {
-
                         ulup.Enabled = false;
                         ulup.SetKey(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
                         ulup.SetValue(dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
@@ -401,7 +404,7 @@ namespace Cinema.Forme
                 }
             }
         }
-        private void populateKartaInterface(PropertyInterface Myproperty)
+        private void populateKartaInterface()
         {
             
             var properties = property.GetType().GetProperties();
@@ -421,6 +424,11 @@ namespace Cinema.Forme
                         if (ulup.Name == item.Name)
                         {
                             value = ulup.getKey();
+                            if(ulup.Name == "SjedisteID" && value == "")
+                            {
+                                MessageBox.Show("Sjediste je obavezno!");
+                                return;
+                            }
                         }
                     }
 
@@ -493,7 +501,8 @@ namespace Cinema.Forme
 
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-            populateKartaInterface(property);
+            populateKartaInterface();
+            
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
             DataTable dt = new DataTable();
             dt.Load(reader);

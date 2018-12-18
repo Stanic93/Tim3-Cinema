@@ -102,8 +102,6 @@ namespace Cinema.PropertyClass
             return @"DELETE from dbo.Sjediste where SjedisteID = @SjedisteID";
         }
 
-
-
         public string GetInsertQuery()
         {
             return @"INSERT into dbo.Sjediste (SalaID,Red,BrojSjedista,Zauzeto) values (@SalaID, @Red, @BrojSjedista, @Zauzeto)";
@@ -113,8 +111,6 @@ namespace Cinema.PropertyClass
         {
             return @"SELECT SjedisteID,SalaID,Red,BrojSjedista,Zauzeto from dbo.Sjediste";
         }
-
-
 
         public string GetUpdateQuery()
         {
