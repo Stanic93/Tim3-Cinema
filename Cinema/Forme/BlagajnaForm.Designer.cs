@@ -284,6 +284,7 @@
             this.btnRezervacija.TabIndex = 13;
             this.btnRezervacija.Text = "Rezervacija";
             this.btnRezervacija.UseVisualStyleBackColor = true;
+            this.btnRezervacija.Click += new System.EventHandler(this.btnRezervacija_Click);
             // 
             // btnNovaKarta
             // 
