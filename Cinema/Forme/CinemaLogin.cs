@@ -18,7 +18,8 @@ namespace Cinema.Forme
         int movY;
         bool userU = false;
         bool passU = false;
-
+        int zaposleniID = 1;
+        string ImeIPrezime = "";
 
         public CinemaLogin()
         {
@@ -98,9 +99,9 @@ namespace Cinema.Forme
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BlagajnaForm novaForma = new BlagajnaForm();
-            novaForma.ShowDialog();
-            // provjeriKorisnika(txtKorisnicko.Text,txtLozinka.Text);    
+         /*   BlagajnaForm novaForma = new BlagajnaForm(zaposleniID);
+            novaForma.ShowDialog();*/
+            provjeriKorisnika(txtKorisnicko.Text,txtLozinka.Text);    
         }
 
         private void provjeriKorisnika(string Korisnicko,string Lozinka)
@@ -115,7 +116,7 @@ namespace Cinema.Forme
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select * from dbo.Login where KorisnickoIme= @KorisnickoIme and Lozinka =@Lozinka";
+            command.CommandText = @"Select * from dbo.Login join dbo.Zaposleni on Login.ZaposleniID = Zaposleni.ZaposleniID where KorisnickoIme= @KorisnickoIme and Lozinka =@Lozinka";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@KorisnickoIme", SqlDbType.NVarChar);
             parameter.Value = Korisnicko;
@@ -150,10 +151,16 @@ namespace Cinema.Forme
             foreach (DataRow row in dt.Rows)
             {
                 jobtitle = row["RadnoMjesto"].ToString();
+                string id = row["ZaposleniID"].ToString();
+                string ime = row["Ime"].ToString();
+                string prezime = row["Prezime"].ToString();
+                ImeIPrezime = ime + " " + prezime;
+                zaposleniID = Convert.ToInt32(id);
+
             }
             if(jobtitle == "Blagajnik")
             {
-                BlagajnaForm novaForma = new BlagajnaForm();
+                BlagajnaForm novaForma = new BlagajnaForm(zaposleniID,ImeIPrezime);
                 novaForma.ShowDialog();
             }else
             {

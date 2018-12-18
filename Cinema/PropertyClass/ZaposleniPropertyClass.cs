@@ -27,6 +27,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("ZaposleniID")]
         [DisplayName("Zaposleni ID")]
+        [LookUpKey]
         public short ZaposleniID
         {
             get
@@ -40,6 +41,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Ime")]
         [DisplayName("Ime")]
+        [LookUpValue]
         public string Ime
         {
             get
@@ -53,6 +55,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Prezime")]
         [DisplayName("Prezime")]
+        [LookUpValue]
         public string Prezime
         {
             get

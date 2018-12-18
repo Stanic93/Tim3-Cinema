@@ -23,6 +23,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("SjedisteID")]
         [DisplayName("Sjediste ID")]
+        [LookUpKey]
         public short SjedisteID
         {
             get
@@ -67,6 +68,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("BrojSjedista")]
         [DisplayName("Broj sjedista")]
+        [LookUpValue]
         public short BrojSjedista
         {
             get
@@ -101,8 +103,6 @@ namespace Cinema.PropertyClass
             return @"DELETE from dbo.Sjediste where SjedisteID = @SjedisteID";
         }
 
-
-
         public string GetInsertQuery()
         {
             return @"INSERT into dbo.Sjediste (SalaID,Red,BrojSjedista,Zauzeto) values (@SalaID, @Red, @BrojSjedista, @Zauzeto)";
@@ -112,8 +112,6 @@ namespace Cinema.PropertyClass
         {
             return @"SELECT SjedisteID,SalaID,Red,BrojSjedista,Zauzeto from dbo.Sjediste";
         }
-
-
 
         public string GetUpdateQuery()
         {

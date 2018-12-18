@@ -14,11 +14,11 @@ namespace Cinema.PropertyClass
         #region attribute
 
         private short kartaID;
-        private short zaposleniID;
         private short projekcijaID;
         private DateTime vrijemeIzdavanja;
         private short sjedisteID;
         private short racunID;
+        private short terminID;
 
         #endregion
 
@@ -27,6 +27,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("KartaID")]
         [DisplayName("Karta ID")]
+        [Visible]
         public short KartaID
         {
             get
@@ -38,23 +39,24 @@ namespace Cinema.PropertyClass
                 kartaID = value;
             }
         }
-
-
-        [SqlName("ZaposleniID")]
-        [DisplayName("Zaposleni ID")]
         [PrimaryKey]
-        [ForeignKey("dbo.Zaposleni","ZaposleniID","Cinema.PropertyClass.ZaposleniPropertyClass")]
-        public short ZaposleniID
+        [SqlName("TerminID")]
+        [DisplayName("Termin ID")]
+        [ForeignKey("dbo.Termin", "TerminID", "Cinema.PropertyClass.TerminPropertyClass")]
+        public short TerminID
         {
             get
             {
-                return zaposleniID;
+                return terminID;
             }
             set
             {
-                zaposleniID = value;
+                terminID = value;
             }
         }
+
+
+     
 
 
         [SqlName("ProjekcijaID")]
@@ -129,14 +131,13 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Karta (ZaposleniID,ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID) values (@ZaposleniID,@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RacunID";
+            return @"Insert into dbo.Karta (ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID,TerminID) values (@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RacunID,@TerminID)";
         }
         public string GetUpdateQuery()
         {
 
             return @"Update dbo.Karta
                         set
-                        ZaposleniID = @ZaposleniID,
                         ProjekcijaID = @ProjekcijaID,
                         VrijemeIzdavanja = @VrijemeIzdavanja,
                         SjedisteID = @SjedisteID,
@@ -147,7 +148,7 @@ namespace Cinema.PropertyClass
         }
         public string GetSelectQuery()
         {
-            return @"Select KartaID,ZaposleniID,ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID from dbo.Karta";
+            return @"Select KartaID,ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID from dbo.Karta";
         }
         #endregion
 
@@ -168,11 +169,7 @@ namespace Cinema.PropertyClass
         public List<SqlParameter> GetInsertParameters()
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            {
-                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = zaposleniID;
-                parameters.Add(parameter);
-            }
+          
             {
                 SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = projekcijaID;
@@ -189,8 +186,13 @@ namespace Cinema.PropertyClass
                 parameters.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@RadnikID", System.Data.SqlDbType.SmallInt);
+                SqlParameter parameter = new SqlParameter("@RacunID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = racunID;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@TerminID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = terminID;
                 parameters.Add(parameter);
             }
             return parameters;
@@ -206,11 +208,7 @@ namespace Cinema.PropertyClass
                 parameter.Value = kartaID;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@ZaposleniID", System.Data.SqlDbType.SmallInt);
-                parameter.Value = zaposleniID;
-                parameters.Add(parameter);
-            }
+            
             {
                 SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = projekcijaID;

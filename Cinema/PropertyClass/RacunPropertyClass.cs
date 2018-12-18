@@ -22,6 +22,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("RacunID")]
         [DisplayName("Racun ID")]
+        [LookUpKey]
         public short RacuniID
         {
             get
@@ -34,8 +35,9 @@ namespace Cinema.PropertyClass
             }
         }
         
-        [SqlName("VrijemeIzdavanja")]
-        [DisplayName("Vrijeme izdavanja")]
+        [SqlName("DatumIzdavanja")]
+        [DisplayName("Datum izdavanja")]
+        [LookUpValue]
         public DateTime VrijemeIzdavanja
         {
             get
@@ -82,12 +84,16 @@ namespace Cinema.PropertyClass
         #region Queries
         public string GetInsertQuery()
         {
-            return @"INSERT into dbo.Racun (VrijemeIzdavanja, ZaposleniID, UkupnaCijena) values (@VrijemeIzdavanja, @ZaposleniID, @UkupnaCijena)";
+            return @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (null, null, null)";
         }
 
         public string GetSelectQuery()
         {
-            return @"SELECT RacunID, VrijemeIzdavanja, ZaposleniID, UkupnaCijena from dbo.Racun";
+            return @"SELECT RacunID, DatumIzdavanja, ZaposleniID, UkupnaCijena from dbo.Racun";
+        }
+        public string GetMaxIDQuery()
+        {
+            return @"SELECT Max(RacunID) as [RacunID] from dbo.Racun";
         }
 
         public string GetDeleteQuery()
@@ -98,10 +104,10 @@ namespace Cinema.PropertyClass
         {
             return @"UPDATE
                     set
-                    VrijemeIzdavanja = @VrijemeIzdavanja,
+                    DatumIzdavanaj = @VrijemeIzdavanja,
                     ZaposleniID = @ZaposleniID,
                     UkupnaCijena = @UkupnaCijena
-                    where RacunID =@RacunID";
+                    where RacunID = @RacunID";
         }
         #endregion
 
@@ -111,7 +117,7 @@ namespace Cinema.PropertyClass
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
-                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.DateTime);
+                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.Date);
                 parameter.Value = vrijemeIzdavanja;
                 parameters.Add(parameter);
             }
@@ -147,7 +153,7 @@ namespace Cinema.PropertyClass
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
-                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.DateTime);
+                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.Date);
                 parameter.Value = vrijemeIzdavanja;
                 parameters.Add(parameter);
             }

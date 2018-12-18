@@ -22,6 +22,8 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
+        [LookUpKey]
+        [LookUpValue]
         public short ProjekcijaID
         {
             get
@@ -48,7 +50,7 @@ namespace Cinema.PropertyClass
             {
                 filmID = value;
             }
-        }              
+        }      
 
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
@@ -93,7 +95,7 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Projekcija (FilmID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja) values (@FilmID,@DatumPrvogPrikazivanja,@DatumPosljednjegPrikazivanja)";
+            return @"Insert into dbo.Projekcija (FilmID,CijenaID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja) values (@FilmID,@CijenaID,@DatumPrvogPrikazivanja,@DatumPosljednjegPrikazivanja)";
         }
         public string GetUpdateQuery()
         {
