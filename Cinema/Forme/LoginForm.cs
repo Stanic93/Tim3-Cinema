@@ -13,17 +13,28 @@ namespace Cinema.Forme
 {
     public partial class LoginForm : Form
     {
+        
+        bool userU = false;
+        bool passU = false;
+        int zaposleniID = 1;
+        string ImeIPrezime = "";
         public LoginForm()
         {
             InitializeComponent();
         }
 
 
-        
+        private void KeyUp_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
+            }
+        }
 
         private void provjeriKorisnika(string Korisnicko, string Lozinka)
         {
-           if (Korisnicko == "Korisnicko ime" || Korisnicko == "Korisnicko ime" && Lozinka == "Lozinka")
+            if (Korisnicko == "Korisnicko ime" || Korisnicko == "Korisnicko ime" && Lozinka == "Lozinka")
             {
                 MessageBox.Show("Unesite korisnicko ime i lozinku", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -33,7 +44,7 @@ namespace Cinema.Forme
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select * from dbo.Login where KorisnickoIme= @KorisnickoIme and Lozinka =@Lozinka";
+            command.CommandText = @"Select * from dbo.Login join dbo.Zaposleni on Login.ZaposleniID = Zaposleni.ZaposleniID where KorisnickoIme= @KorisnickoIme and Lozinka =@Lozinka";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@KorisnickoIme", SqlDbType.NVarChar);
             parameter.Value = Korisnicko;
@@ -51,7 +62,7 @@ namespace Cinema.Forme
                 command.Dispose();
                 connection.Close();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -68,19 +79,24 @@ namespace Cinema.Forme
             foreach (DataRow row in dt.Rows)
             {
                 jobtitle = row["RadnoMjesto"].ToString();
+                string id = row["ZaposleniID"].ToString();
+                string ime = row["Ime"].ToString();
+                string prezime = row["Prezime"].ToString();
+                ImeIPrezime = ime + " " + prezime;
+                zaposleniID = Convert.ToInt32(id);
+
             }
             if (jobtitle == "Blagajnik")
             {
-                BlagajnaForm novaForma = new BlagajnaForm();
+                BlagajnaForm novaForma = new BlagajnaForm(zaposleniID, ImeIPrezime);
                 novaForma.ShowDialog();
             }
             else
             {
-                AdministracijaForm novaForma = new AdministracijaForm();
-                novaForma.ShowDialog();
+                // otvori formu za administratora
+                MessageBox.Show("Otvorice formu administrator");
             }
         }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -91,8 +107,10 @@ namespace Cinema.Forme
         {
 
             //provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
-            AdministracijaForm novaForma = new AdministracijaForm();
-            novaForma.ShowDialog();
+            //AdministracijaForm novaForma = new AdministracijaForm();
+            //novaForma.ShowDialog();
+            BlagajnaForm nov = new BlagajnaForm(zaposleniID, ImeIPrezime);
+            nov.Show();
 
 
         }

@@ -52,6 +52,7 @@
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(219, 31);
             this.txtKorisnickoIme.TabIndex = 1;
+            this.txtKorisnickoIme.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_Enter);
             // 
             // txtLozinka
             // 
@@ -64,6 +65,7 @@
             this.txtLozinka.PasswordChar = '•';
             this.txtLozinka.Size = new System.Drawing.Size(219, 31);
             this.txtLozinka.TabIndex = 2;
+            this.txtLozinka.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_Enter);
             // 
             // lblKorisnickoIme
             // 
@@ -102,6 +104,7 @@
             this.btnNastavi.Text = "Nastavi";
             this.btnNastavi.UseVisualStyleBackColor = false;
             this.btnNastavi.Click += new System.EventHandler(this.btnNastavi_Click);
+            this.btnNastavi.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_Enter);
             // 
             // pictureBox1
             // 

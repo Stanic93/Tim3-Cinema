@@ -56,21 +56,13 @@ namespace Cinema.Forme
         {
             PropertyInterface interfaceProperty = property;
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select * from dbo.vRepertoar";
-            command.Connection = connection;
-            SqlDataReader reader;
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch 
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, interfaceProperty.GetSelectQuery());
+            dt.Load(reader);
+            reader.Close();
+            dgvPregled.DataSource = dt;
+            var type = interfaceProperty.GetType();
+            var properties = type.GetProperties();
+            foreach (DataGridViewColumn item in dgvPregled.Columns)
             {
                 item.HeaderText = properties.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv == item.HeaderText
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
@@ -289,7 +281,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch 
+            catch (Exception ex)
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -368,7 +360,7 @@ namespace Cinema.Forme
 
         private void setujKontroleKarta()
         {
-           if(dgvPregled.SelectedRows.Count == 0)
+            if (dgvPregled.SelectedRows.Count == 0)
             {
                 return;
             }
@@ -377,7 +369,7 @@ namespace Cinema.Forme
                 if (item.GetType() == typeof(UserLookUpControl))
                 {
                     UserLookUpControl ulup = item as UserLookUpControl;
-                    
+
                     if (ulup.Name == "ProjekcijaID")
                     {
 
@@ -414,7 +406,7 @@ namespace Cinema.Forme
         }
         private void populateKartaInterface()
         {
-            
+
             var properties = property.GetType().GetProperties();
             string value = "";
             foreach (PropertyInfo item in properties)
@@ -432,7 +424,7 @@ namespace Cinema.Forme
                         if (ulup.Name == item.Name)
                         {
                             value = ulup.getKey();
-                            if(ulup.Name == "SjedisteID" && value == "")
+                            if (ulup.Name == "SjedisteID" && value == "")
                             {
                                 MessageBox.Show("Sjediste je obavezno!");
                                 return;
@@ -484,7 +476,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch 
+            catch (Exception ex)
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -510,7 +502,7 @@ namespace Cinema.Forme
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
             populateKartaInterface();
-            
+
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
             DataTable dt = new DataTable();
             dt.Load(reader);
