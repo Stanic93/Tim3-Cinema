@@ -118,7 +118,14 @@ namespace Cinema.Forme
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
                         as PropertyInterface;
-                    UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
+                    UserLookUpControl ul;
+                    int terminID = 4;
+                    if (item.Name == "SjedisteID")
+                    {
+                         ul = new UserLookUpControl(foreignKeyInterface,terminID);
+                    }
+                    else
+                         ul = new UserLookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     flpDetaljno.Controls.Add(ul);

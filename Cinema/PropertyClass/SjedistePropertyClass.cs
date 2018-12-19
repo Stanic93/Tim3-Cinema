@@ -110,14 +110,7 @@ namespace Cinema.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"SELECT 
-	s.SjedisteID,
-	s.Red,
-	s.BrojSjedista,
-	p.ProjekcijaID
-FROM dbo.Sjediste s
-	JOIN dbo.Karta k ON s.SjedisteID = k.SjedisteID
-	JOIN dbo.Projekcija p ON k.ProjekcijaID = p.ProjekcijaID";
+            return @"SELECT * FROM dbo.Sjediste";
         }
 
         public string GetUpdateQuery()
