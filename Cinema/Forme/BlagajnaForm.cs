@@ -307,7 +307,7 @@ namespace Cinema.Forme
         {
             activeTab = ActiveTab.Karta;
             racunID = 0;
-            kreirajRacun();
+           // kreirajRacun();
             property = new KartaPropertyClass();
             btnRepertor.Enabled = false;
             lblNazivFilma.Visible = true;

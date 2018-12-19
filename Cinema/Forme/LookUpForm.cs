@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using Cinema.AttributeClass;
+using Cinema.PropertyClass;
 
 namespace Cinema
 {
@@ -27,6 +28,7 @@ namespace Cinema
 
         public void GetSelectAll()
         {
+            
             dgvPregledLookUp.DataSource = null;
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetSelectQuery());
