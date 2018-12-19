@@ -23,7 +23,7 @@ namespace Cinema.PropertyClass
         [SqlName("RacunID")]
         [DisplayName("Racun ID")]
         [LookUpKey]
-        public short RacuniID
+        public short RacunID
         {
             get
             {
