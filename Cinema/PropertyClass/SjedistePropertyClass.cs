@@ -110,7 +110,7 @@ namespace Cinema.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"SELECT SjedisteID,SalaID,Red,BrojSjedista,Zauzeto from dbo.Sjediste";
+            return @"SELECT * FROM dbo.Sjediste";
         }
 
         public string GetUpdateQuery()
