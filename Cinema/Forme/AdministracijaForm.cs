@@ -55,6 +55,7 @@ namespace Cinema.Forme
             panelProjekcijaSelected.Visible = false;
             panelZanrSelected.Visible = false;
             panelLoginSelected.Visible = false;
+            panelTerminiSelected.Visible = false;
         }
 
         public void OsnovnaPodesavanja()
@@ -82,7 +83,7 @@ namespace Cinema.Forme
             }
             else if (btnTermini == sender as Button)
             {
-                //property = new TerminPropertyClass();
+                property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
                 
@@ -154,8 +155,15 @@ namespace Cinema.Forme
                     flpDetaljno.Controls.Add(dc);
                     
                 }
+                else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
+                {
+                    CheckBoxControl cb = new CheckBoxControl();
 
-                else if (item.GetCustomAttribute<SqlNameAttribute>() != null)
+                    cb.Name = item.Name;
+                    cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    flpDetaljno.Controls.Add(cb);
+                }
+                else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
                     uc.ReadOnly();

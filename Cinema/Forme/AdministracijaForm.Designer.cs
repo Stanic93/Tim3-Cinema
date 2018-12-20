@@ -171,6 +171,7 @@
             this.btnTermini.Text = "               TERMINI";
             this.btnTermini.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTermini.UseVisualStyleBackColor = true;
+            this.btnTermini.Click += new System.EventHandler(this.Btn_Click);
             // 
             // lblAdmin
             // 
