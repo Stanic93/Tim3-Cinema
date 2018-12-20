@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblcbNaziv = new System.Windows.Forms.Label();
             this.checkBoxZauzeto = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // label1
+            // lblcbNaziv
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.lblcbNaziv.AutoSize = true;
+            this.lblcbNaziv.Location = new System.Drawing.Point(3, 9);
+            this.lblcbNaziv.Name = "lblcbNaziv";
+            this.lblcbNaziv.Size = new System.Drawing.Size(29, 13);
+            this.lblcbNaziv.TabIndex = 0;
+            this.lblcbNaziv.Text = "label";
             // 
             // checkBoxZauzeto
             // 
             this.checkBoxZauzeto.AutoSize = true;
-            this.checkBoxZauzeto.Location = new System.Drawing.Point(210, 5);
+            this.checkBoxZauzeto.Location = new System.Drawing.Point(155, 8);
             this.checkBoxZauzeto.Name = "checkBoxZauzeto";
             this.checkBoxZauzeto.Size = new System.Drawing.Size(15, 14);
             this.checkBoxZauzeto.TabIndex = 1;
@@ -55,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkBoxZauzeto);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblcbNaziv);
             this.Name = "CheckBoxControl";
             this.Size = new System.Drawing.Size(304, 31);
             this.ResumeLayout(false);
@@ -65,7 +65,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblcbNaziv;
         private System.Windows.Forms.CheckBox checkBoxZauzeto;
     }
 }

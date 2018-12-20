@@ -15,6 +15,17 @@ namespace Cinema.Controle
         public CheckBoxControl()
         {
             InitializeComponent();
+            
+        }
+        public void SetLabel(string value)
+        {
+            lblcbNaziv.Text = value;
+        }
+        public void SetValue(bool value) {
+            checkBoxZauzeto.Checked = value;
+        }
+        public bool GetValue() {
+            return checkBoxZauzeto.Checked;
         }
     }
 }

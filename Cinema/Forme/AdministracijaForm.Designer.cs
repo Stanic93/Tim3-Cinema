@@ -171,6 +171,7 @@
             this.btnTermini.Text = "               TERMINI";
             this.btnTermini.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTermini.UseVisualStyleBackColor = true;
+            this.btnTermini.Click += new System.EventHandler(this.Btn_Click);
             // 
             // lblAdmin
             // 
@@ -354,6 +355,7 @@
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
             this.dgvPrikaz.Size = new System.Drawing.Size(548, 345);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
             this.dgvPrikaz.Click += new System.EventHandler(this.dgvPrikaz_Click);
             // 
             // gbPretraga

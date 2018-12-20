@@ -17,7 +17,7 @@ namespace Cinema.Forme
 {
     public partial class AdministracijaForm : Form
     {
-
+        StateEnum state =StateEnum.update;
         PropertyInterface property = new ZaposleniPropertyClass();
        // ActiveTab activeTab;
         public AdministracijaForm()
@@ -30,6 +30,7 @@ namespace Cinema.Forme
             btnFilm.Click += Btn_Click;
             popuniControle(property);
             OsnovnaPodesavanja();
+           
 
             #region PocetnoUcitavanjaDataGrid
             DataTable dt = new DataTable();
@@ -55,13 +56,15 @@ namespace Cinema.Forme
             panelProjekcijaSelected.Visible = false;
             panelZanrSelected.Visible = false;
             panelLoginSelected.Visible = false;
+            panelTerminiSelected.Visible = false;
         }
 
         public void OsnovnaPodesavanja()
         {
-            dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;            
+            dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            popuniDetaljno(property);
         }
-
+        //ucitava dataGridView tabelom zavisno od tog na kojiod menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
             
@@ -82,7 +85,7 @@ namespace Cinema.Forme
             }
             else if (btnTermini == sender as Button)
             {
-                //property = new TerminPropertyClass();
+                property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
                 
@@ -128,6 +131,7 @@ namespace Cinema.Forme
 
         }
 
+        //Zavisno od tog u kom smo meniju pravi kontrole u panelu (PRAZNE) 
         private void popuniControle(PropertyInterface property)
         {
             ocistiKontrole();
@@ -154,8 +158,15 @@ namespace Cinema.Forme
                     flpDetaljno.Controls.Add(dc);
                     
                 }
+                else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
+                {
+                    CheckBoxControl cb = new CheckBoxControl();
 
-                else if (item.GetCustomAttribute<SqlNameAttribute>() != null)
+                    cb.Name = item.Name;
+                    cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    flpDetaljno.Controls.Add(cb);
+                }
+                else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
                     uc.ReadOnly();
@@ -166,6 +177,71 @@ namespace Cinema.Forme
                 
             }
         }
+
+        private void PopulatePropertyInterface(PropertyInterface property)
+        {
+            DataGridViewRow row = dgvPrikaz.SelectedRows[0];
+            var properties = property.GetType().GetProperties();
+
+            foreach (PropertyInfo item in properties)
+            {
+                string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
+                   .Value.ToString();
+                // jer je podatak TimeSpan  u c# -> Time(7) u SQL
+                if (item.GetCustomAttribute<SqlNameAttribute>().Naziv == "Godiste")
+                {
+                    TimeSpan time = TimeSpan.Parse(value);
+                    item.SetValue(property, Convert.ChangeType(time, item.PropertyType));
+                    continue;
+                }
+                if (value == "")
+                {
+                    value = "01.01.2018";
+                }
+                item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+            }
+        }
+
+        private void popuniDetaljno(PropertyInterface property)
+        {
+            
+            
+
+            if (dgvPrikaz.SelectedRows.Count > 0)
+            {
+                
+                var properties = property.GetType().GetProperties();
+                int i = 0;
+               
+                
+                ocistiKontrole();
+                foreach (PropertyInfo item in properties)
+                {
+                    DataGridViewCell cell = dgvPrikaz.SelectedRows[0].Cells[i];
+                    string value = cell.Value.ToString();
+
+                   // item= item.Where(x => dgvPrikaz.Columns[i].HeaderText == x.GetCustomAttribute<DisplayNameAttribute>().DisplayName).FirstOrDefault();
+                    item.SetValue(item, Convert.ChangeType(value, item.PropertyType));
+
+                    TextBoxControl uc = new TextBoxControl();
+                    uc.Name = item.Name;
+                    uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+
+                    if (state == StateEnum.update)
+                    {
+                        uc.SetTextBox(item.GetValue(property).ToString());
+                    }
+                    if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null && state == StateEnum.update)
+                    {
+                        uc.Enabled = false;
+                    }
+                    flpDetaljno.Controls.Add(uc);
+                }
+            }
+        }
+
+
+
         public void ocistiKontrole() {
             flpDetaljno.Controls.Clear();
         }
@@ -176,6 +252,10 @@ namespace Cinema.Forme
             popuniControle(property);
         }
 
-        
+        private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
+        {
+            ocistiKontrole();
+            popuniDetaljno(property);
+        }
     }
 }

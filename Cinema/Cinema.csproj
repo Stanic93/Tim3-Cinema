@@ -150,6 +150,7 @@
     <Compile Include="PropertyClass\ZanroviFilmovaPropertyClass.cs" />
     <Compile Include="PropertyClass\ZaposleniPropertyClass.cs" />
     <Compile Include="PropertyInterface.cs" />
+    <Compile Include="StateEnum.cs" />
     <EmbeddedResource Include="Controle\CheckBoxControl.resx">
       <DependentUpon>CheckBoxControl.cs</DependentUpon>
     </EmbeddedResource>
