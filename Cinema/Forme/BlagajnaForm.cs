@@ -26,32 +26,44 @@ namespace Cinema.Forme
         public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
             InitializeComponent();
-            popuniPregled(property);
-            prikaziKolone();
             OsnovnaPodesavanja();
             this.zaposleniID = zaposleniID;
             FullName = imeIprezime;
+           
 
         }
-
+        // osnovna podesavanja u rezimu repertoar
         public void OsnovnaPodesavanja()
         {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            btnNovaKarta.Text = "Karta";
+            btnRezervacija.Text = "Rezervacija";
+            lblStatusSale.Text = "";
+            panel4.Visible = true;
+            panel5.Visible = false;
+            lblStatusSale.Visible = false;
+            gbDetaljno.Enabled = true;
             dgvPregled.MultiSelect = false;
             btnRepertor.Enabled = true;
+            panelPretraga.Visible = true;
             btnKarta.Enabled = false;
             btnRacun.Enabled = false;
             btnNovaKarta.Enabled = false;
-            popuniControle(property);
             dtpDatumProdukcije.Enabled = false;
             toolStripKarta.Visible = false;
             btnPotvrdi.Visible = false;
             flpDetaljno.Dock = DockStyle.Fill;
+            flpDetaljno.Controls.Clear();
             activeTab = ActiveTab.Repertoar;
             lblNazivFilma.Visible = false;
             lblZanrFilma.Visible = false;
+            property = new RepertoarPropertyClass();
+            popuniPregled(property);
+            popuniControle(property);
+            prikaziKolone();
         }
 
+        // popunjava datagridView
         private void popuniPregled(PropertyInterface property)
         {
             PropertyInterface interfaceProperty = property;
@@ -59,7 +71,9 @@ namespace Cinema.Forme
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, interfaceProperty.GetSelectQuery());
             dt.Load(reader);
             reader.Close();
+            dgvPregled.DataSource = null;
             dgvPregled.DataSource = dt;
+
             var type = interfaceProperty.GetType();
             var properties = type.GetProperties();
             foreach (DataGridViewColumn item in dgvPregled.Columns)
@@ -68,12 +82,16 @@ namespace Cinema.Forme
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
 
+          
+            
         }
 
+        // sakrivanje kolona koje nisu potrebne u dgv za tabove repertoar,karta,racun
         private void prikaziKolone()
         {
             if (activeTab == ActiveTab.Repertoar)
             {
+
                 dgvPregled.Columns["FilmID"].Visible = false;
                 dgvPregled.Columns["DatumPrvogPrikazivanja"].Visible = false;
                 dgvPregled.Columns["DatumPosljednjegPrikazivanja"].Visible = false;
@@ -87,10 +105,11 @@ namespace Cinema.Forme
             {
                 dgvPregled.Columns["FilmID"].Visible = false;
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
-                //    dgvPregled.Columns["TerminID"].Visible = false;
+                dgvPregled.Columns["TerminID"].Visible = false;
             }
         }
 
+        //popunjava flpDetaljno userControlama
         private void popuniControle(PropertyInterface property)
         {
             var properties = property.GetType().GetProperties();
@@ -102,7 +121,14 @@ namespace Cinema.Forme
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
                         as PropertyInterface;
-                    UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
+                    UserLookUpControl ul;
+                    int terminID = 4;
+                    if (item.Name == "SjedisteID")
+                    {
+                         ul = new UserLookUpControl(foreignKeyInterface,terminID);
+                    }
+                    else
+                         ul = new UserLookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     flpDetaljno.Controls.Add(ul);
@@ -145,6 +171,7 @@ namespace Cinema.Forme
             }
         }
 
+        // klik na dataGridView
         private void dgvPregled_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (activeTab == ActiveTab.Karta)
@@ -166,6 +193,7 @@ namespace Cinema.Forme
             btnNovaKarta.Enabled = true;
         }
 
+        // popunjavanje property klasa u odgovarajuce tipove
         private void PopulatePropertyInterface(PropertyInterface property)
         {
             DataGridViewRow row = dgvPregled.SelectedRows[0];
@@ -175,6 +203,7 @@ namespace Cinema.Forme
             {
                 string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
                    .Value.ToString();
+                // jer je podatak TimeSpan  u c# -> Time(7) u SQL
                 if (item.GetCustomAttribute<SqlNameAttribute>().Naziv == "DuzinaTrajanja")
                 {
                     TimeSpan time = TimeSpan.Parse(value);
@@ -189,6 +218,7 @@ namespace Cinema.Forme
             }
         }
 
+        // popunjava kontrole u flpDetaljno vrijednostima iz property.
         private void popuniDetaljno(PropertyInterface property)
         {
             var properties = property.GetType().GetProperties();
@@ -224,6 +254,7 @@ namespace Cinema.Forme
             }
         }
 
+        //setuje granice datuma u rezimu Repertoar
         private void setujGraniceDatumProdukcije(PropertyInterface property)
         {
             DateTime dtMin = new DateTime(2018, 01, 01);
@@ -255,11 +286,13 @@ namespace Cinema.Forme
 
         }
 
+        // dugme za pretraguFilmova , prikazi sve prikazuje sve aktivne filmove.
         private void btnPrikaziSve_Click(object sender, EventArgs e)
         {
             popuniPregled(property);
         }
 
+        // button za pretraguFilmova po nazivu.
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
 
@@ -290,7 +323,7 @@ namespace Cinema.Forme
             prikaziKolone();
             txtNaziv.Text = "";
         }
-
+        // txtPolje za pretragu
         private void txtNaziv_TextChanged(object sender, EventArgs e)
         {
             if (txtNaziv.Text == "" || txtNaziv.Text == " ")
@@ -303,41 +336,56 @@ namespace Cinema.Forme
             }
         }
 
+        // klikom na novu kartu , postavlja se vrijednost button-a i mijenja se rezim rada.
         private void btnNovaKarta_Click(object sender, EventArgs e)
         {
-            activeTab = ActiveTab.Karta;
-            racunID = 0;
-            kreirajRacun();
-            property = new KartaPropertyClass();
-            btnRepertor.Enabled = false;
-            lblNazivFilma.Visible = true;
-            lblZanrFilma.Visible = true;
-            btnRezervacija.Text = "Odustani";
-            btnNovaKarta.Text = "Pregled racuna";
-            btnKarta.Enabled = true;
-            btnRacun.Enabled = false;
-            btnNovaKarta.Enabled = true;
-            btnNovaKarta.Text = "Nastavi";
-            dtpDatumProdukcije.Enabled = true;
-            toolStripKarta.Visible = true;
-            btnPotvrdi.Visible = true;
-            flpDetaljno.Dock = DockStyle.None;
-            panel4.Visible = false;
-            panel5.Visible = true;
-            txtNaziv.ReadOnly = true;
-            txtNaziv.TextAlign = HorizontalAlignment.Center;
-            gbDetaljno.Enabled = true;
-            dgvPregled.DataSource = null;
-            flpDetaljno.Controls.Clear();
-            panelPretraga.Visible = false;
-            gbPretraga.Text = "Info";
-            tsbtnIzmjein.Visible = false;
-            tsbtnObrisi.Visible = false;
-            popuniPregledProjekcija();
-            popuniControle(property);
-            setujKontroleKarta();
+            if (btnNovaKarta.Text == "Pregled racuna")
+            {
+                activeTab = ActiveTab.Racun;
+            }
+            else if (btnNovaKarta.Text == "Karta")
+            {
+                activeTab = ActiveTab.Karta;
+                racunID = 0;
+                btnRepertor.Enabled = false;
+                lblNazivFilma.Visible = true;
+                lblZanrFilma.Visible = true;
+                btnRezervacija.Text = "Odustani";
+                btnNovaKarta.Text = "Pregled racuna";
+                btnKarta.Enabled = true;
+                btnRacun.Enabled = false;
+                btnNovaKarta.Enabled = true;
+                dtpDatumProdukcije.Enabled = true;
+                toolStripKarta.Visible = true;
+                btnPotvrdi.Visible = true;
+                flpDetaljno.Dock = DockStyle.None;
+                panel4.Visible = false;
+                panel5.Visible = true;
+                txtNaziv.ReadOnly = true;
+                txtNaziv.TextAlign = HorizontalAlignment.Center;
+                gbDetaljno.Enabled = true;
+                dgvPregled.DataSource = null;
+                flpDetaljno.Controls.Clear();
+                panelPretraga.Visible = false;
+                gbPretraga.Text = "Info";
+                tsbtnIzmjein.Visible = false;
+                tsbtnObrisi.Visible = false;
+
+                property = new KartaPropertyClass();
+                popuniPregledProjekcija();
+                popuniControle(property);
+                if (dgvPregled.Rows.Count != 0)
+                {
+                    kreirajRacun();
+                }
+
+                property = new KartaPropertyClass();
+                setujKontroleKarta();
+            }
+
         }
 
+        // kreiranje racuna prilikom klika na Karta.
         private void kreirajRacun()
         {
             property = new RacunPropertyClass();
@@ -358,10 +406,16 @@ namespace Cinema.Forme
             reader.Close();
         }
 
+        // popunjavanje flpDetaljno kontrola u rezimu rada Karta
         private void setujKontroleKarta()
         {
-            if (dgvPregled.SelectedRows.Count == 0)
+            if (dgvPregled.Rows.Count == 0)
             {
+                gbDetaljno.Enabled = false;
+                btnNovaKarta.Enabled = false;
+                lblStatusSale.Visible = true;
+                lblStatusSale.Text = "Nema termina za prikazivanje";
+                lblStatusSale.ForeColor = Color.Red;
                 return;
             }
             foreach (var item in flpDetaljno.Controls)
@@ -404,6 +458,7 @@ namespace Cinema.Forme
                 }
             }
         }
+        // popunjavanje properties u  KartaPropertyClass
         private void populateKartaInterface()
         {
 
@@ -449,9 +504,9 @@ namespace Cinema.Forme
                 }
                 item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
 
-
             }
         }
+        // popunjavanje termina za odgovarajuci datum i film
         private void popuniPregledProjekcija()
         {
             DataTable dt = new DataTable();
@@ -476,20 +531,20 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Can not open connection");
             }
             dgvPregled.DataSource = dt;
             prikaziKolone();
         }
-
+        // pomocni button za brisanje
         private void button2_Click(object sender, EventArgs e)
         {
             AdministracijaForm nova = new AdministracijaForm();
             nova.Show();
         }
-
+        // prilikom promjene datumaProjekcije mijenja se dataGridView i prikazuju se drugi termini
         private void dtpDatumProdukcije_ValueChanged(object sender, EventArgs e)
         {
             if (activeTab == ActiveTab.Karta)
@@ -499,6 +554,7 @@ namespace Cinema.Forme
             }
         }
 
+        //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
             populateKartaInterface();
@@ -518,11 +574,78 @@ namespace Cinema.Forme
                         ulup.SetKey("");
                         ulup.SetValue("");
                     }
+                }
+            }
+            MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
+        // klikom na btn rezervacija , koje ima rezim rada rezervisanja i odustajanja
+        private void btnRezervacija_Click(object sender, EventArgs e)
+        {
+            if (btnRezervacija.Text == "Odustani")
+            {
+                if(dgvPregled.Rows.Count == 0)
+                {
+                    OsnovnaPodesavanja();
+                    return;
+                }
+                DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od racuna?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(dialogResult == DialogResult.Yes)
+                {
+                    OsnovnaPodesavanja();
+                    IzbrisiKarteIRacun();
                 }
             }
         }
+        // brisanje karata i racuna (Klikom na odustani)
+        private void IzbrisiKarteIRacun()
+        {
+            if(racunID == 0)
+            {
+                return;
+            }
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"Delete
+                                    from Karta
+                                    where RacunID = @RacunID
+                                    ";
+            SqlCommand commandRacun = new SqlCommand();
+            commandRacun.CommandText = @"Delete
+                                    from Racun
+                                    where RacunID = @RacunID
+                                    ";
+            commandRacun.Connection = connection;
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+            parameter.Value = racunID;
+            command.Parameters.Add(parameter);
+            SqlParameter parameterRacun = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+            parameterRacun.Value = racunID;
+            commandRacun.Parameters.Add(parameterRacun);
+            DataTable dt = new DataTable();
+            SqlDataReader reader;
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                command.Dispose();
+                connection.Close();
+                reader.Close();
+                connection.Open();
+                reader = commandRacun.ExecuteReader();
+                dt.Load(reader);
+                command.Dispose();
+                connection.Close();
+                reader.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
 
+        }
     }
 }
 

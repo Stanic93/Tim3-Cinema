@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using Cinema.AttributeClass;
+using Cinema.PropertyClass;
 
 namespace Cinema
 {
@@ -18,15 +19,25 @@ namespace Cinema
         public string Key;
         public string Value;
         PropertyInterface myProperty;
+        public int terminID;
         public LookUpForm(PropertyInterface property)
         {
             InitializeComponent();
             myProperty = property;
             GetSelectAll();
         }
+        public LookUpForm(PropertyInterface property,int termin)
+        {
+            InitializeComponent();
+            myProperty = property;
+            terminID = termin;
+            GetSelectFreeSeat();
+        }
+
 
         public void GetSelectAll()
         {
+            
             dgvPregledLookUp.DataSource = null;
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetSelectQuery());
@@ -46,6 +57,38 @@ namespace Cinema
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
             }
+
+        public void GetSelectFreeSeat()
+        {
+            DataTable dt = new DataTable();
+            string connectionString = SqlHelper.GetConnectionString();
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand();
+            command.CommandText =@" SELECT    s.BrojSjedista
+                                    FROM dbo.Sjediste s
+                                    WHERE s.SjedisteID NOT IN(SELECT k.SjedisteID
+                                    FROM dbo.Racun r
+                                    JOIN dbo.Karta k ON r.RacunID = k.RacunID
+                                    WHERE k.TerminID = @terminID)";
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@terminID", SqlDbType.SmallInt);
+            parameter.Value = terminID;            
+            command.Parameters.Add(parameter);
+            SqlDataReader dataReader;
+            try
+            {
+                connection.Open();
+                dataReader = command.ExecuteReader();
+                dt.Load(dataReader);
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+        }
 
         private void btnIzaberi_Click(object sender, EventArgs e)
         {

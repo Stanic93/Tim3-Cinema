@@ -99,7 +99,7 @@ namespace Cinema.PropertyClass
         }
         public string GetUpdateQuery()
         {
-            return @"Update dbo>Projekcija set  FilmID = @FilmID,                                               
+            return @"Update dbo.Projekcija set  FilmID = @FilmID,                                               
                                                 DatumPrvogPrikazivanja = @DatumPrvogPrikazivanja,                                                
                                                 DatumPosljednjegPrikazivanja = @DatumPosljednjegPrikazivanja
                                         where ProjekcijaID = @ProjekcijaID
