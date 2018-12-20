@@ -22,6 +22,7 @@ namespace Cinema.Forme
         int filmID = 0;
         int racunID = 0;
         int zaposleniID = 0;
+        int terminID = 0;
         string FullName = "";
         public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
@@ -119,7 +120,10 @@ namespace Cinema.Forme
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
                         as PropertyInterface;
                     UserLookUpControl ul;
-                    int terminID = 4;
+                    if (dgvPregled.SelectedRows.Count != 0)
+                    {
+                        terminID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                    }
                     if (item.Name == "SjedisteID")
                     {
                          ul = new UserLookUpControl(foreignKeyInterface,terminID);
@@ -174,6 +178,8 @@ namespace Cinema.Forme
             if (activeTab == ActiveTab.Karta)
             {
                 btnNovaKarta.Enabled = true;
+                flpDetaljno.Controls.Clear();
+                popuniControle(property);
                 setujKontroleKarta();
             }
             else

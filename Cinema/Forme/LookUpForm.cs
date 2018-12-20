@@ -60,11 +60,12 @@ namespace Cinema
 
         public void GetSelectFreeSeat()
         {
+            dgvPregledLookUp.DataSource = null;
             DataTable dt = new DataTable();
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText =@" SELECT    s.BrojSjedista
+            command.CommandText =@" SELECT   s.SjedisteID ,s.BrojSjedista
                                     FROM dbo.Sjediste s
                                     WHERE s.SjedisteID NOT IN(SELECT k.SjedisteID
                                     FROM dbo.Racun r
@@ -88,6 +89,7 @@ namespace Cinema
             {
                 MessageBox.Show("Can not open connection");
             }
+            dgvPregledLookUp.DataSource = dt;
         }
 
         private void btnIzaberi_Click(object sender, EventArgs e)
