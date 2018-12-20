@@ -73,6 +73,8 @@
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.txtZaposleni = new System.Windows.Forms.TextBox();
+            this.lblZaposleni = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -165,6 +167,7 @@
             // 
             // btnRacun
             // 
+            this.btnRacun.Cursor = System.Windows.Forms.Cursors.No;
             this.btnRacun.FlatAppearance.BorderSize = 0;
             this.btnRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRacun.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -181,6 +184,7 @@
             // 
             // btnKarta
             // 
+            this.btnKarta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnKarta.FlatAppearance.BorderSize = 0;
             this.btnKarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKarta.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -197,6 +201,7 @@
             // 
             // btnRepertor
             // 
+            this.btnRepertor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRepertor.FlatAppearance.BorderSize = 0;
             this.btnRepertor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRepertor.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -497,6 +502,8 @@
             // 
             // panelRacun
             // 
+            this.panelRacun.Controls.Add(this.txtZaposleni);
+            this.panelRacun.Controls.Add(this.lblZaposleni);
             this.panelRacun.Controls.Add(this.txtUkupnaVrijednost);
             this.panelRacun.Controls.Add(this.lblVrijednostRacuna);
             this.panelRacun.Location = new System.Drawing.Point(6, 320);
@@ -507,7 +514,7 @@
             // 
             // txtUkupnaVrijednost
             // 
-            this.txtUkupnaVrijednost.Location = new System.Drawing.Point(79, 44);
+            this.txtUkupnaVrijednost.Location = new System.Drawing.Point(126, 9);
             this.txtUkupnaVrijednost.Name = "txtUkupnaVrijednost";
             this.txtUkupnaVrijednost.Size = new System.Drawing.Size(109, 20);
             this.txtUkupnaVrijednost.TabIndex = 1;
@@ -515,12 +522,12 @@
             // lblVrijednostRacuna
             // 
             this.lblVrijednostRacuna.AutoSize = true;
-            this.lblVrijednostRacuna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblVrijednostRacuna.Location = new System.Drawing.Point(23, 11);
+            this.lblVrijednostRacuna.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblVrijednostRacuna.Location = new System.Drawing.Point(3, 11);
             this.lblVrijednostRacuna.Name = "lblVrijednostRacuna";
-            this.lblVrijednostRacuna.Size = new System.Drawing.Size(212, 19);
+            this.lblVrijednostRacuna.Size = new System.Drawing.Size(88, 15);
             this.lblVrijednostRacuna.TabIndex = 0;
-            this.lblVrijednostRacuna.Text = "Ukupna vrijednost racuna ";
+            this.lblVrijednostRacuna.Text = "Ukupna cijena ";
             // 
             // lblStatusSale
             // 
@@ -561,6 +568,23 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtZaposleni
+            // 
+            this.txtZaposleni.Location = new System.Drawing.Point(102, 47);
+            this.txtZaposleni.Name = "txtZaposleni";
+            this.txtZaposleni.Size = new System.Drawing.Size(133, 20);
+            this.txtZaposleni.TabIndex = 3;
+            // 
+            // lblZaposleni
+            // 
+            this.lblZaposleni.AutoSize = true;
+            this.lblZaposleni.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblZaposleni.Location = new System.Drawing.Point(3, 49);
+            this.lblZaposleni.Name = "lblZaposleni";
+            this.lblZaposleni.Size = new System.Drawing.Size(59, 15);
+            this.lblZaposleni.TabIndex = 2;
+            this.lblZaposleni.Text = "Zaposleni";
             // 
             // BlagajnaForm
             // 
@@ -653,5 +677,7 @@
         private System.Windows.Forms.Panel panelPregledRacuna;
         private System.Windows.Forms.Button btnRezervacija;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtZaposleni;
+        private System.Windows.Forms.Label lblZaposleni;
     }
 }

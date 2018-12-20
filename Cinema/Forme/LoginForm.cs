@@ -13,9 +13,6 @@ namespace Cinema.Forme
 {
     public partial class LoginForm : Form
     {
-        
-        bool userU = false;
-        bool passU = false;
         int zaposleniID = 1;
         string ImeIPrezime = "";
         public LoginForm()
@@ -106,11 +103,11 @@ namespace Cinema.Forme
         private void btnNastavi_Click(object sender, EventArgs e)
         {
 
-            //provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
+           provjeriKorisnika(txtKorisnickoIme.Text, txtLozinka.Text);
             //AdministracijaForm novaForma = new AdministracijaForm();
             //novaForma.ShowDialog();
-            BlagajnaForm nov = new BlagajnaForm(zaposleniID, ImeIPrezime);
-            nov.Show();
+            //BlagajnaForm nov = new BlagajnaForm(zaposleniID, ImeIPrezime);
+            //nov.Show();
 
 
         }

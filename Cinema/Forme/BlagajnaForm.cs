@@ -30,6 +30,8 @@ namespace Cinema.Forme
             OsnovnaPodesavanja();
             this.zaposleniID = zaposleniID;
             FullName = imeIprezime;
+            lblKorisnickoIme.Text = FullName;
+            lblRadnik.Visible = false;
 
         }
         // osnovna podesavanja u rezimu repertoar
@@ -346,6 +348,18 @@ namespace Cinema.Forme
             if (btnNovaKarta.Text == "Pregled racuna")
             {
                 activeTab = ActiveTab.Racun;
+                btnNovaKarta.Text = "Stampaj";
+                toolStripKarta.Visible = true;
+                flpDetaljno.Controls.Clear();
+                dgvPregled.DataSource = null;
+                txtZaposleni.Text = FullName;
+                txtZaposleni.ReadOnly = true;
+                panelRacun.Visible = true;
+                panel5.Visible = false;
+                panel6.Visible = true;
+                btnKarta.Enabled = false;
+                btnRacun.Enabled = true;
+
          
             }
             else if (btnNovaKarta.Text == "Karta")
@@ -361,7 +375,7 @@ namespace Cinema.Forme
                 btnRacun.Enabled = false;
                 btnNovaKarta.Enabled = true;
                 dtpDatumProdukcije.Enabled = true;
-                toolStripKarta.Visible = true;
+                toolStripKarta.Visible = false;
                 btnPotvrdi.Visible = true;
                 flpDetaljno.Dock = DockStyle.None;
                 panel4.Visible = false;
@@ -373,8 +387,6 @@ namespace Cinema.Forme
                 flpDetaljno.Controls.Clear();
                 panelPretraga.Visible = false;
                 gbPretraga.Text = "Info";
-                tsbtnIzmjein.Visible = false;
-                tsbtnObrisi.Visible = false;
 
                 property = new KartaPropertyClass();
                 popuniPregledProjekcija();
@@ -394,21 +406,45 @@ namespace Cinema.Forme
         private void kreirajRacun()
         {
             property = new RacunPropertyClass();
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+            //SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+            //DataTable dt = new DataTable();
+            //dt.Load(reader);
+            //reader.Close();
+            
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@ZaposleniID", SqlDbType.SmallInt);
+            parameter.Value = zaposleniID;
+            command.Parameters.Add(parameter);
+            SqlDataReader reader;
             DataTable dt = new DataTable();
-            dt.Load(reader);
-            reader.Close();
-            RacunPropertyClass pomocni = property as RacunPropertyClass;
-            reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pomocni.GetMaxIDQuery());
-            dt = new DataTable();
-
-            dt.Load(reader);
-            foreach (DataRow row in dt.Rows)
+            try
             {
-                racunID = row.Field<short>("RacunID");
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
             }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            RacunPropertyClass pomocni = property as RacunPropertyClass;
+            SqlDataReader reader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pomocni.GetMaxIDQuery());
+            DataTable dt1 = new DataTable();
 
-            reader.Close();
+            dt1.Load(reader1);
+            foreach (DataRow row in dt1.Rows)
+            {
+
+                racunID = row.Field<short>("RacunID");
+
+            }
+            reader1.Close();
         }
 
         // popunjavanje flpDetaljno kontrola u rezimu rada Karta
