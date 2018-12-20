@@ -62,7 +62,7 @@ namespace Cinema.Forme
             popuniControle(property);
             prikaziKolone();
         }
-
+        
         // popunjava datagridView
         private void popuniPregled(PropertyInterface property)
         {
@@ -110,6 +110,7 @@ namespace Cinema.Forme
         //popunjava flpDetaljno userControlama
         private void popuniControle(PropertyInterface property)
         {
+            flpDetaljno.Controls.Clear();
             var properties = property.GetType().GetProperties();
 
             foreach (PropertyInfo item in properties)
@@ -345,6 +346,7 @@ namespace Cinema.Forme
             if (btnNovaKarta.Text == "Pregled racuna")
             {
                 activeTab = ActiveTab.Racun;
+         
             }
             else if (btnNovaKarta.Text == "Karta")
             {
@@ -420,6 +422,13 @@ namespace Cinema.Forme
                 lblStatusSale.Text = "Nema termina za prikazivanje";
                 lblStatusSale.ForeColor = Color.Red;
                 return;
+            }
+            else
+            {
+                gbDetaljno.Enabled = true;
+                btnNovaKarta.Enabled = true;
+                lblStatusSale.Visible = false;
+                lblStatusSale.Text = "";
             }
             foreach (var item in flpDetaljno.Controls)
             {
@@ -554,6 +563,8 @@ namespace Cinema.Forme
             {
                 dgvPregled.DataSource = null;
                 popuniPregledProjekcija();
+                popuniControle(property);
+                setujKontroleKarta();
             }
         }
 
