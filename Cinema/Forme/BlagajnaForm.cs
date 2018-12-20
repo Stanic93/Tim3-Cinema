@@ -59,6 +59,8 @@ namespace Cinema.Forme
             activeTab = ActiveTab.Repertoar;
             lblNazivFilma.Visible = false;
             lblZanrFilma.Visible = false;
+            panelRacun.Visible = false;
+            panel6.Visible = false;
             property = new RepertoarPropertyClass();
             popuniPregled(property);
             popuniControle(property);
@@ -101,9 +103,15 @@ namespace Cinema.Forme
                 dgvPregled.Columns["Film"].Width = 145;
                 return;
             }
-            if (activeTab == ActiveTab.Karta)
+            if (activeTab == ActiveTab.Karta )
             {
                 dgvPregled.Columns["FilmID"].Visible = false;
+                dgvPregled.Columns["ProjekcijaID"].Visible = false;
+                dgvPregled.Columns["TerminID"].Visible = false;
+            }
+            if(activeTab == ActiveTab.Racun)
+            {
+
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
                 dgvPregled.Columns["TerminID"].Visible = false;
             }
@@ -185,7 +193,7 @@ namespace Cinema.Forme
                 popuniControle(property);
                 setujKontroleKarta();
             }
-            else
+            if(activeTab == ActiveTab.Repertoar)
             {
                 PopulatePropertyInterface(property);
                 popuniDetaljno(property);
@@ -359,7 +367,11 @@ namespace Cinema.Forme
                 panel6.Visible = true;
                 btnKarta.Enabled = false;
                 btnRacun.Enabled = true;
-
+                btnPotvrdi.Visible = false;
+                gbDetaljno.Enabled = false;
+                popuniPregledRacun();
+                popuniControle(property);
+                setujKontroleKarta();
          
             }
             else if (btnNovaKarta.Text == "Karta")
@@ -487,7 +499,6 @@ namespace Cinema.Forme
                     }
                     if (ulup.Name == "RacunID")
                     {
-
                         ulup.Enabled = false;
                         ulup.SetKey("" + racunID);
                         ulup.SetValue("" + racunID);
@@ -586,7 +597,7 @@ namespace Cinema.Forme
             dgvPregled.DataSource = dt;
             prikaziKolone();
         }
-        // pomocni button za brisanje
+        // pomocni button namjenjen za brisanje
         private void button2_Click(object sender, EventArgs e)
         {
             AdministracijaForm nova = new AdministracijaForm();
@@ -634,16 +645,13 @@ namespace Cinema.Forme
         {
             if (btnRezervacija.Text == "Odustani")
             {
-                if(dgvPregled.Rows.Count == 0)
-                {
-                    OsnovnaPodesavanja();
-                    return;
-                }
+                
                 DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od racuna?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(dialogResult == DialogResult.Yes)
                 {
                     OsnovnaPodesavanja();
                     IzbrisiKarteIRacun();
+                    
                 }
             }
         }
@@ -695,6 +703,43 @@ namespace Cinema.Forme
                 MessageBox.Show("Can not open connection");
             }
 
+        }
+
+        // kreiranje prikaza karata na racunu ()
+        private void popuniPregledRacun()
+        {
+            dgvPregled.DataSource = null;
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista from Karta as k 
+                                    join Termin t
+                                    on t.TerminID = k.TerminID 
+                                    join cijena c
+                                    on c.CijenaID = t.CijenaID
+                                    join Sjediste
+                                    on k.SjedisteID = Sjediste.SjedisteID
+                                     where RacunID = @RacunID order by KartaID";
+            SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+            parameter.Value = racunID;            
+            command.Parameters.Add(parameter);            
+            command.Connection = connection;
+            SqlDataReader reader;
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            dgvPregled.DataSource = dt;
+            prikaziKolone();
         }
     }
 }

@@ -61,20 +61,20 @@
             this.lblZanrFilma = new System.Windows.Forms.Label();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
             this.btnPotvrdi = new System.Windows.Forms.Button();
-            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
             this.panelRacun = new System.Windows.Forms.Panel();
+            this.txtZaposleni = new System.Windows.Forms.TextBox();
+            this.lblZaposleni = new System.Windows.Forms.Label();
             this.txtUkupnaVrijednost = new System.Windows.Forms.TextBox();
             this.lblVrijednostRacuna = new System.Windows.Forms.Label();
             this.lblStatusSale = new System.Windows.Forms.Label();
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtZaposleni = new System.Windows.Forms.TextBox();
-            this.lblZaposleni = new System.Windows.Forms.Label();
+            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
+            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -85,9 +85,9 @@
             this.gbPretraga.SuspendLayout();
             this.panelPretraga.SuspendLayout();
             this.gbDetaljno.SuspendLayout();
-            this.toolStripKarta.SuspendLayout();
             this.panelRacun.SuspendLayout();
             this.panelPregledRacuna.SuspendLayout();
+            this.toolStripKarta.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -326,6 +326,7 @@
             // 
             // gbPregled
             // 
+            this.gbPregled.Controls.Add(this.toolStripKarta);
             this.gbPregled.Controls.Add(this.dgvPregled);
             this.gbPregled.Location = new System.Drawing.Point(3, 3);
             this.gbPregled.Name = "gbPregled";
@@ -341,14 +342,14 @@
             this.dgvPregled.BackgroundColor = System.Drawing.Color.White;
             this.dgvPregled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPregled.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvPregled.Location = new System.Drawing.Point(3, 19);
+            this.dgvPregled.Location = new System.Drawing.Point(3, 45);
             this.dgvPregled.Name = "dgvPregled";
             this.dgvPregled.ReadOnly = true;
             this.dgvPregled.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPregled.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvPregled.RowTemplate.DefaultCellStyle.NullValue = "/";
             this.dgvPregled.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dgvPregled.Size = new System.Drawing.Size(541, 289);
+            this.dgvPregled.Size = new System.Drawing.Size(541, 263);
             this.dgvPregled.TabIndex = 0;
             this.dgvPregled.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregled_CellClick);
             // 
@@ -434,7 +435,6 @@
             // gbDetaljno
             // 
             this.gbDetaljno.Controls.Add(this.btnPotvrdi);
-            this.gbDetaljno.Controls.Add(this.toolStripKarta);
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
             this.gbDetaljno.Location = new System.Drawing.Point(266, 152);
             this.gbDetaljno.Name = "gbDetaljno";
@@ -453,51 +453,12 @@
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
-            // toolStripKarta
-            // 
-            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnAdd,
-            this.tsbtnIzmjein,
-            this.tsbtnObrisi});
-            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
-            this.toolStripKarta.Name = "toolStripKarta";
-            this.toolStripKarta.Size = new System.Drawing.Size(309, 25);
-            this.toolStripKarta.TabIndex = 1;
-            this.toolStripKarta.Text = "toolStrip1";
-            // 
-            // tsbtnAdd
-            // 
-            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
-            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAdd.Name = "tsbtnAdd";
-            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnAdd.Text = "Kreiraj kartu";
-            // 
-            // tsbtnIzmjein
-            // 
-            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
-            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
-            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "toolStripButton2";
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnObrisi.Text = "toolStripButton3";
-            // 
             // flpDetaljno
             // 
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDetaljno.Location = new System.Drawing.Point(7, 49);
+            this.flpDetaljno.Location = new System.Drawing.Point(7, 37);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(302, 377);
+            this.flpDetaljno.Size = new System.Drawing.Size(302, 389);
             this.flpDetaljno.TabIndex = 0;
             // 
             // panelRacun
@@ -511,6 +472,23 @@
             this.panelRacun.Size = new System.Drawing.Size(238, 84);
             this.panelRacun.TabIndex = 8;
             this.panelRacun.Visible = false;
+            // 
+            // txtZaposleni
+            // 
+            this.txtZaposleni.Location = new System.Drawing.Point(102, 47);
+            this.txtZaposleni.Name = "txtZaposleni";
+            this.txtZaposleni.Size = new System.Drawing.Size(133, 20);
+            this.txtZaposleni.TabIndex = 3;
+            // 
+            // lblZaposleni
+            // 
+            this.lblZaposleni.AutoSize = true;
+            this.lblZaposleni.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblZaposleni.Location = new System.Drawing.Point(3, 49);
+            this.lblZaposleni.Name = "lblZaposleni";
+            this.lblZaposleni.Size = new System.Drawing.Size(59, 15);
+            this.lblZaposleni.TabIndex = 2;
+            this.lblZaposleni.Text = "Zaposleni";
             // 
             // txtUkupnaVrijednost
             // 
@@ -569,22 +547,44 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // txtZaposleni
+            // toolStripKarta
             // 
-            this.txtZaposleni.Location = new System.Drawing.Point(102, 47);
-            this.txtZaposleni.Name = "txtZaposleni";
-            this.txtZaposleni.Size = new System.Drawing.Size(133, 20);
-            this.txtZaposleni.TabIndex = 3;
+            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnAdd,
+            this.tsbtnIzmjein,
+            this.tsbtnObrisi});
+            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
+            this.toolStripKarta.Name = "toolStripKarta";
+            this.toolStripKarta.Size = new System.Drawing.Size(541, 25);
+            this.toolStripKarta.TabIndex = 2;
+            this.toolStripKarta.Text = "toolStrip1";
             // 
-            // lblZaposleni
+            // tsbtnAdd
             // 
-            this.lblZaposleni.AutoSize = true;
-            this.lblZaposleni.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblZaposleni.Location = new System.Drawing.Point(3, 49);
-            this.lblZaposleni.Name = "lblZaposleni";
-            this.lblZaposleni.Size = new System.Drawing.Size(59, 15);
-            this.lblZaposleni.TabIndex = 2;
-            this.lblZaposleni.Text = "Zaposleni";
+            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
+            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAdd.Name = "tsbtnAdd";
+            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnAdd.Text = "Kreiraj kartu";
+            // 
+            // tsbtnIzmjein
+            // 
+            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
+            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
+            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnIzmjein.Text = "toolStripButton2";
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
+            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnObrisi.Text = "toolStripButton3";
             // 
             // BlagajnaForm
             // 
@@ -614,18 +614,18 @@
             this.gbKarta.ResumeLayout(false);
             this.gbKarta.PerformLayout();
             this.gbPregled.ResumeLayout(false);
+            this.gbPregled.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).EndInit();
             this.gbPretraga.ResumeLayout(false);
             this.gbPretraga.PerformLayout();
             this.panelPretraga.ResumeLayout(false);
             this.panelPretraga.PerformLayout();
             this.gbDetaljno.ResumeLayout(false);
-            this.gbDetaljno.PerformLayout();
-            this.toolStripKarta.ResumeLayout(false);
-            this.toolStripKarta.PerformLayout();
             this.panelRacun.ResumeLayout(false);
             this.panelRacun.PerformLayout();
             this.panelPregledRacuna.ResumeLayout(false);
+            this.toolStripKarta.ResumeLayout(false);
+            this.toolStripKarta.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -665,10 +665,6 @@
         private System.Windows.Forms.TextBox txtUkupnaVrijednost;
         private System.Windows.Forms.Label lblVrijednostRacuna;
         private System.Windows.Forms.Button btnPotvrdi;
-        private System.Windows.Forms.ToolStrip toolStripKarta;
-        private System.Windows.Forms.ToolStripButton tsbtnAdd;
-        private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
-        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.Label lblNazivFilma;
         private System.Windows.Forms.Label lblZanrFilma;
         private System.Windows.Forms.Label lblStatusSale;
@@ -679,5 +675,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtZaposleni;
         private System.Windows.Forms.Label lblZaposleni;
+        private System.Windows.Forms.ToolStrip toolStripKarta;
+        private System.Windows.Forms.ToolStripButton tsbtnAdd;
+        private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
+        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
     }
 }
