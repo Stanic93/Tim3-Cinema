@@ -336,7 +336,7 @@
             // 
             // gbPrikaz
             // 
-            this.gbPrikaz.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.gbPrikaz.BackColor = System.Drawing.Color.Transparent;
             this.gbPrikaz.Controls.Add(this.dgvPrikaz);
             this.gbPrikaz.Location = new System.Drawing.Point(586, 318);
             this.gbPrikaz.Name = "gbPrikaz";
@@ -347,20 +347,20 @@
             // 
             // dgvPrikaz
             // 
+            this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrikaz.GridColor = System.Drawing.SystemColors.AppWorkspace;
             this.dgvPrikaz.Location = new System.Drawing.Point(6, 19);
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
-            this.dgvPrikaz.Size = new System.Drawing.Size(548, 345);
+            this.dgvPrikaz.Size = new System.Drawing.Size(554, 345);
             this.dgvPrikaz.TabIndex = 0;
             this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
-            this.dgvPrikaz.Click += new System.EventHandler(this.dgvPrikaz_Click);
             // 
             // gbPretraga
             // 
-            this.gbPretraga.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.gbPretraga.BackColor = System.Drawing.Color.Transparent;
             this.gbPretraga.Location = new System.Drawing.Point(586, 174);
             this.gbPretraga.Name = "gbPretraga";
             this.gbPretraga.Size = new System.Drawing.Size(566, 136);

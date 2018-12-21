@@ -8,7 +8,8 @@ namespace Cinema
 {
     public enum StateEnum
     {
-        create,
-        update 
+        Create,
+        Update,
+        Preview
     }
 }
