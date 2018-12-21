@@ -53,7 +53,6 @@ namespace Cinema.PropertyClass
                 vrijemePrikazivanja = value;
             }
         }
-        [PrimaryKey]
         [SqlName("SalaID")]
         [DisplayName("Sala ID")]
         [ForeignKey("dbo.Sala", "SalaID", "Cinema.PropertyClass.SalaPropertyClass")]
@@ -98,6 +97,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("DatumPrikazivanja")]
         [DisplayName("Datum prikazivanja")]
+        [DateTime]
         public DateTime DatumPrikazivanja
         {
             get
@@ -109,7 +109,20 @@ namespace Cinema.PropertyClass
                 datumPrikazivanja = value;
             }
         }
-        [PrimaryKey]
+        [SqlName("ProjekcijaID")]
+        [DisplayName("Projekcija ID")]
+        [ForeignKey("dbo.Projekcija", "ProjekcijaID", "Cinema.PropertyClass.ProjekcijaPropertyClass")]
+        public short ProjekcijaID
+        {
+            get
+            {
+                return projekcijaID;
+            }
+            set
+            {
+                projekcijaID = value;
+            }
+        }
         [SqlName("CijenaID")]
         [DisplayName("Cijena ID")]
         [ForeignKey("dbo.Cijena", "CijenaID", "Cinema.PropertyClass.CijenaPropertyClass")]
@@ -124,22 +137,8 @@ namespace Cinema.PropertyClass
                 cijenaID = value;
             }
         }
-        [PrimaryKey]
-        [SqlName("ProjekcijaID")]
-        [DisplayName("Projekcija ID")]
-        [LookUpKey]
-        [ForeignKey("dbo.Projekcija", "ProjekcijaID", "Cinema.PropertyClass.ProjekcijaPropertyClass")]
-        public short ProjekcijaID
-        {
-            get
-            {
-                return projekcijaID;
-            }
-            set
-            {
-                projekcijaID = value;
-            }
-        }
+        
+       
         #endregion
 
         #region queries
@@ -166,7 +165,7 @@ namespace Cinema.PropertyClass
                                           DatumPrikazivanja = @DatumPrikazivanja,
                                           ProjekcijaID = @ProjekcijaID,
                                           CijenaID = @CijenaID
-                                where TerminID = @TerminID;
+                                    where TerminID = @TerminID;
                                           ";
         }
         #endregion

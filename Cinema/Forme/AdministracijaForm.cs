@@ -68,18 +68,6 @@ namespace Cinema.Forme
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dgvPrikaz.Rows.Count; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                }
-                else
-                {
-                    dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
-                }
-            }
-
             if (btnFilm == sender as Button)
             {
                 property = new FilmPropertyClass();
