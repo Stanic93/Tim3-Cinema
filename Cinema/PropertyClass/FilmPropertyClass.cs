@@ -68,6 +68,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Opis")]
         [DisplayName("Opis")]
+        [RichTextBox]
         public string Opis
         {
             get

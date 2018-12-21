@@ -17,7 +17,7 @@ namespace Cinema.Forme
 {
     public partial class AdministracijaForm : Form
     {
-
+        StateEnum state = StateEnum.Preview;
         PropertyInterface property = new ZaposleniPropertyClass();
        // ActiveTab activeTab;
         public AdministracijaForm()
@@ -28,8 +28,8 @@ namespace Cinema.Forme
             btnProjekcija.Click += Btn_Click;
             btnLogin.Click += Btn_Click;
             btnFilm.Click += Btn_Click;
-            popuniControle(property);
             OsnovnaPodesavanja();
+           
 
             #region PocetnoUcitavanjaDataGrid
             DataTable dt = new DataTable();
@@ -55,13 +55,17 @@ namespace Cinema.Forme
             panelProjekcijaSelected.Visible = false;
             panelZanrSelected.Visible = false;
             panelLoginSelected.Visible = false;
+            panelTerminiSelected.Visible = false;
         }
 
         public void OsnovnaPodesavanja()
         {
-            dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;            
+            dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPrikaz.MultiSelect = false;
+            dgvPrikaz.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            popuniControle(property);
         }
-
+        //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < dgvPrikaz.Rows.Count; i++)
@@ -80,45 +84,39 @@ namespace Cinema.Forme
             {
                 property = new FilmPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelFilmSelected.Visible = true;
-                
+                panelFilmSelected.Visible = true;                
             }
 
             else if (btnLogin == sender as Button)
             {
                 property = new LoginPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelLoginSelected.Visible = true;
-                
+                panelLoginSelected.Visible = true;                
             }
             else if (btnTermini == sender as Button)
             {
-                //property = new TerminPropertyClass();
+                property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelTerminiSelected.Visible = true;
-                
+                panelTerminiSelected.Visible = true;                
             }
             else if (btnProjekcija == sender as Button)
             {
                 property = new ProjekcijaPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelProjekcijaSelected.Visible = true;
-                
+                panelProjekcijaSelected.Visible = true;                
             }
             else if (btnZanr == sender as Button)
             {
                 property = new ZanrPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelZanrSelected.Visible = true;
-               
+                panelZanrSelected.Visible = true;               
             }
 
             else if (btnZaposleni == sender as Button)
             {
                 property = new ZaposleniPropertyClass();
                 iskljuciPaneleNaDugmadima();
-                panelZaposleniSelected.Visible = true;
-                
+                panelZaposleniSelected.Visible = true;                
             }
             popuniControle(property);
             DataTable dt = new DataTable();
@@ -139,6 +137,7 @@ namespace Cinema.Forme
 
         }
 
+        //Zavisno od tog u kom smo meniju pravi kontrole u panelu (PRAZNE) 
         private void popuniControle(PropertyInterface property)
         {
             ocistiKontrole();
@@ -165,8 +164,15 @@ namespace Cinema.Forme
                     flpDetaljno.Controls.Add(dc);
                     
                 }
+                else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
+                {
+                    CheckBoxControl cb = new CheckBoxControl();
 
-                else if (item.GetCustomAttribute<SqlNameAttribute>() != null)
+                    cb.Name = item.Name;
+                    cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    flpDetaljno.Controls.Add(cb);
+                }
+                else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
                     uc.ReadOnly();
@@ -177,16 +183,120 @@ namespace Cinema.Forme
                 
             }
         }
+
+        private void PopulatePropertyInterface(PropertyInterface property)
+        {
+            try
+            {
+                DataGridViewRow row = dgvPrikaz.SelectedRows[0];
+                var properties = property.GetType().GetProperties();
+
+                foreach (PropertyInfo item in properties)
+                {
+                    string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
+                       .Value.ToString();
+
+                    item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+                }
+            }
+            catch{ }
+        }
+
+        private void popuniDetaljno(PropertyInterface property, StateEnum state)
+        {
+            try
+            {
+                if (dgvPrikaz.SelectedRows.Count > 0)
+                {
+                    ocistiKontrole();
+                    foreach (PropertyInfo item in property.GetType().GetProperties())
+                    {
+                        if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
+                        {
+                            PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
+                                CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
+                                as PropertyInterface;
+                            UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
+                            ul.Name = item.Name;
+                            ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                            flpDetaljno.Controls.Add(ul);
+                        }
+                        else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
+                        {
+                            RichTextBoxControl rc = new RichTextBoxControl();
+                            rc.Name = item.Name;
+                            rc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                            if (state == StateEnum.Preview)
+                                rc.Enabled = false;
+                            rc.SetVrijednost(item.GetValue(property).ToString());
+                            flpDetaljno.Controls.Add(rc);
+
+                        }
+                        else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
+                        {
+                            DateTimeControl dc = new DateTimeControl();
+
+                            if (state == StateEnum.Preview)
+                                dc.Enabled = false;
+
+                            dc.SetVrijednost(item.GetValue(property).ToString());
+                            dc.Name = item.Name;
+                            dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                            //dc.SetVrijednost("01.01.2018");
+                            flpDetaljno.Controls.Add(dc);
+
+                        }
+                        else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
+                        {
+                            CheckBoxControl cb = new CheckBoxControl();
+
+                            if (state == StateEnum.Preview)
+                                cb.Enabled = false;
+
+                            cb.SetValue(Convert.ToBoolean(item.GetValue(property)));
+                            cb.Name = item.Name;
+                            cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                            flpDetaljno.Controls.Add(cb);
+                        }
+                        else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
+                        {
+                            TextBoxControl uc = new TextBoxControl();
+                            uc.Name = item.Name;
+                            uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                            if (state == StateEnum.Preview)
+                                uc.Enabled = false;
+
+                            uc.SetTextBox(item.GetValue(property).ToString());
+
+                            if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null && state == StateEnum.Update)
+                            {
+                                uc.Enabled = false;
+                            }
+                            flpDetaljno.Controls.Add(uc);
+                        }
+
+                    }
+                }
+            }
+            catch  {}
+        }
+
+
+
         public void ocistiKontrole() {
             flpDetaljno.Controls.Clear();
         }
 
         private void dgvPrikaz_Click(object sender, EventArgs e)
         {
-           
             popuniControle(property);
         }
 
-        
+        private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
+        {
+           
+            PopulatePropertyInterface(property);
+            popuniDetaljno(property,state);
+        }
     }
 }
