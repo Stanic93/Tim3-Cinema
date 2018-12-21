@@ -15,7 +15,7 @@ namespace Cinema.Controle
         PropertyInterface myInterface;
         public string Key;
         public string Value;
-        public int terminID;
+        public int terminID=-1;
         public UserLookUpControl(PropertyInterface property)
         {
             InitializeComponent();
@@ -35,12 +35,22 @@ namespace Cinema.Controle
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            LookUpForm novaForma = new LookUpForm(myInterface,terminID);
-            novaForma.ShowDialog();
+            LookUpForm novaForma;
+            if (terminID == -1)
+            {
+                novaForma = new LookUpForm(myInterface, terminID);
+                novaForma.ShowDialog();
+            }
+            else
+            {
+                novaForma = new LookUpForm(myInterface);
+                novaForma.ShowDialog();
+            }
             Key = novaForma.Key;
             Value = novaForma.Value;
             txtValue.Text = Value;
             txtKeyValue.Text = Key;
+            
         }
         public void SetValue(string value)
         {

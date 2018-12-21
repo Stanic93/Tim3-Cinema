@@ -25,6 +25,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("CijenaID")]
         [DisplayName("Cijena ID")]
+        [LookUpKey]
         public short CijenaID
         {
             get
@@ -39,6 +40,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Cijena")]
         [DisplayName("Cijena")]
+        [LookUpValue]
         public decimal Cijena
         {
             get
@@ -68,6 +70,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Projekcija3D")]
         [DisplayName("Projekcija 3D")]
+        [CheckBox]
         public bool Projekcija3D
         {
             get
@@ -81,6 +84,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Premijera")]
         [DisplayName("Premijera")]
+        [CheckBox]
         public bool Premijera
         {
             get

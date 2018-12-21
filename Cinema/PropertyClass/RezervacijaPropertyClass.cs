@@ -35,7 +35,6 @@ namespace Cinema.PropertyClass
 
         [SqlName("KartaID")]
         [DisplayName("Karta ID")]
-        [PrimaryKey]
         [ForeignKey("dbo.Karta", "KartaID", "Cinema.PropertyClass.KartaPropertyClass")]
         public short KartaID
         {

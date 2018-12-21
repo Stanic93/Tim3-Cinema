@@ -37,8 +37,7 @@ namespace Cinema
 
         public void GetSelectAll()
         {
-            
-            dgvPregledLookUp.DataSource = null;
+            //dgvPregledLookUp.DataSource = null;
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, myProperty.GetSelectQuery());
             dt.Load(reader);
@@ -56,7 +55,7 @@ namespace Cinema
                 item.HeaderText = properties.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv == item.HeaderText
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
-            }
+        }
 
         public void GetSelectFreeSeat()
         {
@@ -92,7 +91,8 @@ namespace Cinema
 
         private void btnIzaberi_Click(object sender, EventArgs e)
         {
-          
+            if (dgvPregledLookUp.SelectedRows.Count > 0)
+            {
                 DataGridViewRow row = dgvPregledLookUp.SelectedRows[0];
                 var properties = myProperty.GetType().GetProperties();
 
@@ -106,8 +106,15 @@ namespace Cinema
 
                 Value = row.Cells[columnName].Value.ToString();
 
-                this.Close();
+                DialogResult = DialogResult.OK;
+            }
+            else return;
             
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -63,23 +63,11 @@ namespace Cinema.Forme
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            popuniControle(property);
+            postaviControle(property);
         }
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dgvPrikaz.Rows.Count; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                }
-                else
-                {
-                    dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
-                }
-            }
-
             if (btnFilm == sender as Button)
             {
                 property = new FilmPropertyClass();
@@ -118,7 +106,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelZaposleniSelected.Visible = true;                
             }
-            popuniControle(property);
+            postaviControle(property);
             DataTable dt = new DataTable();
             
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSelectQuery());
@@ -138,14 +126,24 @@ namespace Cinema.Forme
         }
 
         //Zavisno od tog u kom smo meniju pravi kontrole u panelu (PRAZNE) 
-        private void popuniControle(PropertyInterface property)
+        private void postaviControle(PropertyInterface property)
         {
             ocistiKontrole();
             var properties = property.GetType().GetProperties();
             foreach (PropertyInfo item in properties)
             {
-                
-                if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
+                if(item.GetCustomAttribute<ForeignKeyAttribute>() != null)
+                {
+                    PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
+                                CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
+                                as PropertyInterface;
+                    UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
+                    ul.Name = item.Name;
+                    ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                    flpDetaljno.Controls.Add(ul);
+                }
+
+                else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                 {
                     RichTextBoxControl rc = new RichTextBoxControl();
                     rc.ReadOnly();
@@ -154,6 +152,7 @@ namespace Cinema.Forme
                     flpDetaljno.Controls.Add(rc);
                     
                 }
+
                 else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
                     DateTimeControl dc = new DateTimeControl();
@@ -289,7 +288,7 @@ namespace Cinema.Forme
 
         private void dgvPrikaz_Click(object sender, EventArgs e)
         {
-            popuniControle(property);
+            postaviControle(property);
         }
 
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)

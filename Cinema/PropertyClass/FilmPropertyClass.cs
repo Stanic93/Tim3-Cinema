@@ -26,6 +26,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
+        [LookUpKey]
         public short FilmID
         {
             get
@@ -40,6 +41,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Naziv")]
         [DisplayName("Naziv")]
+        [LookUpValue]
         public string Naziv
         {
             get
