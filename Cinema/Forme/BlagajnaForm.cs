@@ -24,6 +24,7 @@ namespace Cinema.Forme
         int zaposleniID = 0;
         int terminID = 0;
         string FullName = "";
+        State state = State.Idle;
         public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
             InitializeComponent();
@@ -46,12 +47,16 @@ namespace Cinema.Forme
             lblStatusSale.Visible = false;
             gbDetaljno.Enabled = true;
             dgvPregled.MultiSelect = false;
+            btnVratiNaKartu.Visible = false;
+            btnOdustaniRacun.Visible = false;
             btnRepertor.Enabled = true;
             panelPretraga.Visible = true;
             btnKarta.Enabled = false;
             btnRacun.Enabled = false;
             btnNovaKarta.Enabled = false;
             dtpDatumProdukcije.Enabled = false;
+            lblDatumProdukcije.Visible = true;
+            dtpDatumProdukcije.Visible = true;
             toolStripKarta.Visible = false;
             btnPotvrdi.Visible = false;
             flpDetaljno.Dock = DockStyle.Fill;
@@ -66,7 +71,7 @@ namespace Cinema.Forme
             popuniControle(property);
             prikaziKolone();
         }
-        
+
         // popunjava datagridView
         private void popuniPregled(PropertyInterface property)
         {
@@ -99,21 +104,21 @@ namespace Cinema.Forme
                 dgvPregled.Columns["DatumPosljednjegPrikazivanja"].Visible = false;
                 dgvPregled.Columns["Aktivan"].Visible = false;
                 dgvPregled.Columns["Reziser"].Visible = false;
-                dgvPregled.Columns["Godina"].Width = 50;
-                dgvPregled.Columns["Film"].Width = 145;
+
                 return;
             }
-            if (activeTab == ActiveTab.Karta )
+            if (activeTab == ActiveTab.Karta)
             {
                 dgvPregled.Columns["FilmID"].Visible = false;
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
                 dgvPregled.Columns["TerminID"].Visible = false;
             }
-            if(activeTab == ActiveTab.Racun)
+            if (activeTab == ActiveTab.Racun)
             {
 
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
                 dgvPregled.Columns["TerminID"].Visible = false;
+                dgvPregled.Columns["SjedisteID"].Visible = false;
             }
         }
 
@@ -137,10 +142,10 @@ namespace Cinema.Forme
                     }
                     if (item.Name == "SjedisteID")
                     {
-                         ul = new UserLookUpControl(foreignKeyInterface,terminID);
+                        ul = new UserLookUpControl(foreignKeyInterface, terminID);
                     }
                     else
-                         ul = new UserLookUpControl(foreignKeyInterface);
+                        ul = new UserLookUpControl(foreignKeyInterface);
                     ul.Name = item.Name;
                     ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                     flpDetaljno.Controls.Add(ul);
@@ -193,7 +198,7 @@ namespace Cinema.Forme
                 popuniControle(property);
                 setujKontroleKarta();
             }
-            if(activeTab == ActiveTab.Repertoar)
+            if (activeTab == ActiveTab.Repertoar)
             {
                 PopulatePropertyInterface(property);
                 popuniDetaljno(property);
@@ -202,6 +207,10 @@ namespace Cinema.Forme
                 filmID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value);
                 lblNazivFilma.Text = dgvPregled.SelectedRows[0].Cells["Film"].Value.ToString();
                 lblZanrFilma.Text = dgvPregled.SelectedRows[0].Cells["Zanr"].Value.ToString();
+            }
+            if (activeTab == ActiveTab.Racun)
+            {
+                setujKontroleKarta();
             }
             dtpDatumProdukcije.Enabled = true;
             btnNovaKarta.Enabled = true;
@@ -368,16 +377,26 @@ namespace Cinema.Forme
                 btnKarta.Enabled = false;
                 btnRacun.Enabled = true;
                 btnPotvrdi.Visible = false;
-                gbDetaljno.Enabled = false;
+                lblDatumProdukcije.Visible = false;
+                dtpDatumProdukcije.Visible = false;
                 popuniPregledRacun();
+                IzracunajSumuRacuna();
                 popuniControle(property);
                 setujKontroleKarta();
-         
+                btnVratiNaKartu.Visible = true;
+                gbDetaljno.Enabled = false;
+
             }
             else if (btnNovaKarta.Text == "Karta")
             {
                 activeTab = ActiveTab.Karta;
-                racunID = 0;
+                lblDatumProdukcije.Visible = true;
+                dtpDatumProdukcije.Visible = true;
+                btnVratiNaKartu.Visible = false;
+                if (state == State.Idle)
+                {
+                    racunID = 0;
+                }
                 btnRepertor.Enabled = false;
                 lblNazivFilma.Visible = true;
                 lblZanrFilma.Visible = true;
@@ -399,15 +418,13 @@ namespace Cinema.Forme
                 flpDetaljno.Controls.Clear();
                 panelPretraga.Visible = false;
                 gbPretraga.Text = "Info";
-
                 property = new KartaPropertyClass();
                 popuniPregledProjekcija();
                 popuniControle(property);
-                if (dgvPregled.Rows.Count != 0)
+                if (state == State.Idle)
                 {
                     kreirajRacun();
                 }
-
                 property = new KartaPropertyClass();
                 setujKontroleKarta();
             }
@@ -422,7 +439,7 @@ namespace Cinema.Forme
             //DataTable dt = new DataTable();
             //dt.Load(reader);
             //reader.Close();
-            
+
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
             command.CommandText = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
@@ -473,7 +490,14 @@ namespace Cinema.Forme
             }
             else
             {
-                gbDetaljno.Enabled = true;
+                if (activeTab == ActiveTab.Karta)
+                {
+                    gbDetaljno.Enabled = true;
+                }
+                else
+                {
+                    gbDetaljno.Enabled = false;
+                }
                 btnNovaKarta.Enabled = true;
                 lblStatusSale.Visible = false;
                 lblStatusSale.Text = "";
@@ -493,10 +517,29 @@ namespace Cinema.Forme
                     }
                     if (ulup.Name == "TerminID")
                     {
-                        ulup.Enabled = false;
+                        if (activeTab == ActiveTab.Karta)
+                        {
+                            ulup.Enabled = false;
+                        }
+                        else
+                        {
+                            if (state == State.Add)
+                            {
+                                ulup.Enabled = true;
+                            }
+                        }
                         ulup.SetKey(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
                         ulup.SetValue(dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
                     }
+                    if (activeTab == ActiveTab.Racun)
+                    {
+                        if (ulup.Name == "SjedisteID")
+                        {
+                            ulup.SetKey(dgvPregled.SelectedRows[0].Cells["SjedisteID"].Value.ToString());
+                            ulup.SetValue(dgvPregled.SelectedRows[0].Cells["SjedisteID"].Value.ToString());
+                        }
+                    }
+
                     if (ulup.Name == "RacunID")
                     {
                         ulup.Enabled = false;
@@ -513,7 +556,6 @@ namespace Cinema.Forme
                         textBox.SetTextBox("" + datum);
                         textBox.ReadOnly();
                     }
-
                 }
             }
         }
@@ -619,23 +661,46 @@ namespace Cinema.Forme
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
             populateKartaInterface();
-
-            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            reader.Close();
-            foreach (var item in flpDetaljno.Controls)
-            {
-                if (item.GetType() == typeof(UserLookUpControl))
+            if (activeTab == ActiveTab.Karta)
+            {        
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                foreach (var item in flpDetaljno.Controls)
                 {
-                    UserLookUpControl ulup = item as UserLookUpControl;
-                    if (ulup.Name == "SjedisteID")
+                    if (item.GetType() == typeof(UserLookUpControl))
                     {
-
-                        ulup.SetKey("");
-                        ulup.SetValue("");
+                        UserLookUpControl ulup = item as UserLookUpControl;
+                        if (ulup.Name == "SjedisteID")
+                        {
+                            ulup.SetKey("");
+                            ulup.SetValue("");
+                        }
                     }
                 }
+            }
+            if(activeTab == ActiveTab.Racun && state == State.Add)
+            {
+                dgvPregled.DataSource = null;
+                gbDetaljno.Enabled = true;
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                foreach (var item in flpDetaljno.Controls)
+                {
+                    if (item.GetType() == typeof(UserLookUpControl))
+                    {
+                        UserLookUpControl ulup = item as UserLookUpControl;
+                        if (ulup.Name == "SjedisteID")
+                        {
+                            ulup.SetKey("");
+                            ulup.SetValue("");
+                        }
+                    }
+                }
+                popuniPregledRacun();
             }
             MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -645,20 +710,20 @@ namespace Cinema.Forme
         {
             if (btnRezervacija.Text == "Odustani")
             {
-                
+
                 DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od racuna?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(dialogResult == DialogResult.Yes)
+                if (dialogResult == DialogResult.Yes)
                 {
-                    OsnovnaPodesavanja();
                     IzbrisiKarteIRacun();
-                    
+                    OsnovnaPodesavanja();
+
                 }
             }
         }
         // brisanje karata i racuna (Klikom na odustani)
         private void IzbrisiKarteIRacun()
         {
-            if(racunID == 0)
+            if (racunID == 0)
             {
                 return;
             }
@@ -712,7 +777,7 @@ namespace Cinema.Forme
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista from Karta as k 
+            command.CommandText = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista,Sjediste.SjedisteID from Karta as k 
                                     join Termin t
                                     on t.TerminID = k.TerminID 
                                     join cijena c
@@ -721,8 +786,8 @@ namespace Cinema.Forme
                                     on k.SjedisteID = Sjediste.SjedisteID
                                      where RacunID = @RacunID order by KartaID";
             SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
-            parameter.Value = racunID;            
-            command.Parameters.Add(parameter);            
+            parameter.Value = racunID;
+            command.Parameters.Add(parameter);
             command.Connection = connection;
             SqlDataReader reader;
             try
@@ -740,6 +805,50 @@ namespace Cinema.Forme
             }
             dgvPregled.DataSource = dt;
             prikaziKolone();
+        }
+
+        // kreiranje sume za racun
+        private void IzracunajSumuRacuna()
+        {
+            decimal cijena = 0;
+            foreach (DataGridViewRow row in dgvPregled.Rows)
+            {
+                string nesto = row.Cells["Cijena"].Value.ToString();
+                cijena += Convert.ToDecimal(nesto);
+            }
+
+            txtUkupnaVrijednost.Text = "" + cijena;
+            txtUkupnaVrijednost.ReadOnly = true;
+        }
+
+        private void tsbtnAdd_Click(object sender, EventArgs e)
+        {
+            gbDetaljno.Enabled = true;
+            state = State.Add;
+            btnPotvrdi.Visible = true;
+            btnOdustaniRacun.Visible = true;
+            if(activeTab == ActiveTab.Racun)
+            {
+                foreach (var item in flpDetaljno.Controls)
+                {
+                    if (item.GetType() == typeof(UserLookUpControl))
+                    {
+                        UserLookUpControl ulup = item as UserLookUpControl;
+                        if (ulup.Name == "SjedisteID")
+                        {
+                            ulup.SetKey("");
+                            ulup.SetValue("");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnVratiNaKartu_Click(object sender, EventArgs e)
+        {
+            btnNovaKarta.Text = "Karta";
+            state = State.Add;
+            btnNovaKarta_Click(sender,e);
         }
     }
 }

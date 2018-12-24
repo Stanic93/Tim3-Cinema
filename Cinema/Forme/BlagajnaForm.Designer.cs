@@ -50,6 +50,10 @@
             this.dtpDatumProdukcije = new System.Windows.Forms.DateTimePicker();
             this.lblDatumProdukcije = new System.Windows.Forms.Label();
             this.gbPregled = new System.Windows.Forms.GroupBox();
+            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
+            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.dgvPregled = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
             this.panelPretraga = new System.Windows.Forms.Panel();
@@ -71,23 +75,21 @@
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
+            this.btnOdustaniRacun = new System.Windows.Forms.Button();
+            this.btnVratiNaKartu = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.gbKarta.SuspendLayout();
             this.gbPregled.SuspendLayout();
+            this.toolStripKarta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).BeginInit();
             this.gbPretraga.SuspendLayout();
             this.panelPretraga.SuspendLayout();
             this.gbDetaljno.SuspendLayout();
             this.panelRacun.SuspendLayout();
             this.panelPregledRacuna.SuspendLayout();
-            this.toolStripKarta.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -335,10 +337,51 @@
             this.gbPregled.TabStop = false;
             this.gbPregled.Text = "Pregled";
             // 
+            // toolStripKarta
+            // 
+            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnAdd,
+            this.tsbtnIzmjein,
+            this.tsbtnObrisi});
+            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
+            this.toolStripKarta.Name = "toolStripKarta";
+            this.toolStripKarta.Size = new System.Drawing.Size(541, 25);
+            this.toolStripKarta.TabIndex = 2;
+            this.toolStripKarta.Text = "toolStrip1";
+            // 
+            // tsbtnAdd
+            // 
+            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
+            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAdd.Name = "tsbtnAdd";
+            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnAdd.Text = "Kreiraj kartu";
+            this.tsbtnAdd.Click += new System.EventHandler(this.tsbtnAdd_Click);
+            // 
+            // tsbtnIzmjein
+            // 
+            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
+            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
+            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnIzmjein.Text = "Izmjeni";
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
+            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnObrisi.Text = "Obrisi";
+            // 
             // dgvPregled
             // 
             this.dgvPregled.AllowUserToAddRows = false;
             this.dgvPregled.AllowUserToDeleteRows = false;
+            this.dgvPregled.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPregled.BackgroundColor = System.Drawing.Color.White;
             this.dgvPregled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPregled.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -355,6 +398,7 @@
             // 
             // gbPretraga
             // 
+            this.gbPretraga.Controls.Add(this.btnVratiNaKartu);
             this.gbPretraga.Controls.Add(this.panelPretraga);
             this.gbPretraga.Controls.Add(this.lblNazivFilma);
             this.gbPretraga.Controls.Add(this.lblZanrFilma);
@@ -434,6 +478,7 @@
             // 
             // gbDetaljno
             // 
+            this.gbDetaljno.Controls.Add(this.btnOdustaniRacun);
             this.gbDetaljno.Controls.Add(this.btnPotvrdi);
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
             this.gbDetaljno.Location = new System.Drawing.Point(266, 152);
@@ -445,7 +490,7 @@
             // 
             // btnPotvrdi
             // 
-            this.btnPotvrdi.Location = new System.Drawing.Point(77, 439);
+            this.btnPotvrdi.Location = new System.Drawing.Point(164, 442);
             this.btnPotvrdi.Name = "btnPotvrdi";
             this.btnPotvrdi.Size = new System.Drawing.Size(145, 41);
             this.btnPotvrdi.TabIndex = 8;
@@ -547,44 +592,26 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // toolStripKarta
+            // btnOdustaniRacun
             // 
-            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnAdd,
-            this.tsbtnIzmjein,
-            this.tsbtnObrisi});
-            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
-            this.toolStripKarta.Name = "toolStripKarta";
-            this.toolStripKarta.Size = new System.Drawing.Size(541, 25);
-            this.toolStripKarta.TabIndex = 2;
-            this.toolStripKarta.Text = "toolStrip1";
+            this.btnOdustaniRacun.Location = new System.Drawing.Point(13, 442);
+            this.btnOdustaniRacun.Name = "btnOdustaniRacun";
+            this.btnOdustaniRacun.Size = new System.Drawing.Size(145, 41);
+            this.btnOdustaniRacun.TabIndex = 9;
+            this.btnOdustaniRacun.Text = "Odustani";
+            this.btnOdustaniRacun.UseVisualStyleBackColor = true;
+            this.btnOdustaniRacun.Visible = false;
             // 
-            // tsbtnAdd
+            // btnVratiNaKartu
             // 
-            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
-            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAdd.Name = "tsbtnAdd";
-            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnAdd.Text = "Kreiraj kartu";
-            // 
-            // tsbtnIzmjein
-            // 
-            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
-            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
-            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "toolStripButton2";
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnObrisi.Text = "toolStripButton3";
+            this.btnVratiNaKartu.Location = new System.Drawing.Point(406, 27);
+            this.btnVratiNaKartu.Name = "btnVratiNaKartu";
+            this.btnVratiNaKartu.Size = new System.Drawing.Size(139, 38);
+            this.btnVratiNaKartu.TabIndex = 14;
+            this.btnVratiNaKartu.Text = "Dodaj kartu";
+            this.btnVratiNaKartu.UseVisualStyleBackColor = true;
+            this.btnVratiNaKartu.Visible = false;
+            this.btnVratiNaKartu.Click += new System.EventHandler(this.btnVratiNaKartu_Click);
             // 
             // BlagajnaForm
             // 
@@ -615,6 +642,8 @@
             this.gbKarta.PerformLayout();
             this.gbPregled.ResumeLayout(false);
             this.gbPregled.PerformLayout();
+            this.toolStripKarta.ResumeLayout(false);
+            this.toolStripKarta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).EndInit();
             this.gbPretraga.ResumeLayout(false);
             this.gbPretraga.PerformLayout();
@@ -624,8 +653,6 @@
             this.panelRacun.ResumeLayout(false);
             this.panelRacun.PerformLayout();
             this.panelPregledRacuna.ResumeLayout(false);
-            this.toolStripKarta.ResumeLayout(false);
-            this.toolStripKarta.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -679,5 +706,7 @@
         private System.Windows.Forms.ToolStripButton tsbtnAdd;
         private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
         private System.Windows.Forms.ToolStripButton tsbtnObrisi;
+        private System.Windows.Forms.Button btnOdustaniRacun;
+        private System.Windows.Forms.Button btnVratiNaKartu;
     }
 }

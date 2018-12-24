@@ -18,4 +18,11 @@ namespace Cinema
         Zanr,
         Login
     }
+    public enum State
+    {
+        Add,
+        Edit,
+        Delete,
+        Idle
+    }
 }
