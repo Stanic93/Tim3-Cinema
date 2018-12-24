@@ -122,6 +122,10 @@ namespace Cinema.PropertyClass
                     RadnoMjesto=@RadnoMjesto
                     where LoginID=@LoginID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters

@@ -69,6 +69,7 @@
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributeClass\RichTextBoxAttribute.cs" />
     <Compile Include="AttributeClass\SqlNameAttribute.cs" />
+    <Compile Include="AttributeClass\TimeAttribute.cs" />
     <Compile Include="Controle\CheckBoxControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

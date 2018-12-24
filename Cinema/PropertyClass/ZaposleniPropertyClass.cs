@@ -121,6 +121,10 @@ namespace Cinema.PropertyClass
                      Pozicija = @Pozicija,
                      where ZaposleniID = @ZaposleniID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters
@@ -189,6 +193,8 @@ namespace Cinema.PropertyClass
             }
             return parameters;
         }
+
+       
         #endregion
 
 

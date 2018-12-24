@@ -23,7 +23,7 @@ namespace Cinema.PropertyClass
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
         [LookUpKey]
-        [LookUpValue]
+        
         public short ProjekcijaID
         {
             get
@@ -38,7 +38,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
-        [PrimaryKey]
+        [LookUpValue]
         [ForeignKey("dbo.Film", "FilmID", "Cinema.PropertyClass.FilmPropertyClass")]
         public short FilmID
         {
@@ -104,6 +104,10 @@ namespace Cinema.PropertyClass
                                                 DatumPosljednjegPrikazivanja = @DatumPosljednjegPrikazivanja
                                         where ProjekcijaID = @ProjekcijaID
                                                 ";
+        }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

@@ -95,6 +95,10 @@ namespace Cinema.PropertyClass
                     RezervacijaNaIme = @RezervacijaNaIme
                     where RezervacijaID = @RezervacijaID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters

@@ -14,7 +14,7 @@ namespace Cinema.PropertyClass
         #region attribute
         private short filmID;
         private string naziv;
-        private DateTime duzinaTrajanja;
+        private TimeSpan duzinaTrajanja;
         private string opis;
         private string reziser;
         private bool aktivan;
@@ -56,7 +56,8 @@ namespace Cinema.PropertyClass
 
         [SqlName("DuzinaTrajanja")]
         [DisplayName("Duzina trajanja")]
-        public DateTime DuzinaTrajanja
+        [Time]
+        public TimeSpan DuzinaTrajanja
         {
             get
             {
@@ -151,6 +152,10 @@ namespace Cinema.PropertyClass
                         Reziser = @Reziser,      
                         Godina=@Godina,
                         where FilmID = @FilmID";
+        }
+        public string GetLookUpQuery(string ID)
+        {
+            return @"Select Naziv from dbo.Film where FilmID="+ID;
         }
         #endregion
 

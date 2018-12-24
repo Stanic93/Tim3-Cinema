@@ -158,6 +158,10 @@ namespace Cinema.PropertyClass
         {
             return @"Select KartaID,ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID from dbo.Karta";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region properties

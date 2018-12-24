@@ -104,8 +104,29 @@ namespace Cinema
                 Key = row.Cells[columnName].Value.ToString();
 
                 columnName = properties.Where(x => x.GetCustomAttribute<LookUpValueAttribute>() != null)
-                    .FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Naziv;
+                .FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Naziv;
 
+                if (columnName.Contains("ID"))
+                {
+                    PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
+                            CreateInstance(properties.Where(x => x.GetCustomAttribute<ForeignKeyAttribute>() != null)
+                        .FirstOrDefault().GetCustomAttribute<ForeignKeyAttribute>().className)
+                            as PropertyInterface;
+
+                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                        foreignKeyInterface.GetLookUpQuery(row.Cells[1].Value.ToString()));
+
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    reader.Close();
+
+                    dgvPregledLookUp.DataSource = dt;
+
+                    row = dgvPregledLookUp.Rows[0];
+
+                    Value = row.Cells[0].Value.ToString();
+                }
+                else  
                 Value = row.Cells[columnName].Value.ToString();
 
                 this.Close();

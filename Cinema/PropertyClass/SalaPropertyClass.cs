@@ -20,6 +20,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("SalaID")]
         [DisplayName("Sala ID")]
+        [LookUpKey]
         public short SalaID
         {
             get
@@ -34,6 +35,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("BrojSale")]
         [DisplayName("Broj sale")]
+        [LookUpValue]
         public short BrojSale
         {
             get
@@ -70,9 +72,13 @@ namespace Cinema.PropertyClass
                      BrojSale = @BrojSale
                      where SalaID = @SalaID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
-       
+
         #region Parameters
         public List<SqlParameter> GetDeleteParameters()
         {
@@ -109,9 +115,11 @@ namespace Cinema.PropertyClass
             }
             return parameters;
         }
+
+        
         #endregion
 
 
-        
+
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinema.AttributeClass
 {
+    [AttributeUsage(AttributeTargets.Property)]
     class RichTextBoxAttribute : Attribute
     {
     }
