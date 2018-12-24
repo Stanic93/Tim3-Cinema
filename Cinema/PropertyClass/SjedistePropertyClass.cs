@@ -122,6 +122,10 @@ namespace Cinema.PropertyClass
                     BrojSjedista = @BrojSjedista,
                     Zauzeto = @Zauzeto where SjedisteID=@SjedisteID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters

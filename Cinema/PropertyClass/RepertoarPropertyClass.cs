@@ -172,6 +172,10 @@ namespace Cinema.PropertyClass
         {
             throw new NotImplementedException();
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region parameters

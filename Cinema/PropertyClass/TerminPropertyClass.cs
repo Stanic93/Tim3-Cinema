@@ -42,6 +42,7 @@ namespace Cinema.PropertyClass
         [SqlName("VrijemePrikazivanja")]
         [DisplayName("Vrijeme prikazivanja")]
         [LookUpValue]
+        [Time]
         public TimeSpan VrijemePrikazivanja
         {
             get
@@ -168,6 +169,10 @@ namespace Cinema.PropertyClass
                                     where TerminID = @TerminID;
                                           ";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region parameters
@@ -266,6 +271,8 @@ namespace Cinema.PropertyClass
             }
             return parameters;
         }
+
+        
         #endregion
 
 

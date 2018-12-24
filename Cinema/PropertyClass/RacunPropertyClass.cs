@@ -109,6 +109,10 @@ namespace Cinema.PropertyClass
                     UkupnaCijena = @UkupnaCijena
                     where RacunID = @RacunID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters

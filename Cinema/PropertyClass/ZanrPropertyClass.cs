@@ -69,6 +69,10 @@ namespace Cinema.PropertyClass
                      Naziv = @Naziv
                      where ZanrID = @ZanrID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region properties
@@ -108,6 +112,8 @@ namespace Cinema.PropertyClass
             }
             return parameters;
         }
+
+        
         #endregion
 
 

@@ -124,6 +124,10 @@ namespace Cinema.PropertyClass
         {
             return @"Insert into dbo.Cijena (Cijena,VrijemePrikazivanjaPoslije6,Projekcija3D,Premijera) values (@Cijena,@VrijemePrikazivanja,@Projekcija3D,@Premijera)";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region parameters

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Cinema.AttributeClass
 {
     [AttributeUsage(AttributeTargets.Property)]
-    class LookUpValueAttribute : Attribute
+    class TimeAttribute:Attribute
     {
-
     }
 }

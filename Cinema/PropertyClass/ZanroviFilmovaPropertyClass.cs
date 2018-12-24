@@ -93,6 +93,10 @@ namespace Cinema.PropertyClass
                      FilmID = @FilmID
                      where ZanroviID = @ZanroviID";
         }
+        public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region parameters
@@ -141,6 +145,8 @@ namespace Cinema.PropertyClass
             }
             return parameters;
         }
+
+        
         #endregion
     }
 }

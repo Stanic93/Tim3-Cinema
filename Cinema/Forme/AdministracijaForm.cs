@@ -194,7 +194,13 @@ namespace Cinema.Forme
                 {
                     string value = row.Cells[item.GetCustomAttribute<SqlNameAttribute>().Naziv]
                        .Value.ToString();
-
+                    if (item.GetCustomAttribute<TimeAttribute>()!=null)
+                    {
+                        TimeSpan time = TimeSpan.Parse(value);
+                        item.SetValue(property, Convert.ChangeType(time, item.PropertyType));
+                        
+                    }
+                    else
                     item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
                 }
             }
@@ -218,6 +224,11 @@ namespace Cinema.Forme
                             UserLookUpControl ul = new UserLookUpControl(foreignKeyInterface);
                             ul.Name = item.Name;
                             ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                            ul.SetKey(item.GetValue(property).ToString());
+                           // ul.SetValue(item.GetValue(property))
+                            //if (state == StateEnum.Preview)
+                            //    ul.Enabled = false;
+
                             flpDetaljno.Controls.Add(ul);
                         }
                         else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
@@ -293,9 +304,11 @@ namespace Cinema.Forme
 
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
         {
-           
-            PopulatePropertyInterface(property);
-            popuniDetaljno(property,state);
+            if (dgvPrikaz.SelectedRows.Count == 1)
+            {
+                PopulatePropertyInterface(property);
+                popuniDetaljno(property, state);
+            }
         }
     }
 }
