@@ -91,10 +91,10 @@ namespace Cinema.Forme
                 BlagajnaForm novaForma = new BlagajnaForm(zaposleniID, ImeIPrezime);
                 novaForma.ShowDialog();
             }
-            else
+            else if (jobtitle == "Admin")
             {
-                // otvori formu za administratora
-                MessageBox.Show("Otvorice formu administrator");
+                AdministracijaForm novaForma = new AdministracijaForm(ImeIPrezime);
+                novaForma.ShowDialog();
             }
         }
 

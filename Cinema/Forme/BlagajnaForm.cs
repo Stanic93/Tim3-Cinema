@@ -439,7 +439,6 @@ namespace Cinema.Forme
                     }
                     if (ulup.Name == "RacunID")
                     {
-
                         ulup.Enabled = false;
                         ulup.SetKey("" + racunID);
                         ulup.SetValue("" + racunID);
@@ -541,7 +540,7 @@ namespace Cinema.Forme
         // pomocni button za brisanje
         private void button2_Click(object sender, EventArgs e)
         {
-            AdministracijaForm nova = new AdministracijaForm();
+            AdministracijaForm nova = new AdministracijaForm("");
             nova.Show();
         }
         // prilikom promjene datumaProjekcije mijenja se dataGridView i prikazuju se drugi termini

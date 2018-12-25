@@ -123,10 +123,12 @@ namespace Cinema
                     row = dgvPregledLookUp.Rows[0];
 
                     Value = row.Cells[0].Value.ToString();
-                }
-                else  
-                Value = row.Cells[columnName].Value.ToString();
 
+                }
+                else if (columnName.Equals("Ime"))
+                    Value = row.Cells[columnName].Value.ToString() +" "+ row.Cells["Prezime"].Value.ToString();
+                else
+                    Value = row.Cells[columnName].Value.ToString();
                 DialogResult = DialogResult.OK;
             }
             else return;
