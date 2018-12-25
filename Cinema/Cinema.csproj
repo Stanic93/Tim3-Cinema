@@ -208,6 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <Content Include="Resources\lock %281%29.png" />
+    <Content Include="Resources\user %281%29.png" />
     <None Include="Resources\x-mark.png" />
     <None Include="Resources\lock.png" />
     <None Include="Resources\user.png" />

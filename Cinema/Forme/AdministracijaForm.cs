@@ -20,7 +20,7 @@ namespace Cinema.Forme
         StateEnum state = StateEnum.Preview;
         PropertyInterface property = new ZaposleniPropertyClass();
        // ActiveTab activeTab;
-        public AdministracijaForm()
+        public AdministracijaForm(string ime)
         {
             InitializeComponent();
             btnZaposleni.Click += Btn_Click;
@@ -28,7 +28,9 @@ namespace Cinema.Forme
             btnProjekcija.Click += Btn_Click;
             btnLogin.Click += Btn_Click;
             btnFilm.Click += Btn_Click;
+            lblKorisnickoIme.Text = ime;
             OsnovnaPodesavanja();
+            
            
 
             #region PocetnoUcitavanjaDataGrid
@@ -64,6 +66,7 @@ namespace Cinema.Forme
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             postaviControle(property);
+
         }
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
@@ -225,9 +228,43 @@ namespace Cinema.Forme
                             ul.Name = item.Name;
                             ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                             ul.SetKey(item.GetValue(property).ToString());
-                           // ul.SetValue(item.GetValue(property))
-                            //if (state == StateEnum.Preview)
-                            //    ul.Enabled = false;
+
+                            DataTable dt = new DataTable();
+                            string query = @"select * from " + item.GetCustomAttribute<ForeignKeyAttribute>().referencedTable +
+                                            " where " + item.GetCustomAttribute<SqlNameAttribute>().Naziv + "=" + ul.getKey();
+                            MessageBox.Show(query);
+                            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, query);
+                           
+                            dt.Load(reader);
+                            reader.Close();
+
+                            string colName = dt.Columns[1].ColumnName;
+                            string colValue = "";
+                            if(colName=="Ime")
+                             colValue = dt.Rows[0][1].ToString()+ " "+ dt.Rows[0][2].ToString();
+                            else if (colName.Contains("ID"))
+                            {
+                                PropertyInterface foreignKeyInterface1 = new FilmPropertyClass();
+                                DataTable dt1 = new DataTable();
+                                MessageBox.Show("tap");
+                                SqlDataReader reader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                                    foreignKeyInterface1.GetLookUpQuery(dt.Rows[0][1].ToString()));
+                                
+
+                                dt1.Load(reader1);
+                                reader1.Close(); 
+                                colValue = dt1.Rows[0][0].ToString();
+                                
+
+
+                            }
+                            else
+                              colValue = dt.Rows[0][1].ToString();
+                            MessageBox.Show(colName + "je colName, col1 vrijednost je=" + colValue);
+
+                            ul.SetValue(colValue);
+                            //dgvPregledLookUp.DataSource = dt;
+
 
                             flpDetaljno.Controls.Add(ul);
                         }
@@ -270,25 +307,35 @@ namespace Cinema.Forme
                         }
                         else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                         {
-                            TextBoxControl uc = new TextBoxControl();
-                            uc.Name = item.Name;
-                            uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                            if (state == StateEnum.Preview)
-                                uc.Enabled = false;
-
-                            uc.SetTextBox(item.GetValue(property).ToString());
-
-                            if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null && state == StateEnum.Update)
+                            if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Lozinka")
+                                continue;
+                            else
                             {
-                                uc.Enabled = false;
+                                TextBoxControl uc = new TextBoxControl();
+                                uc.Name = item.Name;
+                                uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                                if (state == StateEnum.Preview)
+                                    uc.Enabled = false;
+
+                                uc.SetTextBox(item.GetValue(property).ToString());
+
+                                if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null && state == StateEnum.Update)
+                                {
+                                    uc.Enabled = false;
+                                }
+                                flpDetaljno.Controls.Add(uc);
                             }
-                            flpDetaljno.Controls.Add(uc);
                         }
 
                     }
+                    if (property.GetType() == typeof(LoginPropertyClass))
+                        dgvPrikaz.Columns["Lozinka"].Visible = false;
                 }
             }
-            catch  {}
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
 

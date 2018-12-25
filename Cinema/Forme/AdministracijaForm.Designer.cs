@@ -39,7 +39,6 @@
             this.btnTermini = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panelFilmSelected = new System.Windows.Forms.Panel();
             this.btnFilm = new System.Windows.Forms.Button();
             this.panelLoginSelected = new System.Windows.Forms.Panel();
@@ -59,14 +58,15 @@
             this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
             this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
+            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.panelMeni.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.gbPrikaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.gbDetaljno.SuspendLayout();
             this.toolStripKarta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLogo
@@ -124,11 +124,11 @@
             // panelMeni
             // 
             this.panelMeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.panelMeni.Controls.Add(this.pBoxAvatar);
             this.panelMeni.Controls.Add(this.panelTerminiSelected);
             this.panelMeni.Controls.Add(this.btnTermini);
             this.panelMeni.Controls.Add(this.lblAdmin);
             this.panelMeni.Controls.Add(this.lblKorisnickoIme);
-            this.panelMeni.Controls.Add(this.pBoxAvatar);
             this.panelMeni.Controls.Add(this.panelFilmSelected);
             this.panelMeni.Controls.Add(this.btnFilm);
             this.panelMeni.Controls.Add(this.panelLoginSelected);
@@ -190,16 +190,6 @@
             this.lblKorisnickoIme.Size = new System.Drawing.Size(75, 13);
             this.lblKorisnickoIme.TabIndex = 11;
             this.lblKorisnickoIme.Text = "Korisnicko ime";
-            // 
-            // pBoxAvatar
-            // 
-            this.pBoxAvatar.Image = ((System.Drawing.Image)(resources.GetObject("pBoxAvatar.Image")));
-            this.pBoxAvatar.Location = new System.Drawing.Point(64, 12);
-            this.pBoxAvatar.Name = "pBoxAvatar";
-            this.pBoxAvatar.Size = new System.Drawing.Size(107, 86);
-            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBoxAvatar.TabIndex = 10;
-            this.pBoxAvatar.TabStop = false;
             // 
             // panelFilmSelected
             // 
@@ -426,6 +416,16 @@
             this.flpDetaljno.Size = new System.Drawing.Size(302, 450);
             this.flpDetaljno.TabIndex = 0;
             // 
+            // pBoxAvatar
+            // 
+            this.pBoxAvatar.Image = global::Cinema.Properties.Resources.user__1_;
+            this.pBoxAvatar.Location = new System.Drawing.Point(69, 3);
+            this.pBoxAvatar.Name = "pBoxAvatar";
+            this.pBoxAvatar.Size = new System.Drawing.Size(129, 103);
+            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxAvatar.TabIndex = 13;
+            this.pBoxAvatar.TabStop = false;
+            // 
             // AdministracijaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,13 +445,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).EndInit();
             this.panelMeni.ResumeLayout(false);
             this.panelMeni.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.gbPrikaz.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.gbDetaljno.ResumeLayout(false);
             this.gbDetaljno.PerformLayout();
             this.toolStripKarta.ResumeLayout(false);
             this.toolStripKarta.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,7 +476,6 @@
         private System.Windows.Forms.Button btnFilm;
         private System.Windows.Forms.Label lblAdmin;
         private System.Windows.Forms.Label lblKorisnickoIme;
-        private System.Windows.Forms.PictureBox pBoxAvatar;
         private System.Windows.Forms.GroupBox gbPrikaz;
         private System.Windows.Forms.GroupBox gbPretraga;
         private System.Windows.Forms.DataGridView dgvPrikaz;
@@ -488,5 +487,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpDetaljno;
         private System.Windows.Forms.Panel panelTerminiSelected;
         private System.Windows.Forms.Button btnTermini;
+        private System.Windows.Forms.PictureBox pBoxAvatar;
     }
 }
