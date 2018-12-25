@@ -137,20 +137,26 @@ namespace Cinema.Forme
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
                         as PropertyInterface;
                     UserLookUpControl ul;
-                    if (dgvPregled.SelectedRows.Count != 0)
+
+
+                    if (activeTab == ActiveTab.Karta)
                     {
-                        terminID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                        if (dgvPregled.SelectedRows.Count != 0)
+                        {
+                            terminID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                        }
+                        if (item.Name == "SjedisteID")
+                        {
+                            ul = new UserLookUpControl(foreignKeyInterface, terminID);
+                        }
+                        else
+                            ul = new UserLookUpControl(foreignKeyInterface);
+                        ul.Name = item.Name;
+                        ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+                        flpDetaljno.Controls.Add(ul);
                     }
-                    if (item.Name == "SjedisteID")
-                    {
-                        ul = new UserLookUpControl(foreignKeyInterface, terminID);
-                    }
-                    else
-                        ul = new UserLookUpControl(foreignKeyInterface);
-                    ul.Name = item.Name;
-                    ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
-                    flpDetaljno.Controls.Add(ul);
-                    continue;
+
+
                 }
 
                 if (item.GetCustomAttribute<VisibleAttribute>() != null)
@@ -382,7 +388,7 @@ namespace Cinema.Forme
                 setujKontroleKarta();
                 btnVratiNaKartu.Visible = true;
                 gbDetaljno.Enabled = false;
-                
+
 
             }
             else if (btnNovaKarta.Text == "Karta")
@@ -431,9 +437,9 @@ namespace Cinema.Forme
                 }
                 property = new KartaPropertyClass();
                 setujKontroleKarta();
-                
+
             }
-            else if(btnNovaKarta.Text == "Stampaj")
+            else if (btnNovaKarta.Text == "Stampaj")
             {
                 OsnovnaPodesavanja();
             }
@@ -660,8 +666,8 @@ namespace Cinema.Forme
         //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             if (activeTab == ActiveTab.Karta)
             {
                 populateKartaInterface();
@@ -704,8 +710,8 @@ namespace Cinema.Forme
                         }
                     }
                 }
-                parameter2.Value =Convert.ToInt16(vrijednost);
-                   short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                parameter2.Value = Convert.ToInt16(vrijednost);
+                short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
                 parameter.Value = broj;
                 command.Parameters.Add(parameter);
                 command.Parameters.Add(parameter2);
@@ -851,13 +857,13 @@ namespace Cinema.Forme
 
             txtUkupnaVrijednost.Text = "" + cijena;
             txtUkupnaVrijednost.ReadOnly = true;
-        }      
+        }
 
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
             btnNovaKarta.Text = "Karta";
             state = State.Add;
-            btnNovaKarta_Click(sender,e);
+            btnNovaKarta_Click(sender, e);
         }
 
         private void tsbtnObrisi_Click(object sender, EventArgs e)
@@ -893,7 +899,7 @@ namespace Cinema.Forme
                 }
                 popuniPregledRacun();
                 IzracunajSumuRacuna();
-                if(dgvPregled.SelectedRows.Count == 0)
+                if (dgvPregled.SelectedRows.Count == 0)
                 {
                     btnNovaKarta.Enabled = false;
                     toolStripKarta.Enabled = false;

@@ -51,7 +51,7 @@
             this.lblDatumProdukcije = new System.Windows.Forms.Label();
             this.gbPregled = new System.Windows.Forms.GroupBox();
             this.toolStripKarta = new System.Windows.Forms.ToolStrip();
-            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnIzmijein = new System.Windows.Forms.ToolStripButton();
             this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.dgvPregled = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
@@ -339,7 +339,7 @@
             // toolStripKarta
             // 
             this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnIzmjein,
+            this.tsbtnIzmijein,
             this.tsbtnObrisi});
             this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
             this.toolStripKarta.Name = "toolStripKarta";
@@ -347,15 +347,15 @@
             this.toolStripKarta.TabIndex = 2;
             this.toolStripKarta.Text = "toolStrip1";
             // 
-            // tsbtnIzmjein
+            // tsbtnIzmijein
             // 
-            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
-            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
-            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "Izmjeni";
-            this.tsbtnIzmjein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
+            this.tsbtnIzmijein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnIzmijein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmijein.Image")));
+            this.tsbtnIzmijein.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnIzmijein.Name = "tsbtnIzmijein";
+            this.tsbtnIzmijein.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnIzmijein.Text = "Izmijeni";
+            this.tsbtnIzmijein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
             // 
             // tsbtnObrisi
             // 
@@ -694,7 +694,7 @@
         private System.Windows.Forms.TextBox txtZaposleni;
         private System.Windows.Forms.Label lblZaposleni;
         private System.Windows.Forms.ToolStrip toolStripKarta;
-        private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
+        private System.Windows.Forms.ToolStripButton tsbtnIzmijein;
         private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.Button btnOdustaniRacun;
         private System.Windows.Forms.Button btnVratiNaKartu;
