@@ -64,10 +64,10 @@ namespace Cinema.PropertyClass
         }
         public string GetUpdateQuery()
         {
-            return @"UPDATE
-                     set 
-                     Naziv = @Naziv
-                     where ZanrID = @ZanrID";
+            return @"UPDATE dbo.Zanr
+                            SET
+                         dbo.Zanr.Naziv =@Naziv
+	                     WHERE dbo.Zanr.ZanrID=@ZanrID";
         }
         public string GetLookUpQuery(string ID)
         {
@@ -75,7 +75,7 @@ namespace Cinema.PropertyClass
         }
         #endregion
 
-        #region properties
+        #region parametri
 
         public List<SqlParameter> GetDeleteParameters()
         {
@@ -101,15 +101,16 @@ namespace Cinema.PropertyClass
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
-                SqlParameter parameter = new SqlParameter("@Naziv", System.Data.SqlDbType.NVarChar);
-                parameter.Value = naziv;
-                parameters.Add(parameter);
-            }
-            {
                 SqlParameter parameter = new SqlParameter("@ZanrID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = zanrID;
                 parameters.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Naziv", System.Data.SqlDbType.NVarChar);
+                parameter.Value = naziv;
+                parameters.Add(parameter);
+            }
+            
             return parameters;
         }
 

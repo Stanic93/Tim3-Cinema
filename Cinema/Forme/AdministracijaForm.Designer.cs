@@ -35,6 +35,7 @@
             this.pBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelCrvenaLinija = new System.Windows.Forms.Panel();
             this.panelMeni = new System.Windows.Forms.Panel();
+            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panelTerminiSelected = new System.Windows.Forms.Panel();
             this.btnTermini = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
@@ -58,15 +59,18 @@
             this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
             this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
-            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
+            this.panelDugmici = new System.Windows.Forms.Panel();
+            this.btnOdustani = new System.Windows.Forms.Button();
+            this.btnPotvrdi = new System.Windows.Forms.Button();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.panelMeni.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.gbPrikaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
             this.gbDetaljno.SuspendLayout();
             this.toolStripKarta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
+            this.panelDugmici.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLogo
@@ -144,6 +148,16 @@
             this.panelMeni.Name = "panelMeni";
             this.panelMeni.Size = new System.Drawing.Size(260, 700);
             this.panelMeni.TabIndex = 3;
+            // 
+            // pBoxAvatar
+            // 
+            this.pBoxAvatar.Image = global::Cinema.Properties.Resources.user__1_;
+            this.pBoxAvatar.Location = new System.Drawing.Point(69, 3);
+            this.pBoxAvatar.Name = "pBoxAvatar";
+            this.pBoxAvatar.Size = new System.Drawing.Size(129, 103);
+            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxAvatar.TabIndex = 13;
+            this.pBoxAvatar.TabStop = false;
             // 
             // panelTerminiSelected
             // 
@@ -364,7 +378,7 @@
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
             this.gbDetaljno.Location = new System.Drawing.Point(265, 174);
             this.gbDetaljno.Name = "gbDetaljno";
-            this.gbDetaljno.Size = new System.Drawing.Size(315, 500);
+            this.gbDetaljno.Size = new System.Drawing.Size(315, 425);
             this.gbDetaljno.TabIndex = 8;
             this.gbDetaljno.TabStop = false;
             this.gbDetaljno.Text = "Detaljno";
@@ -389,6 +403,7 @@
             this.tsbtnAdd.Name = "tsbtnAdd";
             this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
             this.tsbtnAdd.Text = "Kreiraj kartu";
+            this.tsbtnAdd.Click += new System.EventHandler(this.tsbtnAdd_Click);
             // 
             // tsbtnIzmjein
             // 
@@ -398,6 +413,7 @@
             this.tsbtnIzmjein.Name = "tsbtnIzmjein";
             this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
             this.tsbtnIzmjein.Text = "toolStripButton2";
+            this.tsbtnIzmjein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
             // 
             // tsbtnObrisi
             // 
@@ -407,30 +423,52 @@
             this.tsbtnObrisi.Name = "tsbtnObrisi";
             this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
             this.tsbtnObrisi.Text = "toolStripButton3";
+            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
             // 
             // flpDetaljno
             // 
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpDetaljno.Location = new System.Drawing.Point(7, 44);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(302, 450);
+            this.flpDetaljno.Size = new System.Drawing.Size(302, 378);
             this.flpDetaljno.TabIndex = 0;
             // 
-            // pBoxAvatar
+            // panelDugmici
             // 
-            this.pBoxAvatar.Image = global::Cinema.Properties.Resources.user__1_;
-            this.pBoxAvatar.Location = new System.Drawing.Point(69, 3);
-            this.pBoxAvatar.Name = "pBoxAvatar";
-            this.pBoxAvatar.Size = new System.Drawing.Size(129, 103);
-            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBoxAvatar.TabIndex = 13;
-            this.pBoxAvatar.TabStop = false;
+            this.panelDugmici.Controls.Add(this.btnOdustani);
+            this.panelDugmici.Controls.Add(this.btnPotvrdi);
+            this.panelDugmici.Location = new System.Drawing.Point(272, 605);
+            this.panelDugmici.Name = "panelDugmici";
+            this.panelDugmici.Size = new System.Drawing.Size(301, 64);
+            this.panelDugmici.TabIndex = 9;
+            // 
+            // btnOdustani
+            // 
+            this.btnOdustani.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOdustani.Location = new System.Drawing.Point(162, 18);
+            this.btnOdustani.Name = "btnOdustani";
+            this.btnOdustani.Size = new System.Drawing.Size(119, 34);
+            this.btnOdustani.TabIndex = 1;
+            this.btnOdustani.Text = "Odustani";
+            this.btnOdustani.UseVisualStyleBackColor = true;
+            // 
+            // btnPotvrdi
+            // 
+            this.btnPotvrdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPotvrdi.Location = new System.Drawing.Point(16, 18);
+            this.btnPotvrdi.Name = "btnPotvrdi";
+            this.btnPotvrdi.Size = new System.Drawing.Size(119, 34);
+            this.btnPotvrdi.TabIndex = 0;
+            this.btnPotvrdi.Text = "Potvrdi";
+            this.btnPotvrdi.UseVisualStyleBackColor = true;
+            this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
             // AdministracijaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 700);
+            this.Controls.Add(this.panelDugmici);
             this.Controls.Add(this.gbDetaljno);
             this.Controls.Add(this.gbPretraga);
             this.Controls.Add(this.gbPrikaz);
@@ -445,13 +483,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).EndInit();
             this.panelMeni.ResumeLayout(false);
             this.panelMeni.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.gbPrikaz.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
             this.gbDetaljno.ResumeLayout(false);
             this.gbDetaljno.PerformLayout();
             this.toolStripKarta.ResumeLayout(false);
             this.toolStripKarta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
+            this.panelDugmici.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -488,5 +527,8 @@
         private System.Windows.Forms.Panel panelTerminiSelected;
         private System.Windows.Forms.Button btnTermini;
         private System.Windows.Forms.PictureBox pBoxAvatar;
+        private System.Windows.Forms.Panel panelDugmici;
+        private System.Windows.Forms.Button btnPotvrdi;
+        private System.Windows.Forms.Button btnOdustani;
     }
 }
