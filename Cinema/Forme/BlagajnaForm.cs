@@ -139,11 +139,15 @@ namespace Cinema.Forme
                     UserLookUpControl ul;
 
 
-                    if (activeTab == ActiveTab.Karta)
+                    if (activeTab == ActiveTab.Karta || activeTab == ActiveTab.Racun)
                     {
-                        if (dgvPregled.SelectedRows.Count != 0)
+                        
+                        if (activeTab == ActiveTab.Karta)
                         {
-                            terminID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                            if (dgvPregled.SelectedRows.Count != 0)
+                            {
+                                terminID = Convert.ToInt32(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
+                            }
                         }
                         if (item.Name == "SjedisteID")
                         {
@@ -154,6 +158,7 @@ namespace Cinema.Forme
                         ul.Name = item.Name;
                         ul.SetLabel(item.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                         flpDetaljno.Controls.Add(ul);
+                        continue;
                     }
 
 
@@ -383,6 +388,13 @@ namespace Cinema.Forme
                 lblDatumProdukcije.Visible = false;
                 dtpDatumProdukcije.Visible = false;
                 popuniPregledRacun();
+                if(dgvPregled.Rows.Count == 0)
+                {
+                    toolStripKarta.Enabled = false;
+                }else
+                {
+                    toolStripKarta.Enabled = true;
+                }
                 IzracunajSumuRacuna();
                 popuniControle(property);
                 setujKontroleKarta();
@@ -862,6 +874,7 @@ namespace Cinema.Forme
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
             btnNovaKarta.Text = "Karta";
+            panelRacun.Visible = false;
             state = State.Add;
             btnNovaKarta_Click(sender, e);
         }

@@ -32,6 +32,7 @@ namespace Cinema
             myProperty = property;
             terminID = termin;
             GetSelectFreeSeat();
+            dgvPregledLookUp.MultiSelect = false;
         }
 
 
@@ -110,6 +111,11 @@ namespace Cinema
 
                 this.Close();
             
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
