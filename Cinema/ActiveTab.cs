@@ -11,6 +11,7 @@ namespace Cinema
         Repertoar,
         Karta,
         Racun,
+        Rezervacija,
         Zaposleni,
         Film,
         Termini,

@@ -32,10 +32,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblRadnik = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panelTabRacun = new System.Windows.Forms.Panel();
+            this.panelTabKarta = new System.Windows.Forms.Panel();
             this.pBoxAvatar = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelTabRepertoar = new System.Windows.Forms.Panel();
             this.btnRacun = new System.Windows.Forms.Button();
             this.btnKarta = new System.Windows.Forms.Button();
             this.btnRepertor = new System.Windows.Forms.Button();
@@ -76,6 +76,9 @@
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.panelTabRezervacija = new System.Windows.Forms.Panel();
+            this.btnTabRezervacija = new System.Windows.Forms.Button();
+            this.btnDodajRezervaciju = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -94,12 +97,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.panel1.Controls.Add(this.panelTabRezervacija);
+            this.panel1.Controls.Add(this.btnTabRezervacija);
             this.panel1.Controls.Add(this.lblRadnik);
             this.panel1.Controls.Add(this.lblKorisnickoIme);
-            this.panel1.Controls.Add(this.panel6);
-            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panelTabRacun);
+            this.panel1.Controls.Add(this.panelTabKarta);
             this.panel1.Controls.Add(this.pBoxAvatar);
-            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panelTabRepertoar);
             this.panel1.Controls.Add(this.btnRacun);
             this.panel1.Controls.Add(this.btnKarta);
             this.panel1.Controls.Add(this.btnRepertor);
@@ -127,25 +132,25 @@
             this.lblKorisnickoIme.TabIndex = 5;
             this.lblKorisnickoIme.Text = "Korisnicko ime";
             // 
-            // panel6
+            // panelTabRacun
             // 
-            this.panel6.BackColor = System.Drawing.Color.Red;
-            this.panel6.ForeColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(5, 348);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(6, 50);
-            this.panel6.TabIndex = 4;
-            this.panel6.Visible = false;
+            this.panelTabRacun.BackColor = System.Drawing.Color.Red;
+            this.panelTabRacun.ForeColor = System.Drawing.Color.White;
+            this.panelTabRacun.Location = new System.Drawing.Point(5, 392);
+            this.panelTabRacun.Name = "panelTabRacun";
+            this.panelTabRacun.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRacun.TabIndex = 4;
+            this.panelTabRacun.Visible = false;
             // 
-            // panel5
+            // panelTabKarta
             // 
-            this.panel5.BackColor = System.Drawing.Color.Red;
-            this.panel5.ForeColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(5, 277);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(6, 50);
-            this.panel5.TabIndex = 3;
-            this.panel5.Visible = false;
+            this.panelTabKarta.BackColor = System.Drawing.Color.Red;
+            this.panelTabKarta.ForeColor = System.Drawing.Color.White;
+            this.panelTabKarta.Location = new System.Drawing.Point(5, 326);
+            this.panelTabKarta.Name = "panelTabKarta";
+            this.panelTabKarta.Size = new System.Drawing.Size(6, 50);
+            this.panelTabKarta.TabIndex = 3;
+            this.panelTabKarta.Visible = false;
             // 
             // pBoxAvatar
             // 
@@ -157,14 +162,14 @@
             this.pBoxAvatar.TabIndex = 4;
             this.pBoxAvatar.TabStop = false;
             // 
-            // panel4
+            // panelTabRepertoar
             // 
-            this.panel4.BackColor = System.Drawing.Color.Red;
-            this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(5, 202);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(6, 50);
-            this.panel4.TabIndex = 2;
+            this.panelTabRepertoar.BackColor = System.Drawing.Color.Red;
+            this.panelTabRepertoar.ForeColor = System.Drawing.Color.White;
+            this.panelTabRepertoar.Location = new System.Drawing.Point(5, 202);
+            this.panelTabRepertoar.Name = "panelTabRepertoar";
+            this.panelTabRepertoar.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRepertoar.TabIndex = 2;
             // 
             // btnRacun
             // 
@@ -175,7 +180,7 @@
             this.btnRacun.ForeColor = System.Drawing.Color.White;
             this.btnRacun.Image = ((System.Drawing.Image)(resources.GetObject("btnRacun.Image")));
             this.btnRacun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRacun.Location = new System.Drawing.Point(12, 348);
+            this.btnRacun.Location = new System.Drawing.Point(12, 392);
             this.btnRacun.Name = "btnRacun";
             this.btnRacun.Size = new System.Drawing.Size(261, 50);
             this.btnRacun.TabIndex = 4;
@@ -192,7 +197,7 @@
             this.btnKarta.ForeColor = System.Drawing.Color.White;
             this.btnKarta.Image = ((System.Drawing.Image)(resources.GetObject("btnKarta.Image")));
             this.btnKarta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKarta.Location = new System.Drawing.Point(12, 277);
+            this.btnKarta.Location = new System.Drawing.Point(12, 326);
             this.btnKarta.Name = "btnKarta";
             this.btnKarta.Size = new System.Drawing.Size(261, 50);
             this.btnKarta.TabIndex = 3;
@@ -388,6 +393,7 @@
             // 
             // gbPretraga
             // 
+            this.gbPretraga.Controls.Add(this.btnDodajRezervaciju);
             this.gbPretraga.Controls.Add(this.btnVratiNaKartu);
             this.gbPretraga.Controls.Add(this.panelPretraga);
             this.gbPretraga.Controls.Add(this.lblNazivFilma);
@@ -401,7 +407,7 @@
             // 
             // btnVratiNaKartu
             // 
-            this.btnVratiNaKartu.Location = new System.Drawing.Point(406, 27);
+            this.btnVratiNaKartu.Location = new System.Drawing.Point(406, 8);
             this.btnVratiNaKartu.Name = "btnVratiNaKartu";
             this.btnVratiNaKartu.Size = new System.Drawing.Size(139, 38);
             this.btnVratiNaKartu.TabIndex = 14;
@@ -604,6 +610,43 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // panelTabRezervacija
+            // 
+            this.panelTabRezervacija.BackColor = System.Drawing.Color.Red;
+            this.panelTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.panelTabRezervacija.Location = new System.Drawing.Point(5, 262);
+            this.panelTabRezervacija.Name = "panelTabRezervacija";
+            this.panelTabRezervacija.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRezervacija.TabIndex = 7;
+            this.panelTabRezervacija.Visible = false;
+            // 
+            // btnTabRezervacija
+            // 
+            this.btnTabRezervacija.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTabRezervacija.FlatAppearance.BorderSize = 0;
+            this.btnTabRezervacija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTabRezervacija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.btnTabRezervacija.Image = ((System.Drawing.Image)(resources.GetObject("btnTabRezervacija.Image")));
+            this.btnTabRezervacija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTabRezervacija.Location = new System.Drawing.Point(12, 262);
+            this.btnTabRezervacija.Name = "btnTabRezervacija";
+            this.btnTabRezervacija.Size = new System.Drawing.Size(261, 50);
+            this.btnTabRezervacija.TabIndex = 8;
+            this.btnTabRezervacija.Text = "           REZERVACIJA";
+            this.btnTabRezervacija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTabRezervacija.UseVisualStyleBackColor = true;
+            // 
+            // btnDodajRezervaciju
+            // 
+            this.btnDodajRezervaciju.Location = new System.Drawing.Point(406, 48);
+            this.btnDodajRezervaciju.Name = "btnDodajRezervaciju";
+            this.btnDodajRezervaciju.Size = new System.Drawing.Size(139, 38);
+            this.btnDodajRezervaciju.TabIndex = 15;
+            this.btnDodajRezervaciju.Text = "Dodaj rezervaciju";
+            this.btnDodajRezervaciju.UseVisualStyleBackColor = true;
+            this.btnDodajRezervaciju.Visible = false;
+            // 
             // BlagajnaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,10 +703,10 @@
         private System.Windows.Forms.Button btnRepertor;
         private System.Windows.Forms.Button btnRacun;
         private System.Windows.Forms.Button btnKarta;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelTabRepertoar;
         private System.Windows.Forms.PictureBox pBoxAvatar;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelTabRacun;
+        private System.Windows.Forms.Panel panelTabKarta;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.Label lblRadnik;
         private System.Windows.Forms.GroupBox gbKarta;
@@ -698,5 +741,8 @@
         private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.Button btnOdustaniRacun;
         private System.Windows.Forms.Button btnVratiNaKartu;
+        private System.Windows.Forms.Panel panelTabRezervacija;
+        private System.Windows.Forms.Button btnTabRezervacija;
+        private System.Windows.Forms.Button btnDodajRezervaciju;
     }
 }
