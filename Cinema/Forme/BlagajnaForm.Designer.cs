@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlagajnaForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTabRezervacija = new System.Windows.Forms.Panel();
+            this.btnTabRezervacija = new System.Windows.Forms.Button();
             this.lblRadnik = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
             this.panelTabRacun = new System.Windows.Forms.Panel();
@@ -55,6 +57,7 @@
             this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.dgvPregled = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.btnDodajRezervaciju = new System.Windows.Forms.Button();
             this.btnVratiNaKartu = new System.Windows.Forms.Button();
             this.panelPretraga = new System.Windows.Forms.Panel();
             this.btnPrikaziSve = new System.Windows.Forms.Button();
@@ -76,9 +79,6 @@
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.panelTabRezervacija = new System.Windows.Forms.Panel();
-            this.btnTabRezervacija = new System.Windows.Forms.Button();
-            this.btnDodajRezervaciju = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -113,6 +113,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 659);
             this.panel1.TabIndex = 0;
+            // 
+            // panelTabRezervacija
+            // 
+            this.panelTabRezervacija.BackColor = System.Drawing.Color.Red;
+            this.panelTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.panelTabRezervacija.Location = new System.Drawing.Point(5, 262);
+            this.panelTabRezervacija.Name = "panelTabRezervacija";
+            this.panelTabRezervacija.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRezervacija.TabIndex = 7;
+            this.panelTabRezervacija.Visible = false;
+            // 
+            // btnTabRezervacija
+            // 
+            this.btnTabRezervacija.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTabRezervacija.FlatAppearance.BorderSize = 0;
+            this.btnTabRezervacija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTabRezervacija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.btnTabRezervacija.Image = ((System.Drawing.Image)(resources.GetObject("btnTabRezervacija.Image")));
+            this.btnTabRezervacija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTabRezervacija.Location = new System.Drawing.Point(12, 262);
+            this.btnTabRezervacija.Name = "btnTabRezervacija";
+            this.btnTabRezervacija.Size = new System.Drawing.Size(261, 50);
+            this.btnTabRezervacija.TabIndex = 8;
+            this.btnTabRezervacija.Text = "           REZERVACIJA";
+            this.btnTabRezervacija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTabRezervacija.UseVisualStyleBackColor = true;
             // 
             // lblRadnik
             // 
@@ -405,6 +432,17 @@
             this.gbPretraga.TabStop = false;
             this.gbPretraga.Text = "Pretraga";
             // 
+            // btnDodajRezervaciju
+            // 
+            this.btnDodajRezervaciju.Location = new System.Drawing.Point(406, 48);
+            this.btnDodajRezervaciju.Name = "btnDodajRezervaciju";
+            this.btnDodajRezervaciju.Size = new System.Drawing.Size(139, 38);
+            this.btnDodajRezervaciju.TabIndex = 15;
+            this.btnDodajRezervaciju.Text = "Dodaj rezervaciju";
+            this.btnDodajRezervaciju.UseVisualStyleBackColor = true;
+            this.btnDodajRezervaciju.Visible = false;
+            this.btnDodajRezervaciju.Click += new System.EventHandler(this.btnDodajRezervaciju_Click);
+            // 
             // btnVratiNaKartu
             // 
             this.btnVratiNaKartu.Location = new System.Drawing.Point(406, 8);
@@ -609,43 +647,6 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // panelTabRezervacija
-            // 
-            this.panelTabRezervacija.BackColor = System.Drawing.Color.Red;
-            this.panelTabRezervacija.ForeColor = System.Drawing.Color.White;
-            this.panelTabRezervacija.Location = new System.Drawing.Point(5, 262);
-            this.panelTabRezervacija.Name = "panelTabRezervacija";
-            this.panelTabRezervacija.Size = new System.Drawing.Size(6, 50);
-            this.panelTabRezervacija.TabIndex = 7;
-            this.panelTabRezervacija.Visible = false;
-            // 
-            // btnTabRezervacija
-            // 
-            this.btnTabRezervacija.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTabRezervacija.FlatAppearance.BorderSize = 0;
-            this.btnTabRezervacija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTabRezervacija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTabRezervacija.ForeColor = System.Drawing.Color.White;
-            this.btnTabRezervacija.Image = ((System.Drawing.Image)(resources.GetObject("btnTabRezervacija.Image")));
-            this.btnTabRezervacija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTabRezervacija.Location = new System.Drawing.Point(12, 262);
-            this.btnTabRezervacija.Name = "btnTabRezervacija";
-            this.btnTabRezervacija.Size = new System.Drawing.Size(261, 50);
-            this.btnTabRezervacija.TabIndex = 8;
-            this.btnTabRezervacija.Text = "           REZERVACIJA";
-            this.btnTabRezervacija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTabRezervacija.UseVisualStyleBackColor = true;
-            // 
-            // btnDodajRezervaciju
-            // 
-            this.btnDodajRezervaciju.Location = new System.Drawing.Point(406, 48);
-            this.btnDodajRezervaciju.Name = "btnDodajRezervaciju";
-            this.btnDodajRezervaciju.Size = new System.Drawing.Size(139, 38);
-            this.btnDodajRezervaciju.TabIndex = 15;
-            this.btnDodajRezervaciju.Text = "Dodaj rezervaciju";
-            this.btnDodajRezervaciju.UseVisualStyleBackColor = true;
-            this.btnDodajRezervaciju.Visible = false;
             // 
             // BlagajnaForm
             // 

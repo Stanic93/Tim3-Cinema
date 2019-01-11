@@ -1,6 +1,7 @@
 ﻿using Cinema.AttributeClass;
 using Cinema.Controle;
 using Cinema.PropertyClass;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1018,6 +1019,90 @@ namespace Cinema.Forme
             panelRacun.Enabled = true;
             gbKarta.Enabled = true;
             gbPretraga.Enabled = true;
+        }
+
+        private void btnDodajRezervaciju_Click(object sender, EventArgs e)
+        {
+            bool prosao = true;
+            string odgovor;
+            do
+            {
+                odgovor = Interaction.InputBox("Naziv rezervacije ", "Rezervacija na ime", "");
+                if (provjeriImeRezervacije(odgovor))
+                {
+                    prosao = false;
+                }
+                else
+                {
+                    prosao = true;
+                    MessageBox.Show("Naziv rezervacije zauzeto!");
+                }
+            } while (prosao);
+            dodajRezervaciju(odgovor);
+        }
+        private void dodajRezervaciju(string imeRezervacije)
+        {
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"Insert into Rezervacija (RezervacijaNaIme) values (@ImeRezervacije)";
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@ImeRezervacije", SqlDbType.NVarChar);
+            parameter.Value = imeRezervacije;
+            command.Parameters.Add(parameter);
+            SqlDataReader reader;
+            DataTable dt = new DataTable();
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+        }
+        private bool provjeriImeRezervacije(string imeRezervacije)
+        {
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"SELECT r.RezervacijaNaIme
+                                    FROM dbo.Rezervacija r
+                                    JOIN dbo.Karta k ON r.KartaID = k.KartaID
+                                    WHERE k.TerminID = @TerminID";
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
+            short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
+            parameter.Value = broj;
+            command.Parameters.Add(parameter);
+            SqlDataReader reader;
+            DataTable dt = new DataTable();
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            if(dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Naziv rezervacije zauzet!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }
