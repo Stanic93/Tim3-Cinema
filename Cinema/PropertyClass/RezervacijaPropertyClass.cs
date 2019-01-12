@@ -70,9 +70,6 @@ namespace Cinema.PropertyClass
         {
             return @"DELETE from dbo.Rezervacija where RezervacijaID = @RezervacijaID";
         }
-
-
-
         public string GetInsertQuery()
         {
             return @"INSERT into dbo.Rezervacija (KartaID, RezervacijaNaIme) values (@KartaID, @RezervacijaNaIme)";
@@ -82,9 +79,6 @@ namespace Cinema.PropertyClass
         {
             return @"SELECT RezervacijaID, KartaID, RezervacijaNaIme from dbo.Rezervacija";
         }
-
-
-
         public string GetUpdateQuery()
         {
             return @"UPDATE 
@@ -94,6 +88,10 @@ namespace Cinema.PropertyClass
                     where RezervacijaID = @RezervacijaID";
         }
         public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetSearchQuery(string rijec)
         {
             throw new NotImplementedException();
         }

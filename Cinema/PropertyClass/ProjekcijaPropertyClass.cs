@@ -109,9 +109,13 @@ namespace Cinema.PropertyClass
         {
             throw new NotImplementedException();
         }
+        public string GetSearchQuery(string rijec)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
-        #region properties
+        #region parameters
         public List<SqlParameter> GetDeleteParameters()
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -159,6 +163,11 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@DatumPosljednjegPrikazivanja", System.Data.SqlDbType.Date);
                 parameter.Value = datumPosljednjegPrikazivanja;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = projekcijaID;
                 parameters.Add(parameter);
             }
             return parameters;

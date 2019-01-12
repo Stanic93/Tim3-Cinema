@@ -14,6 +14,8 @@ namespace Cinema
         string GetUpdateQuery();
         string GetDeleteQuery();
         string GetLookUpQuery(string ID);
+        string GetSearchQuery(string rijec);
+
 
         List<SqlParameter> GetInsertParameters();
         List<SqlParameter> GetUpdateParameters();

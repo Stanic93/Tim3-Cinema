@@ -16,7 +16,7 @@ namespace Cinema.PropertyClass
         private short filmID;
         private string film;
         private string zanr;
-        private System.TimeSpan duzinaTrajanja;
+        private TimeSpan duzinaTrajanja;
         private string opis;
         private string reziser;
         private bool aktivan;
@@ -173,6 +173,10 @@ namespace Cinema.PropertyClass
             throw new NotImplementedException();
         }
         public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetSearchQuery(string rijec)
         {
             throw new NotImplementedException();
         }

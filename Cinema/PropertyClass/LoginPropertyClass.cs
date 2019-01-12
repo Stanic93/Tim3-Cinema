@@ -114,7 +114,7 @@ namespace Cinema.PropertyClass
        
         public string GetUpdateQuery()
         {
-            return @"UPDATE
+            return @"UPDATE dbo.Login
                     set
                     ZaposleniID=@ZaposleniID,
                     KorisnickoIme=@KorisnickoIme,
@@ -123,6 +123,10 @@ namespace Cinema.PropertyClass
                     where LoginID=@LoginID";
         }
         public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetSearchQuery(string rijec)
         {
             throw new NotImplementedException();
         }

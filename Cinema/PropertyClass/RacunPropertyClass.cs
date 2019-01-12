@@ -113,6 +113,10 @@ namespace Cinema.PropertyClass
         {
             throw new NotImplementedException();
         }
+        public string GetSearchQuery(string rijec)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Parameters

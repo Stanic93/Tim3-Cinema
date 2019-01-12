@@ -113,15 +113,19 @@ namespace Cinema.PropertyClass
         }
         public string GetUpdateQuery()
         {
-            return @"UPDATE
+            return @"UPDATE dbo.Zaposleni
                      set 
                      Ime = @Ime,
                      Prezime = @Prezime,
                      Godiste = @Godiste,
-                     Pozicija = @Pozicija,
+                     Pozicija = @Pozicija
                      where ZaposleniID = @ZaposleniID";
         }
         public string GetLookUpQuery(string ID)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetSearchQuery(string rijec)
         {
             throw new NotImplementedException();
         }
