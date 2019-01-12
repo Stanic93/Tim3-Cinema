@@ -41,6 +41,7 @@ namespace Cinema.PropertyClass
         [SqlName("Cijena")]
         [DisplayName("Cijena")]
         [LookUpValue]
+        [Numeric]
         public decimal Cijena
         {
             get

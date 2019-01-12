@@ -149,6 +149,13 @@ namespace Cinema.Forme
                     cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(cb);
                 }
+                else if (item.GetCustomAttribute<NumericAttribute>() != null)
+                {
+                    NumericUpDownControl num = new NumericUpDownControl();
+                    num.Name = item.Name;
+                    num.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                    flpDetaljno.Controls.Add(num);
+                }
                 else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
@@ -269,6 +276,14 @@ namespace Cinema.Forme
                             cb.Name = item.Name;
                             cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                             flpDetaljno.Controls.Add(cb);
+                        }
+                        else if (item.GetCustomAttribute<NumericAttribute>() != null)
+                        {
+                            NumericUpDownControl num = new NumericUpDownControl();
+                            num.SetValue(Convert.ToDecimal(item.GetValue(property)));
+                            num.Name = item.Name;
+                            num.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                            flpDetaljno.Controls.Add(num);
                         }
                         else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                         {
@@ -397,6 +412,14 @@ namespace Cinema.Forme
                 {
                     DateTimeControl input = item as DateTimeControl;
                     string value = input.GetVrijednost();
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                }
+                else if (item.GetType() == typeof(NumericUpDownControl))
+                {
+                    NumericUpDownControl input = item as NumericUpDownControl;
+                    string value = input.GetValue().ToString();
+                    MessageBox.Show(value);
                     PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                 }
