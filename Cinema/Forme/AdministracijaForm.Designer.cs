@@ -53,6 +53,7 @@
             this.gbPrikaz = new System.Windows.Forms.GroupBox();
             this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.txtPretraga = new System.Windows.Forms.TextBox();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
             this.toolStripKarta = new System.Windows.Forms.ToolStrip();
             this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
@@ -68,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.gbPrikaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
+            this.gbPretraga.SuspendLayout();
             this.gbDetaljno.SuspendLayout();
             this.toolStripKarta.SuspendLayout();
             this.panelDugmici.SuspendLayout();
@@ -365,12 +367,22 @@
             // gbPretraga
             // 
             this.gbPretraga.BackColor = System.Drawing.Color.Transparent;
+            this.gbPretraga.Controls.Add(this.txtPretraga);
             this.gbPretraga.Location = new System.Drawing.Point(586, 174);
             this.gbPretraga.Name = "gbPretraga";
             this.gbPretraga.Size = new System.Drawing.Size(566, 136);
             this.gbPretraga.TabIndex = 7;
             this.gbPretraga.TabStop = false;
             this.gbPretraga.Text = "Pretraga";
+            // 
+            // txtPretraga
+            // 
+            this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPretraga.Location = new System.Drawing.Point(6, 21);
+            this.txtPretraga.Name = "txtPretraga";
+            this.txtPretraga.Size = new System.Drawing.Size(157, 29);
+            this.txtPretraga.TabIndex = 0;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // gbDetaljno
             // 
@@ -402,7 +414,8 @@
             this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnAdd.Name = "tsbtnAdd";
             this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnAdd.Text = "Kreiraj kartu";
+            this.tsbtnAdd.Text = "Dodaj";
+            this.tsbtnAdd.ToolTipText = "Dodaj";
             this.tsbtnAdd.Click += new System.EventHandler(this.tsbtnAdd_Click);
             // 
             // tsbtnIzmjein
@@ -412,7 +425,7 @@
             this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnIzmjein.Name = "tsbtnIzmjein";
             this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "toolStripButton2";
+            this.tsbtnIzmjein.Text = "Izmjeni";
             this.tsbtnIzmjein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
             // 
             // tsbtnObrisi
@@ -422,22 +435,24 @@
             this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnObrisi.Name = "tsbtnObrisi";
             this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnObrisi.Text = "toolStripButton3";
+            this.tsbtnObrisi.Text = "Obrisi";
             this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
             // 
             // flpDetaljno
             // 
+            this.flpDetaljno.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flpDetaljno.AutoScroll = true;
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpDetaljno.Location = new System.Drawing.Point(7, 44);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(302, 378);
+            this.flpDetaljno.Size = new System.Drawing.Size(302, 408);
             this.flpDetaljno.TabIndex = 0;
             // 
             // panelDugmici
             // 
             this.panelDugmici.Controls.Add(this.btnOdustani);
             this.panelDugmici.Controls.Add(this.btnPotvrdi);
-            this.panelDugmici.Location = new System.Drawing.Point(272, 605);
+            this.panelDugmici.Location = new System.Drawing.Point(273, 632);
             this.panelDugmici.Name = "panelDugmici";
             this.panelDugmici.Size = new System.Drawing.Size(301, 64);
             this.panelDugmici.TabIndex = 9;
@@ -451,6 +466,7 @@
             this.btnOdustani.TabIndex = 1;
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
+            this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
             // btnPotvrdi
             // 
@@ -486,6 +502,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.gbPrikaz.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
+            this.gbPretraga.ResumeLayout(false);
+            this.gbPretraga.PerformLayout();
             this.gbDetaljno.ResumeLayout(false);
             this.gbDetaljno.PerformLayout();
             this.toolStripKarta.ResumeLayout(false);
@@ -530,5 +548,6 @@
         private System.Windows.Forms.Panel panelDugmici;
         private System.Windows.Forms.Button btnPotvrdi;
         private System.Windows.Forms.Button btnOdustani;
+        private System.Windows.Forms.TextBox txtPretraga;
     }
 }

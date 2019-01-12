@@ -149,13 +149,18 @@ namespace Cinema.PropertyClass
                         Naziv = @Naziv,
                         DuzinaTrajanja = @DuzinaTrajanja,
                         Opis = @Opis,
-                        Reziser = @Reziser,      
-                        Godina=@Godina,
+                        Reziser = @Reziser, 
+                        Aktivan=@Aktivan,
+                        Godina=@Godina
                         where FilmID = @FilmID";
         }
         public string GetLookUpQuery(string ID)
         {
             return @"Select Naziv from dbo.Film where FilmID="+ID;
+        }
+        public string GetSearchQuery(string rijec)
+        {
+            return @"Select FilmID,Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina from dbo.Film where Naziv like '" + rijec+"%'" ;
         }
         #endregion
 
@@ -241,7 +246,7 @@ namespace Cinema.PropertyClass
                 parameters.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.Bit);
+                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.SmallInt);
                 parameter.Value = godina;
                 parameters.Add(parameter);
             }

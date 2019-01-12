@@ -370,23 +370,50 @@ namespace Cinema.Forme
                 if (item.GetType() == typeof(TextBoxControl))
                 {
                     TextBoxControl input = item as TextBoxControl;
-                    string value = input.GetTextBox();
-
-                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
-
+                   
+                    if (input.Name == "DuzinaTrajanja" || input.Name == "VrijemePrikazivanja")
+                    {
+                        TimeSpan valueT = TimeSpan.ParseExact(input.GetTextBox(), "c", null);
+                        PropertyInfo myPropertyT = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        myPropertyT.SetValue(property, Convert.ChangeType(valueT, myPropertyT.PropertyType));
+                    }
+                    else
+                    {
+                        string value = input.GetTextBox();
+                        PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    }
                 }
+
                 //Marko J. Pokusaji rjesavanja dopune svih polja prilikom unosa i updatea
-                if (item.GetType() == typeof(RichTextBoxControl))
+                else if (item.GetType() == typeof(RichTextBoxControl))
                 {
                     RichTextBoxControl input = item as RichTextBoxControl;
                     string value = input.GetVrijednost();
-
                     PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
-
                 }
-                
+                else if (item.GetType() == typeof(DateTimeControl))
+                {
+                    DateTimeControl input = item as DateTimeControl;
+                    string value = input.GetVrijednost();
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                }
+                else if (item.GetType() == typeof(UserLookUpControl))
+                {
+                    UserLookUpControl input = item as UserLookUpControl;
+                    string value = input.getKey().ToString();
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                }
+                else if (item.GetType() == typeof(CheckBoxControl))
+                {
+                    CheckBoxControl input = item as CheckBoxControl;
+                    bool value = input.GetValue();
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                }
             }
 
                 if (state == StateEnum.Create)
@@ -411,7 +438,8 @@ namespace Cinema.Forme
 
                 UcitajDGV(property);
                 state = StateEnum.Preview;
-
+                flpDetaljno.Enabled = false;
+                panelDugmici.Visible = false;
             
         }
 
@@ -422,10 +450,31 @@ namespace Cinema.Forme
             PropertyInfo myProperty = properties.Where(x => x.IsDefined(typeof(PrimaryKeyAttribute))).FirstOrDefault();
             myProperty.SetValue(property, Convert.ChangeType(dgvPrikaz.SelectedRows[0].Cells[0].Value, myProperty.PropertyType));
             if (DialogResult.Yes == (MessageBox.Show("Da li zelite da izbrisete izabrani red?", "Informacija o brisanju", MessageBoxButtons.YesNo
-                , MessageBoxIcon.Warning)));
-            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetDeleteQuery(), property.GetDeleteParameters().ToArray());
-            UcitajDGV(property);
+                , MessageBoxIcon.Warning)))
+            {
+                SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetDeleteQuery(), property.GetDeleteParameters().ToArray());
+                UcitajDGV(property);
+            }
             state = StateEnum.Preview;
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            flpDetaljno.Enabled = false;
+            panelDugmici.Visible = false;
+            state = StateEnum.Preview;
+            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(), property.GetUpdateParameters().ToArray());
+            UcitajDGV(property);
+        }
+
+        private void txtPretraga_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSearchQuery(txtPretraga.Text));
+
+            dt.Load(reader);
+            reader.Close();
+            dgvPrikaz.DataSource = dt;
         }
     }
 }
