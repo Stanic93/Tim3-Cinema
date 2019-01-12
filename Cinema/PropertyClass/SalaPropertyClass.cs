@@ -36,6 +36,7 @@ namespace Cinema.PropertyClass
         [SqlName("BrojSale")]
         [DisplayName("Broj sale")]
         [LookUpValue]
+        [Numeric]
         public short BrojSale
         {
             get

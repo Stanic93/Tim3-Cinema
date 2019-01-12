@@ -130,6 +130,7 @@ namespace Cinema.PropertyClass
         [SqlName("Godina")]
         [DisplayName("Godina")]
         [Visible]
+        [Numeric]
         public short Godina
         {
             get

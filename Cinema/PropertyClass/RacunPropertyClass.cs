@@ -68,6 +68,7 @@ namespace Cinema.PropertyClass
        
         [SqlName("UkupnaCijena")]
         [DisplayName("Ukupna cijena")]
+        [Numeric]
         public decimal UkupnaCijena
         {
             get

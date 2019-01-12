@@ -114,6 +114,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Godina")]
         [DisplayName("Godina")]
+        [Numeric]
         public int Godina
         {
             get
@@ -205,7 +206,7 @@ namespace Cinema.PropertyClass
                 parameters.Add(parameter);
             }
             {
-                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.Bit);
+                SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.SmallInt);
                 parameter.Value = godina;
                 parameters.Add(parameter);
             }

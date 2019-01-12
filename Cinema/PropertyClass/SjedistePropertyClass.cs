@@ -54,6 +54,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("Red")]
         [DisplayName("Red")]
+        [Numeric]
         public short Red
         {
             get
@@ -69,6 +70,7 @@ namespace Cinema.PropertyClass
         [SqlName("BrojSjedista")]
         [DisplayName("Broj sjedista")]
         [LookUpValue]
+        [Numeric]
         public short BrojSjedista
         {
             get
