@@ -66,12 +66,11 @@ namespace Cinema
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText =@" SELECT   s.SjedisteID ,s.BrojSjedista
-                                    FROM dbo.Sjediste s
-                                    WHERE s.SjedisteID NOT IN(SELECT k.SjedisteID
-                                    FROM dbo.Racun r
-                                    JOIN dbo.Karta k ON r.RacunID = k.RacunID
-                                    WHERE k.TerminID = @terminID)";
+            command.CommandText = @" Select s.SjedisteID,s.BrojSjedista
+                                     from  Sjediste as s
+                                     where s.SjedisteID not in (SELECT k.SjedisteID
+                                     FROM dbo.Karta as k
+                                     WHERE k.TerminID = @terminID)";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@terminID", SqlDbType.SmallInt);
             parameter.Value = terminID;            

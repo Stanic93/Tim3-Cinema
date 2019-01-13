@@ -26,6 +26,8 @@ namespace Cinema.Forme
         int terminID = 0;
         string FullName = "";
         State state = State.Idle;
+        string ImeRezervacije = "";
+        string rezervacijaID = "";
         public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
             InitializeComponent();
@@ -135,6 +137,10 @@ namespace Cinema.Forme
 
             foreach (PropertyInfo item in properties)
             {
+                if(item.Name == "RezervacijaID")
+                {
+                    continue;
+                }
                 if (item.GetCustomAttribute<ForeignKeyAttribute>() != null)
                 {
                     PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
@@ -207,9 +213,12 @@ namespace Cinema.Forme
         // klik na dataGridView
         private void dgvPregled_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (activeTab == ActiveTab.Karta)
+            if (activeTab == ActiveTab.Karta || activeTab == ActiveTab.Rezervacija)
             {
-                btnNovaKarta.Enabled = true;
+                if (activeTab != ActiveTab.Rezervacija)
+                {
+                    btnNovaKarta.Enabled = true;
+                }
                 flpDetaljno.Controls.Clear();
                 popuniControle(property);
                 setujKontroleKarta();
@@ -230,7 +239,10 @@ namespace Cinema.Forme
                 setujKontroleKarta();
             }
             dtpDatumProdukcije.Enabled = true;
-            btnNovaKarta.Enabled = true;
+            if (activeTab != ActiveTab.Rezervacija)
+            {
+                btnNovaKarta.Enabled = true;
+            }
         }
 
         // popunjavanje property klasa u odgovarajuce tipove
@@ -494,10 +506,15 @@ namespace Cinema.Forme
                 }
                 property = new KartaPropertyClass();
                 setujKontroleKarta();
-
             }
             else if (btnNovaKarta.Text == "Stampaj")
             {
+                OsnovnaPodesavanja();
+            }else if(btnNovaKarta.Text == "Potvrdi rezervaciju")
+            {
+                MessageBox.Show("Rezervacija uspjesno kreirana!");
+                rezervacijaID = "";
+                ImeRezervacije = "";
                 OsnovnaPodesavanja();
             }
 
@@ -568,7 +585,10 @@ namespace Cinema.Forme
                 {
                     gbDetaljno.Enabled = false;
                 }
-                btnNovaKarta.Enabled = true;
+                if (activeTab != ActiveTab.Rezervacija)
+                {
+                    btnNovaKarta.Enabled = true;
+                }
                 lblStatusSale.Visible = false;
                 lblStatusSale.Text = "";
             }
@@ -599,13 +619,13 @@ namespace Cinema.Forme
                             ulup.SetValue(dgvPregled.SelectedRows[0].Cells["BrojSjedista"].Value.ToString());
                         }
                     }
-
-                    if (ulup.Name == "RacunID")
-                    {
-                        ulup.Enabled = false;
-                        ulup.SetKey("" + racunID);
-                        ulup.SetValue("" + racunID);
-                    }
+                    
+                        if (ulup.Name == "RacunID")
+                        {
+                            ulup.Enabled = false;
+                            ulup.SetKey("" + racunID);
+                            ulup.SetValue("" + racunID);
+                        }                    
                 }
                 if (item.GetType() == typeof(TextBoxControl))
                 {
@@ -666,9 +686,22 @@ namespace Cinema.Forme
                     item.SetValue(property, Convert.ChangeType(time, item.PropertyType));
                     continue;
                 }
-                item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
-
+                if (item.Name != "RezervacijaID")
+                {
+                    item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
+                }
+                else
+                {
+                    if (activeTab == ActiveTab.Rezervacija)
+                    {
+                        if (item.Name == "RezervacijaID")
+                        {
+                            item.SetValue(property, Convert.ChangeType(rezervacijaID, item.PropertyType));
+                        }
+                    }
+                }
             }
+            
         }
         // popunjavanje termina za odgovarajuci datum i film
         private void popuniPregledProjekcija()
@@ -723,8 +756,6 @@ namespace Cinema.Forme
         //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-
-
             if (activeTab == ActiveTab.Karta)
             {
                 populateKartaInterface();
@@ -743,10 +774,36 @@ namespace Cinema.Forme
                             ulup.SetValue("");
                         }
                     }
+                }               
+                    MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
+
+            }else if (activeTab == ActiveTab.Rezervacija)
+            {
+                
+                populateKartaInterface();
+                KartaPropertyClass novi = property as KartaPropertyClass;
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, novi.GetInsertRezervacijaQuery(), novi.GetInsertRezervacijaParameters().ToArray());
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                foreach (var item in flpDetaljno.Controls)
+                {
+                    if (item.GetType() == typeof(UserLookUpControl))
+                    {
+                        UserLookUpControl ulup = item as UserLookUpControl;
+                        if (ulup.Name == "SjedisteID")
+                        {
+                            ulup.SetKey("");
+                            ulup.SetValue("");
+                        }
+                    }
                 }
-                MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Uspjesno ste rezervisali kartu", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnNovaKarta.Enabled = true;
             }
-            if (activeTab == ActiveTab.Racun)
+            else if (activeTab == ActiveTab.Racun)
             {
                 gbDetaljno.Enabled = false;
                 SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
@@ -809,9 +866,7 @@ namespace Cinema.Forme
                     DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od racuna?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-
                         IzbrisiKarteIRacun();
-
                         OsnovnaPodesavanja();
                         state = State.Idle;
 
@@ -822,7 +877,9 @@ namespace Cinema.Forme
                     DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od rezervacije?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        OsnovnaPodesavanja();
+                        
+                        IzbrisiKarteiRezervaciju();
+                        OsnovnaPodesavanja();                        
                         state = State.Idle;
                     }
                 }
@@ -831,7 +888,10 @@ namespace Cinema.Forme
             {
                 activeTab = ActiveTab.Rezervacija;
                 btnNovaKarta_Click(sender, e);
-                
+                gbKarta.Enabled = true;
+                btnNovaKarta.Enabled = false;
+                gbPretraga.Enabled = true;
+                btnDodajRezervaciju.Enabled = true;            
 
             }
         }
@@ -883,6 +943,55 @@ namespace Cinema.Forme
                 MessageBox.Show("Can not open connection");
             }
 
+        }
+
+        // brisanje karata i rezervacije(klikom na odustani)
+        private void IzbrisiKarteiRezervaciju()
+        {
+            if (rezervacijaID == "")
+            {
+                return;
+            }
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"Delete
+                                    from Karta
+                                    where RezervacijaID = @RezervacijaID
+                                    ";
+            SqlCommand commandRacun = new SqlCommand();
+            commandRacun.CommandText = @"Delete
+                                    from Rezervacija
+                                    where RezervacijaID = @RezervacijaID
+                                    ";
+            commandRacun.Connection = connection;
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+            parameter.Value = rezervacijaID;
+            command.Parameters.Add(parameter);
+            SqlParameter parametarRezervacija = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+            parametarRezervacija.Value = rezervacijaID;
+            commandRacun.Parameters.Add(parametarRezervacija);
+            DataTable dt = new DataTable();
+            SqlDataReader reader;
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                command.Dispose();
+                connection.Close();
+                reader.Close();
+                connection.Open();
+                reader = commandRacun.ExecuteReader();
+                dt.Load(reader);
+                command.Dispose();
+                connection.Close();
+                reader.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
         }
 
         // kreiranje prikaza karata na racunu ()
@@ -1018,33 +1127,101 @@ namespace Cinema.Forme
             gbPregled.Enabled = true;
             panelRacun.Enabled = true;
             gbKarta.Enabled = true;
-            gbPretraga.Enabled = true;
+            if (activeTab == ActiveTab.Rezervacija)
+            {
+                gbPretraga.Enabled = false;
+            }
+            else
+            {
+                gbPretraga.Enabled = true;
+            }
+            panelPregledRacuna.Enabled = true;
         }
 
         private void btnDodajRezervaciju_Click(object sender, EventArgs e)
         {
             bool prosao = true;
-            string odgovor;
             do
             {
-                odgovor = Interaction.InputBox("Naziv rezervacije ", "Rezervacija na ime", "");
-                if (provjeriImeRezervacije(odgovor))
+                string input = "";
+                DialogResult dialog = ShowInputDialog(ref input);
+
+                if (dialog == DialogResult.OK)
                 {
-                    prosao = false;
+                    if (input == "" || input == " ")
+                    {
+                        MessageBox.Show("Naziv rezervacije mora biti unesen!");
+                    }
+                    else
+                    {
+                        if (provjeriImeRezervacije(input))
+                        {
+                            ImeRezervacije = input;
+                            dodajRezervaciju(input);
+                            panelPregledRacuna.Enabled = false;
+                            gbPretraga.Enabled = false;
+                            gbDetaljno.Enabled = true;
+                            btnPotvrdi.Visible = true;
+                            btnOdustaniRacun.Visible = true;
+                            gbKarta.Enabled = true;
+                            prosao = false;
+                        }
+                    }
                 }
                 else
                 {
-                    prosao = true;
-                    MessageBox.Show("Naziv rezervacije zauzeto!");
+                    prosao = false;
                 }
             } while (prosao);
-            dodajRezervaciju(odgovor);
+            setujRezervacijaId();
+            
+        }
+        private static DialogResult ShowInputDialog(ref string input)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Naziv rezervacije";
+            inputBox.MaximizeBox = false;
+            inputBox.MinimizeBox = false;
+            inputBox.StartPosition = FormStartPosition.CenterParent;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
         }
         private void dodajRezervaciju(string imeRezervacije)
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Insert into Rezervacija (RezervacijaNaIme) values (@ImeRezervacije)";
+            command.CommandText = @"Insert into Rezervacija (Rezervacija) values (@ImeRezervacije)";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@ImeRezervacije", SqlDbType.NVarChar);
             parameter.Value = imeRezervacije;
@@ -1069,15 +1246,19 @@ namespace Cinema.Forme
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"SELECT r.RezervacijaNaIme
-                                    FROM dbo.Rezervacija r
-                                    JOIN dbo.Karta k ON r.KartaID = k.KartaID
-                                    WHERE k.TerminID = @TerminID";
+            command.CommandText = @"Select Distinct r.Rezervacija
+                                        from Karta as k
+                                        join Rezervacija as r
+	                                            on k.RezervacijaID = r.RezervacijaID
+                                        where (k.RezervacijaID is not null) and (TerminID = @TerminID) and r.Rezervacija = @Rezervacija";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
             short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
             parameter.Value = broj;
             command.Parameters.Add(parameter);
+            SqlParameter parameter2 = new SqlParameter("@Rezervacija", SqlDbType.NVarChar);
+            parameter2.Value = imeRezervacije;
+            command.Parameters.Add(parameter2);
             SqlDataReader reader;
             DataTable dt = new DataTable();
             try
@@ -1103,6 +1284,32 @@ namespace Cinema.Forme
                 return true;
             }
 
+        }
+
+        private void setujRezervacijaId()
+        {
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"Select RezervacijaID
+                                    from dbo.Rezervacija";
+            command.Connection = connection;
+            SqlDataReader reader;
+            DataTable dt = new DataTable();
+            try
+            {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            DataRow dr = dt.Rows[dt.Rows.Count - 1];
+            rezervacijaID = Convert.ToString(dr.Field<short>(0));
         }
     }
 }
