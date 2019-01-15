@@ -355,6 +355,7 @@
             // 
             this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrikaz.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPrikaz.GridColor = System.Drawing.SystemColors.AppWorkspace;
             this.dgvPrikaz.Location = new System.Drawing.Point(6, 19);
             this.dgvPrikaz.Name = "dgvPrikaz";
