@@ -738,7 +738,7 @@ namespace Cinema.Forme
         // pomocni button namjenjen za brisanje
         private void button2_Click(object sender, EventArgs e)
         {
-            AdministracijaForm nova = new AdministracijaForm();
+            AdministracijaForm nova = new AdministracijaForm("asda");
             nova.Show();
         }
         // prilikom promjene datumaProjekcije mijenja se dataGridView i prikazuju se drugi termini
