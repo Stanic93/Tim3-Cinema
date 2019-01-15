@@ -19,6 +19,7 @@ namespace Cinema.PropertyClass
         private string reziser;
         private bool aktivan;
         private int godina;
+        private int zanrID;
         #endregion
 
         #region properties
@@ -126,13 +127,27 @@ namespace Cinema.PropertyClass
                 godina = value;
             }
         }
+        [SqlName("ZanrID")]
+        [DisplayName("Zanr ID")]
+        [ForeignKey("dbo.Zanr", "ZanrID", "Cinema.PropertyClass.ZanrPropertyClass")]
+        public int ZanrID
+        {
+            get
+            {
+                return zanrID;
+            }
+            set
+            {
+                zanrID = value;
+            }
+        }
 
         #endregion
 
         #region queries
         public string GetSelectQuery()
         {
-            return @"Select FilmID,Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina from dbo.Film";
+            return @"Select FilmID,Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina,ZanrID from dbo.Film";
         }
         public string GetDeleteQuery()
         {
@@ -140,8 +155,8 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Film (Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina) 
-                        values (@Naziv,@DuzinaTrajanja,@Opis,@Reziser,@Aktivan,@Godina)";
+            return @"Insert into dbo.Film (Naziv,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina,ZanrID) 
+                        values (@Naziv,@DuzinaTrajanja,@Opis,@Reziser,@Aktivan,@Godina,@ZanrID)";
         }
         public string GetUpdateQuery()
         {
@@ -152,7 +167,8 @@ namespace Cinema.PropertyClass
                         Opis = @Opis,
                         Reziser = @Reziser, 
                         Aktivan=@Aktivan,
-                        Godina=@Godina
+                        Godina=@Godina,
+                        ZanrID=@ZanrID
                         where FilmID = @FilmID";
         }
         public string GetLookUpQuery(string ID)
@@ -208,6 +224,10 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.SmallInt);
                 parameter.Value = godina;
+                parameters.Add(parameter);
+            } {
+                SqlParameter parameter = new SqlParameter("@ZanrID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = zanrID;
                 parameters.Add(parameter);
             }
             return parameters;

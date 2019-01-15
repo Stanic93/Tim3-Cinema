@@ -66,6 +66,7 @@ namespace Cinema.Forme
                 property = new FilmPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelFilmSelected.Visible = true;
+                txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po nazivu filma";
                 state = StateEnum.Preview;
             }
@@ -75,6 +76,7 @@ namespace Cinema.Forme
                 property = new LoginPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelLoginSelected.Visible = true;
+                txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
@@ -83,7 +85,8 @@ namespace Cinema.Forme
                 property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
-                lblPretraga.Text = "Pretraga po vremenu prikazivanja";
+                txtPretraga.Text = "";
+                lblPretraga.Text = "Pretraga po vremenu prikazivanja u formatu(00:00:00)";
                 state = StateEnum.Preview;
             }
             else if (btnProjekcija == sender as Button)
@@ -91,6 +94,7 @@ namespace Cinema.Forme
                 property = new ProjekcijaPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelProjekcijaSelected.Visible = true;
+                txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po filmu";
                 state = StateEnum.Preview;
             }
@@ -99,7 +103,8 @@ namespace Cinema.Forme
                 property = new ZanrPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZanrSelected.Visible = true;
-                lblPretraga.Text = "Pretraga po nazivu zanra";
+                txtPretraga.Text = "";
+                lblPretraga.Text = "Pretraga po zanru";
                 state = StateEnum.Preview;
             }
 
@@ -108,6 +113,7 @@ namespace Cinema.Forme
                 property = new ZaposleniPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZaposleniSelected.Visible = true;
+                txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
@@ -298,10 +304,13 @@ namespace Cinema.Forme
                         {
                             if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Lozinka")
                                 continue;
+                            else if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Naziv filma" && property.GetType() == typeof(ProjekcijaPropertyClass))
+                                continue;
                             else
                             {
                                 TextBoxControl uc = new TextBoxControl();
                                 uc.Name = item.Name;
+                                //MessageBox.Show(item.Name+" " +item.GetValue(property).ToString());//jfhkhgfghfg
                                 uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                                 uc.SetTextBox(item.GetValue(property).ToString());
 
@@ -326,9 +335,9 @@ namespace Cinema.Forme
                         flpDetaljno.Enabled = true;
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.StackTrace);
             }
         }
         public void ocistiKontrole()
@@ -427,8 +436,7 @@ namespace Cinema.Forme
                 else if (item.GetType() == typeof(NumericUpDownControl))
                 {
                     NumericUpDownControl input = item as NumericUpDownControl;
-                    string value = input.GetValue().ToString();
-                    MessageBox.Show(value);
+                    string value = input.GetValue().ToString().Trim();
                     PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                 }

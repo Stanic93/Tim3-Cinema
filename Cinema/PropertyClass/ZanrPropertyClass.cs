@@ -21,6 +21,7 @@ namespace Cinema.PropertyClass
         #region properties
 
         [PrimaryKey]
+        [LookUpKey]
         [SqlName("ZanrID")]
         [DisplayName("ZanrID")]
         public short ZanrID
@@ -36,6 +37,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Naziv")]
         [DisplayName("Naziv")]
+        [LookUpValue]
         public string Naziv
         {
             get
@@ -75,7 +77,8 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select ZanrID, Naziv
+                    from dbo.Zanr  where dbo.Zanr.Naziv like '" + rijec + "%' ";
         }
         #endregion
 

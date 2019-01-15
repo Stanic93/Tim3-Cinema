@@ -108,7 +108,7 @@ namespace Cinema.PropertyClass
 
         public string GetSelectQuery()
         {
-            return @"SELECT LoginID, ZaposleniID, KorisnickoIme, Lozinka, RadnoMjesto from dbo.Login";
+            return @"SELECT LoginID, ZaposleniID, KorisnickoIme, Lozinka,RadnoMjesto from dbo.Login";
         }
 
        
@@ -118,7 +118,7 @@ namespace Cinema.PropertyClass
                     set
                     ZaposleniID=@ZaposleniID,
                     KorisnickoIme=@KorisnickoIme,
-                    Lozinka=@Lozinka,
+                    --Lozinka=@Lozinka,
                     RadnoMjesto=@RadnoMjesto
                     where LoginID=@LoginID";
         }
@@ -128,7 +128,10 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select LoginID,dbo.Login.ZaposleniID,KorisnickoIme,Lozinka,RadnoMjesto
+                    from dbo.Login
+                        join dbo.Zaposleni ON dbo.Login.ZaposleniID = dbo.Zaposleni.ZaposleniID
+                        where dbo.Zaposleni.Ime like '" + rijec + "%' OR dbo.Zaposleni.Prezime like '" + rijec + "%'";
         }
         #endregion
 
@@ -182,11 +185,11 @@ namespace Cinema.PropertyClass
                 parameter.Value = korisnickoIme;
                 parameters.Add(parameter);
             }
-            {
-                SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.NVarChar);
-                parameter.Value = lozinka;
-                parameters.Add(parameter);
-            }
+            //{
+            //    SqlParameter parameter = new SqlParameter("@Lozinka", System.Data.SqlDbType.NVarChar);
+            //    parameter.Value = lozinka;
+            //    parameters.Add(parameter);
+            //}
             {
                 SqlParameter parameter = new SqlParameter("@RadnoMjesto", System.Data.SqlDbType.NVarChar);
                 parameter.Value = radnoMjesto;

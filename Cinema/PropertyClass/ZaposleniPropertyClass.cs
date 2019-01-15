@@ -1,4 +1,5 @@
-﻿using Cinema.AttributeClass;
+﻿
+using Cinema.AttributeClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,7 +128,8 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select dbo.Zaposleni.ZaposleniID, dbo.Zaposleni.Ime, dbo.Zaposleni.Prezime, dbo.Zaposleni.Godiste, dbo.Zaposleni.Pozicija
+                    from dbo.Zaposleni where Ime like '" + rijec + "%' OR dbo.Zaposleni.Prezime like'" + rijec + "%'";
         }
         #endregion
 

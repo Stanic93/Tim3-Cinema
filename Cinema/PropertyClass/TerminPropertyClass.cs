@@ -175,7 +175,8 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select TerminID,VrijemePrikazivanja,salaID,Projekcija3D,Premijera,DatumPrikazivanja,ProjekcijaID,CijenaID
+                    from dbo.Termin where dbo.Termin.VrijemePrikazivanja like '" + rijec + "%'";
         }
         #endregion
 

@@ -13,6 +13,7 @@ namespace Cinema.PropertyClass
     {
         #region attribute
         private short projekcijaID;
+        private string nazivFilma;
         private short filmID;
         private DateTime datumPrvogPrikazivanja;
         private DateTime datumPosljednjegPrikazivanja;
@@ -33,6 +34,21 @@ namespace Cinema.PropertyClass
             set
             {
                 projekcijaID = value;
+            }
+        }
+
+        [SqlName("Naziv")]
+        [DisplayName("Naziv filma")]
+
+        public string NazivFilma
+        {
+            get
+            {
+                return nazivFilma;
+            }
+            set
+            {
+                nazivFilma = value;
             }
         }
 
@@ -113,7 +129,10 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select ProjekcijaID,dbo.Projekcija.FilmID,Naziv,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja 
+                    from dbo.Projekcija
+                    join dbo.Film on dbo.Film.FilmID =dbo.Projekcija.FilmID
+                    where dbo.Film.Naziv like '" + rijec + "%'";
         }
         #endregion
 

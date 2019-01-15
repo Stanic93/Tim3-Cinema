@@ -53,6 +53,7 @@
             this.gbPrikaz = new System.Windows.Forms.GroupBox();
             this.dgvPrikaz = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.lblPretraga = new System.Windows.Forms.Label();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
             this.toolStripKarta = new System.Windows.Forms.ToolStrip();
@@ -63,7 +64,6 @@
             this.panelDugmici = new System.Windows.Forms.Panel();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
-            this.lblPretraga = new System.Windows.Forms.Label();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.panelMeni.SuspendLayout();
@@ -378,6 +378,15 @@
             this.gbPretraga.TabStop = false;
             this.gbPretraga.Text = "Pretraga";
             // 
+            // lblPretraga
+            // 
+            this.lblPretraga.AutoSize = true;
+            this.lblPretraga.Location = new System.Drawing.Point(193, 63);
+            this.lblPretraga.Name = "lblPretraga";
+            this.lblPretraga.Size = new System.Drawing.Size(47, 13);
+            this.lblPretraga.TabIndex = 1;
+            this.lblPretraga.Text = "Pretraga";
+            // 
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -393,7 +402,7 @@
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
             this.gbDetaljno.Location = new System.Drawing.Point(265, 174);
             this.gbDetaljno.Name = "gbDetaljno";
-            this.gbDetaljno.Size = new System.Drawing.Size(315, 425);
+            this.gbDetaljno.Size = new System.Drawing.Size(315, 452);
             this.gbDetaljno.TabIndex = 8;
             this.gbDetaljno.TabStop = false;
             this.gbDetaljno.Text = "Detaljno";
@@ -446,9 +455,9 @@
             this.flpDetaljno.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flpDetaljno.AutoScroll = true;
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDetaljno.Location = new System.Drawing.Point(7, 44);
+            this.flpDetaljno.Location = new System.Drawing.Point(8, 44);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(302, 408);
+            this.flpDetaljno.Size = new System.Drawing.Size(301, 402);
             this.flpDetaljno.TabIndex = 0;
             // 
             // panelDugmici
@@ -481,15 +490,6 @@
             this.btnPotvrdi.Text = "Potvrdi";
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
-            // 
-            // lblPretraga
-            // 
-            this.lblPretraga.AutoSize = true;
-            this.lblPretraga.Location = new System.Drawing.Point(193, 63);
-            this.lblPretraga.Name = "lblPretraga";
-            this.lblPretraga.Size = new System.Drawing.Size(47, 13);
-            this.lblPretraga.TabIndex = 1;
-            this.lblPretraga.Text = "Pretraga";
             // 
             // AdministracijaForm
             // 
