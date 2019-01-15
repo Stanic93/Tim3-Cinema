@@ -1221,7 +1221,7 @@ namespace Cinema.Forme
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Insert into Rezervacija (Rezervacija) values (@ImeRezervacije)";
+            command.CommandText = @"Insert into Rezervacija (RezervacijaNaIme) values (@ImeRezervacije)";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@ImeRezervacije", SqlDbType.NVarChar);
             parameter.Value = imeRezervacije;
@@ -1246,11 +1246,11 @@ namespace Cinema.Forme
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select Distinct r.Rezervacija
+            command.CommandText = @"Select Distinct r.RezervacijaNaIme
                                         from Karta as k
                                         join Rezervacija as r
 	                                            on k.RezervacijaID = r.RezervacijaID
-                                        where (k.RezervacijaID is not null) and (TerminID = @TerminID) and r.Rezervacija = @Rezervacija";
+                                        where (k.RezervacijaID is not null) and (TerminID = @TerminID) and r.RezervacijaNaIme = @Rezervacija";
             command.Connection = connection;
             SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
             short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
