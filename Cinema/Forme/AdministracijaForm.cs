@@ -52,7 +52,9 @@ namespace Cinema.Forme
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPrikaz.EditMode = DataGridViewEditMode.EditProgrammatically;
             postaviControle(property);
+
 
         }
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto

@@ -91,47 +91,47 @@ namespace Cinema
 
         private void btnIzaberi_Click(object sender, EventArgs e)
         {
-            if (dgvPregledLookUp.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = dgvPregledLookUp.SelectedRows[0];
-                var properties = myProperty.GetType().GetProperties();
+                if (dgvPregledLookUp.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = dgvPregledLookUp.SelectedRows[0];
+                    var properties = myProperty.GetType().GetProperties();
 
-                string columnName = properties.Where(x => x.GetCustomAttribute<LookUpKeyAttribute>() != null)
+                    string columnName = properties.Where(x => x.GetCustomAttribute<LookUpKeyAttribute>() != null)
+                        .FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Naziv;
+
+                    Key = row.Cells[columnName].Value.ToString();
+
+                    columnName = properties.Where(x => x.GetCustomAttribute<LookUpValueAttribute>() != null)
                     .FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Naziv;
 
-                Key = row.Cells[columnName].Value.ToString();
+                    if (columnName.Contains("ID"))
+                    {
+                        PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
+                                CreateInstance(properties.Where(x => x.GetCustomAttribute<ForeignKeyAttribute>() != null)
+                            .FirstOrDefault().GetCustomAttribute<ForeignKeyAttribute>().className)
+                                as PropertyInterface;
 
-                columnName = properties.Where(x => x.GetCustomAttribute<LookUpValueAttribute>() != null)
-                .FirstOrDefault().GetCustomAttribute<SqlNameAttribute>().Naziv;
+                        SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
+                            foreignKeyInterface.GetLookUpQuery(row.Cells[1].Value.ToString()));
 
-                if (columnName.Contains("ID"))
-                {
-                    PropertyInterface foreignKeyInterface = Assembly.GetExecutingAssembly().
-                            CreateInstance(properties.Where(x => x.GetCustomAttribute<ForeignKeyAttribute>() != null)
-                        .FirstOrDefault().GetCustomAttribute<ForeignKeyAttribute>().className)
-                            as PropertyInterface;
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        reader.Close();
 
-                    SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
-                        foreignKeyInterface.GetLookUpQuery(row.Cells[1].Value.ToString()));
+                        dgvPregledLookUp.DataSource = dt;
 
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    reader.Close();
+                        row = dgvPregledLookUp.Rows[0];
 
-                    dgvPregledLookUp.DataSource = dt;
+                        Value = row.Cells[0].Value.ToString();
 
-                    row = dgvPregledLookUp.Rows[0];
-
-                    Value = row.Cells[0].Value.ToString();
-
+                    }
+                    else if (columnName.Equals("Ime"))
+                        Value = row.Cells[columnName].Value.ToString() +" "+ row.Cells["Prezime"].Value.ToString();
+                    else
+                        Value = row.Cells[columnName].Value.ToString();
+                    DialogResult = DialogResult.OK;
                 }
-                else if (columnName.Equals("Ime"))
-                    Value = row.Cells[columnName].Value.ToString() +" "+ row.Cells["Prezime"].Value.ToString();
-                else
-                    Value = row.Cells[columnName].Value.ToString();
-                DialogResult = DialogResult.OK;
-            }
-            else return;
+                else return;
             
         }
 
