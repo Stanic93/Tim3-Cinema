@@ -87,7 +87,9 @@ namespace Cinema.PropertyClass
         #region queries
         public string GetSelectQuery()
         {
-            return @"Select ProjekcijaID,FilmID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja from dbo.Projekcija";
+            return @"Select ProjekcijaID,dbo.Projekcija.FilmID,Naziv,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja 
+                FROM dbo.Projekcija
+                JOIN dbo.Film  ON dbo.Projekcija.FilmID = dbo.Film.FilmID";
         }
         public string GetDeleteQuery()
         {

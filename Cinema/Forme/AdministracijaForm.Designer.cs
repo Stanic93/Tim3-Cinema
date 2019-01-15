@@ -63,6 +63,7 @@
             this.panelDugmici = new System.Windows.Forms.Panel();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
+            this.lblPretraga = new System.Windows.Forms.Label();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.panelMeni.SuspendLayout();
@@ -368,6 +369,7 @@
             // gbPretraga
             // 
             this.gbPretraga.BackColor = System.Drawing.Color.Transparent;
+            this.gbPretraga.Controls.Add(this.lblPretraga);
             this.gbPretraga.Controls.Add(this.txtPretraga);
             this.gbPretraga.Location = new System.Drawing.Point(586, 174);
             this.gbPretraga.Name = "gbPretraga";
@@ -379,7 +381,7 @@
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(6, 21);
+            this.txtPretraga.Location = new System.Drawing.Point(18, 52);
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(157, 29);
             this.txtPretraga.TabIndex = 0;
@@ -480,6 +482,15 @@
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
+            // lblPretraga
+            // 
+            this.lblPretraga.AutoSize = true;
+            this.lblPretraga.Location = new System.Drawing.Point(193, 63);
+            this.lblPretraga.Name = "lblPretraga";
+            this.lblPretraga.Size = new System.Drawing.Size(47, 13);
+            this.lblPretraga.TabIndex = 1;
+            this.lblPretraga.Text = "Pretraga";
+            // 
             // AdministracijaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,5 +561,6 @@
         private System.Windows.Forms.Button btnPotvrdi;
         private System.Windows.Forms.Button btnOdustani;
         private System.Windows.Forms.TextBox txtPretraga;
+        private System.Windows.Forms.Label lblPretraga;
     }
 }

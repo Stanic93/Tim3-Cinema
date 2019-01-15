@@ -29,6 +29,7 @@ namespace Cinema.Forme
             btnLogin.Click += Btn_Click;
             btnFilm.Click += Btn_Click;
             lblKorisnickoIme.Text = ime;
+            lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
             OsnovnaPodesavanja();
 
 
@@ -65,6 +66,7 @@ namespace Cinema.Forme
                 property = new FilmPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelFilmSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po nazivu filma";
                 state = StateEnum.Preview;
             }
 
@@ -73,6 +75,7 @@ namespace Cinema.Forme
                 property = new LoginPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelLoginSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
             else if (btnTermini == sender as Button)
@@ -80,6 +83,7 @@ namespace Cinema.Forme
                 property = new TerminPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po vremenu prikazivanja";
                 state = StateEnum.Preview;
             }
             else if (btnProjekcija == sender as Button)
@@ -87,6 +91,7 @@ namespace Cinema.Forme
                 property = new ProjekcijaPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelProjekcijaSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po filmu";
                 state = StateEnum.Preview;
             }
             else if (btnZanr == sender as Button)
@@ -94,6 +99,7 @@ namespace Cinema.Forme
                 property = new ZanrPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZanrSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po nazivu zanra";
                 state = StateEnum.Preview;
             }
 
@@ -102,6 +108,7 @@ namespace Cinema.Forme
                 property = new ZaposleniPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelZaposleniSelected.Visible = true;
+                lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
             UcitajDGV(property);

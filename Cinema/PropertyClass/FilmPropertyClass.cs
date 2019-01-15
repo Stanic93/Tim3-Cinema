@@ -40,7 +40,7 @@ namespace Cinema.PropertyClass
         }
 
         [SqlName("Naziv")]
-        [DisplayName("Naziv")]
+        [DisplayName("Naziv filma")]
         [LookUpValue]
         public string Naziv
         {
