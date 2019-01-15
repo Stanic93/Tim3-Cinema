@@ -21,6 +21,7 @@ namespace Cinema.PropertyClass
         [PrimaryKey]
         [SqlName("RezervacijaID")]
         [DisplayName("Rezervacija ID")]
+        [LookUpKey]
         public short RezervacijaID
         {
             get
@@ -51,6 +52,7 @@ namespace Cinema.PropertyClass
 
         [SqlName("RezervacijaNaIme")]
         [DisplayName("Rezervacija na ime")]
+        [LookUpValue]
         public string RezervacijaNaIme
         {
             get

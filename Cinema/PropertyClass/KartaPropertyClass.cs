@@ -55,8 +55,12 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [SqlName("RezervacijaID")]
+        [DisplayName("Rezervacija ID")]
+        [PrimaryKey]
+        [ForeignKey("dbo.Rezervacija", "RezervacijaID", "Cinema.PropertyClass.RezervacijaPropertyClass")]
+        public short RezervacijaID {get;set;}
 
-     
 
 
         [SqlName("ProjekcijaID")]
@@ -133,6 +137,10 @@ namespace Cinema.PropertyClass
         {
             return @"Insert into dbo.Karta (ProjekcijaID,VrijemeIzdavanja,SjedisteID,RacunID,TerminID) values (@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RacunID,@TerminID)";
         }
+        public string GetInsertRezervacijaQuery()
+        {
+            return @"Insert into dbo.Karta (ProjekcijaID,VrijemeIzdavanja,SjedisteID,RezervacijaID,TerminID) values (@ProjekcijaID,@VrijemeIzdavanja,@SjedisteID,@RezervacijaID,@TerminID)";
+        }
         public string GetUpdateQuery()
         {
 
@@ -198,7 +206,38 @@ namespace Cinema.PropertyClass
             return parameters;
 
         }
-        
+        public List<SqlParameter> GetInsertRezervacijaParameters()
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            {
+                SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = projekcijaID;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@VrijemeIzdavanja", System.Data.SqlDbType.DateTime);
+                parameter.Value = vrijemeIzdavanja;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@SjedisteID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = sjedisteID;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@RezervacijaID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = RezervacijaID;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@TerminID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = terminID;
+                parameters.Add(parameter);
+            }
+            return parameters;
+
+        }
 
         public List<SqlParameter> GetUpdateParameters()
         {

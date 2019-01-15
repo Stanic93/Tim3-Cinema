@@ -11,11 +11,19 @@ namespace Cinema
         Repertoar,
         Karta,
         Racun,
+        Rezervacija,
         Zaposleni,
         Film,
         Termini,
         Projekcija,
         Zanr,
         Login
+    }
+    public enum State
+    {
+        Add,
+        Edit,
+        Delete,
+        Idle
     }
 }

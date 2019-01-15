@@ -30,12 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlagajnaForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTabRezervacija = new System.Windows.Forms.Panel();
+            this.btnTabRezervacija = new System.Windows.Forms.Button();
             this.lblRadnik = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panelTabRacun = new System.Windows.Forms.Panel();
+            this.panelTabKarta = new System.Windows.Forms.Panel();
             this.pBoxAvatar = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelTabRepertoar = new System.Windows.Forms.Panel();
             this.btnRacun = new System.Windows.Forms.Button();
             this.btnKarta = new System.Windows.Forms.Button();
             this.btnRepertor = new System.Windows.Forms.Button();
@@ -50,8 +52,13 @@
             this.dtpDatumProdukcije = new System.Windows.Forms.DateTimePicker();
             this.lblDatumProdukcije = new System.Windows.Forms.Label();
             this.gbPregled = new System.Windows.Forms.GroupBox();
+            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
+            this.tsbtnIzmijein = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.dgvPregled = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
+            this.btnDodajRezervaciju = new System.Windows.Forms.Button();
+            this.btnVratiNaKartu = new System.Windows.Forms.Button();
             this.panelPretraga = new System.Windows.Forms.Panel();
             this.btnPrikaziSve = new System.Windows.Forms.Button();
             this.lblNaziv = new System.Windows.Forms.Label();
@@ -60,13 +67,12 @@
             this.lblNazivFilma = new System.Windows.Forms.Label();
             this.lblZanrFilma = new System.Windows.Forms.Label();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
+            this.btnOdustaniRacun = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
-            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
             this.panelRacun = new System.Windows.Forms.Panel();
+            this.txtZaposleni = new System.Windows.Forms.TextBox();
+            this.lblZaposleni = new System.Windows.Forms.Label();
             this.txtUkupnaVrijednost = new System.Windows.Forms.TextBox();
             this.lblVrijednostRacuna = new System.Windows.Forms.Label();
             this.lblStatusSale = new System.Windows.Forms.Label();
@@ -79,11 +85,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
             this.gbKarta.SuspendLayout();
             this.gbPregled.SuspendLayout();
+            this.toolStripKarta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).BeginInit();
             this.gbPretraga.SuspendLayout();
             this.panelPretraga.SuspendLayout();
             this.gbDetaljno.SuspendLayout();
-            this.toolStripKarta.SuspendLayout();
             this.panelRacun.SuspendLayout();
             this.panelPregledRacuna.SuspendLayout();
             this.SuspendLayout();
@@ -91,12 +97,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.panel1.Controls.Add(this.panelTabRezervacija);
+            this.panel1.Controls.Add(this.btnTabRezervacija);
             this.panel1.Controls.Add(this.lblRadnik);
             this.panel1.Controls.Add(this.lblKorisnickoIme);
-            this.panel1.Controls.Add(this.panel6);
-            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panelTabRacun);
+            this.panel1.Controls.Add(this.panelTabKarta);
             this.panel1.Controls.Add(this.pBoxAvatar);
-            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panelTabRepertoar);
             this.panel1.Controls.Add(this.btnRacun);
             this.panel1.Controls.Add(this.btnKarta);
             this.panel1.Controls.Add(this.btnRepertor);
@@ -105,6 +113,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 659);
             this.panel1.TabIndex = 0;
+            // 
+            // panelTabRezervacija
+            // 
+            this.panelTabRezervacija.BackColor = System.Drawing.Color.Red;
+            this.panelTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.panelTabRezervacija.Location = new System.Drawing.Point(5, 262);
+            this.panelTabRezervacija.Name = "panelTabRezervacija";
+            this.panelTabRezervacija.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRezervacija.TabIndex = 7;
+            this.panelTabRezervacija.Visible = false;
+            // 
+            // btnTabRezervacija
+            // 
+            this.btnTabRezervacija.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTabRezervacija.FlatAppearance.BorderSize = 0;
+            this.btnTabRezervacija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTabRezervacija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTabRezervacija.ForeColor = System.Drawing.Color.White;
+            this.btnTabRezervacija.Image = ((System.Drawing.Image)(resources.GetObject("btnTabRezervacija.Image")));
+            this.btnTabRezervacija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTabRezervacija.Location = new System.Drawing.Point(12, 262);
+            this.btnTabRezervacija.Name = "btnTabRezervacija";
+            this.btnTabRezervacija.Size = new System.Drawing.Size(261, 50);
+            this.btnTabRezervacija.TabIndex = 8;
+            this.btnTabRezervacija.Text = "           REZERVACIJA";
+            this.btnTabRezervacija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTabRezervacija.UseVisualStyleBackColor = true;
             // 
             // lblRadnik
             // 
@@ -124,25 +159,25 @@
             this.lblKorisnickoIme.TabIndex = 5;
             this.lblKorisnickoIme.Text = "Korisnicko ime";
             // 
-            // panel6
+            // panelTabRacun
             // 
-            this.panel6.BackColor = System.Drawing.Color.Red;
-            this.panel6.ForeColor = System.Drawing.Color.White;
-            this.panel6.Location = new System.Drawing.Point(5, 348);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(6, 50);
-            this.panel6.TabIndex = 4;
-            this.panel6.Visible = false;
+            this.panelTabRacun.BackColor = System.Drawing.Color.Red;
+            this.panelTabRacun.ForeColor = System.Drawing.Color.White;
+            this.panelTabRacun.Location = new System.Drawing.Point(5, 392);
+            this.panelTabRacun.Name = "panelTabRacun";
+            this.panelTabRacun.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRacun.TabIndex = 4;
+            this.panelTabRacun.Visible = false;
             // 
-            // panel5
+            // panelTabKarta
             // 
-            this.panel5.BackColor = System.Drawing.Color.Red;
-            this.panel5.ForeColor = System.Drawing.Color.White;
-            this.panel5.Location = new System.Drawing.Point(5, 277);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(6, 50);
-            this.panel5.TabIndex = 3;
-            this.panel5.Visible = false;
+            this.panelTabKarta.BackColor = System.Drawing.Color.Red;
+            this.panelTabKarta.ForeColor = System.Drawing.Color.White;
+            this.panelTabKarta.Location = new System.Drawing.Point(5, 326);
+            this.panelTabKarta.Name = "panelTabKarta";
+            this.panelTabKarta.Size = new System.Drawing.Size(6, 50);
+            this.panelTabKarta.TabIndex = 3;
+            this.panelTabKarta.Visible = false;
             // 
             // pBoxAvatar
             // 
@@ -154,24 +189,25 @@
             this.pBoxAvatar.TabIndex = 4;
             this.pBoxAvatar.TabStop = false;
             // 
-            // panel4
+            // panelTabRepertoar
             // 
-            this.panel4.BackColor = System.Drawing.Color.Red;
-            this.panel4.ForeColor = System.Drawing.Color.White;
-            this.panel4.Location = new System.Drawing.Point(5, 202);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(6, 50);
-            this.panel4.TabIndex = 2;
+            this.panelTabRepertoar.BackColor = System.Drawing.Color.Red;
+            this.panelTabRepertoar.ForeColor = System.Drawing.Color.White;
+            this.panelTabRepertoar.Location = new System.Drawing.Point(5, 202);
+            this.panelTabRepertoar.Name = "panelTabRepertoar";
+            this.panelTabRepertoar.Size = new System.Drawing.Size(6, 50);
+            this.panelTabRepertoar.TabIndex = 2;
             // 
             // btnRacun
             // 
+            this.btnRacun.Cursor = System.Windows.Forms.Cursors.No;
             this.btnRacun.FlatAppearance.BorderSize = 0;
             this.btnRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRacun.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRacun.ForeColor = System.Drawing.Color.White;
             this.btnRacun.Image = ((System.Drawing.Image)(resources.GetObject("btnRacun.Image")));
             this.btnRacun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRacun.Location = new System.Drawing.Point(12, 348);
+            this.btnRacun.Location = new System.Drawing.Point(12, 392);
             this.btnRacun.Name = "btnRacun";
             this.btnRacun.Size = new System.Drawing.Size(261, 50);
             this.btnRacun.TabIndex = 4;
@@ -181,13 +217,14 @@
             // 
             // btnKarta
             // 
+            this.btnKarta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnKarta.FlatAppearance.BorderSize = 0;
             this.btnKarta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKarta.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKarta.ForeColor = System.Drawing.Color.White;
             this.btnKarta.Image = ((System.Drawing.Image)(resources.GetObject("btnKarta.Image")));
             this.btnKarta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKarta.Location = new System.Drawing.Point(12, 277);
+            this.btnKarta.Location = new System.Drawing.Point(12, 326);
             this.btnKarta.Name = "btnKarta";
             this.btnKarta.Size = new System.Drawing.Size(261, 50);
             this.btnKarta.TabIndex = 3;
@@ -197,6 +234,7 @@
             // 
             // btnRepertor
             // 
+            this.btnRepertor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRepertor.FlatAppearance.BorderSize = 0;
             this.btnRepertor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRepertor.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -321,6 +359,7 @@
             // 
             // gbPregled
             // 
+            this.gbPregled.Controls.Add(this.toolStripKarta);
             this.gbPregled.Controls.Add(this.dgvPregled);
             this.gbPregled.Location = new System.Drawing.Point(3, 3);
             this.gbPregled.Name = "gbPregled";
@@ -329,26 +368,60 @@
             this.gbPregled.TabStop = false;
             this.gbPregled.Text = "Pregled";
             // 
+            // toolStripKarta
+            // 
+            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnIzmijein,
+            this.tsbtnObrisi});
+            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
+            this.toolStripKarta.Name = "toolStripKarta";
+            this.toolStripKarta.Size = new System.Drawing.Size(541, 25);
+            this.toolStripKarta.TabIndex = 2;
+            this.toolStripKarta.Text = "toolStrip1";
+            // 
+            // tsbtnIzmijein
+            // 
+            this.tsbtnIzmijein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnIzmijein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmijein.Image")));
+            this.tsbtnIzmijein.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnIzmijein.Name = "tsbtnIzmijein";
+            this.tsbtnIzmijein.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnIzmijein.Text = "Izmijeni";
+            this.tsbtnIzmijein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
+            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnObrisi.Text = "Obrisi";
+            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
+            // 
             // dgvPregled
             // 
             this.dgvPregled.AllowUserToAddRows = false;
             this.dgvPregled.AllowUserToDeleteRows = false;
+            this.dgvPregled.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPregled.BackgroundColor = System.Drawing.Color.White;
             this.dgvPregled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPregled.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvPregled.Location = new System.Drawing.Point(3, 19);
+            this.dgvPregled.Location = new System.Drawing.Point(3, 45);
             this.dgvPregled.Name = "dgvPregled";
             this.dgvPregled.ReadOnly = true;
             this.dgvPregled.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPregled.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvPregled.RowTemplate.DefaultCellStyle.NullValue = "/";
             this.dgvPregled.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.dgvPregled.Size = new System.Drawing.Size(541, 289);
+            this.dgvPregled.Size = new System.Drawing.Size(541, 263);
             this.dgvPregled.TabIndex = 0;
             this.dgvPregled.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregled_CellClick);
             // 
             // gbPretraga
             // 
+            this.gbPretraga.Controls.Add(this.btnDodajRezervaciju);
+            this.gbPretraga.Controls.Add(this.btnVratiNaKartu);
             this.gbPretraga.Controls.Add(this.panelPretraga);
             this.gbPretraga.Controls.Add(this.lblNazivFilma);
             this.gbPretraga.Controls.Add(this.lblZanrFilma);
@@ -358,6 +431,28 @@
             this.gbPretraga.TabIndex = 5;
             this.gbPretraga.TabStop = false;
             this.gbPretraga.Text = "Pretraga";
+            // 
+            // btnDodajRezervaciju
+            // 
+            this.btnDodajRezervaciju.Location = new System.Drawing.Point(406, 48);
+            this.btnDodajRezervaciju.Name = "btnDodajRezervaciju";
+            this.btnDodajRezervaciju.Size = new System.Drawing.Size(139, 38);
+            this.btnDodajRezervaciju.TabIndex = 15;
+            this.btnDodajRezervaciju.Text = "Dodaj rezervaciju";
+            this.btnDodajRezervaciju.UseVisualStyleBackColor = true;
+            this.btnDodajRezervaciju.Visible = false;
+            this.btnDodajRezervaciju.Click += new System.EventHandler(this.btnDodajRezervaciju_Click);
+            // 
+            // btnVratiNaKartu
+            // 
+            this.btnVratiNaKartu.Location = new System.Drawing.Point(406, 8);
+            this.btnVratiNaKartu.Name = "btnVratiNaKartu";
+            this.btnVratiNaKartu.Size = new System.Drawing.Size(139, 38);
+            this.btnVratiNaKartu.TabIndex = 14;
+            this.btnVratiNaKartu.Text = "Dodaj kartu";
+            this.btnVratiNaKartu.UseVisualStyleBackColor = true;
+            this.btnVratiNaKartu.Visible = false;
+            this.btnVratiNaKartu.Click += new System.EventHandler(this.btnVratiNaKartu_Click);
             // 
             // panelPretraga
             // 
@@ -428,8 +523,8 @@
             // 
             // gbDetaljno
             // 
+            this.gbDetaljno.Controls.Add(this.btnOdustaniRacun);
             this.gbDetaljno.Controls.Add(this.btnPotvrdi);
-            this.gbDetaljno.Controls.Add(this.toolStripKarta);
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
             this.gbDetaljno.Location = new System.Drawing.Point(266, 152);
             this.gbDetaljno.Name = "gbDetaljno";
@@ -438,9 +533,20 @@
             this.gbDetaljno.TabStop = false;
             this.gbDetaljno.Text = "Detaljno";
             // 
+            // btnOdustaniRacun
+            // 
+            this.btnOdustaniRacun.Location = new System.Drawing.Point(13, 442);
+            this.btnOdustaniRacun.Name = "btnOdustaniRacun";
+            this.btnOdustaniRacun.Size = new System.Drawing.Size(145, 41);
+            this.btnOdustaniRacun.TabIndex = 9;
+            this.btnOdustaniRacun.Text = "Odustani";
+            this.btnOdustaniRacun.UseVisualStyleBackColor = true;
+            this.btnOdustaniRacun.Visible = false;
+            this.btnOdustaniRacun.Click += new System.EventHandler(this.btnOdustaniRacun_Click);
+            // 
             // btnPotvrdi
             // 
-            this.btnPotvrdi.Location = new System.Drawing.Point(77, 439);
+            this.btnPotvrdi.Location = new System.Drawing.Point(164, 442);
             this.btnPotvrdi.Name = "btnPotvrdi";
             this.btnPotvrdi.Size = new System.Drawing.Size(145, 41);
             this.btnPotvrdi.TabIndex = 8;
@@ -448,55 +554,18 @@
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
-            // toolStripKarta
-            // 
-            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnAdd,
-            this.tsbtnIzmjein,
-            this.tsbtnObrisi});
-            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
-            this.toolStripKarta.Name = "toolStripKarta";
-            this.toolStripKarta.Size = new System.Drawing.Size(309, 25);
-            this.toolStripKarta.TabIndex = 1;
-            this.toolStripKarta.Text = "toolStrip1";
-            // 
-            // tsbtnAdd
-            // 
-            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
-            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAdd.Name = "tsbtnAdd";
-            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnAdd.Text = "Kreiraj kartu";
-            // 
-            // tsbtnIzmjein
-            // 
-            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
-            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
-            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "toolStripButton2";
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnObrisi.Text = "toolStripButton3";
-            // 
             // flpDetaljno
             // 
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDetaljno.Location = new System.Drawing.Point(7, 49);
+            this.flpDetaljno.Location = new System.Drawing.Point(7, 37);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(302, 377);
+            this.flpDetaljno.Size = new System.Drawing.Size(302, 389);
             this.flpDetaljno.TabIndex = 0;
             // 
             // panelRacun
             // 
+            this.panelRacun.Controls.Add(this.txtZaposleni);
+            this.panelRacun.Controls.Add(this.lblZaposleni);
             this.panelRacun.Controls.Add(this.txtUkupnaVrijednost);
             this.panelRacun.Controls.Add(this.lblVrijednostRacuna);
             this.panelRacun.Location = new System.Drawing.Point(6, 320);
@@ -505,9 +574,26 @@
             this.panelRacun.TabIndex = 8;
             this.panelRacun.Visible = false;
             // 
+            // txtZaposleni
+            // 
+            this.txtZaposleni.Location = new System.Drawing.Point(102, 47);
+            this.txtZaposleni.Name = "txtZaposleni";
+            this.txtZaposleni.Size = new System.Drawing.Size(133, 20);
+            this.txtZaposleni.TabIndex = 3;
+            // 
+            // lblZaposleni
+            // 
+            this.lblZaposleni.AutoSize = true;
+            this.lblZaposleni.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblZaposleni.Location = new System.Drawing.Point(3, 49);
+            this.lblZaposleni.Name = "lblZaposleni";
+            this.lblZaposleni.Size = new System.Drawing.Size(59, 15);
+            this.lblZaposleni.TabIndex = 2;
+            this.lblZaposleni.Text = "Zaposleni";
+            // 
             // txtUkupnaVrijednost
             // 
-            this.txtUkupnaVrijednost.Location = new System.Drawing.Point(79, 44);
+            this.txtUkupnaVrijednost.Location = new System.Drawing.Point(126, 9);
             this.txtUkupnaVrijednost.Name = "txtUkupnaVrijednost";
             this.txtUkupnaVrijednost.Size = new System.Drawing.Size(109, 20);
             this.txtUkupnaVrijednost.TabIndex = 1;
@@ -515,12 +601,12 @@
             // lblVrijednostRacuna
             // 
             this.lblVrijednostRacuna.AutoSize = true;
-            this.lblVrijednostRacuna.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblVrijednostRacuna.Location = new System.Drawing.Point(23, 11);
+            this.lblVrijednostRacuna.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblVrijednostRacuna.Location = new System.Drawing.Point(3, 11);
             this.lblVrijednostRacuna.Name = "lblVrijednostRacuna";
-            this.lblVrijednostRacuna.Size = new System.Drawing.Size(212, 19);
+            this.lblVrijednostRacuna.Size = new System.Drawing.Size(88, 15);
             this.lblVrijednostRacuna.TabIndex = 0;
-            this.lblVrijednostRacuna.Text = "Ukupna vrijednost racuna ";
+            this.lblVrijednostRacuna.Text = "Ukupna cijena ";
             // 
             // lblStatusSale
             // 
@@ -590,15 +676,15 @@
             this.gbKarta.ResumeLayout(false);
             this.gbKarta.PerformLayout();
             this.gbPregled.ResumeLayout(false);
+            this.gbPregled.PerformLayout();
+            this.toolStripKarta.ResumeLayout(false);
+            this.toolStripKarta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregled)).EndInit();
             this.gbPretraga.ResumeLayout(false);
             this.gbPretraga.PerformLayout();
             this.panelPretraga.ResumeLayout(false);
             this.panelPretraga.PerformLayout();
             this.gbDetaljno.ResumeLayout(false);
-            this.gbDetaljno.PerformLayout();
-            this.toolStripKarta.ResumeLayout(false);
-            this.toolStripKarta.PerformLayout();
             this.panelRacun.ResumeLayout(false);
             this.panelRacun.PerformLayout();
             this.panelPregledRacuna.ResumeLayout(false);
@@ -618,10 +704,10 @@
         private System.Windows.Forms.Button btnRepertor;
         private System.Windows.Forms.Button btnRacun;
         private System.Windows.Forms.Button btnKarta;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panelTabRepertoar;
         private System.Windows.Forms.PictureBox pBoxAvatar;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelTabRacun;
+        private System.Windows.Forms.Panel panelTabKarta;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.Label lblRadnik;
         private System.Windows.Forms.GroupBox gbKarta;
@@ -641,10 +727,6 @@
         private System.Windows.Forms.TextBox txtUkupnaVrijednost;
         private System.Windows.Forms.Label lblVrijednostRacuna;
         private System.Windows.Forms.Button btnPotvrdi;
-        private System.Windows.Forms.ToolStrip toolStripKarta;
-        private System.Windows.Forms.ToolStripButton tsbtnAdd;
-        private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
-        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.Label lblNazivFilma;
         private System.Windows.Forms.Label lblZanrFilma;
         private System.Windows.Forms.Label lblStatusSale;
@@ -653,5 +735,15 @@
         private System.Windows.Forms.Panel panelPregledRacuna;
         private System.Windows.Forms.Button btnRezervacija;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtZaposleni;
+        private System.Windows.Forms.Label lblZaposleni;
+        private System.Windows.Forms.ToolStrip toolStripKarta;
+        private System.Windows.Forms.ToolStripButton tsbtnIzmijein;
+        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
+        private System.Windows.Forms.Button btnOdustaniRacun;
+        private System.Windows.Forms.Button btnVratiNaKartu;
+        private System.Windows.Forms.Panel panelTabRezervacija;
+        private System.Windows.Forms.Button btnTabRezervacija;
+        private System.Windows.Forms.Button btnDodajRezervaciju;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cinema.PropertyClass;
 
 namespace Cinema.Controle
 {
@@ -35,12 +36,25 @@ namespace Cinema.Controle
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            LookUpForm novaForma = new LookUpForm(myInterface,terminID);
-            novaForma.ShowDialog();
-            Key = novaForma.Key;
-            Value = novaForma.Value;
-            txtValue.Text = Value;
-            txtKeyValue.Text = Key;
+            if (myInterface.GetType() == typeof(SjedistePropertyClass))
+            {
+                LookUpForm novaForma1 = new LookUpForm(myInterface, terminID);
+                novaForma1.ShowDialog();
+                Key = novaForma1.Key;
+                Value = novaForma1.Value;
+                txtValue.Text = Value;
+                txtKeyValue.Text = Key;
+                return;
+            }
+            else
+            {
+                LookUpForm novaForma = new LookUpForm(myInterface);
+                novaForma.ShowDialog();
+                Key = novaForma.Key;
+                Value = novaForma.Value;
+                txtValue.Text = Value;
+                txtKeyValue.Text = Key;
+            }
         }
         public void SetValue(string value)
         {
