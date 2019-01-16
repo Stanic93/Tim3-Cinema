@@ -366,7 +366,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -1063,7 +1063,12 @@ namespace Cinema.Forme
             }
             else
             {
-                MessageBox.Show("otvori formu");
+                RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
+                novaForma.ShowDialog();
+                if(novaForma.DialogResult == DialogResult.OK)
+                {
+                    
+                }
             }
         }
 
