@@ -190,6 +190,7 @@ namespace Cinema.PropertyClass
                 parameter.Value = filmID;
                 parameters.Add(parameter);
             }
+
             return parameters;
         }
 
@@ -225,11 +226,13 @@ namespace Cinema.PropertyClass
                 SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.SmallInt);
                 parameter.Value = godina;
                 parameters.Add(parameter);
-            } {
+            }
+            {
                 SqlParameter parameter = new SqlParameter("@ZanrID", System.Data.SqlDbType.SmallInt);
                 parameter.Value = zanrID;
                 parameters.Add(parameter);
             }
+            
             return parameters;
         }
 
@@ -269,6 +272,11 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@Godina", System.Data.SqlDbType.SmallInt);
                 parameter.Value = godina;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@ZanrID", System.Data.SqlDbType.SmallInt);
+                parameter.Value = zanrID;
                 parameters.Add(parameter);
             }
             return parameters;

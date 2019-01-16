@@ -68,5 +68,10 @@ namespace Cinema.Controle
         {
             return txtKeyValue.Text;
         }
+        public void Zabrani()
+        {
+            txtKeyValue.ReadOnly=true;
+            txtValue.ReadOnly = true;
+        }
     }
 }

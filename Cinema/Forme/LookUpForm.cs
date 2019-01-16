@@ -47,8 +47,7 @@ namespace Cinema
            
             dgvPregledLookUp.DataSource = dt;
             //izvuci display name
-            var type = myProperty.GetType();
-            var properties = type.GetProperties();
+            var properties = myProperty.GetType().GetProperties();
 
 
             //promjeniti nazive kolona
