@@ -67,6 +67,7 @@ namespace Cinema.Forme
                 property = new FilmPropertyClass();
                 iskljuciPaneleNaDugmadima();
                 panelFilmSelected.Visible = true;
+                txtPretraga.Enabled = true;
                 txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po nazivu filma";
                 state = StateEnum.Preview;
@@ -78,6 +79,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelLoginSelected.Visible = true;
                 txtPretraga.Text = "";
+                txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
@@ -87,6 +89,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelTerminiSelected.Visible = true;
                 txtPretraga.Text = "";
+                txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po vremenu prikazivanja u formatu(00:00:00)";
                 state = StateEnum.Preview;
             }
@@ -96,6 +99,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelProjekcijaSelected.Visible = true;
                 txtPretraga.Text = "";
+                txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po filmu";
                 state = StateEnum.Preview;
             }
@@ -105,6 +109,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelZanrSelected.Visible = true;
                 txtPretraga.Text = "";
+                txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po zanru";
                 state = StateEnum.Preview;
             }
@@ -115,6 +120,7 @@ namespace Cinema.Forme
                 iskljuciPaneleNaDugmadima();
                 panelZaposleniSelected.Visible = true;
                 txtPretraga.Text = "";
+                txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
             }
@@ -345,7 +351,6 @@ namespace Cinema.Forme
         public void ocistiKontrole()
         {
             flpDetaljno.Controls.Clear();
-            txtPretraga.Text = "";
         }
         private void UcitajDGV(PropertyInterface property)
         {
@@ -384,6 +389,7 @@ namespace Cinema.Forme
             txtPretraga.Enabled = false;
             panelDugmici.Visible = true;
             btnPotvrdi.Text = "Izmjeni";
+            txtPretraga.Text = "";
         }
 
         //klik na toolstrip ikonicu koja omogucava dodavanje novog reda  u trenutno odabranu tabelu
@@ -394,6 +400,7 @@ namespace Cinema.Forme
             txtPretraga.Enabled = false;
             panelDugmici.Visible = true;
             btnPotvrdi.Text = "Dodaj";
+            txtPretraga.Text = "";
         }
         // unos promjena u bazu, bilo izmjena na nekom od redu ili dodavanje novog u tabelu
         private void btnPotvrdi_Click(object sender, EventArgs e)
