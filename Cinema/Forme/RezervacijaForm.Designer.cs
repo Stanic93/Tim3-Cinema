@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RezervacijaForm));
             this.tabControlRezervacija = new System.Windows.Forms.TabControl();
             this.tabPageRezervacija = new System.Windows.Forms.TabPage();
+            this.lblStatusPrikaza = new System.Windows.Forms.Label();
             this.dgvPregledRezervacija = new System.Windows.Forms.DataGridView();
             this.tabPageRezervacijaDetaljno = new System.Windows.Forms.TabPage();
             this.dgvDetaljnoRezervacija = new System.Windows.Forms.DataGridView();
@@ -41,6 +42,7 @@
             this.lblPretraga = new System.Windows.Forms.Label();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.panelPretraga = new System.Windows.Forms.Panel();
+            this.btnPrikaziSve = new System.Windows.Forms.Button();
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.panelButton = new System.Windows.Forms.Panel();
             this.btnPrebaciNaRacun = new System.Windows.Forms.Button();
@@ -68,11 +70,9 @@
             this.lblTerminID = new System.Windows.Forms.Label();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
-            this.lblStatusPrikaza = new System.Windows.Forms.Label();
             this.panelNazivRezervacije = new System.Windows.Forms.Panel();
-            this.lblRezervacija = new System.Windows.Forms.Label();
             this.lblNazivRezervacije = new System.Windows.Forms.Label();
-            this.btnPrikaziSve = new System.Windows.Forms.Button();
+            this.lblRezervacija = new System.Windows.Forms.Label();
             this.tabControlRezervacija.SuspendLayout();
             this.tabPageRezervacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregledRezervacija)).BeginInit();
@@ -108,6 +108,15 @@
             this.tabPageRezervacija.Text = "Rezervacije";
             this.tabPageRezervacija.UseVisualStyleBackColor = true;
             // 
+            // lblStatusPrikaza
+            // 
+            this.lblStatusPrikaza.AutoSize = true;
+            this.lblStatusPrikaza.Location = new System.Drawing.Point(14, 76);
+            this.lblStatusPrikaza.Name = "lblStatusPrikaza";
+            this.lblStatusPrikaza.Size = new System.Drawing.Size(255, 13);
+            this.lblStatusPrikaza.TabIndex = 8;
+            this.lblStatusPrikaza.Text = "Nema rezervacija za prikaz na selektovanom terminu";
+            // 
             // dgvPregledRezervacija
             // 
             this.dgvPregledRezervacija.AllowUserToAddRows = false;
@@ -120,7 +129,6 @@
             this.dgvPregledRezervacija.ReadOnly = true;
             this.dgvPregledRezervacija.Size = new System.Drawing.Size(646, 222);
             this.dgvPregledRezervacija.TabIndex = 0;
-            this.dgvPregledRezervacija.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregledRezervacija_CellClick);
             this.dgvPregledRezervacija.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregledRezervacija_CellDoubleClick);
             // 
             // tabPageRezervacijaDetaljno
@@ -168,6 +176,7 @@
             this.tsbtnDodaj.Name = "tsbtnDodaj";
             this.tsbtnDodaj.Size = new System.Drawing.Size(23, 22);
             this.tsbtnDodaj.Text = "Dodaj";
+            this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
             // 
             // tsbtnIzmijeni
             // 
@@ -177,6 +186,7 @@
             this.tsbtnIzmijeni.Name = "tsbtnIzmijeni";
             this.tsbtnIzmijeni.Size = new System.Drawing.Size(23, 22);
             this.tsbtnIzmijeni.Text = "Izmijeni";
+            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmijeni_Click);
             // 
             // tsbtnObrisi
             // 
@@ -186,6 +196,7 @@
             this.tsbtnObrisi.Name = "tsbtnObrisi";
             this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
             this.tsbtnObrisi.Text = "Obrisi";
+            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
             // 
             // lblPretraga
             // 
@@ -214,6 +225,16 @@
             this.panelPretraga.Size = new System.Drawing.Size(171, 120);
             this.panelPretraga.TabIndex = 3;
             // 
+            // btnPrikaziSve
+            // 
+            this.btnPrikaziSve.Location = new System.Drawing.Point(6, 92);
+            this.btnPrikaziSve.Name = "btnPrikaziSve";
+            this.btnPrikaziSve.Size = new System.Drawing.Size(162, 23);
+            this.btnPrikaziSve.TabIndex = 4;
+            this.btnPrikaziSve.Text = "Prikazi sve";
+            this.btnPrikaziSve.UseVisualStyleBackColor = true;
+            this.btnPrikaziSve.Click += new System.EventHandler(this.btnPrikaziSve_Click);
+            // 
             // btnPretrazi
             // 
             this.btnPretrazi.Location = new System.Drawing.Point(6, 63);
@@ -241,6 +262,7 @@
             this.btnPrebaciNaRacun.TabIndex = 1;
             this.btnPrebaciNaRacun.Text = "Prebaci na racun";
             this.btnPrebaciNaRacun.UseVisualStyleBackColor = true;
+            this.btnPrebaciNaRacun.Click += new System.EventHandler(this.btnPrebaciNaRacun_Click);
             // 
             // btnObrisi
             // 
@@ -250,6 +272,7 @@
             this.btnObrisi.TabIndex = 0;
             this.btnObrisi.Text = "Obrisi";
             this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // lblNazivFilma
             // 
@@ -300,6 +323,7 @@
             // 
             this.txtVrijemeIzdavanja.Location = new System.Drawing.Point(416, 13);
             this.txtVrijemeIzdavanja.Name = "txtVrijemeIzdavanja";
+            this.txtVrijemeIzdavanja.ReadOnly = true;
             this.txtVrijemeIzdavanja.Size = new System.Drawing.Size(201, 20);
             this.txtVrijemeIzdavanja.TabIndex = 19;
             // 
@@ -316,6 +340,7 @@
             // 
             this.txtSjedisteValue.Location = new System.Drawing.Point(500, 41);
             this.txtSjedisteValue.Name = "txtSjedisteValue";
+            this.txtSjedisteValue.ReadOnly = true;
             this.txtSjedisteValue.Size = new System.Drawing.Size(117, 20);
             this.txtSjedisteValue.TabIndex = 17;
             // 
@@ -327,11 +352,13 @@
             this.btnFindSjediste.TabIndex = 16;
             this.btnFindSjediste.Text = "...";
             this.btnFindSjediste.UseVisualStyleBackColor = true;
+            this.btnFindSjediste.Click += new System.EventHandler(this.btnFindSjediste_Click);
             // 
             // txtSjedisteKey
             // 
             this.txtSjedisteKey.Location = new System.Drawing.Point(415, 40);
             this.txtSjedisteKey.Name = "txtSjedisteKey";
+            this.txtSjedisteKey.ReadOnly = true;
             this.txtSjedisteKey.Size = new System.Drawing.Size(40, 20);
             this.txtSjedisteKey.TabIndex = 15;
             // 
@@ -348,11 +375,13 @@
             // 
             this.txtValueRezervacija.Location = new System.Drawing.Point(181, 68);
             this.txtValueRezervacija.Name = "txtValueRezervacija";
+            this.txtValueRezervacija.ReadOnly = true;
             this.txtValueRezervacija.Size = new System.Drawing.Size(117, 20);
             this.txtValueRezervacija.TabIndex = 13;
             // 
             // btnFindRezervacija
             // 
+            this.btnFindRezervacija.Enabled = false;
             this.btnFindRezervacija.Location = new System.Drawing.Point(140, 67);
             this.btnFindRezervacija.Name = "btnFindRezervacija";
             this.btnFindRezervacija.Size = new System.Drawing.Size(38, 21);
@@ -364,6 +393,7 @@
             // 
             this.txtKeyRezervacija.Location = new System.Drawing.Point(96, 67);
             this.txtKeyRezervacija.Name = "txtKeyRezervacija";
+            this.txtKeyRezervacija.ReadOnly = true;
             this.txtKeyRezervacija.Size = new System.Drawing.Size(40, 20);
             this.txtKeyRezervacija.TabIndex = 11;
             // 
@@ -380,11 +410,13 @@
             // 
             this.txtValueProjekcija.Location = new System.Drawing.Point(181, 41);
             this.txtValueProjekcija.Name = "txtValueProjekcija";
+            this.txtValueProjekcija.ReadOnly = true;
             this.txtValueProjekcija.Size = new System.Drawing.Size(117, 20);
             this.txtValueProjekcija.TabIndex = 9;
             // 
             // btnFindProjekcija
             // 
+            this.btnFindProjekcija.Enabled = false;
             this.btnFindProjekcija.Location = new System.Drawing.Point(140, 40);
             this.btnFindProjekcija.Name = "btnFindProjekcija";
             this.btnFindProjekcija.Size = new System.Drawing.Size(38, 21);
@@ -396,6 +428,7 @@
             // 
             this.txtKeyProjekcija.Location = new System.Drawing.Point(96, 40);
             this.txtKeyProjekcija.Name = "txtKeyProjekcija";
+            this.txtKeyProjekcija.ReadOnly = true;
             this.txtKeyProjekcija.Size = new System.Drawing.Size(40, 20);
             this.txtKeyProjekcija.TabIndex = 7;
             // 
@@ -412,11 +445,13 @@
             // 
             this.txtValueTermin.Location = new System.Drawing.Point(181, 13);
             this.txtValueTermin.Name = "txtValueTermin";
+            this.txtValueTermin.ReadOnly = true;
             this.txtValueTermin.Size = new System.Drawing.Size(117, 20);
             this.txtValueTermin.TabIndex = 5;
             // 
             // btnFind
             // 
+            this.btnFind.Enabled = false;
             this.btnFind.Location = new System.Drawing.Point(140, 12);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(38, 21);
@@ -428,6 +463,7 @@
             // 
             this.txtKeyTermin.Location = new System.Drawing.Point(96, 12);
             this.txtKeyTermin.Name = "txtKeyTermin";
+            this.txtKeyTermin.ReadOnly = true;
             this.txtKeyTermin.Size = new System.Drawing.Size(40, 20);
             this.txtKeyTermin.TabIndex = 3;
             // 
@@ -448,6 +484,7 @@
             this.btnOdustani.TabIndex = 1;
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
+            this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
             // btnPotvrdi
             // 
@@ -457,15 +494,7 @@
             this.btnPotvrdi.TabIndex = 0;
             this.btnPotvrdi.Text = "Potvrdi";
             this.btnPotvrdi.UseVisualStyleBackColor = true;
-            // 
-            // lblStatusPrikaza
-            // 
-            this.lblStatusPrikaza.AutoSize = true;
-            this.lblStatusPrikaza.Location = new System.Drawing.Point(14, 76);
-            this.lblStatusPrikaza.Name = "lblStatusPrikaza";
-            this.lblStatusPrikaza.Size = new System.Drawing.Size(255, 13);
-            this.lblStatusPrikaza.TabIndex = 8;
-            this.lblStatusPrikaza.Text = "Nema rezervacija za prikaz na selektovanom terminu";
+            this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
             // panelNazivRezervacije
             // 
@@ -477,15 +506,6 @@
             this.panelNazivRezervacije.TabIndex = 9;
             this.panelNazivRezervacije.Visible = false;
             // 
-            // lblRezervacija
-            // 
-            this.lblRezervacija.AutoSize = true;
-            this.lblRezervacija.Location = new System.Drawing.Point(10, 9);
-            this.lblRezervacija.Name = "lblRezervacija";
-            this.lblRezervacija.Size = new System.Drawing.Size(66, 13);
-            this.lblRezervacija.TabIndex = 10;
-            this.lblRezervacija.Text = "Rezervacija:";
-            // 
             // lblNazivRezervacije
             // 
             this.lblNazivRezervacije.AutoSize = true;
@@ -495,15 +515,14 @@
             this.lblNazivRezervacije.TabIndex = 10;
             this.lblNazivRezervacije.Text = "label1";
             // 
-            // btnPrikaziSve
+            // lblRezervacija
             // 
-            this.btnPrikaziSve.Location = new System.Drawing.Point(6, 92);
-            this.btnPrikaziSve.Name = "btnPrikaziSve";
-            this.btnPrikaziSve.Size = new System.Drawing.Size(162, 23);
-            this.btnPrikaziSve.TabIndex = 4;
-            this.btnPrikaziSve.Text = "Prikazi sve";
-            this.btnPrikaziSve.UseVisualStyleBackColor = true;
-            this.btnPrikaziSve.Click += new System.EventHandler(this.btnPrikaziSve_Click);
+            this.lblRezervacija.AutoSize = true;
+            this.lblRezervacija.Location = new System.Drawing.Point(10, 9);
+            this.lblRezervacija.Name = "lblRezervacija";
+            this.lblRezervacija.Size = new System.Drawing.Size(66, 13);
+            this.lblRezervacija.TabIndex = 10;
+            this.lblRezervacija.Text = "Rezervacija:";
             // 
             // RezervacijaForm
             // 

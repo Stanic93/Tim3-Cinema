@@ -563,7 +563,6 @@ namespace Cinema.Forme
             {
 
                 racunID = row.Field<short>("RacunID");
-
             }
             reader1.Close();
         }
