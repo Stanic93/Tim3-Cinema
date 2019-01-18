@@ -42,7 +42,7 @@ namespace Cinema.Forme
         public void OsnovnaPodesavanja()
         {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            btnVratiNaKartu.Text = "Dodaj kartu";
+            state = State.Idle;
             dtpDatumProdukcije.Visible = true;
             lblDatumProdukcije.Visible = true;
             btnRezervacija.Enabled = false;
@@ -422,7 +422,6 @@ namespace Cinema.Forme
                 IzracunajSumuRacuna();
                 popuniControle(property);
                 setujKontroleKarta();
-                btnVratiNaKartu.Visible = true;
                 gbDetaljno.Enabled = false;
 
 
@@ -513,6 +512,7 @@ namespace Cinema.Forme
             }
             else if (btnNovaKarta.Text == "Stampaj")
             {
+                state = State.Idle;
                 OsnovnaPodesavanja();
             }else if(btnNovaKarta.Text == "Potvrdi rezervaciju")
             {
@@ -578,6 +578,8 @@ namespace Cinema.Forme
                     lblStatusSale.Visible = true;
                     lblStatusSale.Text = "Nema termina za prikazivanje";
                     lblStatusSale.ForeColor = Color.Red;
+                    btnVratiNaKartu.Visible = false;
+                    btnDodajRezervaciju.Visible = false;
                 }
                 return;
             }
@@ -594,6 +596,8 @@ namespace Cinema.Forme
                 if (activeTab != ActiveTab.Rezervacija)
                 {
                     btnNovaKarta.Enabled = true;
+                    btnDodajRezervaciju.Visible = true;
+                    btnVratiNaKartu.Visible = true;
                 }
                 lblStatusSale.Visible = false;
                 lblStatusSale.Text = "";
@@ -1053,14 +1057,7 @@ namespace Cinema.Forme
 
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
-            if (btnVratiNaKartu.Text == "Dodaj kartu")
-            {
-                btnNovaKarta.Text = "Karta";
-                panelRacun.Visible = false;
-                state = State.Add;
-                btnNovaKarta_Click(sender, e);
-            }
-            else
+            if(btnVratiNaKartu.Text == "Pregled rezervacija")
             {
                 RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
                 novaForma.ShowDialog();
@@ -1322,6 +1319,14 @@ namespace Cinema.Forme
             }
             DataRow dr = dt.Rows[dt.Rows.Count - 1];
             rezervacijaID = Convert.ToString(dr.Field<short>(0));
+        }
+
+        private void tsbtnDodaj_Click(object sender, EventArgs e)
+        {
+            btnNovaKarta.Text = "Karta";
+            panelRacun.Visible = false;
+            state = State.Add;
+            btnNovaKarta_Click(sender, e);
         }
     }
 }
