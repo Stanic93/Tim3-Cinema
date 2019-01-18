@@ -36,6 +36,11 @@ namespace Cinema.Forme
             FullName = imeIprezime;
             lblKorisnickoIme.Text = FullName;
             lblRadnik.Visible = false;
+            dgvPregled.MultiSelect = false;
+            dgvPregled.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvPregled.RowHeadersVisible = false;
+            dgvPregled.AllowUserToResizeColumns = false;
+            dgvPregled.AllowUserToResizeRows = false;
 
         }
         // osnovna podesavanja u rezimu repertoar
@@ -53,8 +58,7 @@ namespace Cinema.Forme
             panelTabRepertoar.Visible = true;
             panelTabKarta.Visible = false;
             lblStatusSale.Visible = false;
-            gbDetaljno.Enabled = true;
-            dgvPregled.MultiSelect = false;
+            gbDetaljno.Enabled = true;            
             btnVratiNaKartu.Visible = false;
             btnOdustaniRacun.Visible = false;
             btnRepertor.Enabled = true;
@@ -1352,6 +1356,8 @@ namespace Cinema.Forme
             state = State.Add;
             btnNovaKarta_Click(sender, e);
         }
+
+        
     }
 }
 
