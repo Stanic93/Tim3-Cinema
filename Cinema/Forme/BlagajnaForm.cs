@@ -621,7 +621,7 @@ namespace Cinema.Forme
 
                         ulup.Enabled = false;
                         ulup.SetKey(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
-                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
+                        ulup.SetValue(lblNazivFilma.Text);
                     }
                     if (ulup.Name == "TerminID")
                     {
@@ -774,6 +774,22 @@ namespace Cinema.Forme
         //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
+            foreach(var item in flpDetaljno.Controls)
+            {
+                if(item.GetType() == typeof(UserLookUpControl))
+                {
+                    UserLookUpControl ulup = item as UserLookUpControl;
+                    if(ulup.Name == "SjedisteID")
+                    {
+                        string key = ulup.getKey();
+                        if(key == "" || key == " ")
+                        {
+                            MessageBox.Show("Popunite broj sjedista");
+                            return;
+                        }
+                    }
+                }
+            }
             if (activeTab == ActiveTab.Karta)
             {
                 populateKartaInterface();
