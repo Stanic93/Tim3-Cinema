@@ -581,6 +581,10 @@ namespace Cinema.Forme
                     btnVratiNaKartu.Visible = false;
                     btnDodajRezervaciju.Visible = false;
                 }
+                else
+                {
+                    btnNovaKarta.Enabled = false;
+                }
                 return;
             }
             else
@@ -596,6 +600,10 @@ namespace Cinema.Forme
                 if (activeTab != ActiveTab.Rezervacija)
                 {
                     btnNovaKarta.Enabled = true;
+
+                }
+                else
+                {
                     btnDodajRezervaciju.Visible = true;
                     btnVratiNaKartu.Visible = true;
                 }
