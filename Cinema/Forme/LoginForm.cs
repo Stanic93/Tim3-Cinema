@@ -87,11 +87,15 @@ namespace Cinema.Forme
             {
                 BlagajnaForm novaForma = new BlagajnaForm(zaposleniID, ImeIPrezime);
                 novaForma.ShowDialog();
+                txtKorisnickoIme.Text = "";
+                txtLozinka.Text = "";
             }
             else if (jobtitle == "Admin")
             {
                 AdministracijaForm novaForma = new AdministracijaForm(ImeIPrezime);
                 novaForma.ShowDialog();
+                txtKorisnickoIme.Text = "";
+                txtLozinka.Text = "";
             }
         }
 

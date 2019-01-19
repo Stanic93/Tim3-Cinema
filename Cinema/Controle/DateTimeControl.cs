@@ -15,6 +15,8 @@ namespace Cinema.Controle
         public DateTimeControl()
         {
             InitializeComponent();
+            lblNaziv.ForeColor = Color.White;
+            lblNaziv.BackColor = Color.Transparent;
         }
         public void SetLabel(string value)
         {
@@ -28,7 +30,7 @@ namespace Cinema.Controle
         {
             return dtpVrijednost.Text;
         }
-        public void ReadOnly()
+        public void Zabrani()
         {
             dtpVrijednost.Enabled = false;
         }

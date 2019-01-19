@@ -15,6 +15,8 @@ namespace Cinema.Controle
         public NumericUpDownControl()
         {
             InitializeComponent();
+            lblNaziv.ForeColor = Color.White;
+            lblNaziv.BackColor = Color.Transparent;
         }
         public void SetLabel(string value)
         {
@@ -30,6 +32,10 @@ namespace Cinema.Controle
         public int GetValue()
         {
             return Convert.ToInt16( numUpDown.Value);
+        }
+        public void Zabrani()
+        {
+            numUpDown.ReadOnly = true;
         }
     }
 }

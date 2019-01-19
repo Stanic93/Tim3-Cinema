@@ -31,22 +31,39 @@ namespace Cinema.Forme
             btnFilm.Click += Btn_Click;
             lblKorisnickoIme.Text = ime;
             lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
+            btnZaposleni.Click += BtnOboji_Click;
+            btnFilm.Click += BtnOboji_Click;
+            btnTermini.Click += BtnOboji_Click; 
+            btnProjekcija.Click += BtnOboji_Click; 
+            btnZanr.Click += BtnOboji_Click;
+            btnLogin.Click += BtnOboji_Click;
+            lblSat.Text = DateTime.Now.ToShortTimeString();
             OsnovnaPodesavanja();
-
 
 
             #region PocetnoUcitavanjaDataGrid
             UcitajDGV(property);
             #endregion
         }
-        public void iskljuciPaneleNaDugmadima()
+
+        private void BtnOboji_Click(object sender, EventArgs e)
         {
-            panelZaposleniSelected.Visible = false;
-            panelFilmSelected.Visible = false;
-            panelProjekcijaSelected.Visible = false;
-            panelZanrSelected.Visible = false;
-            panelLoginSelected.Visible = false;
-            panelTerminiSelected.Visible = false;
+            Button btn = sender as Button;
+            for (int i = 4; i < panelMeni.Controls.Count; i++)
+            {
+                if (panelMeni.Controls[i].GetType() == typeof(Button))
+                {
+                    Button pom = panelMeni.Controls[i] as Button;
+                    pom.FlatAppearance.BorderColor = Color.FromArgb(52, 52, 52);
+                }
+                else
+                {
+                    continue;
+                }
+
+            };
+            btn.FlatAppearance.BorderColor = Color.Orange;
+            btn.FlatAppearance.BorderSize = 1;
         }
 
         public void OsnovnaPodesavanja()
@@ -55,6 +72,11 @@ namespace Cinema.Forme
             dgvPrikaz.MultiSelect = false;
             dgvPrikaz.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPrikaz.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvPrikaz.DefaultCellStyle.SelectionBackColor = Color.Orange;
+            dgvPrikaz.RowHeadersVisible = false;
+            dgvPrikaz.AllowUserToResizeColumns = false;
+            dgvPrikaz.AllowUserToResizeRows = false;
+
             postaviControle(property);
 
 
@@ -65,8 +87,6 @@ namespace Cinema.Forme
             if (btnFilm == sender as Button)
             {
                 property = new FilmPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelFilmSelected.Visible = true;
                 txtPretraga.Enabled = true;
                 txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po nazivu filma";
@@ -76,8 +96,6 @@ namespace Cinema.Forme
             else if (btnLogin == sender as Button)
             {
                 property = new LoginPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelLoginSelected.Visible = true;
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
@@ -86,8 +104,6 @@ namespace Cinema.Forme
             else if (btnTermini == sender as Button)
             {
                 property = new TerminPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelTerminiSelected.Visible = true;
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po vremenu prikazivanja u formatu(00:00:00)";
@@ -96,8 +112,6 @@ namespace Cinema.Forme
             else if (btnProjekcija == sender as Button)
             {
                 property = new ProjekcijaPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelProjekcijaSelected.Visible = true;
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po filmu";
@@ -106,8 +120,6 @@ namespace Cinema.Forme
             else if (btnZanr == sender as Button)
             {
                 property = new ZanrPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelZanrSelected.Visible = true;
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po zanru";
@@ -117,8 +129,6 @@ namespace Cinema.Forme
             else if (btnZaposleni == sender as Button)
             {
                 property = new ZaposleniPropertyClass();
-                iskljuciPaneleNaDugmadima();
-                panelZaposleniSelected.Visible = true;
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
@@ -158,7 +168,7 @@ namespace Cinema.Forme
                     DateTimeControl dc = new DateTimeControl();
                     dc.Name = item.Name;
                     dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                    dc.SetVrijednost("01.01.2018");
+                    dc.SetVrijednost(DateTime.Now.ToShortDateString());
                     flpDetaljno.Controls.Add(dc);
 
                 }
@@ -191,7 +201,6 @@ namespace Cinema.Forme
                 }
 
             }
-            flpDetaljno.Enabled = true;
         }
 
         //popunjava property podatcima iz selektovanog reda u  DataGridView
@@ -255,7 +264,6 @@ namespace Cinema.Forme
                             {
                                 PropertyInterface foreignKeyInterface1 = new FilmPropertyClass();
                                 DataTable dt1 = new DataTable();
-                                // MessageBox.Show("tap");
                                 SqlDataReader reader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text,
                                     foreignKeyInterface1.GetLookUpQuery(dt.Rows[0][1].ToString()));
 
@@ -273,6 +281,8 @@ namespace Cinema.Forme
 
                             ul.SetValue(colValue);
                             flpDetaljno.Controls.Add(ul);
+                            if (state == StateEnum.Preview)
+                                ul.Zabrani();
                         }
                         else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                         {
@@ -281,6 +291,8 @@ namespace Cinema.Forme
                             rc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                             rc.SetVrijednost(item.GetValue(property).ToString());
                             flpDetaljno.Controls.Add(rc);
+                            if (state == StateEnum.Preview)
+                                rc.Zabrani();
 
                         }
                         else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
@@ -290,6 +302,8 @@ namespace Cinema.Forme
                             dc.Name = item.Name;
                             dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                             flpDetaljno.Controls.Add(dc);
+                            if (state == StateEnum.Preview)
+                                dc.Zabrani();
                         }
                         else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
                         {
@@ -298,6 +312,8 @@ namespace Cinema.Forme
                             cb.Name = item.Name;
                             cb.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                             flpDetaljno.Controls.Add(cb);
+                            if (state == StateEnum.Preview)
+                                cb.Zabrani();
                         }
                         else if (item.GetCustomAttribute<NumericAttribute>() != null)
                         {
@@ -306,6 +322,8 @@ namespace Cinema.Forme
                             num.Name = item.Name;
                             num.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                             flpDetaljno.Controls.Add(num);
+                            if (state == StateEnum.Preview)
+                                num.Zabrani();
                         }
                         else 
                         {
@@ -321,11 +339,13 @@ namespace Cinema.Forme
                                 uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                                 uc.SetTextBox(item.GetValue(property).ToString());
 
-                                if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
+                                if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null )
                                 {
-                                    uc.Enabled = false;
+                                    uc.Zabrani();
                                 }
                                 flpDetaljno.Controls.Add(uc);
+                                if (state == StateEnum.Preview)
+                                    uc.Zabrani();
                             }
                         }
 
@@ -335,11 +355,10 @@ namespace Cinema.Forme
 
                     if (state == StateEnum.Preview)
                     {
-                        flpDetaljno.Enabled = false;
                         panelDugmici.Visible = false;
                     }
-                    else
-                        flpDetaljno.Enabled = true;
+                    
+                
                 }
             }
             catch(Exception e)
@@ -369,6 +388,8 @@ namespace Cinema.Forme
                 item.HeaderText = prop.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv ==
                 item.HeaderText).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
+
+            
         }
         
         
@@ -381,7 +402,7 @@ namespace Cinema.Forme
             }
         }
         //klik na toolstrip ikonicu koja omogucava izmjenu nad trenutno selektovanim redom u data grid view-u
-        private void tsbtnIzmjein_Click(object sender, EventArgs e)
+        private void tsbtnIzmijeni_Click(object sender, EventArgs e)
         {
             state = StateEnum.Update;
             PopulatePropertyInterface(property);
@@ -437,8 +458,17 @@ namespace Cinema.Forme
                     else 
                     {
                         string value = input.GetTextBox();
-                        PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                        if (value.Trim() == "")
+                        {
+                            MessageBox.Show("Popunite polje ! ");
+                            input.ForeColor = Color.Red;
+                            return;
+                        }
+                        else
+                        {
+                            PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                        }
                     }
                 }
 
@@ -471,7 +501,6 @@ namespace Cinema.Forme
                     int provjera = 0;
                     if (value.Trim() == "" || int.TryParse(value, out provjera) == false)
                     {
-                        MessageBox.Show(value);
                         MessageBox.Show("Unesite broj u polje " + input.Name);
                         input.ForeColor = Color.Red;
                         return;
@@ -511,7 +540,7 @@ namespace Cinema.Forme
                 UcitajDGV(property);
                 state = StateEnum.Preview;
                 txtPretraga.Enabled = true;
-                flpDetaljno.Enabled = false;
+                
                 panelDugmici.Visible = false;
             
         }
@@ -546,7 +575,7 @@ namespace Cinema.Forme
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-            flpDetaljno.Enabled = false;
+            
             panelDugmici.Visible = false;
             state = StateEnum.Preview;
             txtPretraga.Enabled = true;
@@ -562,6 +591,108 @@ namespace Cinema.Forme
             dt.Load(reader);
             reader.Close();
             dgvPrikaz.DataSource = dt;
+        }
+
+        private void panelZaposleniSelected_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnZaposleni_MouseEnter(object sender, EventArgs e)
+        {
+            
+                btnZaposleni.BackColor = Color.FromArgb(255, 128, 0);
+                pbZaposleni.BackColor = Color.FromArgb(255, 128, 0);
+
+        }
+
+        private void btnZaposleni_MouseLeave(object sender, EventArgs e)
+        {
+            btnZaposleni.BackColor = Color.FromArgb(52, 52, 52);
+            pbZaposleni.BackColor = Color.Transparent;
+        }
+
+        private void btnFilm_MouseEnter(object sender, EventArgs e)
+        {
+            btnFilm.BackColor = Color.FromArgb(255, 128, 0);
+            pbFilm.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnFilm_MouseLeave(object sender, EventArgs e)
+        {
+            btnFilm.BackColor = Color.FromArgb(52, 52, 52);
+            pbFilm.BackColor = Color.Transparent;
+        }
+
+        private void btnTermini_MouseEnter(object sender, EventArgs e)
+        {
+            btnTermini.BackColor = Color.FromArgb(255, 128, 0);
+            pbTermini.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnTermini_MouseLeave(object sender, EventArgs e)
+        {
+            btnTermini.BackColor = Color.FromArgb(52, 52, 52);
+            pbTermini.BackColor = Color.Transparent;
+        }
+
+        private void btnProjekcija_MouseEnter(object sender, EventArgs e)
+        {
+            btnProjekcija.BackColor = Color.FromArgb(255, 128, 0);
+            pbProjekcija.BackColor = Color.FromArgb(255, 128, 0);
+
+        }
+
+        private void btnProjekcija_MouseLeave(object sender, EventArgs e)
+        {
+            btnProjekcija.BackColor = Color.FromArgb(52, 52, 52);
+            pbProjekcija.BackColor = Color.Transparent;
+        }
+
+        private void btnZanr_MouseEnter(object sender, EventArgs e)
+        {
+            btnZanr.BackColor = Color.FromArgb(255, 128, 0);
+            pbZanr.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnZanr_MouseLeave(object sender, EventArgs e)
+        {
+            btnZanr.BackColor = Color.FromArgb(52, 52, 52);
+            pbZanr.BackColor = Color.Transparent;
+        }
+
+        private void btnLogin_MouseEnter(object sender, EventArgs e)
+        {
+            btnLogin.BackColor = Color.FromArgb(255, 128, 0);
+            pbLogin.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnLogin_MouseLeave(object sender, EventArgs e)
+        {
+            btnLogin.BackColor = Color.FromArgb(52, 52, 52);
+            pbLogin.BackColor = Color.Transparent;
+        }
+
+        private void dgvPrikaz_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for(int i=0; i<dgvPrikaz.Rows.Count; i++)
+            {
+                if(i % 2 != 0)
+                {
+                    dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
+                }
+            }
+            
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

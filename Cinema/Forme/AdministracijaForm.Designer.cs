@@ -28,533 +28,584 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministracijaForm));
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.lblAdministracija = new System.Windows.Forms.Label();
-            this.lblCinema = new System.Windows.Forms.Label();
-            this.pBoxLogo = new System.Windows.Forms.PictureBox();
-            this.panelCrvenaLinija = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMeni = new System.Windows.Forms.Panel();
-            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
-            this.panelTerminiSelected = new System.Windows.Forms.Panel();
-            this.btnTermini = new System.Windows.Forms.Button();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.lblKorisnickoIme = new System.Windows.Forms.Label();
-            this.panelFilmSelected = new System.Windows.Forms.Panel();
-            this.btnFilm = new System.Windows.Forms.Button();
-            this.panelLoginSelected = new System.Windows.Forms.Panel();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.panelZanrSelected = new System.Windows.Forms.Panel();
-            this.panelProjekcijaSelected = new System.Windows.Forms.Panel();
-            this.panelZaposleniSelected = new System.Windows.Forms.Panel();
-            this.btnZanr = new System.Windows.Forms.Button();
-            this.btnProjekcija = new System.Windows.Forms.Button();
             this.btnZaposleni = new System.Windows.Forms.Button();
+            this.btnFilm = new System.Windows.Forms.Button();
+            this.btnTermini = new System.Windows.Forms.Button();
+            this.btnProjekcija = new System.Windows.Forms.Button();
+            this.btnZanr = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.gbPrikaz = new System.Windows.Forms.GroupBox();
             this.dgvPrikaz = new System.Windows.Forms.DataGridView();
-            this.gbPretraga = new System.Windows.Forms.GroupBox();
             this.lblPretraga = new System.Windows.Forms.Label();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.gbDetaljno = new System.Windows.Forms.GroupBox();
-            this.toolStripKarta = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAdd = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnIzmjein = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnObrisi = new System.Windows.Forms.ToolStripButton();
             this.flpDetaljno = new System.Windows.Forms.FlowLayoutPanel();
             this.panelDugmici = new System.Windows.Forms.Panel();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
-            this.panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).BeginInit();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSat = new System.Windows.Forms.Label();
+            this.lblPretragaFix = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.tsbtnObrisi = new System.Windows.Forms.Button();
+            this.tsbtnIzmijeni = new System.Windows.Forms.Button();
+            this.tsbtnAdd = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.pbLogin = new System.Windows.Forms.PictureBox();
+            this.pbZanr = new System.Windows.Forms.PictureBox();
+            this.pbProjekcija = new System.Windows.Forms.PictureBox();
+            this.pbTermini = new System.Windows.Forms.PictureBox();
+            this.pbZaposleni = new System.Windows.Forms.PictureBox();
+            this.pbFilm = new System.Windows.Forms.PictureBox();
+            this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panelMeni.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.gbPrikaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).BeginInit();
-            this.gbPretraga.SuspendLayout();
             this.gbDetaljno.SuspendLayout();
-            this.toolStripKarta.SuspendLayout();
             this.panelDugmici.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZanr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProjekcija)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTermini)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZaposleni)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFilm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.BackColor = System.Drawing.Color.Red;
-            this.panelLogo.Controls.Add(this.lblAdministracija);
-            this.panelLogo.Controls.Add(this.lblCinema);
-            this.panelLogo.Controls.Add(this.pBoxLogo);
-            this.panelLogo.Location = new System.Drawing.Point(265, 1);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(112, 134);
-            this.panelLogo.TabIndex = 4;
-            // 
-            // lblAdministracija
-            // 
-            this.lblAdministracija.AutoSize = true;
-            this.lblAdministracija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdministracija.ForeColor = System.Drawing.Color.White;
-            this.lblAdministracija.Location = new System.Drawing.Point(1, 107);
-            this.lblAdministracija.Name = "lblAdministracija";
-            this.lblAdministracija.Size = new System.Drawing.Size(110, 20);
-            this.lblAdministracija.TabIndex = 3;
-            this.lblAdministracija.Text = "Administracija";
-            // 
-            // lblCinema
-            // 
-            this.lblCinema.AutoSize = true;
-            this.lblCinema.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCinema.ForeColor = System.Drawing.Color.White;
-            this.lblCinema.Location = new System.Drawing.Point(19, 87);
-            this.lblCinema.Name = "lblCinema";
-            this.lblCinema.Size = new System.Drawing.Size(72, 19);
-            this.lblCinema.TabIndex = 2;
-            this.lblCinema.Text = "Cinema";
-            // 
-            // pBoxLogo
-            // 
-            this.pBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pBoxLogo.Image")));
-            this.pBoxLogo.Location = new System.Drawing.Point(6, 11);
-            this.pBoxLogo.Name = "pBoxLogo";
-            this.pBoxLogo.Size = new System.Drawing.Size(99, 71);
-            this.pBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pBoxLogo.TabIndex = 2;
-            this.pBoxLogo.TabStop = false;
-            // 
-            // panelCrvenaLinija
-            // 
-            this.panelCrvenaLinija.BackColor = System.Drawing.Color.Red;
-            this.panelCrvenaLinija.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelCrvenaLinija.Location = new System.Drawing.Point(260, 0);
-            this.panelCrvenaLinija.Name = "panelCrvenaLinija";
-            this.panelCrvenaLinija.Size = new System.Drawing.Size(892, 6);
-            this.panelCrvenaLinija.TabIndex = 2;
             // 
             // panelMeni
             // 
-            this.panelMeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.panelMeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.panelMeni.Controls.Add(this.btnLogout);
+            this.panelMeni.Controls.Add(this.pbLogin);
+            this.panelMeni.Controls.Add(this.pbZanr);
+            this.panelMeni.Controls.Add(this.pbProjekcija);
+            this.panelMeni.Controls.Add(this.pbTermini);
+            this.panelMeni.Controls.Add(this.pbZaposleni);
+            this.panelMeni.Controls.Add(this.pbFilm);
             this.panelMeni.Controls.Add(this.pBoxAvatar);
-            this.panelMeni.Controls.Add(this.panelTerminiSelected);
-            this.panelMeni.Controls.Add(this.btnTermini);
             this.panelMeni.Controls.Add(this.lblAdmin);
             this.panelMeni.Controls.Add(this.lblKorisnickoIme);
-            this.panelMeni.Controls.Add(this.panelFilmSelected);
-            this.panelMeni.Controls.Add(this.btnFilm);
-            this.panelMeni.Controls.Add(this.panelLoginSelected);
-            this.panelMeni.Controls.Add(this.btnLogin);
-            this.panelMeni.Controls.Add(this.panelZanrSelected);
-            this.panelMeni.Controls.Add(this.panelProjekcijaSelected);
-            this.panelMeni.Controls.Add(this.panelZaposleniSelected);
-            this.panelMeni.Controls.Add(this.btnZanr);
-            this.panelMeni.Controls.Add(this.btnProjekcija);
             this.panelMeni.Controls.Add(this.btnZaposleni);
+            this.panelMeni.Controls.Add(this.btnFilm);
+            this.panelMeni.Controls.Add(this.btnTermini);
+            this.panelMeni.Controls.Add(this.btnProjekcija);
+            this.panelMeni.Controls.Add(this.btnZanr);
+            this.panelMeni.Controls.Add(this.btnLogin);
             this.panelMeni.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMeni.Location = new System.Drawing.Point(0, 0);
             this.panelMeni.Name = "panelMeni";
             this.panelMeni.Size = new System.Drawing.Size(260, 700);
             this.panelMeni.TabIndex = 3;
             // 
-            // pBoxAvatar
-            // 
-            this.pBoxAvatar.Image = global::Cinema.Properties.Resources.user__1_;
-            this.pBoxAvatar.Location = new System.Drawing.Point(69, 3);
-            this.pBoxAvatar.Name = "pBoxAvatar";
-            this.pBoxAvatar.Size = new System.Drawing.Size(129, 103);
-            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBoxAvatar.TabIndex = 13;
-            this.pBoxAvatar.TabStop = false;
-            // 
-            // panelTerminiSelected
-            // 
-            this.panelTerminiSelected.BackColor = System.Drawing.Color.Red;
-            this.panelTerminiSelected.Enabled = false;
-            this.panelTerminiSelected.ForeColor = System.Drawing.Color.White;
-            this.panelTerminiSelected.Location = new System.Drawing.Point(3, 316);
-            this.panelTerminiSelected.Name = "panelTerminiSelected";
-            this.panelTerminiSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelTerminiSelected.TabIndex = 10;
-            this.panelTerminiSelected.Visible = false;
-            // 
-            // btnTermini
-            // 
-            this.btnTermini.FlatAppearance.BorderSize = 0;
-            this.btnTermini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTermini.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTermini.ForeColor = System.Drawing.Color.White;
-            this.btnTermini.Image = ((System.Drawing.Image)(resources.GetObject("btnTermini.Image")));
-            this.btnTermini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTermini.Location = new System.Drawing.Point(12, 318);
-            this.btnTermini.Name = "btnTermini";
-            this.btnTermini.Size = new System.Drawing.Size(261, 50);
-            this.btnTermini.TabIndex = 11;
-            this.btnTermini.Text = "               TERMINI";
-            this.btnTermini.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTermini.UseVisualStyleBackColor = true;
-            this.btnTermini.Click += new System.EventHandler(this.Btn_Click);
-            // 
             // lblAdmin
             // 
             this.lblAdmin.AutoSize = true;
-            this.lblAdmin.Location = new System.Drawing.Point(91, 134);
+            this.lblAdmin.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblAdmin.Location = new System.Drawing.Point(82, 143);
             this.lblAdmin.Name = "lblAdmin";
-            this.lblAdmin.Size = new System.Drawing.Size(36, 13);
+            this.lblAdmin.Size = new System.Drawing.Size(50, 17);
             this.lblAdmin.TabIndex = 12;
             this.lblAdmin.Text = "Admin";
             // 
             // lblKorisnickoIme
             // 
             this.lblKorisnickoIme.AutoSize = true;
-            this.lblKorisnickoIme.Location = new System.Drawing.Point(91, 112);
+            this.lblKorisnickoIme.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKorisnickoIme.ForeColor = System.Drawing.Color.White;
+            this.lblKorisnickoIme.Location = new System.Drawing.Point(82, 121);
             this.lblKorisnickoIme.Name = "lblKorisnickoIme";
-            this.lblKorisnickoIme.Size = new System.Drawing.Size(75, 13);
+            this.lblKorisnickoIme.Size = new System.Drawing.Size(100, 17);
             this.lblKorisnickoIme.TabIndex = 11;
             this.lblKorisnickoIme.Text = "Korisnicko ime";
-            // 
-            // panelFilmSelected
-            // 
-            this.panelFilmSelected.BackColor = System.Drawing.Color.Red;
-            this.panelFilmSelected.Enabled = false;
-            this.panelFilmSelected.ForeColor = System.Drawing.Color.White;
-            this.panelFilmSelected.Location = new System.Drawing.Point(3, 260);
-            this.panelFilmSelected.Name = "panelFilmSelected";
-            this.panelFilmSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelFilmSelected.TabIndex = 8;
-            this.panelFilmSelected.Visible = false;
-            // 
-            // btnFilm
-            // 
-            this.btnFilm.FlatAppearance.BorderSize = 0;
-            this.btnFilm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilm.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilm.ForeColor = System.Drawing.Color.White;
-            this.btnFilm.Image = ((System.Drawing.Image)(resources.GetObject("btnFilm.Image")));
-            this.btnFilm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFilm.Location = new System.Drawing.Point(12, 262);
-            this.btnFilm.Name = "btnFilm";
-            this.btnFilm.Size = new System.Drawing.Size(261, 50);
-            this.btnFilm.TabIndex = 9;
-            this.btnFilm.Text = "                FILM";
-            this.btnFilm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFilm.UseVisualStyleBackColor = true;
-            // 
-            // panelLoginSelected
-            // 
-            this.panelLoginSelected.BackColor = System.Drawing.Color.Red;
-            this.panelLoginSelected.Enabled = false;
-            this.panelLoginSelected.ForeColor = System.Drawing.Color.White;
-            this.panelLoginSelected.Location = new System.Drawing.Point(3, 486);
-            this.panelLoginSelected.Name = "panelLoginSelected";
-            this.panelLoginSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelLoginSelected.TabIndex = 6;
-            this.panelLoginSelected.Visible = false;
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Image")));
-            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(12, 488);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(261, 50);
-            this.btnLogin.TabIndex = 7;
-            this.btnLogin.Text = "               LOGIN";
-            this.btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLogin.UseVisualStyleBackColor = true;
-            // 
-            // panelZanrSelected
-            // 
-            this.panelZanrSelected.BackColor = System.Drawing.Color.Red;
-            this.panelZanrSelected.Enabled = false;
-            this.panelZanrSelected.ForeColor = System.Drawing.Color.White;
-            this.panelZanrSelected.Location = new System.Drawing.Point(3, 430);
-            this.panelZanrSelected.Name = "panelZanrSelected";
-            this.panelZanrSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelZanrSelected.TabIndex = 4;
-            this.panelZanrSelected.Visible = false;
-            // 
-            // panelProjekcijaSelected
-            // 
-            this.panelProjekcijaSelected.BackColor = System.Drawing.Color.Red;
-            this.panelProjekcijaSelected.Enabled = false;
-            this.panelProjekcijaSelected.ForeColor = System.Drawing.Color.White;
-            this.panelProjekcijaSelected.Location = new System.Drawing.Point(3, 372);
-            this.panelProjekcijaSelected.Name = "panelProjekcijaSelected";
-            this.panelProjekcijaSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelProjekcijaSelected.TabIndex = 3;
-            this.panelProjekcijaSelected.Visible = false;
-            // 
-            // panelZaposleniSelected
-            // 
-            this.panelZaposleniSelected.BackColor = System.Drawing.Color.Red;
-            this.panelZaposleniSelected.ForeColor = System.Drawing.Color.White;
-            this.panelZaposleniSelected.Location = new System.Drawing.Point(3, 205);
-            this.panelZaposleniSelected.Name = "panelZaposleniSelected";
-            this.panelZaposleniSelected.Size = new System.Drawing.Size(6, 50);
-            this.panelZaposleniSelected.TabIndex = 2;
-            // 
-            // btnZanr
-            // 
-            this.btnZanr.FlatAppearance.BorderSize = 0;
-            this.btnZanr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZanr.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZanr.ForeColor = System.Drawing.Color.White;
-            this.btnZanr.Image = ((System.Drawing.Image)(resources.GetObject("btnZanr.Image")));
-            this.btnZanr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnZanr.Location = new System.Drawing.Point(12, 432);
-            this.btnZanr.Name = "btnZanr";
-            this.btnZanr.Size = new System.Drawing.Size(261, 50);
-            this.btnZanr.TabIndex = 4;
-            this.btnZanr.Text = "                ZANR";
-            this.btnZanr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnZanr.UseVisualStyleBackColor = true;
-            // 
-            // btnProjekcija
-            // 
-            this.btnProjekcija.FlatAppearance.BorderSize = 0;
-            this.btnProjekcija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProjekcija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProjekcija.ForeColor = System.Drawing.Color.White;
-            this.btnProjekcija.Image = ((System.Drawing.Image)(resources.GetObject("btnProjekcija.Image")));
-            this.btnProjekcija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProjekcija.Location = new System.Drawing.Point(12, 374);
-            this.btnProjekcija.Name = "btnProjekcija";
-            this.btnProjekcija.Size = new System.Drawing.Size(261, 50);
-            this.btnProjekcija.TabIndex = 3;
-            this.btnProjekcija.Text = "            PROJEKCIJA";
-            this.btnProjekcija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProjekcija.UseVisualStyleBackColor = true;
             // 
             // btnZaposleni
             // 
             this.btnZaposleni.FlatAppearance.BorderSize = 0;
+            this.btnZaposleni.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnZaposleni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZaposleni.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZaposleni.ForeColor = System.Drawing.Color.White;
-            this.btnZaposleni.Image = ((System.Drawing.Image)(resources.GetObject("btnZaposleni.Image")));
             this.btnZaposleni.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnZaposleni.Location = new System.Drawing.Point(12, 206);
+            this.btnZaposleni.Location = new System.Drawing.Point(3, 174);
             this.btnZaposleni.Name = "btnZaposleni";
-            this.btnZaposleni.Size = new System.Drawing.Size(261, 50);
+            this.btnZaposleni.Size = new System.Drawing.Size(254, 54);
             this.btnZaposleni.TabIndex = 2;
             this.btnZaposleni.Text = "             ZAPOSLENI";
             this.btnZaposleni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnZaposleni.UseVisualStyleBackColor = true;
+            this.btnZaposleni.MouseEnter += new System.EventHandler(this.btnZaposleni_MouseEnter);
+            this.btnZaposleni.MouseLeave += new System.EventHandler(this.btnZaposleni_MouseLeave);
+            // 
+            // btnFilm
+            // 
+            this.btnFilm.FlatAppearance.BorderSize = 0;
+            this.btnFilm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnFilm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilm.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilm.ForeColor = System.Drawing.Color.White;
+            this.btnFilm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFilm.Location = new System.Drawing.Point(3, 244);
+            this.btnFilm.Name = "btnFilm";
+            this.btnFilm.Size = new System.Drawing.Size(254, 56);
+            this.btnFilm.TabIndex = 9;
+            this.btnFilm.Text = "   FILM";
+            this.btnFilm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFilm.UseVisualStyleBackColor = true;
+            this.btnFilm.MouseEnter += new System.EventHandler(this.btnFilm_MouseEnter);
+            this.btnFilm.MouseLeave += new System.EventHandler(this.btnFilm_MouseLeave);
+            // 
+            // btnTermini
+            // 
+            this.btnTermini.FlatAppearance.BorderSize = 0;
+            this.btnTermini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnTermini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTermini.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTermini.ForeColor = System.Drawing.Color.White;
+            this.btnTermini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTermini.Location = new System.Drawing.Point(3, 311);
+            this.btnTermini.Name = "btnTermini";
+            this.btnTermini.Size = new System.Drawing.Size(254, 58);
+            this.btnTermini.TabIndex = 11;
+            this.btnTermini.Text = "         TERMINI";
+            this.btnTermini.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTermini.UseVisualStyleBackColor = true;
+            this.btnTermini.Click += new System.EventHandler(this.Btn_Click);
+            this.btnTermini.MouseEnter += new System.EventHandler(this.btnTermini_MouseEnter);
+            this.btnTermini.MouseLeave += new System.EventHandler(this.btnTermini_MouseLeave);
+            // 
+            // btnProjekcija
+            // 
+            this.btnProjekcija.FlatAppearance.BorderSize = 0;
+            this.btnProjekcija.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnProjekcija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProjekcija.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProjekcija.ForeColor = System.Drawing.Color.White;
+            this.btnProjekcija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProjekcija.Location = new System.Drawing.Point(3, 387);
+            this.btnProjekcija.Name = "btnProjekcija";
+            this.btnProjekcija.Size = new System.Drawing.Size(254, 58);
+            this.btnProjekcija.TabIndex = 3;
+            this.btnProjekcija.Text = "                 PROJEKCIJA";
+            this.btnProjekcija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProjekcija.UseVisualStyleBackColor = true;
+            this.btnProjekcija.MouseEnter += new System.EventHandler(this.btnProjekcija_MouseEnter);
+            this.btnProjekcija.MouseLeave += new System.EventHandler(this.btnProjekcija_MouseLeave);
+            // 
+            // btnZanr
+            // 
+            this.btnZanr.FlatAppearance.BorderSize = 0;
+            this.btnZanr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnZanr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZanr.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZanr.ForeColor = System.Drawing.Color.White;
+            this.btnZanr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnZanr.Location = new System.Drawing.Point(3, 455);
+            this.btnZanr.Name = "btnZanr";
+            this.btnZanr.Size = new System.Drawing.Size(254, 60);
+            this.btnZanr.TabIndex = 4;
+            this.btnZanr.Text = "     ZANR";
+            this.btnZanr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnZanr.UseVisualStyleBackColor = true;
+            this.btnZanr.MouseEnter += new System.EventHandler(this.btnZanr_MouseEnter);
+            this.btnZanr.MouseLeave += new System.EventHandler(this.btnZanr_MouseLeave);
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogin.Location = new System.Drawing.Point(3, 528);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(254, 60);
+            this.btnLogin.TabIndex = 7;
+            this.btnLogin.Text = "        LOGIN";
+            this.btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.MouseEnter += new System.EventHandler(this.btnLogin_MouseEnter);
+            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
             // 
             // gbPrikaz
             // 
             this.gbPrikaz.BackColor = System.Drawing.Color.Transparent;
             this.gbPrikaz.Controls.Add(this.dgvPrikaz);
-            this.gbPrikaz.Location = new System.Drawing.Point(586, 318);
+            this.gbPrikaz.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPrikaz.ForeColor = System.Drawing.Color.White;
+            this.gbPrikaz.Location = new System.Drawing.Point(600, 106);
             this.gbPrikaz.Name = "gbPrikaz";
-            this.gbPrikaz.Size = new System.Drawing.Size(566, 370);
+            this.gbPrikaz.Size = new System.Drawing.Size(552, 545);
             this.gbPrikaz.TabIndex = 6;
             this.gbPrikaz.TabStop = false;
             this.gbPrikaz.Text = "Prikaz";
             // 
             // dgvPrikaz
             // 
-            this.dgvPrikaz.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvPrikaz.AllowUserToAddRows = false;
+            this.dgvPrikaz.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Teal;
+            this.dgvPrikaz.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPrikaz.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvPrikaz.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPrikaz.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPrikaz.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrikaz.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPrikaz.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvPrikaz.GridColor = System.Drawing.SystemColors.AppWorkspace;
-            this.dgvPrikaz.Location = new System.Drawing.Point(6, 19);
+            this.dgvPrikaz.GridColor = System.Drawing.Color.Silver;
+            this.dgvPrikaz.Location = new System.Drawing.Point(3, 19);
+            this.dgvPrikaz.MultiSelect = false;
             this.dgvPrikaz.Name = "dgvPrikaz";
+            this.dgvPrikaz.ReadOnly = true;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.dgvPrikaz.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvPrikaz.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
-            this.dgvPrikaz.Size = new System.Drawing.Size(554, 345);
+            this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.dgvPrikaz.Size = new System.Drawing.Size(546, 520);
             this.dgvPrikaz.TabIndex = 0;
+            this.dgvPrikaz.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPrikaz_CellFormatting);
             this.dgvPrikaz.SelectionChanged += new System.EventHandler(this.dgvPrikaz_SelectionChanged);
-            // 
-            // gbPretraga
-            // 
-            this.gbPretraga.BackColor = System.Drawing.Color.Transparent;
-            this.gbPretraga.Controls.Add(this.lblPretraga);
-            this.gbPretraga.Controls.Add(this.txtPretraga);
-            this.gbPretraga.Location = new System.Drawing.Point(586, 174);
-            this.gbPretraga.Name = "gbPretraga";
-            this.gbPretraga.Size = new System.Drawing.Size(566, 136);
-            this.gbPretraga.TabIndex = 7;
-            this.gbPretraga.TabStop = false;
-            this.gbPretraga.Text = "Pretraga";
             // 
             // lblPretraga
             // 
             this.lblPretraga.AutoSize = true;
-            this.lblPretraga.Location = new System.Drawing.Point(193, 63);
+            this.lblPretraga.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPretraga.ForeColor = System.Drawing.Color.White;
+            this.lblPretraga.Location = new System.Drawing.Point(235, 70);
             this.lblPretraga.Name = "lblPretraga";
-            this.lblPretraga.Size = new System.Drawing.Size(47, 13);
+            this.lblPretraga.Size = new System.Drawing.Size(79, 21);
             this.lblPretraga.TabIndex = 1;
             this.lblPretraga.Text = "Pretraga";
             // 
             // txtPretraga
             // 
             this.txtPretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPretraga.Location = new System.Drawing.Point(18, 52);
+            this.txtPretraga.Location = new System.Drawing.Point(239, 38);
             this.txtPretraga.Name = "txtPretraga";
-            this.txtPretraga.Size = new System.Drawing.Size(157, 29);
+            this.txtPretraga.Size = new System.Drawing.Size(214, 29);
             this.txtPretraga.TabIndex = 0;
             this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // gbDetaljno
             // 
-            this.gbDetaljno.Controls.Add(this.toolStripKarta);
+            this.gbDetaljno.Controls.Add(this.tsbtnObrisi);
+            this.gbDetaljno.Controls.Add(this.tsbtnIzmijeni);
+            this.gbDetaljno.Controls.Add(this.tsbtnAdd);
             this.gbDetaljno.Controls.Add(this.flpDetaljno);
-            this.gbDetaljno.Location = new System.Drawing.Point(265, 174);
+            this.gbDetaljno.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbDetaljno.ForeColor = System.Drawing.Color.White;
+            this.gbDetaljno.Location = new System.Drawing.Point(265, 106);
             this.gbDetaljno.Name = "gbDetaljno";
-            this.gbDetaljno.Size = new System.Drawing.Size(315, 452);
+            this.gbDetaljno.Size = new System.Drawing.Size(332, 545);
             this.gbDetaljno.TabIndex = 8;
             this.gbDetaljno.TabStop = false;
             this.gbDetaljno.Text = "Detaljno";
             // 
-            // toolStripKarta
-            // 
-            this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnAdd,
-            this.tsbtnIzmjein,
-            this.tsbtnObrisi});
-            this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
-            this.toolStripKarta.Name = "toolStripKarta";
-            this.toolStripKarta.Size = new System.Drawing.Size(309, 25);
-            this.toolStripKarta.TabIndex = 1;
-            this.toolStripKarta.Text = "toolStrip1";
-            // 
-            // tsbtnAdd
-            // 
-            this.tsbtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAdd.Image")));
-            this.tsbtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAdd.Name = "tsbtnAdd";
-            this.tsbtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnAdd.Text = "Dodaj";
-            this.tsbtnAdd.ToolTipText = "Dodaj";
-            this.tsbtnAdd.Click += new System.EventHandler(this.tsbtnAdd_Click);
-            // 
-            // tsbtnIzmjein
-            // 
-            this.tsbtnIzmjein.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnIzmjein.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnIzmjein.Image")));
-            this.tsbtnIzmjein.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnIzmjein.Name = "tsbtnIzmjein";
-            this.tsbtnIzmjein.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnIzmjein.Text = "Izmjeni";
-            this.tsbtnIzmjein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnObrisi.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnObrisi.Image")));
-            this.tsbtnObrisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnObrisi.Text = "Obrisi";
-            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
-            // 
             // flpDetaljno
             // 
-            this.flpDetaljno.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flpDetaljno.AutoScroll = true;
             this.flpDetaljno.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpDetaljno.Location = new System.Drawing.Point(8, 44);
+            this.flpDetaljno.Location = new System.Drawing.Point(6, 52);
+            this.flpDetaljno.Margin = new System.Windows.Forms.Padding(0);
             this.flpDetaljno.Name = "flpDetaljno";
-            this.flpDetaljno.Size = new System.Drawing.Size(301, 402);
+            this.flpDetaljno.Size = new System.Drawing.Size(322, 490);
             this.flpDetaljno.TabIndex = 0;
             // 
             // panelDugmici
             // 
             this.panelDugmici.Controls.Add(this.btnOdustani);
             this.panelDugmici.Controls.Add(this.btnPotvrdi);
-            this.panelDugmici.Location = new System.Drawing.Point(273, 632);
+            this.panelDugmici.Location = new System.Drawing.Point(266, 661);
             this.panelDugmici.Name = "panelDugmici";
-            this.panelDugmici.Size = new System.Drawing.Size(301, 64);
+            this.panelDugmici.Size = new System.Drawing.Size(331, 39);
             this.panelDugmici.TabIndex = 9;
             // 
             // btnOdustani
             // 
+            this.btnOdustani.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnOdustani.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnOdustani.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOdustani.Location = new System.Drawing.Point(162, 18);
+            this.btnOdustani.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdustani.ForeColor = System.Drawing.Color.White;
+            this.btnOdustani.Location = new System.Drawing.Point(193, 2);
             this.btnOdustani.Name = "btnOdustani";
-            this.btnOdustani.Size = new System.Drawing.Size(119, 34);
+            this.btnOdustani.Size = new System.Drawing.Size(135, 34);
             this.btnOdustani.TabIndex = 1;
             this.btnOdustani.Text = "Odustani";
-            this.btnOdustani.UseVisualStyleBackColor = true;
+            this.btnOdustani.UseVisualStyleBackColor = false;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
             // btnPotvrdi
             // 
+            this.btnPotvrdi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnPotvrdi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnPotvrdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPotvrdi.Location = new System.Drawing.Point(16, 18);
+            this.btnPotvrdi.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPotvrdi.ForeColor = System.Drawing.Color.White;
+            this.btnPotvrdi.Location = new System.Drawing.Point(3, 2);
             this.btnPotvrdi.Name = "btnPotvrdi";
-            this.btnPotvrdi.Size = new System.Drawing.Size(119, 34);
+            this.btnPotvrdi.Size = new System.Drawing.Size(135, 34);
             this.btnPotvrdi.TabIndex = 0;
             this.btnPotvrdi.Text = "Potvrdi";
-            this.btnPotvrdi.UseVisualStyleBackColor = true;
+            this.btnPotvrdi.UseVisualStyleBackColor = false;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Controls.Add(this.lblSat);
+            this.panel1.Controls.Add(this.lblPretragaFix);
+            this.panel1.Controls.Add(this.lblPretraga);
+            this.panel1.Controls.Add(this.pbLogo);
+            this.panel1.Controls.Add(this.txtPretraga);
+            this.panel1.Location = new System.Drawing.Point(259, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(893, 106);
+            this.panel1.TabIndex = 10;
+            // 
+            // lblSat
+            // 
+            this.lblSat.AutoSize = true;
+            this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSat.Location = new System.Drawing.Point(750, 44);
+            this.lblSat.Name = "lblSat";
+            this.lblSat.Size = new System.Drawing.Size(0, 28);
+            this.lblSat.TabIndex = 3;
+            // 
+            // lblPretragaFix
+            // 
+            this.lblPretragaFix.AutoSize = true;
+            this.lblPretragaFix.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPretragaFix.ForeColor = System.Drawing.Color.White;
+            this.lblPretragaFix.Location = new System.Drawing.Point(198, 9);
+            this.lblPretragaFix.Name = "lblPretragaFix";
+            this.lblPretragaFix.Size = new System.Drawing.Size(83, 21);
+            this.lblPretragaFix.TabIndex = 2;
+            this.lblPretragaFix.Text = "Pretraga:";
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackgroundImage = global::Cinema.Properties.Resources.x_mark;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExit.Location = new System.Drawing.Point(861, 0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(32, 32);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Image = global::Cinema.Properties.Resources.logo_cine_23_2147503279__1_1;
+            this.pbLogo.Location = new System.Drawing.Point(7, 0);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(185, 106);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.BackgroundImage = global::Cinema.Properties.Resources.delete;
+            this.tsbtnObrisi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnObrisi.FlatAppearance.BorderSize = 0;
+            this.tsbtnObrisi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.tsbtnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnObrisi.Location = new System.Drawing.Point(128, 20);
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(37, 23);
+            this.tsbtnObrisi.TabIndex = 3;
+            this.tsbtnObrisi.UseVisualStyleBackColor = true;
+            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
+            // 
+            // tsbtnIzmijeni
+            // 
+            this.tsbtnIzmijeni.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
+            this.tsbtnIzmijeni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
+            this.tsbtnIzmijeni.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.tsbtnIzmijeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnIzmijeni.Location = new System.Drawing.Point(77, 20);
+            this.tsbtnIzmijeni.Name = "tsbtnIzmijeni";
+            this.tsbtnIzmijeni.Size = new System.Drawing.Size(31, 23);
+            this.tsbtnIzmijeni.TabIndex = 2;
+            this.tsbtnIzmijeni.UseVisualStyleBackColor = true;
+            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmijeni_Click);
+            // 
+            // tsbtnAdd
+            // 
+            this.tsbtnAdd.BackgroundImage = global::Cinema.Properties.Resources.add;
+            this.tsbtnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnAdd.FlatAppearance.BorderSize = 0;
+            this.tsbtnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.tsbtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnAdd.Location = new System.Drawing.Point(18, 20);
+            this.tsbtnAdd.Name = "tsbtnAdd";
+            this.tsbtnAdd.Size = new System.Drawing.Size(32, 23);
+            this.tsbtnAdd.TabIndex = 1;
+            this.tsbtnAdd.UseVisualStyleBackColor = true;
+            this.tsbtnAdd.Click += new System.EventHandler(this.tsbtnAdd_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackgroundImage = global::Cinema.Properties.Resources.log_out;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Location = new System.Drawing.Point(3, 655);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(41, 42);
+            this.btnLogout.TabIndex = 20;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // pbLogin
+            // 
+            this.pbLogin.BackColor = System.Drawing.Color.Transparent;
+            this.pbLogin.Image = global::Cinema.Properties.Resources.login;
+            this.pbLogin.Location = new System.Drawing.Point(25, 538);
+            this.pbLogin.Name = "pbLogin";
+            this.pbLogin.Size = new System.Drawing.Size(61, 42);
+            this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogin.TabIndex = 19;
+            this.pbLogin.TabStop = false;
+            // 
+            // pbZanr
+            // 
+            this.pbZanr.BackColor = System.Drawing.Color.Transparent;
+            this.pbZanr.Image = global::Cinema.Properties.Resources.drama;
+            this.pbZanr.Location = new System.Drawing.Point(25, 463);
+            this.pbZanr.Name = "pbZanr";
+            this.pbZanr.Size = new System.Drawing.Size(61, 42);
+            this.pbZanr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbZanr.TabIndex = 18;
+            this.pbZanr.TabStop = false;
+            // 
+            // pbProjekcija
+            // 
+            this.pbProjekcija.BackColor = System.Drawing.Color.Transparent;
+            this.pbProjekcija.Image = global::Cinema.Properties.Resources.video_camera;
+            this.pbProjekcija.Location = new System.Drawing.Point(25, 395);
+            this.pbProjekcija.Name = "pbProjekcija";
+            this.pbProjekcija.Size = new System.Drawing.Size(61, 42);
+            this.pbProjekcija.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProjekcija.TabIndex = 17;
+            this.pbProjekcija.TabStop = false;
+            // 
+            // pbTermini
+            // 
+            this.pbTermini.BackColor = System.Drawing.Color.Transparent;
+            this.pbTermini.Image = global::Cinema.Properties.Resources.calendar_with_a_clock_time_tools;
+            this.pbTermini.Location = new System.Drawing.Point(25, 319);
+            this.pbTermini.Name = "pbTermini";
+            this.pbTermini.Size = new System.Drawing.Size(61, 42);
+            this.pbTermini.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTermini.TabIndex = 16;
+            this.pbTermini.TabStop = false;
+            // 
+            // pbZaposleni
+            // 
+            this.pbZaposleni.BackColor = System.Drawing.Color.Transparent;
+            this.pbZaposleni.Image = global::Cinema.Properties.Resources.employee;
+            this.pbZaposleni.Location = new System.Drawing.Point(25, 178);
+            this.pbZaposleni.Name = "pbZaposleni";
+            this.pbZaposleni.Size = new System.Drawing.Size(61, 42);
+            this.pbZaposleni.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbZaposleni.TabIndex = 14;
+            this.pbZaposleni.TabStop = false;
+            // 
+            // pbFilm
+            // 
+            this.pbFilm.BackColor = System.Drawing.Color.Transparent;
+            this.pbFilm.Image = global::Cinema.Properties.Resources.film_roll;
+            this.pbFilm.Location = new System.Drawing.Point(25, 250);
+            this.pbFilm.Name = "pbFilm";
+            this.pbFilm.Size = new System.Drawing.Size(61, 42);
+            this.pbFilm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbFilm.TabIndex = 15;
+            this.pbFilm.TabStop = false;
+            // 
+            // pBoxAvatar
+            // 
+            this.pBoxAvatar.Image = global::Cinema.Properties.Resources.admin_with_cogwheels;
+            this.pBoxAvatar.Location = new System.Drawing.Point(68, 12);
+            this.pBoxAvatar.Name = "pBoxAvatar";
+            this.pBoxAvatar.Size = new System.Drawing.Size(129, 103);
+            this.pBoxAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBoxAvatar.TabIndex = 13;
+            this.pBoxAvatar.TabStop = false;
             // 
             // AdministracijaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.ClientSize = new System.Drawing.Size(1152, 700);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelDugmici);
             this.Controls.Add(this.gbDetaljno);
-            this.Controls.Add(this.gbPretraga);
             this.Controls.Add(this.gbPrikaz);
-            this.Controls.Add(this.panelLogo);
-            this.Controls.Add(this.panelCrvenaLinija);
             this.Controls.Add(this.panelMeni);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdministracijaForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdministracijaForm";
-            this.panelLogo.ResumeLayout(false);
-            this.panelLogo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxLogo)).EndInit();
             this.panelMeni.ResumeLayout(false);
             this.panelMeni.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.gbPrikaz.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrikaz)).EndInit();
-            this.gbPretraga.ResumeLayout(false);
-            this.gbPretraga.PerformLayout();
             this.gbDetaljno.ResumeLayout(false);
-            this.gbDetaljno.PerformLayout();
-            this.toolStripKarta.ResumeLayout(false);
-            this.toolStripKarta.PerformLayout();
             this.panelDugmici.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZanr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProjekcija)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTermini)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbZaposleni)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFilm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Label lblAdministracija;
-        private System.Windows.Forms.Label lblCinema;
-        private System.Windows.Forms.PictureBox pBoxLogo;
-        private System.Windows.Forms.Panel panelCrvenaLinija;
         private System.Windows.Forms.Panel panelMeni;
-        private System.Windows.Forms.Panel panelZanrSelected;
-        private System.Windows.Forms.Panel panelProjekcijaSelected;
-        private System.Windows.Forms.Panel panelZaposleniSelected;
         private System.Windows.Forms.Button btnZanr;
         private System.Windows.Forms.Button btnProjekcija;
         private System.Windows.Forms.Button btnZaposleni;
-        private System.Windows.Forms.Panel panelLoginSelected;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Panel panelFilmSelected;
         private System.Windows.Forms.Button btnFilm;
         private System.Windows.Forms.Label lblAdmin;
         private System.Windows.Forms.Label lblKorisnickoIme;
         private System.Windows.Forms.GroupBox gbPrikaz;
-        private System.Windows.Forms.GroupBox gbPretraga;
         private System.Windows.Forms.DataGridView dgvPrikaz;
         private System.Windows.Forms.GroupBox gbDetaljno;
-        private System.Windows.Forms.ToolStrip toolStripKarta;
-        private System.Windows.Forms.ToolStripButton tsbtnAdd;
-        private System.Windows.Forms.ToolStripButton tsbtnIzmjein;
-        private System.Windows.Forms.ToolStripButton tsbtnObrisi;
         private System.Windows.Forms.FlowLayoutPanel flpDetaljno;
-        private System.Windows.Forms.Panel panelTerminiSelected;
         private System.Windows.Forms.Button btnTermini;
         private System.Windows.Forms.PictureBox pBoxAvatar;
         private System.Windows.Forms.Panel panelDugmici;
@@ -562,5 +613,20 @@
         private System.Windows.Forms.Button btnOdustani;
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Label lblPretraga;
+        private System.Windows.Forms.PictureBox pbLogin;
+        private System.Windows.Forms.PictureBox pbZanr;
+        private System.Windows.Forms.PictureBox pbProjekcija;
+        private System.Windows.Forms.PictureBox pbTermini;
+        private System.Windows.Forms.PictureBox pbFilm;
+        private System.Windows.Forms.PictureBox pbZaposleni;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Label lblPretragaFix;
+        private System.Windows.Forms.Button tsbtnObrisi;
+        private System.Windows.Forms.Button tsbtnIzmijeni;
+        private System.Windows.Forms.Button tsbtnAdd;
+        private System.Windows.Forms.Label lblSat;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

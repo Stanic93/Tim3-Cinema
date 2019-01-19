@@ -35,6 +35,7 @@
             // lblcbNaziv
             // 
             this.lblcbNaziv.AutoSize = true;
+            this.lblcbNaziv.ForeColor = System.Drawing.Color.Black;
             this.lblcbNaziv.Location = new System.Drawing.Point(3, 9);
             this.lblcbNaziv.Name = "lblcbNaziv";
             this.lblcbNaziv.Size = new System.Drawing.Size(29, 13);
@@ -44,7 +45,7 @@
             // checkBoxZauzeto
             // 
             this.checkBoxZauzeto.AutoSize = true;
-            this.checkBoxZauzeto.Location = new System.Drawing.Point(155, 8);
+            this.checkBoxZauzeto.Location = new System.Drawing.Point(208, 8);
             this.checkBoxZauzeto.Name = "checkBoxZauzeto";
             this.checkBoxZauzeto.Size = new System.Drawing.Size(15, 14);
             this.checkBoxZauzeto.TabIndex = 1;
@@ -56,8 +57,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.checkBoxZauzeto);
             this.Controls.Add(this.lblcbNaziv);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CheckBoxControl";
-            this.Size = new System.Drawing.Size(304, 31);
+            this.Size = new System.Drawing.Size(226, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 

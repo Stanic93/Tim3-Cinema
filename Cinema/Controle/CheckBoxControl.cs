@@ -15,6 +15,7 @@ namespace Cinema.Controle
         public CheckBoxControl()
         {
             InitializeComponent();
+            lblcbNaziv.ForeColor = Color.White;
             
         }
         public void SetLabel(string value)
@@ -26,6 +27,10 @@ namespace Cinema.Controle
         }
         public bool GetValue() {
             return checkBoxZauzeto.Checked;
+        }
+        public void Zabrani()
+        {
+            checkBoxZauzeto.Enabled = false;
         }
     }
 }

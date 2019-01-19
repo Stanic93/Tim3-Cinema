@@ -36,7 +36,9 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
+            this.lblNaziv.BackColor = System.Drawing.SystemColors.Control;
             this.lblNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.ForeColor = System.Drawing.Color.Black;
             this.lblNaziv.Location = new System.Drawing.Point(3, 6);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(41, 15);
@@ -46,14 +48,14 @@
             // numUpDown
             // 
             this.numUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numUpDown.Location = new System.Drawing.Point(151, 4);
+            this.numUpDown.Location = new System.Drawing.Point(133, 4);
             this.numUpDown.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.numUpDown.Name = "numUpDown";
-            this.numUpDown.Size = new System.Drawing.Size(144, 21);
+            this.numUpDown.Size = new System.Drawing.Size(90, 21);
             this.numUpDown.TabIndex = 1;
             // 
             // NumericUpDownControl
@@ -62,8 +64,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.numUpDown);
             this.Controls.Add(this.lblNaziv);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "NumericUpDownControl";
-            this.Size = new System.Drawing.Size(298, 27);
+            this.Size = new System.Drawing.Size(226, 27);
             ((System.ComponentModel.ISupportInitialize)(this.numUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

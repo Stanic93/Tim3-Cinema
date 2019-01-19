@@ -37,22 +37,23 @@
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(3, 10);
+            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Location = new System.Drawing.Point(3, 7);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(35, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(41, 16);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "label1";
             // 
             // txtKeyValue
             // 
-            this.txtKeyValue.Location = new System.Drawing.Point(73, 7);
+            this.txtKeyValue.Location = new System.Drawing.Point(58, 3);
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(37, 20);
             this.txtKeyValue.TabIndex = 1;
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(116, 6);
+            this.btnFind.Location = new System.Drawing.Point(101, 2);
             this.btnFind.Name = "btnFind";
             this.btnFind.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnFind.Size = new System.Drawing.Size(33, 20);
@@ -63,9 +64,9 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(155, 7);
+            this.txtValue.Location = new System.Drawing.Point(136, 4);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(137, 20);
+            this.txtValue.Size = new System.Drawing.Size(87, 20);
             this.txtValue.TabIndex = 3;
             // 
             // UserLookUpControl
@@ -76,8 +77,9 @@
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.txtKeyValue);
             this.Controls.Add(this.lblNaziv);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UserLookUpControl";
-            this.Size = new System.Drawing.Size(310, 32);
+            this.Size = new System.Drawing.Size(226, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 

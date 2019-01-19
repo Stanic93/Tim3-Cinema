@@ -182,7 +182,7 @@ namespace Cinema.Forme
                 if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                 {
                     RichTextBoxControl rc = new RichTextBoxControl();
-                    rc.ReadOnly();
+                    rc.Zabrani();
                     rc.Name = item.Name;
                     rc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(rc);
@@ -191,7 +191,7 @@ namespace Cinema.Forme
                 if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                 {
                     DateTimeControl dc = new DateTimeControl();
-                    dc.ReadOnly();
+                    dc.Zabrani();
                     dc.Name = item.Name;
                     dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     dc.SetVrijednost("01.01.2018");
@@ -202,7 +202,7 @@ namespace Cinema.Forme
                 if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
-                    uc.ReadOnly();
+                    uc.Zabrani();
                     uc.Name = item.Name;
                     uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(uc);
@@ -634,7 +634,7 @@ namespace Cinema.Forme
                     {
                         DateTime datum = DateTime.Now;
                         textBox.SetTextBox("" + datum);
-                        textBox.ReadOnly();
+                        textBox.Zabrani();
                     }
                 }
             }

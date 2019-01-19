@@ -29,9 +29,19 @@ namespace Cinema.Controle
         {
             return rtxtVrijednost.Text;
         }
-        public void ReadOnly()
+        public void Zabrani()
         {
             rtxtVrijednost.ReadOnly = true;
+        }
+
+        private void RichTextBoxControl_Load(object sender, EventArgs e)
+        {
+            lblNaziv.ForeColor = Color.White;
+        }
+
+        private void lblNaziv_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

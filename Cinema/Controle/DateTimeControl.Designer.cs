@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblNaziv = new System.Windows.Forms.Label();
             this.dtpVrijednost = new System.Windows.Forms.DateTimePicker();
+            this.lblNaziv = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // lblNaziv
-            // 
-            this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblNaziv.Location = new System.Drawing.Point(3, 10);
-            this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(45, 17);
-            this.lblNaziv.TabIndex = 0;
-            this.lblNaziv.Text = "label1";
             // 
             // dtpVrijednost
             // 
             this.dtpVrijednost.CustomFormat = "dd.MM.yyyy";
             this.dtpVrijednost.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpVrijednost.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVrijednost.Location = new System.Drawing.Point(204, 4);
+            this.dtpVrijednost.Location = new System.Drawing.Point(133, 3);
             this.dtpVrijednost.Name = "dtpVrijednost";
-            this.dtpVrijednost.Size = new System.Drawing.Size(91, 21);
+            this.dtpVrijednost.Size = new System.Drawing.Size(90, 21);
             this.dtpVrijednost.TabIndex = 1;
+            // 
+            // lblNaziv
+            // 
+            this.lblNaziv.AutoSize = true;
+            this.lblNaziv.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.Location = new System.Drawing.Point(3, 6);
+            this.lblNaziv.Name = "lblNaziv";
+            this.lblNaziv.Size = new System.Drawing.Size(45, 17);
+            this.lblNaziv.TabIndex = 2;
+            this.lblNaziv.Text = "label1";
             // 
             // DateTimeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dtpVrijednost);
             this.Controls.Add(this.lblNaziv);
+            this.Controls.Add(this.dtpVrijednost);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DateTimeControl";
-            this.Size = new System.Drawing.Size(304, 31);
+            this.Size = new System.Drawing.Size(226, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.DateTimePicker dtpVrijednost;
+        private System.Windows.Forms.Label lblNaziv;
     }
 }

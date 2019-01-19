@@ -15,6 +15,7 @@ namespace Cinema.Controle
         public TextBoxControl()
         {
             InitializeComponent();
+            lblNaziv.ForeColor = SystemColors.Control;
         }
         public void SetLabel(string value)
         {
@@ -28,7 +29,7 @@ namespace Cinema.Controle
         {
             return txtVrijednost.Text;
         }
-        public void ReadOnly()
+        public void Zabrani()
         {
             txtVrijednost.ReadOnly = true;
         }

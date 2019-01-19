@@ -217,7 +217,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\video-camera.png" />
+    <None Include="Resources\employee.png" />
+    <None Include="Resources\film-roll.png" />
+    <None Include="Resources\calendar-with-a-clock-time-tools.png" />
+    <None Include="Resources\drama.png" />
+    <None Include="Resources\admin-with-cogwheels.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\lock %281%29.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\logo-cine_23-2147503279 %281%291.jpg" />
+    <None Include="Resources\pencil-edit-button.png" />
+    <None Include="Resources\log-out.png" />
     <Content Include="Resources\user %281%29.png" />
     <None Include="Resources\x-mark.png" />
     <None Include="Resources\lock.png" />
