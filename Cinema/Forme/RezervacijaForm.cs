@@ -29,6 +29,7 @@ namespace Cinema.Forme
             dgvDetaljnoRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             lblStatusPrikaza.Visible = false;
             popuniRezervacije();
+
         }
 
         private void popuniRezervacije()
@@ -129,11 +130,16 @@ namespace Cinema.Forme
                 panelNazivRezervacije.Visible = true;
                 popuniDetaljno();
             }
-            else
+            else if (tabControlRezervacija.SelectedTab == tabPageRezervacijaDetaljno)
             {
                 panelButton.Visible = true;
                 panelPretraga.Visible = true;
                 panelNazivRezervacije.Visible = false;
+            }
+            else
+            {
+                panelPretraga.Visible = false;
+                panelButton.Visible = true;
             }
         }
 
@@ -402,7 +408,54 @@ namespace Cinema.Forme
 
         private void btnPrebaciNaRacun_Click(object sender, EventArgs e)
         {
+            TabPage tab = new TabPage();
+            tab.Name = "Racun";
+            tab.Text = "Racun";
+            tabControlRezervacija.Controls.Add(tab);
+            tabControlRezervacija.SelectedTab = tab;
+            EnableTab(tabPageRezervacijaDetaljno, false);
+            EnableTab(tabPageRezervacija, false);
+            lookupTab();
+            DataGridView dgv = new DataGridView();
+            string commandText = @"Select  k.KartaID,k.RezervacijaID,k.ProjekcijaID,k.TerminID,t.VrijemePrikazivanja,k.SjedisteID,s.BrojSjedista as [Broj sjedista], k.VrijemeIzdavanja as [Vrijeme izdavanja]
+                                    from dbo.Karta as k
+                                    join dbo.Sjediste as s
+                                    on k.SjedisteID = s.SjedisteID
+                                    join dbo.Termin as t
+                                    on k.TerminID = t.TerminID
+                                    where k.RezervacijaID = @RezervacijaID;";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+                parameter.Value = Convert.ToInt16(dgvPregledRezervacija.SelectedRows[0].Cells["RezervacijaID"].Value.ToString());
+                parameters.Add(parameter);
+            }
+            dgv.DataSource = Izvrsi(commandText, parameters);
+            tab.Controls.Add(dgv);
+            panelPretraga.Visible = false;
+            dgv.Dock = DockStyle.Fill;
+            btnObrisi.Text = "Odustani";
+            btnPrebaciNaRacun.Text = "Stampaj racun";
+        }
+        private void lookupTab()
+        {
+            foreach (TabPage tabPage in tabControlRezervacija.TabPages)
+            {
+                tabPage.Enabled = false;
+            }
+            tabControlRezervacija.SelectedTab.Enabled = true;
+        }
 
+        private void rijesiLookup()
+        {
+            foreach (TabPage tabPage in tabControlRezervacija.TabPages)
+            {
+                tabPage.Enabled = true;
+            }
+        }
+        public static void EnableTab(TabPage page, bool enable)
+        {
+            foreach (Control ctl in page.Controls) ctl.Enabled = enable;
         }
     }
 }

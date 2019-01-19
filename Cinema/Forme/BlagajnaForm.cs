@@ -84,6 +84,7 @@ namespace Cinema.Forme
             popuniPregled(property);
             popuniControle(property);
             prikaziKolone();
+            
         }
 
         // popunjava datagridView
@@ -104,6 +105,7 @@ namespace Cinema.Forme
                 item.HeaderText = properties.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv == item.HeaderText
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
+            
 
         }
 
