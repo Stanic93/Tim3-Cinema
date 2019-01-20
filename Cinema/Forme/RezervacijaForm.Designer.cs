@@ -73,6 +73,11 @@
             this.panelNazivRezervacije = new System.Windows.Forms.Panel();
             this.lblNazivRezervacije = new System.Windows.Forms.Label();
             this.lblRezervacija = new System.Windows.Forms.Label();
+            this.panelRacun = new System.Windows.Forms.Panel();
+            this.txtZaposleni = new System.Windows.Forms.TextBox();
+            this.lblZaposleni = new System.Windows.Forms.Label();
+            this.txtUkupnaVrijednost = new System.Windows.Forms.TextBox();
+            this.lblVrijednostRacuna = new System.Windows.Forms.Label();
             this.tabControlRezervacija.SuspendLayout();
             this.tabPageRezervacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregledRezervacija)).BeginInit();
@@ -83,6 +88,7 @@
             this.panelButton.SuspendLayout();
             this.panelKarta.SuspendLayout();
             this.panelNazivRezervacije.SuspendLayout();
+            this.panelRacun.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlRezervacija
@@ -502,7 +508,7 @@
             this.panelNazivRezervacije.Controls.Add(this.lblRezervacija);
             this.panelNazivRezervacije.Location = new System.Drawing.Point(675, 56);
             this.panelNazivRezervacije.Name = "panelNazivRezervacije";
-            this.panelNazivRezervacije.Size = new System.Drawing.Size(178, 46);
+            this.panelNazivRezervacije.Size = new System.Drawing.Size(178, 66);
             this.panelNazivRezervacije.TabIndex = 9;
             this.panelNazivRezervacije.Visible = false;
             // 
@@ -524,11 +530,62 @@
             this.lblRezervacija.TabIndex = 10;
             this.lblRezervacija.Text = "Rezervacija:";
             // 
+            // panelRacun
+            // 
+            this.panelRacun.Controls.Add(this.txtZaposleni);
+            this.panelRacun.Controls.Add(this.lblZaposleni);
+            this.panelRacun.Controls.Add(this.txtUkupnaVrijednost);
+            this.panelRacun.Controls.Add(this.lblVrijednostRacuna);
+            this.panelRacun.Location = new System.Drawing.Point(676, 81);
+            this.panelRacun.Name = "panelRacun";
+            this.panelRacun.Size = new System.Drawing.Size(171, 117);
+            this.panelRacun.TabIndex = 11;
+            this.panelRacun.Visible = false;
+            // 
+            // txtZaposleni
+            // 
+            this.txtZaposleni.Location = new System.Drawing.Point(29, 76);
+            this.txtZaposleni.Name = "txtZaposleni";
+            this.txtZaposleni.ReadOnly = true;
+            this.txtZaposleni.Size = new System.Drawing.Size(127, 20);
+            this.txtZaposleni.TabIndex = 3;
+            this.txtZaposleni.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblZaposleni
+            // 
+            this.lblZaposleni.AutoSize = true;
+            this.lblZaposleni.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblZaposleni.Location = new System.Drawing.Point(61, 54);
+            this.lblZaposleni.Name = "lblZaposleni";
+            this.lblZaposleni.Size = new System.Drawing.Size(59, 15);
+            this.lblZaposleni.TabIndex = 2;
+            this.lblZaposleni.Text = "Zaposleni";
+            // 
+            // txtUkupnaVrijednost
+            // 
+            this.txtUkupnaVrijednost.Location = new System.Drawing.Point(38, 30);
+            this.txtUkupnaVrijednost.Name = "txtUkupnaVrijednost";
+            this.txtUkupnaVrijednost.ReadOnly = true;
+            this.txtUkupnaVrijednost.Size = new System.Drawing.Size(109, 20);
+            this.txtUkupnaVrijednost.TabIndex = 1;
+            this.txtUkupnaVrijednost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblVrijednostRacuna
+            // 
+            this.lblVrijednostRacuna.AutoSize = true;
+            this.lblVrijednostRacuna.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblVrijednostRacuna.Location = new System.Drawing.Point(44, 8);
+            this.lblVrijednostRacuna.Name = "lblVrijednostRacuna";
+            this.lblVrijednostRacuna.Size = new System.Drawing.Size(88, 15);
+            this.lblVrijednostRacuna.TabIndex = 0;
+            this.lblVrijednostRacuna.Text = "Ukupna cijena ";
+            // 
             // RezervacijaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 397);
+            this.Controls.Add(this.panelRacun);
             this.Controls.Add(this.panelNazivRezervacije);
             this.Controls.Add(this.panelKarta);
             this.Controls.Add(this.lblTermin);
@@ -554,6 +611,8 @@
             this.panelKarta.PerformLayout();
             this.panelNazivRezervacije.ResumeLayout(false);
             this.panelNazivRezervacije.PerformLayout();
+            this.panelRacun.ResumeLayout(false);
+            this.panelRacun.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,5 +664,10 @@
         private System.Windows.Forms.Label lblNazivRezervacije;
         private System.Windows.Forms.Label lblRezervacija;
         private System.Windows.Forms.Button btnPrikaziSve;
+        private System.Windows.Forms.Panel panelRacun;
+        private System.Windows.Forms.TextBox txtZaposleni;
+        private System.Windows.Forms.Label lblZaposleni;
+        private System.Windows.Forms.TextBox txtUkupnaVrijednost;
+        private System.Windows.Forms.Label lblVrijednostRacuna;
     }
 }

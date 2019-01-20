@@ -1077,8 +1077,8 @@ namespace Cinema.Forme
             decimal cijena = 0;
             foreach (DataGridViewRow row in dgvPregled.Rows)
             {
-                string nesto = row.Cells["Cijena"].Value.ToString();
-                cijena += Convert.ToDecimal(nesto);
+                string cijenaPolje = row.Cells["Cijena"].Value.ToString();
+                cijena += Convert.ToDecimal(cijenaPolje);
             }
 
             txtUkupnaVrijednost.Text = "" + cijena;
@@ -1089,7 +1089,7 @@ namespace Cinema.Forme
         {
             if(btnVratiNaKartu.Text == "Pregled rezervacija")
             {
-                RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
+                RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString(),zaposleniID,FullName);
                 novaForma.ShowDialog();
                 if(novaForma.DialogResult == DialogResult.OK)
                 {

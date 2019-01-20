@@ -15,13 +15,18 @@ namespace Cinema.Forme
     public partial class RezervacijaForm : Form
     {
         int terminID;
-        string rezervacijaID;
+        int racunID;
+        int zaposleniID;
+        int rezervacijaID;
         string ProjekcijaID;
         State state;
-        public RezervacijaForm(int terminId, string nazivFilma, string vrijemeFilma)
+        StateTab stateTab;
+        public RezervacijaForm(int terminId, string nazivFilma, string vrijemeFilma, int zaposleniID,string fullName)
         {
             InitializeComponent();
             terminID = terminId;
+            txtZaposleni.Text = fullName;
+            this.zaposleniID = zaposleniID;
             lblNazivFilma.Text = nazivFilma;
             lblTermin.Text = vrijemeFilma;
             panelKarta.Visible = false;
@@ -29,7 +34,7 @@ namespace Cinema.Forme
             dgvDetaljnoRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             lblStatusPrikaza.Visible = false;
             popuniRezervacije();
-
+            stateTab = StateTab.Rezervacija;
         }
 
         private void popuniRezervacije()
@@ -52,9 +57,7 @@ namespace Cinema.Forme
                 panelButton.Enabled = false;
                 toolStrip1.Visible = false;
                 tabControlRezervacija.TabPages.RemoveAt(1);
-
             }
-
         }
 
         private DataTable Izvrsi(string commandText, List<SqlParameter> parameters)
@@ -72,19 +75,19 @@ namespace Cinema.Forme
             }
             SqlDataReader reader;
             DataTable dt = new DataTable();
-            try
-            {
-            connection.Open();
-            reader = command.ExecuteReader();
-            dt.Load(reader);
-            connection.Close();
-            reader.Close();
-            command.Dispose();
-            }
-            catch
-            {
-               MessageBox.Show("Can not open connection");
-            }
+            //try
+            //{
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Can not open connection");
+            //}
             return dt;
         }
 
@@ -111,7 +114,7 @@ namespace Cinema.Forme
                 popuniRezervacije();
                 return;
             }
-            hideColumn();
+            hideColumn(dgvDetaljnoRezervacija);
         }
 
         private void dgvPregledRezervacija_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -129,27 +132,35 @@ namespace Cinema.Forme
                 panelPretraga.Visible = false;
                 panelNazivRezervacije.Visible = true;
                 popuniDetaljno();
+                stateTab = StateTab.Detaljno;
+                panelRacun.Visible = false;
             }
-            else if (tabControlRezervacija.SelectedTab == tabPageRezervacijaDetaljno)
+            else if (tabControlRezervacija.SelectedTab == tabPageRezervacija)
             {
                 panelButton.Visible = true;
                 panelPretraga.Visible = true;
                 panelNazivRezervacije.Visible = false;
+                stateTab = StateTab.Rezervacija;
+                btnObrisi.Text = "Obrisi";
+                btnPrebaciNaRacun.Text = "Prebaci na racun";
+                panelRacun.Visible = false;
             }
             else
             {
                 panelPretraga.Visible = false;
                 panelButton.Visible = true;
+                panelRacun.Visible = true;
             }
         }
 
-        private void hideColumn()
+        private void hideColumn(DataGridView dgv)
         {
-            dgvDetaljnoRezervacija.Columns["RezervacijaID"].Visible = false;
-            dgvDetaljnoRezervacija.Columns["ProjekcijaID"].Visible = false;
-            dgvDetaljnoRezervacija.Columns["TerminID"].Visible = false;
-            dgvDetaljnoRezervacija.Columns["SjedisteID"].Visible = false;
-            dgvDetaljnoRezervacija.Columns["VrijemePrikazivanja"].Visible = false;
+            dgv.Columns["RezervacijaID"].Visible = false;
+            dgv.Columns["ProjekcijaID"].Visible = false;
+            dgv.Columns["TerminID"].Visible = false;
+            dgv.Columns["SjedisteID"].Visible = false;
+            dgv.Columns["VrijemePrikazivanja"].Visible = false;
+            
         }
 
         private void btnPretrazi_Click(object sender, EventArgs e)
@@ -228,7 +239,6 @@ namespace Cinema.Forme
                 txtSjedisteKey.Text = sjedisteID;
                 txtSjedisteValue.Text = brSjedista;
             }
-
         }
 
         private void dodajKartuNaRezervaciju()
@@ -274,7 +284,8 @@ namespace Cinema.Forme
             if (state == State.Add)
             {
                 dodajKartuNaRezervaciju();
-            } else if (state == State.Edit)
+            }
+            else if (state == State.Edit)
             {
                 IzmijeniKartuNaRezervaciji();
             }
@@ -282,7 +293,6 @@ namespace Cinema.Forme
             popuniDetaljno();
             panelKarta.Visible = false;
             tabControlRezervacija.Enabled = true;
-
         }
 
         private void IzmijeniKartuNaRezervaciji()
@@ -351,7 +361,6 @@ namespace Cinema.Forme
             }
             MessageBox.Show("Karta obrisana");
             popuniDetaljno();
-
         }
 
         private void ObrisiKartu()
@@ -363,24 +372,34 @@ namespace Cinema.Forme
                 parameter.Value = dgvDetaljnoRezervacija.SelectedRows[0].Cells["KartaID"].Value.ToString();
                 parameters.Add(parameter);
             }
-
             Izvrsi(commandtText, parameters);
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da zelite da obrisete rezervaciju?", "Question", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (stateTab == StateTab.Rezervacija)
             {
-                obrisiKarteNaRezervaciji();
-                obrisiRezervaciju();
-                MessageBox.Show("Obrisali ste rezervaciju!");
-                popuniRezervacije();
+                DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da zelite da obrisete rezervaciju?", "Question", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    obrisiKarteNaRezervaciji();
+                    obrisiRezervaciju();
+                    MessageBox.Show("Obrisali ste rezervaciju!");
+                    popuniRezervacije();
+                }
             }
-
-            
-
+            else if (stateTab == StateTab.Racun)
+            {
+                obrisiTab();
+                tabControlRezervacija.Enabled = true;
+            }
         }
+
+        private void obrisiTab()
+        {
+            tabControlRezervacija.TabPages.RemoveAt(2);
+        }
+
         private void obrisiKarteNaRezervaciji()
         {
             string commandText = @"Delete dbo.Karta where RezervacijaID = @RezervacijaID";
@@ -393,6 +412,7 @@ namespace Cinema.Forme
             Izvrsi(commandText, parameters);
 
         }
+
         private void obrisiRezervaciju()
         {
             List<SqlParameter> parametersRezervacija = new List<SqlParameter>();
@@ -408,54 +428,124 @@ namespace Cinema.Forme
 
         private void btnPrebaciNaRacun_Click(object sender, EventArgs e)
         {
-            TabPage tab = new TabPage();
-            tab.Name = "Racun";
-            tab.Text = "Racun";
-            tabControlRezervacija.Controls.Add(tab);
-            tabControlRezervacija.SelectedTab = tab;
-            EnableTab(tabPageRezervacijaDetaljno, false);
-            EnableTab(tabPageRezervacija, false);
-            lookupTab();
-            DataGridView dgv = new DataGridView();
-            string commandText = @"Select  k.KartaID,k.RezervacijaID,k.ProjekcijaID,k.TerminID,t.VrijemePrikazivanja,k.SjedisteID,s.BrojSjedista as [Broj sjedista], k.VrijemeIzdavanja as [Vrijeme izdavanja]
+            if (stateTab == StateTab.Rezervacija)
+            {
+                TabPage tab = new TabPage();
+                tab.Name = "Racun";
+                tab.Text = "Racun";
+                tabControlRezervacija.Controls.Add(tab);
+                tabControlRezervacija.SelectedTab = tab;
+                tabControlRezervacija.Enabled = false;
+                DataGridView dgv = new DataGridView();
+                string commandText = @"Select  k.KartaID,k.RezervacijaID,k.ProjekcijaID,k.TerminID,t.VrijemePrikazivanja,k.SjedisteID,s.BrojSjedista as [Broj sjedista], k.VrijemeIzdavanja as [Vrijeme izdavanja],c.Cijena
                                     from dbo.Karta as k
                                     join dbo.Sjediste as s
                                     on k.SjedisteID = s.SjedisteID
                                     join dbo.Termin as t
                                     on k.TerminID = t.TerminID
+                                    join dbo.Cijena as c
+                                    on c.CijenaID = t.TerminID
                                     where k.RezervacijaID = @RezervacijaID;";
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                {
+                    SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+                    parameter.Value = Convert.ToInt16(dgvPregledRezervacija.SelectedRows[0].Cells["RezervacijaID"].Value.ToString());
+                    parameters.Add(parameter);
+                }
+                dgv.DataSource = Izvrsi(commandText, parameters);
+                tab.Controls.Add(dgv);
+                if (dgv.Rows.Count > 0)
+                {
+                    hideColumn(dgv);
+                }
+                panelPretraga.Visible = false;
+                dgv.Dock = DockStyle.Fill;
+                btnObrisi.Text = "Odustani";
+                btnPrebaciNaRacun.Text = "Stampaj racun";
+                stateTab = StateTab.Racun;
+                IzracunajSumuRacuna(dgv);
+            }
+            else if (stateTab == StateTab.Racun)
+            {
+                kreirajRacun();
+                prebaciRezervacijuNaRacun();
+                obrisiTab();
+                tabControlRezervacija.Enabled = true;
+                popuniRezervacije();
+            }
+        }
+
+        private void prebaciRezervacijuNaRacun()
+        {
+            rezervacijaID = Convert.ToInt32(dgvPregledRezervacija.SelectedRows[0].Cells["RezervacijaID"].Value);
+            string commandText = @"Update dbo.Karta set RezervacijaID = null,RacunID = @RacunID where RezervacijaID = @RezervacijaID ";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
-                parameter.Value = Convert.ToInt16(dgvPregledRezervacija.SelectedRows[0].Cells["RezervacijaID"].Value.ToString());
+                parameter.Value = rezervacijaID;
                 parameters.Add(parameter);
             }
-            dgv.DataSource = Izvrsi(commandText, parameters);
-            tab.Controls.Add(dgv);
-            panelPretraga.Visible = false;
-            dgv.Dock = DockStyle.Fill;
-            btnObrisi.Text = "Odustani";
-            btnPrebaciNaRacun.Text = "Stampaj racun";
-        }
-        private void lookupTab()
-        {
-            foreach (TabPage tabPage in tabControlRezervacija.TabPages)
             {
-                tabPage.Enabled = false;
+                SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parameters.Add(parameter);
             }
-            tabControlRezervacija.SelectedTab.Enabled = true;
+            DataTable dt = Izvrsi(commandText, parameters);
         }
 
-        private void rijesiLookup()
+        private void kreirajRacun()
         {
-            foreach (TabPage tabPage in tabControlRezervacija.TabPages)
+
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
+            command.Connection = connection;
+            SqlParameter parameter = new SqlParameter("@ZaposleniID", SqlDbType.SmallInt);
+            parameter.Value = zaposleniID;
+            command.Parameters.Add(parameter);
+            SqlDataReader reader;
+            DataTable dt = new DataTable();
+            try
             {
-                tabPage.Enabled = true;
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
             }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            RacunPropertyClass pomocni = new RacunPropertyClass();
+            SqlDataReader reader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pomocni.GetMaxIDQuery());
+            DataTable dt1 = new DataTable();
+
+            dt1.Load(reader1);
+            foreach (DataRow row in dt1.Rows)
+            {
+
+                racunID = row.Field<short>("RacunID");
+            }
+            reader1.Close();
         }
-        public static void EnableTab(TabPage page, bool enable)
+
+        private void IzracunajSumuRacuna(DataGridView dgv)
         {
-            foreach (Control ctl in page.Controls) ctl.Enabled = enable;
+            decimal cijena = 0;
+            for(int i=0; i<dgv.Rows.Count-1; i++)
+            {
+                if (dgv.Rows[i].Cells["Cijena"].Value.ToString() != null)
+                {
+                    string cijenaPolje = dgv.Rows[i].Cells["Cijena"].Value.ToString();
+                    cijena += Convert.ToDecimal(cijenaPolje);
+                }
+            }
+
+            txtUkupnaVrijednost.Text = "" + cijena;
+            txtUkupnaVrijednost.ReadOnly = true;
+            
         }
     }
 }
