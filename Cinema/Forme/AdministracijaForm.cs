@@ -37,7 +37,7 @@ namespace Cinema.Forme
             btnProjekcija.Click += BtnOboji_Click;
             btnZanr.Click += BtnOboji_Click;
             btnLogin.Click += BtnOboji_Click;
-            lblSat.Text = DateTime.Now.ToShortTimeString();
+            lblSat.Text = DateTime.Now.ToShortTimeString();// umjesto ovog tajmer dodati i startovat ga
             OsnovnaPodesavanja();
 
 
