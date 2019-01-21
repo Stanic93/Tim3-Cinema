@@ -41,6 +41,7 @@ namespace Cinema.PropertyClass
                 zaposleniID = value;
             }
         }
+        [MandatoryData]
         [SqlName("Ime")]
         [DisplayName("Ime")]
         [LookUpValue]
@@ -55,6 +56,7 @@ namespace Cinema.PropertyClass
                 ime = value;
             }
         }
+        [MandatoryData]
         [SqlName("Prezime")]
         [DisplayName("Prezime")]
         [LookUpValue]
@@ -72,6 +74,7 @@ namespace Cinema.PropertyClass
         [SqlName("Godiste")]
         [DisplayName("Godiste")]
         [DateTime]
+        [MandatoryData]
         public DateTime Godiste
         {
             get
@@ -98,6 +101,7 @@ namespace Cinema.PropertyClass
         }
         [SqlName("Pozicija")]
         [DisplayName("Pozicija")]
+        [MandatoryData]
         public string Pozicija
         {
             get
