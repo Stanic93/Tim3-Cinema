@@ -24,6 +24,7 @@ namespace Cinema.PropertyClass
 
         #region properties
 
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
@@ -40,6 +41,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Naziv")]
         [DisplayName("Naziv filma")]
         [LookUpValue]
@@ -55,6 +57,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("DuzinaTrajanja")]
         [DisplayName("Duzina trajanja")]
         [Time]
@@ -99,6 +102,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Aktivan")]
         [DisplayName("Aktivan")]
         [CheckBox]
@@ -113,6 +117,7 @@ namespace Cinema.PropertyClass
                 aktivan = value;
             }
         }
+
         [SqlName("Godina")]
         [DisplayName("Godina")]
         [Numeric]

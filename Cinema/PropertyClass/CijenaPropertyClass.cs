@@ -22,6 +22,7 @@ namespace Cinema.PropertyClass
 
         #region properties
 
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("CijenaID")]
         [DisplayName("Cijena ID")]
@@ -38,6 +39,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Cijena")]
         [DisplayName("Cijena")]
         [LookUpValue]
@@ -54,7 +56,7 @@ namespace Cinema.PropertyClass
             }
         }
 
-
+        [MandatoryData]
         [SqlName("VrijemePrikazivanjaPoslije6")]
         [DisplayName("Vecernji termin")]
         public bool VrijemePrikazivanja
@@ -69,6 +71,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Projekcija3D")]
         [DisplayName("Projekcija 3D")]
         [CheckBox]
@@ -83,6 +86,8 @@ namespace Cinema.PropertyClass
                 projekcija3D = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Premijera")]
         [DisplayName("Premijera")]
         [CheckBox]

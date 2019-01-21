@@ -24,6 +24,7 @@ namespace Cinema.PropertyClass
 
         #region properties
 
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("KartaID")]
         [DisplayName("Karta ID")]
@@ -55,6 +56,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+
         [SqlName("RezervacijaID")]
         [DisplayName("Rezervacija ID")]
         [PrimaryKey]
@@ -62,7 +64,7 @@ namespace Cinema.PropertyClass
         public short RezervacijaID {get;set;}
 
 
-
+        [MandatoryData]
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
         [PrimaryKey]
@@ -93,6 +95,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("SjedisteID")]
         [DisplayName("Sjediste ID")]
         [PrimaryKey]

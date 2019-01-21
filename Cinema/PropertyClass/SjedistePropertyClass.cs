@@ -18,8 +18,9 @@ namespace Cinema.PropertyClass
         private short brojSjedista;
         private bool zauzeto;
         #endregion
-       
+
         #region Properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("SjedisteID")]
         [DisplayName("Sjediste ID")]
@@ -36,6 +37,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("SalaID")]
         [DisplayName("Sala ID")]
         [PrimaryKey]
@@ -52,6 +54,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Red")]
         [DisplayName("Red")]
         [Numeric]
@@ -67,6 +70,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("BrojSjedista")]
         [DisplayName("Broj sjedista")]
         [LookUpValue]
@@ -83,6 +87,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Zauzeto")]
         [DisplayName("Zauzeto")]
         [CheckBox]

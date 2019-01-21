@@ -19,6 +19,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region Properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("RacunID")]
         [DisplayName("Racun ID")]

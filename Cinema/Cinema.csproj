@@ -92,6 +92,7 @@
     <Compile Include="AttributeClass\ForeignKeyAttribute.cs" />
     <Compile Include="AttributeClass\LookUpKeyAttribute.cs" />
     <Compile Include="AttributeClass\LookUpValueAttribute.cs" />
+    <Compile Include="AttributeClass\MandatoryDataAttribute.cs" />
     <Compile Include="AttributeClass\NumericAttribute.cs" />
     <Compile Include="AttributeClass\PrimaryKeyAttribute.cs" />
     <Compile Include="AttributeClass\RichTextBoxAttribute.cs" />

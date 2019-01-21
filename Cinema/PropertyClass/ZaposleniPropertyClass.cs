@@ -25,6 +25,7 @@ namespace Cinema.PropertyClass
 
         #region properties
 
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("ZaposleniID")]
         [DisplayName("Zaposleni ID")]
@@ -40,6 +41,8 @@ namespace Cinema.PropertyClass
                 zaposleniID = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Ime")]
         [DisplayName("Ime")]
         [LookUpValue]
@@ -54,6 +57,8 @@ namespace Cinema.PropertyClass
                 ime = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Prezime")]
         [DisplayName("Prezime")]
         [LookUpValue]
@@ -68,6 +73,8 @@ namespace Cinema.PropertyClass
                 prezime = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Godiste")]
         [DisplayName("Godiste")]
         [DateTime]
@@ -82,6 +89,8 @@ namespace Cinema.PropertyClass
                 godiste = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Pozicija")]
         [DisplayName("Pozicija")]
         public string Pozicija

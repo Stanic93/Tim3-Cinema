@@ -24,6 +24,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("TerminID")]
         [DisplayName("Termin ID")]
@@ -39,6 +40,7 @@ namespace Cinema.PropertyClass
                 terminID = value;
             }
         }
+        [MandatoryData]
         [SqlName("VrijemePrikazivanja")]
         [DisplayName("Vrijeme prikazivanja")]
         [LookUpValue]
@@ -54,6 +56,7 @@ namespace Cinema.PropertyClass
                 vrijemePrikazivanja = value;
             }
         }
+        [MandatoryData]
         [SqlName("SalaID")]
         [DisplayName("Sala ID")]
         [ForeignKey("dbo.Sala", "SalaID", "Cinema.PropertyClass.SalaPropertyClass")]
@@ -68,6 +71,7 @@ namespace Cinema.PropertyClass
                 salaID = value;
             }
         }
+        [MandatoryData]
         [SqlName("Projekcija3D")]
         [DisplayName("Projekcija3D")]
         [CheckBox]
@@ -82,6 +86,7 @@ namespace Cinema.PropertyClass
                 projekcija3D = value;
             }
         }
+        [MandatoryData]
         [SqlName("Premijera")]
         [DisplayName("Premijera")]
         [CheckBox]
@@ -96,6 +101,7 @@ namespace Cinema.PropertyClass
                 premijera = value;
             }
         }
+        [MandatoryData]
         [SqlName("DatumPrikazivanja")]
         [DisplayName("Datum prikazivanja")]
         [DateTime]
@@ -110,6 +116,7 @@ namespace Cinema.PropertyClass
                 datumPrikazivanja = value;
             }
         }
+        [MandatoryData]
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
         [ForeignKey("dbo.Projekcija", "ProjekcijaID", "Cinema.PropertyClass.ProjekcijaPropertyClass")]
@@ -124,6 +131,7 @@ namespace Cinema.PropertyClass
                 projekcijaID = value;
             }
         }
+        [MandatoryData]
         [SqlName("CijenaID")]
         [DisplayName("Cijena ID")]
         [ForeignKey("dbo.Cijena", "CijenaID", "Cinema.PropertyClass.CijenaPropertyClass")]

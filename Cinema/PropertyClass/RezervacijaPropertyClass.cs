@@ -18,6 +18,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region Properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("RezervacijaID")]
         [DisplayName("Rezervacija ID")]
@@ -34,6 +35,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("KartaID")]
         [DisplayName("Karta ID")]
         [ForeignKey("dbo.Karta", "KartaID", "Cinema.PropertyClass.KartaPropertyClass")]
@@ -49,6 +51,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("RezervacijaNaIme")]
         [DisplayName("Rezervacija na ime")]
         [LookUpValue]

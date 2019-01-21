@@ -282,7 +282,7 @@ namespace Cinema.Forme
                             ul.SetValue(colValue);
                             flpDetaljno.Controls.Add(ul);
                             if (state == StateEnum.Preview)
-                                ul.Zabrani();
+                                ul.Zabrani();//Zakljucaj nakon sto se spojimo sa markom 
                         }
                         else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                         {
@@ -374,9 +374,7 @@ namespace Cinema.Forme
         private void UcitajDGV(PropertyInterface property)
         {
             DataTable dt = new DataTable();
-
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSelectQuery());
-
             dt.Load(reader);
             reader.Close();
             dgvPrikaz.DataSource = null;
@@ -447,6 +445,7 @@ namespace Cinema.Forme
                         else
                         {
                             MessageBox.Show("Vrijeme nije u ispravnom formatu!" + input.GetTextBox());
+                            input.BackColor = Color.Red;
                             return;
                         }
                         if (input.Name == "Lozinka" && input.GetTextBox().Length <= 6)
@@ -455,21 +454,25 @@ namespace Cinema.Forme
                             return;
                         }
                     }
+
+                    
                     else 
                     {
+                        PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         string value = input.GetTextBox();
-                        if (value.Trim() == "")
+                        if (value.Trim() == ""&& myProperty.GetCustomAttribute<MandatoryDataAttribute>()!=null)
                         {
-                            MessageBox.Show("Popunite polje ! ");
-                            input.ForeColor = Color.Red;
+                            MessageBox.Show("Polje "+ input.Name+ " je obavezno, popunite ga! ");
+                            input.BackColor = Color.Red;
                             return;
                         }
                         else
                         {
-                            PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                            
                             myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                         }
                     }
+                    
                 }
 
                 //Marko J. Pokusaji rjesavanja dopune svih polja prilikom unosa i updatea
@@ -477,22 +480,43 @@ namespace Cinema.Forme
                 {
                     RichTextBoxControl input = item as RichTextBoxControl;
                     string value = input.GetVrijednost();
-                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();                    
+                    if (myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null && input.GetVrijednost().Trim() == "")
+                    {
+                        MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
+                        input.BackColor = Color.Red;
+                        return;
+                    }
+                    else
+                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                 }
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
                     DateTimeControl input = item as DateTimeControl;
                     string value = input.GetVrijednost();
                     PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    if (myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null && input.GetVrijednost().Trim() == "")
+                    {
+                        MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
+                        input.BackColor = Color.Red;
+                        return;
+                    }
+                    else
+                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                 }
                 else if (item.GetType() == typeof(NumericUpDownControl))
                 {
                     NumericUpDownControl input = item as NumericUpDownControl;
                     string value = input.GetValue().ToString().Trim();
                     PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                    myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    if (myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null && input.GetValue().ToString().Trim() == "")
+                    {
+                        MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
+                        input.BackColor = Color.Red;
+                        return;
+                    }
+                    else
+                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                 }
                 else if (item.GetType() == typeof(UserLookUpControl))
                 {
@@ -501,8 +525,8 @@ namespace Cinema.Forme
                     int provjera = 0;
                     if (value.Trim() == "" || int.TryParse(value, out provjera) == false)
                     {
-                        MessageBox.Show("Unesite broj u polje " + input.Name);
-                        input.ForeColor = Color.Red;
+                        MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
+                        input.BackColor = Color.Red;
                         return;
                     }
                     else
