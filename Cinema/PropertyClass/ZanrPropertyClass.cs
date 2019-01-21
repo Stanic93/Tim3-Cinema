@@ -20,6 +20,7 @@ namespace Cinema.PropertyClass
 
         #region properties
 
+        [MandatoryData]
         [PrimaryKey]
         [LookUpKey]
         [SqlName("ZanrID")]
@@ -35,6 +36,8 @@ namespace Cinema.PropertyClass
                 zanrID = value;
             }
         }
+
+        [MandatoryData]
         [SqlName("Naziv")]
         [DisplayName("Naziv")]
         [LookUpValue]

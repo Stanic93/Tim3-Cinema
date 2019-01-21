@@ -17,6 +17,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region Properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("SalaID")]
         [DisplayName("Sala ID")]
@@ -33,6 +34,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("BrojSale")]
         [DisplayName("Broj sale")]
         [LookUpValue]

@@ -20,6 +20,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("ProjekcijaID")]
         [DisplayName("Projekcija ID")]
@@ -37,6 +38,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Naziv")]
         [DisplayName("Naziv filma")]
 
@@ -52,6 +54,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
         [LookUpValue]
@@ -66,8 +69,9 @@ namespace Cinema.PropertyClass
             {
                 filmID = value;
             }
-        }      
+        }
 
+        [MandatoryData]
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikaza")]
         [DateTime]
@@ -83,6 +87,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("DatumPosljednjegPrikazivanja")]
         [DisplayName("Datum posljednjeg prikaza")]
         [DateTime]

@@ -24,7 +24,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region properties
-
+        
         [PrimaryKey]
         [SqlName("FilmID")]
         [DisplayName("Film ID")]
@@ -40,7 +40,7 @@ namespace Cinema.PropertyClass
                 filmID = value;
             }
         }
-
+        
         [SqlName("Film")]
         [DisplayName("Film")]
         public string Film
@@ -54,7 +54,7 @@ namespace Cinema.PropertyClass
                 film = value;
             }
         }
-
+        
         [SqlName("Zanr")]
         [DisplayName("Zanr")]
         public string Zanr
@@ -68,7 +68,7 @@ namespace Cinema.PropertyClass
                 zanr = value;
             }
         }
-
+        
         [SqlName("DuzinaTrajanja")]
         [DisplayName("Duzina trajanja")]
         public System.TimeSpan DuzinaTrajanja {
@@ -96,7 +96,7 @@ namespace Cinema.PropertyClass
                 opis = value;
             }
         }
-
+        
         [SqlName("Reziser")]
         [DisplayName("Reziser")]
         public string Reziser
@@ -110,7 +110,7 @@ namespace Cinema.PropertyClass
                 reziser = value;
             }
         }
-
+        
         [SqlName("Aktivan")]
         [DisplayName("Aktivan")]
         [CheckBoxAttribute]
@@ -126,7 +126,7 @@ namespace Cinema.PropertyClass
                 aktivan = value;
             }
         }
-
+        
         [SqlName("Godina")]
         [DisplayName("Godina")]
         [Visible]
@@ -143,12 +143,12 @@ namespace Cinema.PropertyClass
 
             }
         }
-
+        
         [SqlName("DatumPrvogPrikazivanja")]
         [DisplayName("Datum prvog prikazivanja")]
         [DateTime]
         public DateTime DatumPrvogPrikazivanja { get; set; }
-
+        
         [SqlName("DatumPosljednjegPrikazivanja")]
         [DisplayName("Datum posljednjeg prikazivanja")]
         [DateTime]

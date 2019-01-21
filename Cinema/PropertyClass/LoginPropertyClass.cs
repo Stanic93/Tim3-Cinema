@@ -21,6 +21,7 @@ namespace Cinema.PropertyClass
         #endregion
 
         #region Properties
+        [MandatoryData]
         [PrimaryKey]
         [SqlName("LoginID")]
         [DisplayName("Login ID")]
@@ -36,6 +37,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("ZaposleniID")]
         [DisplayName("Zaposleni ID")]
         [PrimaryKey]
@@ -52,6 +54,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("KorisnickoIme")]
         [DisplayName("Korisnicko ime")]
         public string KorisnickoIme
@@ -66,6 +69,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("Lozinka")]
         [DisplayName("Lozinka")]
         public string Lozinka
@@ -80,6 +84,7 @@ namespace Cinema.PropertyClass
             }
         }
 
+        [MandatoryData]
         [SqlName("RadnoMjesto")]
         [DisplayName("Radno mjesto")]
         public string RadnoMjesto
