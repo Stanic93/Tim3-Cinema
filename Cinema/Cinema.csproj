@@ -126,6 +126,12 @@
     <Compile Include="Forme\CinemaLogin.Designer.cs">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forme\Izvjestaji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forme\Izvjestaji.Designer.cs">
+      <DependentUpon>Izvjestaji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forme\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     <EmbeddedResource Include="Forme\CinemaLogin.resx">
       <DependentUpon>CinemaLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forme\Izvjestaji.resx">
+      <DependentUpon>Izvjestaji.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forme\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +239,7 @@
     <None Include="Resources\logo-cine_23-2147503279 %281%291.jpg" />
     <None Include="Resources\pencil-edit-button.png" />
     <None Include="Resources\log-out.png" />
+    <None Include="Resources\newspaper.png" />
     <Content Include="Resources\user %281%29.png" />
     <None Include="Resources\x-mark.png" />
     <None Include="Resources\lock.png" />

@@ -694,5 +694,23 @@ namespace Cinema.Forme
         {
             this.Close();
         }
+
+        private void btnIzvjestaji_Click(object sender, EventArgs e)
+        {
+            Izvjestaji forma = new Izvjestaji();
+            forma.ShowDialog();
+        }
+
+        private void btnIzvjestaji_MouseEnter(object sender, EventArgs e)
+        {
+            btnIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
+            pbIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnIzvjestaji_MouseLeave(object sender, EventArgs e)
+        {
+            btnIzvjestaji.BackColor = Color.FromArgb(52, 52, 52);
+            pbIzvjestaji.BackColor = Color.Transparent;
+        }
     }
 }
