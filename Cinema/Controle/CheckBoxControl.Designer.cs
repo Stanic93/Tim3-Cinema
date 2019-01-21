@@ -45,7 +45,7 @@
             // checkBoxZauzeto
             // 
             this.checkBoxZauzeto.AutoSize = true;
-            this.checkBoxZauzeto.Location = new System.Drawing.Point(208, 8);
+            this.checkBoxZauzeto.Location = new System.Drawing.Point(223, 8);
             this.checkBoxZauzeto.Name = "checkBoxZauzeto";
             this.checkBoxZauzeto.Size = new System.Drawing.Size(15, 14);
             this.checkBoxZauzeto.TabIndex = 1;
@@ -59,7 +59,7 @@
             this.Controls.Add(this.lblcbNaziv);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CheckBoxControl";
-            this.Size = new System.Drawing.Size(226, 27);
+            this.Size = new System.Drawing.Size(241, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 

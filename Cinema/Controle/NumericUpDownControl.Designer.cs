@@ -48,7 +48,7 @@
             // numUpDown
             // 
             this.numUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numUpDown.Location = new System.Drawing.Point(133, 4);
+            this.numUpDown.Location = new System.Drawing.Point(148, 4);
             this.numUpDown.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -66,7 +66,7 @@
             this.Controls.Add(this.lblNaziv);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "NumericUpDownControl";
-            this.Size = new System.Drawing.Size(226, 27);
+            this.Size = new System.Drawing.Size(241, 27);
             ((System.ComponentModel.ISupportInitialize)(this.numUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

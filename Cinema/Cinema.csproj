@@ -269,12 +269,17 @@
     <None Include="Resources\admin-with-cogwheels.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\delete.png" />
+    <None Include="Resources\banknote.png" />
     <Content Include="Resources\lock %281%29.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\logo-cine_23-2147503279 %281%291.jpg" />
     <None Include="Resources\pencil-edit-button.png" />
     <None Include="Resources\log-out.png" />
     <None Include="Resources\newspaper.png" />
+    <None Include="Resources\man-user.png" />
+    <None Include="Resources\movie-clapper-open.png" />
+    <None Include="Resources\reserved.png" />
+    <None Include="Resources\two-tickets.png" />
     <Content Include="Resources\user %281%29.png" />
     <None Include="Resources\x-mark.png" />
     <None Include="Resources\lock.png" />
