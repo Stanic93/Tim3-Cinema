@@ -33,12 +33,11 @@ namespace Cinema.Forme
             lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
             btnZaposleni.Click += BtnOboji_Click;
             btnFilm.Click += BtnOboji_Click;
-            btnTermini.Click += BtnOboji_Click; 
-            btnProjekcija.Click += BtnOboji_Click; 
+            btnTermini.Click += BtnOboji_Click;
+            btnProjekcija.Click += BtnOboji_Click;
             btnZanr.Click += BtnOboji_Click;
             btnLogin.Click += BtnOboji_Click;
-
-            timer1.Start();
+            lblSat.Text = DateTime.Now.ToShortTimeString();
             OsnovnaPodesavanja();
 
 
@@ -136,7 +135,7 @@ namespace Cinema.Forme
                 state = StateEnum.Preview;
             }
             UcitajDGV(property);
-            
+
         }
 
         //Zavisno od tog u kom smo meniju pravi kontrole u panelu (PRAZNE) 
@@ -196,7 +195,7 @@ namespace Cinema.Forme
                     }
                     if (item.GetCustomAttribute<TimeAttribute>() != null)
                         uc.SetTextBox("00:00:00");
-                        uc.Name = item.Name;
+                    uc.Name = item.Name;
                     uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(uc);
                 }
@@ -277,8 +276,9 @@ namespace Cinema.Forme
                                 {
                                     colValue = dt.Rows[0][1].ToString();
                                 }
-                                catch {
-                                }                           
+                                catch
+                                {
+                                }
 
                             ul.SetValue(colValue);
                             flpDetaljno.Controls.Add(ul);
@@ -326,11 +326,11 @@ namespace Cinema.Forme
                             if (state == StateEnum.Preview)
                                 num.Zabrani();
                         }
-                        else 
+                        else
                         {
                             if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Lozinka")
                                 continue;
-                            else if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Naziv filma" 
+                            else if (item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName == "Naziv filma"
                                         && property.GetType() == typeof(ProjekcijaPropertyClass))
                                 continue;
                             else
@@ -340,7 +340,7 @@ namespace Cinema.Forme
                                 uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                                 uc.SetTextBox(item.GetValue(property).ToString());
 
-                                if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null )
+                                if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
                                 {
                                     uc.Zabrani();
                                 }
@@ -358,11 +358,11 @@ namespace Cinema.Forme
                     {
                         panelDugmici.Visible = false;
                     }
-                    
-                
+
+
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace);
                 MessageBox.Show(e.Message);
@@ -388,10 +388,10 @@ namespace Cinema.Forme
                 item.HeaderText).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
 
-            
+
         }
-        
-        
+
+
         private void dgvPrikaz_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPrikaz.SelectedRows.Count == 1)
@@ -432,17 +432,17 @@ namespace Cinema.Forme
                 if (item.GetType() == typeof(TextBoxControl))
                 {
                     TextBoxControl input = item as TextBoxControl;
-                    
+
                     if (input.Name == "DuzinaTrajanja" || input.Name == "VrijemePrikazivanja")
                     {
-                        
+
                         TimeSpan pom = new TimeSpan(0, 0, 0);
                         if (TimeSpan.TryParse(input.GetTextBox(), out pom))
-                        {                            
+                        {
                             TimeSpan valueT = TimeSpan.ParseExact(input.GetTextBox(), "c", null);
                             PropertyInfo myPropertyT = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                             myPropertyT.SetValue(property, Convert.ChangeType(valueT, myPropertyT.PropertyType));
-                        }                       
+                        }
                         else
                         {
                             MessageBox.Show("Vrijeme nije u ispravnom formatu!" + input.GetTextBox());
@@ -456,24 +456,33 @@ namespace Cinema.Forme
                         }
                     }
 
-                    
-                    else 
+
+                    else
                     {
                         PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         string value = input.GetTextBox();
-                        if (value.Trim() == ""&& myProperty.GetCustomAttribute<MandatoryDataAttribute>()!=null)
+                        if (value.Trim() == "" && myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null)
                         {
-                            MessageBox.Show("Polje "+ input.Name+ " je obavezno, popunite ga! ");
+                            MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
                             input.BackColor = Color.Red;
                             return;
                         }
+                        if (input.Name == "Pol" && (value == "M" || value == "Ž"))
+                            continue;
+                        else if (input.Name == "Pol" && (value != "M" || value != "Ž"))
+                        {
+                            MessageBox.Show("Polje pol mora biti jedan karakter (M ili Ž)");
+                            return;
+                        }
+
                         else
                         {
-                            
                             myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                            input.BackColor = Color.FromArgb(38, 38, 38);
                         }
+
                     }
-                    
+
                 }
 
                 //Marko J. Pokusaji rjesavanja dopune svih polja prilikom unosa i updatea
@@ -481,7 +490,7 @@ namespace Cinema.Forme
                 {
                     RichTextBoxControl input = item as RichTextBoxControl;
                     string value = input.GetVrijednost();
-                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();                    
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                     if (myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null && input.GetVrijednost().Trim() == "")
                     {
                         MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
@@ -490,6 +499,7 @@ namespace Cinema.Forme
                     }
                     else
                         myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    input.BackColor = Color.FromArgb(38, 38, 38);
                 }
                 else if (item.GetType() == typeof(DateTimeControl))
                 {
@@ -504,6 +514,7 @@ namespace Cinema.Forme
                     }
                     else
                         myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    input.BackColor = Color.FromArgb(38, 38, 38);
                 }
                 else if (item.GetType() == typeof(NumericUpDownControl))
                 {
@@ -518,6 +529,7 @@ namespace Cinema.Forme
                     }
                     else
                         myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                    input.BackColor = Color.FromArgb(38, 38, 38);
                 }
                 else if (item.GetType() == typeof(UserLookUpControl))
                 {
@@ -534,6 +546,7 @@ namespace Cinema.Forme
                     {
                         PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
                         myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                        input.BackColor = Color.FromArgb(38, 38, 38);
                     }
                 }
                 else if (item.GetType() == typeof(CheckBoxControl))
@@ -545,29 +558,31 @@ namespace Cinema.Forme
                 }
             }
 
-                if (state == StateEnum.Create)
-                {
-                    if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da dodate novi red?", "Poruka!",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
-                    {
-                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
-                    }
-                }
-                else if (state == StateEnum.Update)
-                {
-                    if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da izmjenite odabrani red?", "Poruka!",
+            if (state == StateEnum.Create)
+            {
+                if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da dodate novi red?", "Poruka!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
-                    {
-                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(), property.GetUpdateParameters().ToArray());                        
-                    }
+                {
+                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
                 }
+                else state = StateEnum.Preview;
+            }
+            else if (state == StateEnum.Update)
+            {
+                if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da izmjenite odabrani red?", "Poruka!",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
+                {
+                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(), property.GetUpdateParameters().ToArray());
+                }
+                else state = StateEnum.Preview;
+            }
 
-                UcitajDGV(property);
-                state = StateEnum.Preview;
-                txtPretraga.Enabled = true;
-                
-                panelDugmici.Visible = false;
-            
+            UcitajDGV(property);
+            state = StateEnum.Preview;
+            txtPretraga.Enabled = true;
+
+            panelDugmici.Visible = false;
+
         }
 
         private void tsbtnObrisi_Click(object sender, EventArgs e)
@@ -588,7 +603,7 @@ namespace Cinema.Forme
                 state = StateEnum.Preview;
                 txtPretraga.Enabled = true;
             }
-            catch 
+            catch
             {
                 if (property.GetType() == typeof(FilmPropertyClass))
                 {
@@ -600,7 +615,7 @@ namespace Cinema.Forme
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-            
+
             panelDugmici.Visible = false;
             state = StateEnum.Preview;
             txtPretraga.Enabled = true;
@@ -618,16 +633,15 @@ namespace Cinema.Forme
             dgvPrikaz.DataSource = dt;
         }
 
-        private void panelZaposleniSelected_Paint(object sender, PaintEventArgs e)
-        {
+       
 
-        }
+        #region promjena_boje_na_hover
 
         private void btnZaposleni_MouseEnter(object sender, EventArgs e)
         {
-            
-                btnZaposleni.BackColor = Color.FromArgb(255, 128, 0);
-                pbZaposleni.BackColor = Color.FromArgb(255, 128, 0);
+
+            btnZaposleni.BackColor = Color.FromArgb(255, 128, 0);
+            pbZaposleni.BackColor = Color.FromArgb(255, 128, 0);
 
         }
 
@@ -697,17 +711,30 @@ namespace Cinema.Forme
             btnLogin.BackColor = Color.FromArgb(52, 52, 52);
             pbLogin.BackColor = Color.Transparent;
         }
+        private void btnIzvjestaji_MouseEnter(object sender, EventArgs e)
+        {
+            btnIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
+            pbIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
+        }
+
+        private void btnIzvjestaji_MouseLeave(object sender, EventArgs e)
+        {
+            btnIzvjestaji.BackColor = Color.FromArgb(52, 52, 52);
+            pbIzvjestaji.BackColor = Color.Transparent;
+        }
+
+        #endregion
 
         private void dgvPrikaz_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            for(int i=0; i<dgvPrikaz.Rows.Count; i++)
+            for (int i = 0; i < dgvPrikaz.Rows.Count; i++)
             {
-                if(i % 2 != 0)
+                if (i % 2 != 0)
                 {
                     dgvPrikaz.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
                 }
             }
-            
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -726,24 +753,6 @@ namespace Cinema.Forme
             forma.ShowDialog();
         }
 
-        private void btnIzvjestaji_MouseEnter(object sender, EventArgs e)
-        {
-            btnIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
-            pbIzvjestaji.BackColor = Color.FromArgb(255, 128, 0);
-        }
-
-        private void btnIzvjestaji_MouseLeave(object sender, EventArgs e)
-        {
-            btnIzvjestaji.BackColor = Color.FromArgb(52, 52, 52);
-            pbIzvjestaji.BackColor = Color.Transparent;
-        }
-
         
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-            lblSat.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
     }
 }
