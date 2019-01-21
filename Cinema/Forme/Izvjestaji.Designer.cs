@@ -41,6 +41,7 @@
             this.lbIzvjestaji.Name = "lbIzvjestaji";
             this.lbIzvjestaji.Size = new System.Drawing.Size(178, 563);
             this.lbIzvjestaji.TabIndex = 0;
+            this.lbIzvjestaji.SelectedIndexChanged += new System.EventHandler(this.lbIzvjestaji_SelectedIndexChanged);
             // 
             // btnUcitaj
             // 
@@ -56,6 +57,7 @@
             this.btnUcitaj.TabIndex = 1;
             this.btnUcitaj.Text = "Učitaj";
             this.btnUcitaj.UseVisualStyleBackColor = false;
+            this.btnUcitaj.Click += new System.EventHandler(this.btnUcitaj_Click);
             // 
             // panelIzvjestaji
             // 
