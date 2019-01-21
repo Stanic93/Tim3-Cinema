@@ -444,7 +444,7 @@ namespace Cinema.Forme
                                     join dbo.Termin as t
                                     on k.TerminID = t.TerminID
                                     join dbo.Cijena as c
-                                    on c.CijenaID = t.TerminID
+                                    on c.CijenaID = t.CijenaID
                                     where k.RezervacijaID = @RezervacijaID;";
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 {
@@ -542,10 +542,8 @@ namespace Cinema.Forme
                     cijena += Convert.ToDecimal(cijenaPolje);
                 }
             }
-
             txtUkupnaVrijednost.Text = "" + cijena;
-            txtUkupnaVrijednost.ReadOnly = true;
-            
+            txtUkupnaVrijednost.ReadOnly = true;            
         }
     }
 }
