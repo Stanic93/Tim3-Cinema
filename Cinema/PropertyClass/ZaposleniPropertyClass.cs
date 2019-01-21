@@ -19,6 +19,7 @@ namespace Cinema.PropertyClass
         private string prezime;
         private DateTime godiste;
         private string pozicija;
+        private char pol; 
         // **** avatar ****
 
         #endregion
@@ -82,6 +83,19 @@ namespace Cinema.PropertyClass
                 godiste = value;
             }
         }
+        [SqlName("Pol")]
+        [DisplayName("Pol")]
+        public char Pol
+        {
+            get
+            {
+                return pol;
+            }
+            set
+            {
+                pol = value;
+            }
+        }
         [SqlName("Pozicija")]
         [DisplayName("Pozicija")]
         public string Pozicija
@@ -106,11 +120,11 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"INSERT into dbo.Zaposleni (Ime,Prezime,Godiste,Pozicija) values (@Ime, @Prezime, @Godiste, @Pozicija)";
+            return @"INSERT into dbo.Zaposleni (Ime,Prezime,Godiste,Pozicija,Pol) values (@Ime, @Prezime, @Godiste, @Pozicija,@Pol)";
         }
         public string GetSelectQuery()
         {
-            return @"Select ZaposleniID,Ime,Prezime,Godiste,Pozicija from dbo.Zaposleni";
+            return @"Select ZaposleniID,Ime,Prezime,Godiste,Pozicija,Pol from dbo.Zaposleni";
         }
         public string GetUpdateQuery()
         {
@@ -119,7 +133,8 @@ namespace Cinema.PropertyClass
                      Ime = @Ime,
                      Prezime = @Prezime,
                      Godiste = @Godiste,
-                     Pozicija = @Pozicija
+                     Pozicija = @Pozicija,
+                     Pol=@Pol
                      where ZaposleniID = @ZaposleniID";
         }
         public string GetLookUpQuery(string ID)
@@ -128,7 +143,7 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            return @"Select dbo.Zaposleni.ZaposleniID, dbo.Zaposleni.Ime, dbo.Zaposleni.Prezime, dbo.Zaposleni.Godiste, dbo.Zaposleni.Pozicija
+            return @"Select dbo.Zaposleni.ZaposleniID, dbo.Zaposleni.Ime, dbo.Zaposleni.Prezime, dbo.Zaposleni.Godiste, dbo.Zaposleni.Pozicija, dbo.Zaposleni.Pol
                     from dbo.Zaposleni where Ime like '" + rijec + "%' OR dbo.Zaposleni.Prezime like'" + rijec + "%'";
         }
         #endregion
@@ -167,6 +182,11 @@ namespace Cinema.PropertyClass
                 parameter.Value = pozicija;
                 parameters.Add(parameter);
             }
+            {
+                SqlParameter parameter = new SqlParameter("@Pol", System.Data.SqlDbType.Char);
+                parameter.Value = Pol;
+                parameters.Add(parameter);
+            }
             return parameters;
         }
         public List<SqlParameter> GetUpdateParameters()
@@ -190,6 +210,11 @@ namespace Cinema.PropertyClass
             {
                 SqlParameter parameter = new SqlParameter("@Pozicija", System.Data.SqlDbType.NVarChar);
                 parameter.Value = pozicija;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("@Pol", System.Data.SqlDbType.Char);
+                parameter.Value = Pol;
                 parameters.Add(parameter);
             }
             {
