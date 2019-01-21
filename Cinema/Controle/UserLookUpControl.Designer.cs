@@ -46,25 +46,31 @@
             // 
             // txtKeyValue
             // 
-            this.txtKeyValue.Location = new System.Drawing.Point(58, 3);
+            this.txtKeyValue.Location = new System.Drawing.Point(63, 3);
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(37, 20);
             this.txtKeyValue.TabIndex = 1;
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(101, 2);
+            this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnFind.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFind.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFind.ForeColor = System.Drawing.Color.White;
+            this.btnFind.Location = new System.Drawing.Point(108, 3);
             this.btnFind.Name = "btnFind";
             this.btnFind.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnFind.Size = new System.Drawing.Size(33, 20);
             this.btnFind.TabIndex = 2;
             this.btnFind.Text = "...";
-            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.UseVisualStyleBackColor = false;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(136, 4);
+            this.txtValue.Location = new System.Drawing.Point(147, 4);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(87, 20);
             this.txtValue.TabIndex = 3;
@@ -79,7 +85,7 @@
             this.Controls.Add(this.lblNaziv);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UserLookUpControl";
-            this.Size = new System.Drawing.Size(226, 27);
+            this.Size = new System.Drawing.Size(241, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 

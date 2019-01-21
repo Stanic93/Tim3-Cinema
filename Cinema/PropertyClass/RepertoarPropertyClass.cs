@@ -145,12 +145,12 @@ namespace Cinema.PropertyClass
         }
         
         [SqlName("DatumPrvogPrikazivanja")]
-        [DisplayName("Datum prvog prikazivanja")]
+        [DisplayName("Datum prvog prikaza")]
         [DateTime]
         public DateTime DatumPrvogPrikazivanja { get; set; }
         
         [SqlName("DatumPosljednjegPrikazivanja")]
-        [DisplayName("Datum posljednjeg prikazivanja")]
+        [DisplayName("Datum zadnjeg prikaza")]
         [DateTime]
         public DateTime DatumPosljednjegPrikazivanja { get; set; }
 
@@ -179,7 +179,7 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            throw new NotImplementedException();
+            return @"Select * from dbo.vRepertoar where Film like '" + rijec + "%'";
         }
         #endregion
 

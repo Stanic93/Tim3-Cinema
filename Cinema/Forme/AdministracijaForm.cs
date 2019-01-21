@@ -37,7 +37,8 @@ namespace Cinema.Forme
             btnProjekcija.Click += BtnOboji_Click; 
             btnZanr.Click += BtnOboji_Click;
             btnLogin.Click += BtnOboji_Click;
-            lblSat.Text = DateTime.Now.ToShortTimeString();
+
+            timer1.Start();
             OsnovnaPodesavanja();
 
 
@@ -735,6 +736,14 @@ namespace Cinema.Forme
         {
             btnIzvjestaji.BackColor = Color.FromArgb(52, 52, 52);
             pbIzvjestaji.BackColor = Color.Transparent;
+        }
+
+        
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            lblSat.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

@@ -37,7 +37,7 @@
             this.dtpVrijednost.CustomFormat = "dd.MM.yyyy";
             this.dtpVrijednost.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpVrijednost.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVrijednost.Location = new System.Drawing.Point(133, 3);
+            this.dtpVrijednost.Location = new System.Drawing.Point(148, 3);
             this.dtpVrijednost.Name = "dtpVrijednost";
             this.dtpVrijednost.Size = new System.Drawing.Size(90, 21);
             this.dtpVrijednost.TabIndex = 1;
@@ -60,7 +60,7 @@
             this.Controls.Add(this.dtpVrijednost);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DateTimeControl";
-            this.Size = new System.Drawing.Size(226, 27);
+            this.Size = new System.Drawing.Size(241, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 

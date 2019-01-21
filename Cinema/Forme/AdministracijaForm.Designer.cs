@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -67,6 +68,7 @@
             this.lblSat = new System.Windows.Forms.Label();
             this.lblPretragaFix = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelMeni.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIzvjestaji)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
@@ -581,7 +583,7 @@
             this.lblSat.AutoSize = true;
             this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSat.Location = new System.Drawing.Point(750, 44);
+            this.lblSat.Location = new System.Drawing.Point(795, 70);
             this.lblSat.Name = "lblSat";
             this.lblSat.Size = new System.Drawing.Size(0, 28);
             this.lblSat.TabIndex = 3;
@@ -606,6 +608,10 @@
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 0;
             this.pbLogo.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // AdministracijaForm
             // 
@@ -680,5 +686,6 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.PictureBox pbIzvjestaji;
         private System.Windows.Forms.Button btnIzvjestaji;
+        private System.Windows.Forms.Timer timer1;
     }
 }

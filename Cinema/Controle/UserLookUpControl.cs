@@ -21,6 +21,7 @@ namespace Cinema.Controle
         {
             InitializeComponent();
             myInterface = property;
+            
         }
         public UserLookUpControl(PropertyInterface property,int terminID)
         {
@@ -71,6 +72,12 @@ namespace Cinema.Controle
         public void Zabrani()
         {
             txtKeyValue.ReadOnly=true;
+            txtValue.ReadOnly = true;
+        }
+        public void Zakljucaj()
+        {
+            btnFind.Enabled = false;
+            txtKeyValue.ReadOnly = true;
             txtValue.ReadOnly = true;
         }
     }
