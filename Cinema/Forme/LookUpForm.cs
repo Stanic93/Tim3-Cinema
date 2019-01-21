@@ -93,8 +93,13 @@ namespace Cinema
 
         private void btnIzaberi_Click(object sender, EventArgs e)
         {
-          
-                DataGridViewRow row = dgvPregledLookUp.SelectedRows[0];
+            if (dgvPregledLookUp.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema slobodnih mjesta");
+                this.Close();
+                return;
+            }
+            DataGridViewRow row = dgvPregledLookUp.SelectedRows[0];
                 var properties = myProperty.GetType().GetProperties();
 
                 string columnName = properties.Where(x => x.GetCustomAttribute<LookUpKeyAttribute>() != null)

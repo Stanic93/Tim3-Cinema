@@ -26,4 +26,10 @@ namespace Cinema
         Delete,
         Idle
     }
+    public enum StateTab
+    {
+        Racun,
+        Rezervacija,
+        Detaljno
+    }
 }

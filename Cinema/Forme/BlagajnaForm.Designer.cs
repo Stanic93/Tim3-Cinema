@@ -79,6 +79,7 @@
             this.lblStanjeSale = new System.Windows.Forms.Label();
             this.panelPregledRacuna = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.tsbtnDodaj = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxAvatar)).BeginInit();
             this.panel3.SuspendLayout();
@@ -371,6 +372,7 @@
             // toolStripKarta
             // 
             this.toolStripKarta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnDodaj,
             this.tsbtnIzmijein,
             this.tsbtnObrisi});
             this.toolStripKarta.Location = new System.Drawing.Point(3, 16);
@@ -648,6 +650,16 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tsbtnDodaj
+            // 
+            this.tsbtnDodaj.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnDodaj.Image")));
+            this.tsbtnDodaj.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnDodaj.Name = "tsbtnDodaj";
+            this.tsbtnDodaj.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnDodaj.Text = "Dodaj";
+            this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
+            // 
             // BlagajnaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,5 +757,6 @@
         private System.Windows.Forms.Panel panelTabRezervacija;
         private System.Windows.Forms.Button btnTabRezervacija;
         private System.Windows.Forms.Button btnDodajRezervaciju;
+        private System.Windows.Forms.ToolStripButton tsbtnDodaj;
     }
 }

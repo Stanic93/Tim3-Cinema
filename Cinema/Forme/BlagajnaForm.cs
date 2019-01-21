@@ -36,12 +36,20 @@ namespace Cinema.Forme
             FullName = imeIprezime;
             lblKorisnickoIme.Text = FullName;
             lblRadnik.Visible = false;
+            dgvPregled.MultiSelect = false;
+            dgvPregled.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvPregled.RowHeadersVisible = false;
+            dgvPregled.AllowUserToResizeColumns = false;
+            dgvPregled.AllowUserToResizeRows = false;
 
         }
         // osnovna podesavanja u rezimu repertoar
         public void OsnovnaPodesavanja()
         {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            state = State.Idle;
+            dtpDatumProdukcije.Visible = true;
+            lblDatumProdukcije.Visible = true;
             btnRezervacija.Enabled = false;
             btnDodajRezervaciju.Visible = false;
             btnNovaKarta.Text = "Karta";
@@ -50,8 +58,7 @@ namespace Cinema.Forme
             panelTabRepertoar.Visible = true;
             panelTabKarta.Visible = false;
             lblStatusSale.Visible = false;
-            gbDetaljno.Enabled = true;
-            dgvPregled.MultiSelect = false;
+            gbDetaljno.Enabled = true;            
             btnVratiNaKartu.Visible = false;
             btnOdustaniRacun.Visible = false;
             btnRepertor.Enabled = true;
@@ -77,6 +84,7 @@ namespace Cinema.Forme
             popuniPregled(property);
             popuniControle(property);
             prikaziKolone();
+            
         }
 
         // popunjava datagridView
@@ -97,6 +105,7 @@ namespace Cinema.Forme
                 item.HeaderText = properties.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv == item.HeaderText
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
+            
 
         }
 
@@ -339,6 +348,7 @@ namespace Cinema.Forme
         private void btnPrikaziSve_Click(object sender, EventArgs e)
         {
             popuniPregled(property);
+            prikaziKolone();
         }
         // button za pretraguFilmova po nazivu.
         private void btnPretrazi_Click(object sender, EventArgs e)
@@ -362,7 +372,7 @@ namespace Cinema.Forme
                 reader.Close();
                 command.Dispose();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Can not open connection");
             }
@@ -418,7 +428,6 @@ namespace Cinema.Forme
                 IzracunajSumuRacuna();
                 popuniControle(property);
                 setujKontroleKarta();
-                btnVratiNaKartu.Visible = true;
                 gbDetaljno.Enabled = false;
 
 
@@ -469,8 +478,8 @@ namespace Cinema.Forme
                 toolStripKarta.Visible = false;
                 btnPotvrdi.Visible = true;
                 flpDetaljno.Dock = DockStyle.None;      
-                txtNaziv.ReadOnly = true;
-                txtNaziv.TextAlign = HorizontalAlignment.Center;
+          //      txtNaziv.ReadOnly = true;
+           //     txtNaziv.TextAlign = HorizontalAlignment.Center;
                 gbDetaljno.Enabled = true;
                 dgvPregled.DataSource = null;
                 flpDetaljno.Controls.Clear();
@@ -509,6 +518,7 @@ namespace Cinema.Forme
             }
             else if (btnNovaKarta.Text == "Stampaj")
             {
+                state = State.Idle;
                 OsnovnaPodesavanja();
             }else if(btnNovaKarta.Text == "Potvrdi rezervaciju")
             {
@@ -559,7 +569,6 @@ namespace Cinema.Forme
             {
 
                 racunID = row.Field<short>("RacunID");
-
             }
             reader1.Close();
         }
@@ -568,11 +577,20 @@ namespace Cinema.Forme
         {
             if (dgvPregled.Rows.Count == 0)
             {
-                gbDetaljno.Enabled = false;
-                btnNovaKarta.Enabled = false;
-                lblStatusSale.Visible = true;
-                lblStatusSale.Text = "Nema termina za prikazivanje";
-                lblStatusSale.ForeColor = Color.Red;
+                if (activeTab != ActiveTab.Racun)
+                {
+                    gbDetaljno.Enabled = false;
+                    btnNovaKarta.Enabled = false;
+                    lblStatusSale.Visible = true;
+                    lblStatusSale.Text = "Nema termina za prikazivanje";
+                    lblStatusSale.ForeColor = Color.Red;
+                    btnVratiNaKartu.Visible = false;
+                    btnDodajRezervaciju.Visible = false;
+                }
+                else
+                {
+                    btnNovaKarta.Enabled = false;
+                }
                 return;
             }
             else
@@ -588,6 +606,12 @@ namespace Cinema.Forme
                 if (activeTab != ActiveTab.Rezervacija)
                 {
                     btnNovaKarta.Enabled = true;
+
+                }
+                else
+                {
+                    btnDodajRezervaciju.Visible = true;
+                    btnVratiNaKartu.Visible = true;
                 }
                 lblStatusSale.Visible = false;
                 lblStatusSale.Text = "";
@@ -603,7 +627,7 @@ namespace Cinema.Forme
 
                         ulup.Enabled = false;
                         ulup.SetKey(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
-                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["ProjekcijaID"].Value.ToString());
+                        ulup.SetValue(lblNazivFilma.Text);
                     }
                     if (ulup.Name == "TerminID")
                     {
@@ -756,6 +780,22 @@ namespace Cinema.Forme
         //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
+            foreach(var item in flpDetaljno.Controls)
+            {
+                if(item.GetType() == typeof(UserLookUpControl))
+                {
+                    UserLookUpControl ulup = item as UserLookUpControl;
+                    if(ulup.Name == "SjedisteID")
+                    {
+                        string key = ulup.getKey();
+                        if(key == "" || key == " ")
+                        {
+                            MessageBox.Show("Popunite broj sjedista");
+                            return;
+                        }
+                    }
+                }
+            }
             if (activeTab == ActiveTab.Karta)
             {
                 populateKartaInterface();
@@ -1037,8 +1077,8 @@ namespace Cinema.Forme
             decimal cijena = 0;
             foreach (DataGridViewRow row in dgvPregled.Rows)
             {
-                string nesto = row.Cells["Cijena"].Value.ToString();
-                cijena += Convert.ToDecimal(nesto);
+                string cijenaPolje = row.Cells["Cijena"].Value.ToString();
+                cijena += Convert.ToDecimal(cijenaPolje);
             }
 
             txtUkupnaVrijednost.Text = "" + cijena;
@@ -1047,16 +1087,14 @@ namespace Cinema.Forme
 
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
-            if (btnVratiNaKartu.Text == "Dodaj kartu")
+            if(btnVratiNaKartu.Text == "Pregled rezervacija")
             {
-                btnNovaKarta.Text = "Karta";
-                panelRacun.Visible = false;
-                state = State.Add;
-                btnNovaKarta_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("otvori formu");
+                RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString(),zaposleniID,FullName);
+                novaForma.ShowDialog();
+                if(novaForma.DialogResult == DialogResult.OK)
+                {
+                    
+                }
             }
         }
 
@@ -1174,7 +1212,8 @@ namespace Cinema.Forme
                 }
             } while (prosao);
             setujRezervacijaId();
-            
+            dtpDatumProdukcije.Visible = false;
+            lblDatumProdukcije.Visible = false;
         }
         private static DialogResult ShowInputDialog(ref string input)
         {
@@ -1311,6 +1350,16 @@ namespace Cinema.Forme
             DataRow dr = dt.Rows[dt.Rows.Count - 1];
             rezervacijaID = Convert.ToString(dr.Field<short>(0));
         }
+
+        private void tsbtnDodaj_Click(object sender, EventArgs e)
+        {
+            btnNovaKarta.Text = "Karta";
+            panelRacun.Visible = false;
+            state = State.Add;
+            btnNovaKarta_Click(sender, e);
+        }
+
+        
     }
 }
 
