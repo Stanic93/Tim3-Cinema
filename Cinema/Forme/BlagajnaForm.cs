@@ -28,6 +28,7 @@ namespace Cinema.Forme
         State state = State.Idle;
         string ImeRezervacije = "";
         string rezervacijaID = "";
+
         public BlagajnaForm(int zaposleniID, string imeIprezime)
         {
             InitializeComponent();
@@ -44,12 +45,11 @@ namespace Cinema.Forme
             timer1.Start();
 
         }
+
         // osnovna podesavanja u rezimu repertoar
         public void OsnovnaPodesavanja()
         {
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-
             dgvPregled.DefaultCellStyle.SelectionBackColor = Color.Orange;
             state = State.Idle;
             dtpDatumProdukcije.Visible = true;
@@ -60,7 +60,7 @@ namespace Cinema.Forme
             btnRezervacija.Text = "Rezervacija";
             lblStatusSale.Text = "";
             lblStatusSale.Visible = false;
-            gbDetaljno.Enabled = true;            
+            gbDetaljno.Enabled = true;
             btnVratiNaKartu.Visible = false;
             btnOdustaniRacun.Visible = false;
             btnTabRepertoar.Enabled = true;
@@ -77,13 +77,11 @@ namespace Cinema.Forme
             flpDetaljno.Dock = DockStyle.Fill;
             flpDetaljno.Controls.Clear();
             activeTab = ActiveTab.Repertoar;
-
             btnTabRepertoar.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 0);
             btnTabRepertoar.FlatAppearance.BorderSize = 1;
             btnTabRacun.FlatAppearance.BorderSize = 0;
             btnTabRezervacija.FlatAppearance.BorderSize = 0;
             btnTabKarta.FlatAppearance.BorderSize = 0;
-
             lblNazivFilma.Visible = false;
             lblZanrFilma.Visible = false;
             panelRacun.Visible = false;
@@ -91,7 +89,7 @@ namespace Cinema.Forme
             popuniPregled(property);
             popuniControle(property);
             prikaziKolone();
-            
+
         }
 
         // popunjava datagridView
@@ -112,8 +110,6 @@ namespace Cinema.Forme
                 item.HeaderText = properties.Where(x => x.GetCustomAttributes<SqlNameAttribute>().FirstOrDefault().Naziv == item.HeaderText
                                       ).FirstOrDefault().GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName;
             }
-            
-
         }
 
         // sakrivanje kolona koje nisu potrebne u dgv za tabove repertoar,karta,racun
@@ -121,7 +117,6 @@ namespace Cinema.Forme
         {
             if (activeTab == ActiveTab.Repertoar)
             {
-
                 dgvPregled.Columns["FilmID"].Visible = false;
                 dgvPregled.Columns["DatumPrvogPrikazivanja"].Visible = false;
                 dgvPregled.Columns["DatumPosljednjegPrikazivanja"].Visible = false;
@@ -138,7 +133,6 @@ namespace Cinema.Forme
             }
             if (activeTab == ActiveTab.Racun)
             {
-
                 dgvPregled.Columns["ProjekcijaID"].Visible = false;
                 dgvPregled.Columns["TerminID"].Visible = false;
                 dgvPregled.Columns["SjedisteID"].Visible = false;
@@ -153,7 +147,7 @@ namespace Cinema.Forme
 
             foreach (PropertyInfo item in properties)
             {
-                if(item.Name == "RezervacijaID")
+                if (item.Name == "RezervacijaID")
                 {
                     continue;
                 }
@@ -163,7 +157,6 @@ namespace Cinema.Forme
                         CreateInstance(item.GetCustomAttribute<ForeignKeyAttribute>().className)
                         as PropertyInterface;
                     UserLookUpControl ul;
-
 
                     if (activeTab == ActiveTab.Karta || activeTab == ActiveTab.Racun || activeTab == ActiveTab.Rezervacija)
                     {
@@ -186,8 +179,6 @@ namespace Cinema.Forme
                         flpDetaljno.Controls.Add(ul);
                         continue;
                     }
-
-
                 }
 
                 if (item.GetCustomAttribute<VisibleAttribute>() != null)
@@ -285,6 +276,7 @@ namespace Cinema.Forme
                 item.SetValue(property, Convert.ChangeType(value, item.PropertyType));
             }
         }
+
         // popunjava kontrole u flpDetaljno vrijednostima iz property.
         private void popuniDetaljno(PropertyInterface property)
         {
@@ -320,6 +312,7 @@ namespace Cinema.Forme
                 }
             }
         }
+
         //setuje granice datuma u rezimu Repertoar
         private void setujGraniceDatumProdukcije(PropertyInterface property)
         {
@@ -347,58 +340,11 @@ namespace Cinema.Forme
             }
 
             dtpDatumProdukcije.Value = dtMin;
+        }    
 
-
-
-        }
-        // dugme za pretraguFilmova , prikazi sve prikazuje sve aktivne filmove.
-        private void btnPrikaziSve_Click(object sender, EventArgs e)
-        {
-            popuniPregled(property);
-            prikaziKolone();
-        }
-        // button za pretraguFilmova po nazivu.
-        private void btnPretrazi_Click(object sender, EventArgs e)
-        {
-
-            DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select * from dbo.vRepertoar where Film Like '%'+@Naziv+'%'";
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@Naziv", SqlDbType.NVarChar);
-            parameter.Value = txtNaziv.Text;
-            command.Parameters.Add(parameter);
-            SqlDataReader reader;
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch 
-            {
-                MessageBox.Show("Can not open connection");
-            }
-            dgvPregled.DataSource = dt;
-
-            prikaziKolone();
-            txtNaziv.Text = "";
-        }
         // txtPolje za pretragu
         private void txtNaziv_TextChanged(object sender, EventArgs e)
-        {
-            //if (txtNaziv.Text == "" || txtNaziv.Text == " ")
-            //{
-            //    btnPretrazi.Enabled = false;
-            //}
-            //else
-            //{
-            //    btnPretrazi.Enabled = true;
-            //}
+        {            
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSearchQuery(txtNaziv.Text));
 
@@ -406,9 +352,8 @@ namespace Cinema.Forme
             reader.Close();
             dgvPregled.DataSource = dt;
             prikaziKolone();
-
-
         }
+
         // klikom na novu kartu , postavlja se vrijednost button-a i mijenja se rezim rada.
         private void btnNovaKarta_Click(object sender, EventArgs e)
         {
@@ -438,18 +383,21 @@ namespace Cinema.Forme
                 popuniPregledRacun();
                 if (dgvPregled.Rows.Count == 0)
                 {
-                    panelToolStrip.Enabled = false;
+                    tsbtnDodaj.Enabled = true;
+                    tsbtnIzmijein.Visible = false;
+                    tsbtnObrisi.Visible = false;
                 }
                 else
                 {
                     panelToolStrip.Enabled = true;
+                    tsbtnDodaj.Enabled = true;
+                    tsbtnIzmijein.Visible = true;
+                    tsbtnObrisi.Visible = true;
                 }
                 IzracunajSumuRacuna();
                 popuniControle(property);
                 setujKontroleKarta();
                 gbDetaljno.Enabled = false;
-
-
             }
             else if (btnNovaKarta.Text == "Karta")
             {
@@ -464,10 +412,8 @@ namespace Cinema.Forme
                     btnTabRezervacija.Enabled = false;
                     btnNovaKarta.Enabled = true;
                     btnVratiNaKartu.Visible = false;
-
                     btnTabKarta.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 0);
                     btnTabKarta.FlatAppearance.BorderSize = 1;
-
                     btnTabRepertoar.FlatAppearance.BorderSize = 0;
                     btnTabRezervacija.FlatAppearance.BorderSize = 0;
                     btnTabRacun.FlatAppearance.BorderSize = 0;
@@ -494,15 +440,13 @@ namespace Cinema.Forme
                 if (state == State.Idle)
                 {
                     racunID = 0;
-                }                
+                }
                 lblNazivFilma.Visible = true;
-                lblZanrFilma.Visible = true;                
+                lblZanrFilma.Visible = true;
                 dtpDatumProdukcije.Enabled = true;
                 panelToolStrip.Visible = false;
                 btnPotvrdi.Visible = true;
-                flpDetaljno.Dock = DockStyle.None;      
-          //      txtNaziv.ReadOnly = true;
-           //     txtNaziv.TextAlign = HorizontalAlignment.Center;
+                flpDetaljno.Dock = DockStyle.None;
                 gbDetaljno.Enabled = true;
                 dgvPregled.DataSource = null;
                 flpDetaljno.Controls.Clear();
@@ -543,46 +487,29 @@ namespace Cinema.Forme
             {
                 state = State.Idle;
                 OsnovnaPodesavanja();
-            }else if(btnNovaKarta.Text == "Potvrdi rezervaciju")
+            }
+            else if (btnNovaKarta.Text == "Potvrdi rezervaciju")
             {
                 MessageBox.Show("Rezervacija uspjesno kreirana!");
                 rezervacijaID = "";
                 ImeRezervacije = "";
                 OsnovnaPodesavanja();
             }
-
         }
+
         // kreiranje racuna prilikom klika na Karta.
         private void kreirajRacun()
         {
-            property = new RacunPropertyClass();
-            //SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
-            //DataTable dt = new DataTable();
-            //dt.Load(reader);
-            //reader.Close();
-
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@ZaposleniID", SqlDbType.SmallInt);
-            parameter.Value = zaposleniID;
-            command.Parameters.Add(parameter);
-            SqlDataReader reader;
+            property = new RacunPropertyClass();            
+            string command = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ZaposleniID", SqlDbType.SmallInt);
+                parameter.Value = zaposleniID;
+                parameters.Add(parameter);
+            }
             DataTable dt = new DataTable();
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            dt = Izvrsi(command, parameters);
             RacunPropertyClass pomocni = property as RacunPropertyClass;
             SqlDataReader reader1 = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, pomocni.GetMaxIDQuery());
             DataTable dt1 = new DataTable();
@@ -590,11 +517,11 @@ namespace Cinema.Forme
             dt1.Load(reader1);
             foreach (DataRow row in dt1.Rows)
             {
-
                 racunID = row.Field<short>("RacunID");
             }
             reader1.Close();
         }
+
         // popunjavanje flpDetaljno kontrola u rezimu rada Karta
         private void setujKontroleKarta()
         {
@@ -629,7 +556,6 @@ namespace Cinema.Forme
                 if (activeTab != ActiveTab.Rezervacija)
                 {
                     btnNovaKarta.Enabled = true;
-
                 }
                 else
                 {
@@ -665,13 +591,13 @@ namespace Cinema.Forme
                             ulup.SetValue(dgvPregled.SelectedRows[0].Cells["BrojSjedista"].Value.ToString());
                         }
                     }
-                    
-                        if (ulup.Name == "RacunID")
-                        {
+
+                    if (ulup.Name == "RacunID")
+                    {
                         ulup.Zakljucaj();
                         ulup.SetKey("" + racunID);
-                            ulup.SetValue("" + racunID);
-                        }                    
+                        ulup.SetValue("" + racunID);
+                    }
                 }
                 if (item.GetType() == typeof(TextBoxControl))
                 {
@@ -685,6 +611,7 @@ namespace Cinema.Forme
                 }
             }
         }
+
         // popunjavanje properties u  KartaPropertyClass
         private void populateKartaInterface()
         {
@@ -716,7 +643,6 @@ namespace Cinema.Forme
                             }
                         }
                     }
-
                     if (item2.GetType() == typeof(TextBoxControl))
                     {
                         TextBoxControl textBox = item2 as TextBoxControl;
@@ -747,46 +673,26 @@ namespace Cinema.Forme
                     }
                 }
             }
-            
         }
+
         // popunjavanje termina za odgovarajuci datum i film
         private void popuniPregledProjekcija()
         {
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"select * from vPregledProjekcije (@Date,@FilmID) order by VrijemePrikazivanja";
+
+            string command = @"select * from vPregledProjekcije (@Date,@FilmID) order by VrijemePrikazivanja";
+            List<SqlParameter> parameters = new List<SqlParameter>();
             SqlParameter parameter = new SqlParameter("@Date", SqlDbType.Date);
             SqlParameter parameter2 = new SqlParameter("@FilmID", SqlDbType.Int);
             parameter.Value = dtpDatumProdukcije.Value;
             parameter2.Value = filmID;
-            command.Parameters.Add(parameter);
-            command.Parameters.Add(parameter2);
-
-            command.Connection = connection;
-            SqlDataReader reader;
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            parameters.Add(parameter);
+            parameters.Add(parameter2);
+            dt = Izvrsi(command, parameters);
             dgvPregled.DataSource = dt;
             prikaziKolone();
         }
-        // pomocni button namjenjen za brisanje
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AdministracijaForm nova = new AdministracijaForm("asda");
-            nova.Show();
-        }
+
         // prilikom promjene datumaProjekcije mijenja se dataGridView i prikazuju se drugi termini
         private void dtpDatumProdukcije_ValueChanged(object sender, EventArgs e)
         {
@@ -802,15 +708,15 @@ namespace Cinema.Forme
         //kreiranje nove karte
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
-            foreach(var item in flpDetaljno.Controls)
+            foreach (var item in flpDetaljno.Controls)
             {
-                if(item.GetType() == typeof(UserLookUpControl))
+                if (item.GetType() == typeof(UserLookUpControl))
                 {
                     UserLookUpControl ulup = item as UserLookUpControl;
-                    if(ulup.Name == "SjedisteID")
+                    if (ulup.Name == "SjedisteID")
                     {
                         string key = ulup.getKey();
-                        if(key == "" || key == " ")
+                        if (key == "" || key == " ")
                         {
                             MessageBox.Show("Popunite broj sjedista");
                             return;
@@ -836,13 +742,11 @@ namespace Cinema.Forme
                             ulup.SetValue("");
                         }
                     }
-                }               
-                    MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               
-
-            }else if (activeTab == ActiveTab.Rezervacija)
+                }
+                MessageBox.Show("Uspjesno ste dodali kartu na racun", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (activeTab == ActiveTab.Rezervacija)
             {
-                
                 populateKartaInterface();
                 KartaPropertyClass novi = property as KartaPropertyClass;
                 SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, novi.GetInsertRezervacijaQuery(), novi.GetInsertRezervacijaParameters().ToArray());
@@ -861,17 +765,14 @@ namespace Cinema.Forme
                         }
                     }
                 }
-
                 MessageBox.Show("Uspjesno ste rezervisali kartu", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnNovaKarta.Enabled = true;
             }
             else if (activeTab == ActiveTab.Racun)
             {
                 gbDetaljno.Enabled = false;
-                SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-                SqlCommand command = new SqlCommand();
-                command.CommandText = @"Update Karta Set SjedisteID = @SjedisteID where KartaID = @KartaID";
-                command.Connection = connection;
+                string command = @"Update Karta Set SjedisteID = @SjedisteID where KartaID = @KartaID";
+                List<SqlParameter> parameters = new List<SqlParameter>();
                 SqlParameter parameter = new SqlParameter("@KartaID", SqlDbType.SmallInt);
                 SqlParameter parameter2 = new SqlParameter("@SjedisteID", SqlDbType.SmallInt);
                 string vrijednost = "";
@@ -889,23 +790,10 @@ namespace Cinema.Forme
                 parameter2.Value = Convert.ToInt16(vrijednost);
                 short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells[0].Value.ToString());
                 parameter.Value = broj;
-                command.Parameters.Add(parameter);
-                command.Parameters.Add(parameter2);
-                SqlDataReader reader;
+                parameters.Add(parameter);
+                parameters.Add(parameter2);
                 DataTable dt = new DataTable();
-                try
-                {
-                    connection.Open();
-                    reader = command.ExecuteReader();
-                    dt.Load(reader);
-                    connection.Close();
-                    reader.Close();
-                    command.Dispose();
-                }
-                catch
-                {
-                    MessageBox.Show("Can not open connection");
-                }
+                dt = Izvrsi(command, parameters);
                 popuniPregledRacun();
                 state = State.Idle;
                 gbDetaljno.Enabled = false;
@@ -931,7 +819,6 @@ namespace Cinema.Forme
                         IzbrisiKarteIRacun();
                         OsnovnaPodesavanja();
                         state = State.Idle;
-
                     }
                 }
                 else
@@ -939,9 +826,8 @@ namespace Cinema.Forme
                     DialogResult dialogResult = MessageBox.Show("Da li zelite da odustanete od rezervacije?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        
                         IzbrisiKarteiRezervaciju();
-                        OsnovnaPodesavanja();                        
+                        OsnovnaPodesavanja();
                         state = State.Idle;
                     }
                 }
@@ -953,10 +839,10 @@ namespace Cinema.Forme
                 gbKarta.Enabled = true;
                 btnNovaKarta.Enabled = false;
                 gbPretraga.Enabled = true;
-                btnDodajRezervaciju.Enabled = true;            
-
+                btnDodajRezervaciju.Enabled = true;
             }
         }
+
         // brisanje karata i racuna (Klikom na odustani)
         private void IzbrisiKarteIRacun()
         {
@@ -964,47 +850,29 @@ namespace Cinema.Forme
             {
                 return;
             }
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Delete
+            string commandDeleteKarta = @"Delete
                                     from Karta
                                     where RacunID = @RacunID
                                     ";
-            SqlCommand commandRacun = new SqlCommand();
-            commandRacun.CommandText = @"Delete
+            string commandDeleteRacun = @"Delete
                                     from Racun
                                     where RacunID = @RacunID
                                     ";
-            commandRacun.Connection = connection;
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
-            parameter.Value = racunID;
-            command.Parameters.Add(parameter);
-            SqlParameter parameterRacun = new SqlParameter("@RacunID", SqlDbType.SmallInt);
-            parameterRacun.Value = racunID;
-            commandRacun.Parameters.Add(parameterRacun);
+            List<SqlParameter> parametersKarta = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parametersKarta.Add(parameter);
+            }
+            List<SqlParameter> parametersRacun = new List<SqlParameter>();
+            {
+                SqlParameter parameterRacun = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+                parameterRacun.Value = racunID;
+                parametersRacun.Add(parameterRacun);
+            }
             DataTable dt = new DataTable();
-            SqlDataReader reader;
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                command.Dispose();
-                connection.Close();
-                reader.Close();
-                connection.Open();
-                reader = commandRacun.ExecuteReader();
-                dt.Load(reader);
-                command.Dispose();
-                connection.Close();
-                reader.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
-
+            dt = Izvrsi(commandDeleteKarta, parametersKarta);
+            dt = Izvrsi(commandDeleteRacun, parametersRacun);
         }
 
         // brisanje karata i rezervacije(klikom na odustani)
@@ -1014,46 +882,30 @@ namespace Cinema.Forme
             {
                 return;
             }
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Delete
+            string commandDeleteKarta = @"Delete
                                     from Karta
                                     where RezervacijaID = @RezervacijaID
                                     ";
-            SqlCommand commandRacun = new SqlCommand();
-            commandRacun.CommandText = @"Delete
+            string commandRacun = @"Delete
                                     from Rezervacija
                                     where RezervacijaID = @RezervacijaID
                                     ";
-            commandRacun.Connection = connection;
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
-            parameter.Value = rezervacijaID;
-            command.Parameters.Add(parameter);
-            SqlParameter parametarRezervacija = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
-            parametarRezervacija.Value = rezervacijaID;
-            commandRacun.Parameters.Add(parametarRezervacija);
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+                parameter.Value = rezervacijaID;
+                parameters.Add(parameter);
+            }
+            List<SqlParameter> parametersRezervacija = new List<SqlParameter>();
+            {
+                SqlParameter parametarRezervacija = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
+                parametarRezervacija.Value = rezervacijaID;
+                parametersRezervacija.Add(parametarRezervacija);
+            }
             DataTable dt = new DataTable();
-            SqlDataReader reader;
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                command.Dispose();
-                connection.Close();
-                reader.Close();
-                connection.Open();
-                reader = commandRacun.ExecuteReader();
-                dt.Load(reader);
-                command.Dispose();
-                connection.Close();
-                reader.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            dt = Izvrsi(commandDeleteKarta, parameters);
+            dt.Clear();
+            dt = Izvrsi(commandRacun, parametersRezervacija);
         }
 
         // kreiranje prikaza karata na racunu ()
@@ -1061,9 +913,7 @@ namespace Cinema.Forme
         {
             dgvPregled.DataSource = null;
             DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista,Sjediste.SjedisteID from Karta as k 
+            string command = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista,Sjediste.SjedisteID from Karta as k 
                                     join Termin t
                                     on t.TerminID = k.TerminID 
                                     join cijena c
@@ -1071,24 +921,13 @@ namespace Cinema.Forme
                                     join Sjediste
                                     on k.SjedisteID = Sjediste.SjedisteID
                                      where RacunID = @RacunID order by KartaID";
-            SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
-            parameter.Value = racunID;
-            command.Parameters.Add(parameter);
-            command.Connection = connection;
-            SqlDataReader reader;
-            try
+            List<SqlParameter> parameters = new List<SqlParameter>();
             {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
+                SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parameters.Add(parameter);
             }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            dt = Izvrsi(command, parameters);
             dgvPregled.DataSource = dt;
             prikaziKolone();
         }
@@ -1102,20 +941,19 @@ namespace Cinema.Forme
                 string cijenaPolje = row.Cells["Cijena"].Value.ToString();
                 cijena += Convert.ToDecimal(cijenaPolje);
             }
-
             txtUkupnaVrijednost.Text = "" + cijena;
             txtUkupnaVrijednost.ReadOnly = true;
         }
 
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
-            if(btnVratiNaKartu.Text == "Pregled rezervacija")
+            if (btnVratiNaKartu.Text == "Pregled rezervacija")
             {
-                RezervacijaForm novaForma = new RezervacijaForm(terminID,lblNazivFilma.Text,dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString(),zaposleniID,FullName);
+                RezervacijaForm novaForma = new RezervacijaForm(terminID, lblNazivFilma.Text, dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString(), zaposleniID, FullName);
                 novaForma.ShowDialog();
-                if(novaForma.DialogResult == DialogResult.OK)
+                if (novaForma.DialogResult == DialogResult.OK)
                 {
-                    
+
                 }
             }
         }
@@ -1128,36 +966,30 @@ namespace Cinema.Forme
                 DataGridViewRow row = dgvPregled.SelectedRows[0];
                 state = State.Delete;
                 gbDetaljno.Enabled = false;
-                SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-                SqlCommand command = new SqlCommand();
-                command.CommandText = @"Delete from Karta where KartaID = @KartaID";
-                command.Connection = connection;
-                SqlParameter parameter = new SqlParameter("@KartaID", SqlDbType.SmallInt);
-                short broj = Convert.ToInt16(row.Cells[0].Value.ToString());
-                parameter.Value = broj;
-                command.Parameters.Add(parameter);
-                SqlDataReader reader;
+                string command = @"Delete from Karta where KartaID = @KartaID";
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                {
+                    SqlParameter parameter = new SqlParameter("@KartaID", SqlDbType.SmallInt);
+                    short broj = Convert.ToInt16(row.Cells[0].Value.ToString());
+                    parameter.Value = broj;
+                    parameters.Add(parameter);
+                }
                 DataTable dt = new DataTable();
-                try
-                {
-                    connection.Open();
-                    reader = command.ExecuteReader();
-                    dt.Load(reader);
-                    connection.Close();
-                    reader.Close();
-                    command.Dispose();
-                }
-                catch
-                {
-                    MessageBox.Show("Can not open connection");
-                }
+                dt = Izvrsi(command, parameters);
                 popuniPregledRacun();
                 IzracunajSumuRacuna();
                 if (dgvPregled.SelectedRows.Count == 0)
                 {
                     btnNovaKarta.Enabled = false;
-                    panelToolStrip.Enabled = false;
+                    tsbtnDodaj.Enabled = true;
+                    tsbtnIzmijein.Visible = false;
+                    tsbtnObrisi.Visible = false;
                     flpDetaljno.Controls.Clear();
+                }
+                else
+                {
+                    tsbtnIzmijein.Visible = true;
+                    tsbtnObrisi.Visible = true;
                 }
             }
             else
@@ -1237,6 +1069,7 @@ namespace Cinema.Forme
             dtpDatumProdukcije.Visible = false;
             lblDatumProdukcije.Visible = false;
         }
+
         private static DialogResult ShowInputDialog(ref string input)
         {
             System.Drawing.Size size = new System.Drawing.Size(200, 70);
@@ -1278,64 +1111,43 @@ namespace Cinema.Forme
             input = textBox.Text;
             return result;
         }
+
         private void dodajRezervaciju(string imeRezervacije)
         {
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Insert into Rezervacija (RezervacijaNaIme) values (@ImeRezervacije)";
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@ImeRezervacije", SqlDbType.NVarChar);
-            parameter.Value = imeRezervacije;
-            command.Parameters.Add(parameter);
-            SqlDataReader reader;
+            string command = @"Insert into Rezervacija (RezervacijaNaIme) values (@ImeRezervacije)";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@ImeRezervacije", SqlDbType.NVarChar);
+                parameter.Value = imeRezervacije;
+                parameters.Add(parameter);
+            }
             DataTable dt = new DataTable();
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            dt = Izvrsi(command, parameters);
+
         }
+
         private bool provjeriImeRezervacije(string imeRezervacije)
         {
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select Distinct r.RezervacijaNaIme
+            string command = @"Select Distinct r.RezervacijaNaIme
                                         from Karta as k
                                         join Rezervacija as r
 	                                            on k.RezervacijaID = r.RezervacijaID
                                         where (k.RezervacijaID is not null) and (TerminID = @TerminID) and r.RezervacijaNaIme = @Rezervacija";
-            command.Connection = connection;
-            SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
-            short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
-            parameter.Value = broj;
-            command.Parameters.Add(parameter);
-            SqlParameter parameter2 = new SqlParameter("@Rezervacija", SqlDbType.NVarChar);
-            parameter2.Value = imeRezervacije;
-            command.Parameters.Add(parameter2);
-            SqlDataReader reader;
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
+                short broj = Convert.ToInt16(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
+                parameter.Value = broj;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter2 = new SqlParameter("@Rezervacija", SqlDbType.NVarChar);
+                parameter2.Value = imeRezervacije;
+                parameters.Add(parameter2);
+            }
             DataTable dt = new DataTable();
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
-            if(dt.Rows.Count > 0)
+            dt = Izvrsi(command, parameters);
+            if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Naziv rezervacije zauzet!");
                 return false;
@@ -1344,31 +1156,15 @@ namespace Cinema.Forme
             {
                 return true;
             }
-
         }
 
         private void setujRezervacijaId()
         {
-            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
-            SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select RezervacijaID
+            string command = @"Select RezervacijaID
                                     from dbo.Rezervacija";
-            command.Connection = connection;
-            SqlDataReader reader;
             DataTable dt = new DataTable();
-            try
-            {
-                connection.Open();
-                reader = command.ExecuteReader();
-                dt.Load(reader);
-                connection.Close();
-                reader.Close();
-                command.Dispose();
-            }
-            catch
-            {
-                MessageBox.Show("Can not open connection");
-            }
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            dt = Izvrsi(command, parameters);
             DataRow dr = dt.Rows[dt.Rows.Count - 1];
             rezervacijaID = Convert.ToString(dr.Field<short>(0));
         }
@@ -1380,12 +1176,7 @@ namespace Cinema.Forme
             state = State.Add;
             btnNovaKarta_Click(sender, e);
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        
         private void dgvPregled_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             for (int i = 0; i < dgvPregled.Rows.Count; i++)
@@ -1396,15 +1187,40 @@ namespace Cinema.Forme
                 }
             }
         }
+        private DataTable Izvrsi(string commandText, List<SqlParameter> parameters)
+        {
+            SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
+            SqlCommand command = new SqlCommand();
+            command.CommandText = commandText;
+            command.Connection = connection;
+            if (parameters.Count > 0)
+            {
+                for (int i = 0; i < parameters.Count; i++)
+                {
+                    command.Parameters.Add(parameters[i]);
+                }
+            }
+            SqlDataReader reader;
+            DataTable dt = new DataTable();
+            try
+            {
+            connection.Open();
+            reader = command.ExecuteReader();
+            dt.Load(reader);
+            connection.Close();
+            reader.Close();
+            command.Dispose();
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
+            return dt;
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblSat.Text = DateTime.Now.ToString("HH:mm:ss");
-        }
-
-        private void BlagajnaForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)
