@@ -33,8 +33,13 @@ namespace Cinema.Forme
             dgvPregledRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDetaljnoRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPregledRezervacija.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetaljnoRezervacija.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDetaljnoRezervacija.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvPregledRezervacija.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvDetaljnoRezervacija.RowHeadersVisible = false;
+            dgvPregledRezervacija.RowHeadersVisible = false;
+            dgvPregledRezervacija.AllowUserToResizeColumns = false;
+            dgvPregledRezervacija.AllowUserToResizeRows = false;
             dgvDetaljnoRezervacija.AllowUserToResizeColumns = false;
             dgvDetaljnoRezervacija.AllowUserToResizeRows = false;
             dgvPregledRezervacija.MultiSelect = false;
