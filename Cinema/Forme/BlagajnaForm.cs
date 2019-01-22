@@ -1219,7 +1219,9 @@ namespace Cinema.Forme
                             ImeRezervacije = input;
                             dodajRezervaciju(input);
                             panelPregledRacuna.Enabled = false;
-                            gbPretraga.Enabled = false;
+                            gbPretraga.Enabled = true;
+                            btnVratiNaKartu.Enabled = false;
+                            btnDodajRezervaciju.Enabled = false;
                             gbDetaljno.Enabled = true;
                             btnPotvrdi.Visible = true;
                             btnOdustaniRacun.Visible = true;
@@ -1236,6 +1238,8 @@ namespace Cinema.Forme
             setujRezervacijaId();
             dtpDatumProdukcije.Visible = false;
             lblDatumProdukcije.Visible = false;
+
+            btnVratiNaKartu.Enabled = true;
         }
         private static DialogResult ShowInputDialog(ref string input)
         {

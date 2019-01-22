@@ -23,12 +23,24 @@ namespace Cinema
         public LookUpForm(PropertyInterface property)
         {
             InitializeComponent();
+            dgvPregledLookUp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPregledLookUp.MultiSelect = false;
+            dgvPregledLookUp.RowHeadersVisible = false;
+            dgvPregledLookUp.AllowUserToResizeColumns = false;
+            dgvPregledLookUp.AllowUserToResizeRows = false;
+            dgvPregledLookUp.CellBorderStyle = DataGridViewCellBorderStyle.None;
             myProperty = property;
             GetSelectAll();
         }
         public LookUpForm(PropertyInterface property,int termin)
         {
             InitializeComponent();
+            dgvPregledLookUp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPregledLookUp.MultiSelect = false;
+            dgvPregledLookUp.RowHeadersVisible = false;
+            dgvPregledLookUp.AllowUserToResizeColumns = false;
+            dgvPregledLookUp.AllowUserToResizeRows = false;
+            dgvPregledLookUp.CellBorderStyle = DataGridViewCellBorderStyle.None;
             myProperty = property;
             terminID = termin;
             GetSelectFreeSeat();
@@ -140,6 +152,17 @@ namespace Cinema
         private void btnOdustani_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvPregledLookUp_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < dgvPregledLookUp.Rows.Count; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    dgvPregledLookUp.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
+                }
+            }
         }
     }
 }

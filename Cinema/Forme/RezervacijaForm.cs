@@ -32,7 +32,16 @@ namespace Cinema.Forme
             panelKarta.Visible = false;
             dgvPregledRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDetaljnoRezervacija.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPregledRezervacija.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetaljnoRezervacija.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgvDetaljnoRezervacija.RowHeadersVisible = false;
+            dgvDetaljnoRezervacija.AllowUserToResizeColumns = false;
+            dgvDetaljnoRezervacija.AllowUserToResizeRows = false;
+            dgvPregledRezervacija.MultiSelect = false;
+            dgvDetaljnoRezervacija.MultiSelect = false;
             lblStatusPrikaza.Visible = false;
+            panelOkvir.BorderStyle = BorderStyle.FixedSingle;
+            
             popuniRezervacije();
             stateTab = StateTab.Rezervacija;
         }
@@ -55,7 +64,7 @@ namespace Cinema.Forme
                 lblStatusPrikaza.Visible = true;
                 panelPretraga.Enabled = false;
                 panelButton.Enabled = false;
-                toolStrip1.Visible = false;
+                panel1.Visible = false;
                 tabControlRezervacija.TabPages.RemoveAt(1);
             }
         }
@@ -174,7 +183,7 @@ namespace Cinema.Forme
                                         from Karta as k
                                         join Rezervacija as r
 	                                            on k.RezervacijaID = r.RezervacijaID
-                                        where (r.RezervacijaNaIme Like '%'+@RezervacijaNaIme+'%') and (TerminID = @TerminID)";
+                                        where (r.RezervacijaNaIme Like @RezervacijaNaIme+'%') and (TerminID = @TerminID)";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@RezervacijaNaIme", SqlDbType.NVarChar);
@@ -459,7 +468,7 @@ namespace Cinema.Forme
                     hideColumn(dgv);
                 }
                 panelPretraga.Visible = false;
-                dgv.Dock = DockStyle.Fill;
+                //dgv.Dock = DockStyle.Fill;
                 btnObrisi.Text = "Odustani";
                 btnPrebaciNaRacun.Text = "Stampaj racun";
                 stateTab = StateTab.Racun;
@@ -544,6 +553,33 @@ namespace Cinema.Forme
             }
             txtUkupnaVrijednost.Text = "" + cijena;
             txtUkupnaVrijednost.ReadOnly = true;            
+        }
+
+        private void dgvPregledRezervacija_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < dgvPregledRezervacija.Rows.Count; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    dgvPregledRezervacija.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
+                }
+            }
+        }
+
+        private void dgvDetaljnoRezervacija_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < dgvDetaljnoRezervacija.Rows.Count; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    dgvDetaljnoRezervacija.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
+                }
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
