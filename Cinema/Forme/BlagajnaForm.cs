@@ -373,7 +373,6 @@ namespace Cinema.Forme
                 lblDatumProdukcije.Visible = false;
                 dtpDatumProdukcije.Visible = false;
                 btnTabRezervacija.Enabled = false;
-
                 btnTabRacun.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 0);
                 btnTabRacun.FlatAppearance.BorderSize = 1;
                 btnTabRepertoar.FlatAppearance.BorderSize = 0;
@@ -484,6 +483,7 @@ namespace Cinema.Forme
             }
             else if (btnNovaKarta.Text == "Stampaj")
             {
+                dodajCijenuNaRacun();
                 state = State.Idle;
                 OsnovnaPodesavanja();
             }
@@ -985,7 +985,7 @@ namespace Cinema.Forme
             }
         }
 
-        private void tsbtnIzmjein_Click(object sender, EventArgs e)
+        private void tsbtnIzmijeni_Click(object sender, EventArgs e)
         {
             state = State.Edit;
             gbDetaljno.Enabled = true;
@@ -1154,6 +1154,25 @@ namespace Cinema.Forme
             DataRow dr = dt.Rows[dt.Rows.Count - 1];
             rezervacijaID = Convert.ToString(dr.Field<short>(0));
         }
+        private void dodajCijenuNaRacun()
+        {
+            string command = "Update dbo.Racun set UkupnaCijena = @Ukupno where RacunID = @RacunID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@Ukupno", SqlDbType.Int);
+                decimal nesto = Convert.ToDecimal(txtUkupnaVrijednost.Text);
+                int broj = Convert.ToInt32(nesto);
+                parameter.Value = broj;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parameters.Add(parameter);
+            }
+            DataTable dt = new DataTable();
+            dt = Izvrsi(command, parameters);
+        }
 
         private void tsbtnDodaj_Click(object sender, EventArgs e)
         {
@@ -1189,19 +1208,19 @@ namespace Cinema.Forme
             }
             SqlDataReader reader;
             DataTable dt = new DataTable();
-          //  try
-           // {
+            try
+            {
                 connection.Open();
                 reader = command.ExecuteReader();
                 dt.Load(reader);
                 connection.Close();
                 reader.Close();
                 command.Dispose();
-          /*  }
+            }
             catch
             {
                 MessageBox.Show("Can not open connection");
-            }*/
+            }
             return dt;
         }
 

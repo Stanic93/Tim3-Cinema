@@ -213,7 +213,7 @@
             this.tsbtnIzmijeni.Size = new System.Drawing.Size(38, 23);
             this.tsbtnIzmijeni.TabIndex = 1;
             this.tsbtnIzmijeni.UseVisualStyleBackColor = true;
-            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
+            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmijeni_Click);
             // 
             // tsbtnDodaj
             // 
