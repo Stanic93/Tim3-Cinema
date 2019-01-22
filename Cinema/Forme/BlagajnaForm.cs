@@ -721,6 +721,8 @@ namespace Cinema.Forme
                             MessageBox.Show("Popunite broj sjedista");
                             return;
                         }
+
+
                     }
                 }
             }
