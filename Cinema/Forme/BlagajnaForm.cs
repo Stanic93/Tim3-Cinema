@@ -89,7 +89,6 @@ namespace Cinema.Forme
             popuniPregled(property);
             popuniControle(property);
             prikaziKolone();
-
         }
 
         // popunjava datagridView
@@ -340,11 +339,11 @@ namespace Cinema.Forme
             }
 
             dtpDatumProdukcije.Value = dtMin;
-        }    
+        }
 
         // txtPolje za pretragu
         private void txtNaziv_TextChanged(object sender, EventArgs e)
-        {            
+        {
             DataTable dt = new DataTable();
             SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, property.GetSearchQuery(txtNaziv.Text));
 
@@ -384,14 +383,14 @@ namespace Cinema.Forme
                 if (dgvPregled.Rows.Count == 0)
                 {
                     tsbtnDodaj.Enabled = true;
-                    tsbtnIzmijein.Visible = false;
+                    tsbtnIzmijeni.Visible = false;
                     tsbtnObrisi.Visible = false;
                 }
                 else
                 {
                     panelToolStrip.Enabled = true;
                     tsbtnDodaj.Enabled = true;
-                    tsbtnIzmijein.Visible = true;
+                    tsbtnIzmijeni.Visible = true;
                     tsbtnObrisi.Visible = true;
                 }
                 IzracunajSumuRacuna();
@@ -500,7 +499,7 @@ namespace Cinema.Forme
         // kreiranje racuna prilikom klika na Karta.
         private void kreirajRacun()
         {
-            property = new RacunPropertyClass();            
+            property = new RacunPropertyClass();
             string command = @"INSERT into dbo.Racun (DatumIzdavanja, ZaposleniID, UkupnaCijena) values (GetDate(), @ZaposleniID, null)";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
@@ -581,14 +580,14 @@ namespace Cinema.Forme
                     {
                         ulup.Zakljucaj();
                         ulup.SetKey(dgvPregled.SelectedRows[0].Cells["TerminID"].Value.ToString());
-                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString());
+                        ulup.SetValue(dgvPregled.SelectedRows[0].Cells["Vrijeme prikazivanja"].Value.ToString());
                     }
                     if (activeTab == ActiveTab.Racun)
                     {
                         if (ulup.Name == "SjedisteID")
                         {
                             ulup.SetKey(dgvPregled.SelectedRows[0].Cells["SjedisteID"].Value.ToString());
-                            ulup.SetValue(dgvPregled.SelectedRows[0].Cells["BrojSjedista"].Value.ToString());
+                            ulup.SetValue(dgvPregled.SelectedRows[0].Cells["Broj sjedista"].Value.ToString());
                         }
                     }
 
@@ -679,8 +678,7 @@ namespace Cinema.Forme
         private void popuniPregledProjekcija()
         {
             DataTable dt = new DataTable();
-
-            string command = @"select * from vPregledProjekcije (@Date,@FilmID) order by VrijemePrikazivanja";
+            string command = @"exec proc_PregledProjekcije @Date,@FilmID";
             List<SqlParameter> parameters = new List<SqlParameter>();
             SqlParameter parameter = new SqlParameter("@Date", SqlDbType.Date);
             SqlParameter parameter2 = new SqlParameter("@FilmID", SqlDbType.Int);
@@ -689,6 +687,7 @@ namespace Cinema.Forme
             parameters.Add(parameter);
             parameters.Add(parameter2);
             dt = Izvrsi(command, parameters);
+            dgvPregled.DataSource = null;
             dgvPregled.DataSource = dt;
             prikaziKolone();
         }
@@ -915,14 +914,7 @@ namespace Cinema.Forme
         {
             dgvPregled.DataSource = null;
             DataTable dt = new DataTable();
-            string command = @"select k.KartaID,k.TerminID,k.ProjekcijaID,t.DatumPrikazivanja,t.VrijemePrikazivanja,c.Cijena,Sjediste.BrojSjedista,Sjediste.SjedisteID from Karta as k 
-                                    join Termin t
-                                    on t.TerminID = k.TerminID 
-                                    join cijena c
-                                    on c.CijenaID = t.CijenaID
-                                    join Sjediste
-                                    on k.SjedisteID = Sjediste.SjedisteID
-                                     where RacunID = @RacunID order by KartaID";
+            string command = @"exec proc_PregledRacuna @RacunID";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@RacunID", SqlDbType.SmallInt);
@@ -949,15 +941,8 @@ namespace Cinema.Forme
 
         private void btnVratiNaKartu_Click(object sender, EventArgs e)
         {
-            if (btnVratiNaKartu.Text == "Pregled rezervacija")
-            {
-                RezervacijaForm novaForma = new RezervacijaForm(terminID, lblNazivFilma.Text, dgvPregled.SelectedRows[0].Cells["VrijemePrikazivanja"].Value.ToString(), zaposleniID, FullName);
-                novaForma.ShowDialog();
-                if (novaForma.DialogResult == DialogResult.OK)
-                {
-
-                }
-            }
+            RezervacijaForm novaForma = new RezervacijaForm(terminID, lblNazivFilma.Text, dgvPregled.SelectedRows[0].Cells["Vrijeme prikazivanja"].Value.ToString(), zaposleniID, FullName);
+            novaForma.ShowDialog();
         }
 
         private void tsbtnObrisi_Click(object sender, EventArgs e)
@@ -984,13 +969,13 @@ namespace Cinema.Forme
                 {
                     btnNovaKarta.Enabled = false;
                     tsbtnDodaj.Enabled = true;
-                    tsbtnIzmijein.Visible = false;
+                    tsbtnIzmijeni.Visible = false;
                     tsbtnObrisi.Visible = false;
                     flpDetaljno.Controls.Clear();
                 }
                 else
                 {
-                    tsbtnIzmijein.Visible = true;
+                    tsbtnIzmijeni.Visible = true;
                     tsbtnObrisi.Visible = true;
                 }
             }
@@ -1125,7 +1110,6 @@ namespace Cinema.Forme
             }
             DataTable dt = new DataTable();
             dt = Izvrsi(command, parameters);
-
         }
 
         private bool provjeriImeRezervacije(string imeRezervacije)
@@ -1178,7 +1162,7 @@ namespace Cinema.Forme
             state = State.Add;
             btnNovaKarta_Click(sender, e);
         }
-        
+
         private void dgvPregled_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             for (int i = 0; i < dgvPregled.Rows.Count; i++)
@@ -1189,6 +1173,7 @@ namespace Cinema.Forme
                 }
             }
         }
+
         private DataTable Izvrsi(string commandText, List<SqlParameter> parameters)
         {
             SqlConnection connection = new SqlConnection(SqlHelper.GetConnectionString());
@@ -1204,19 +1189,19 @@ namespace Cinema.Forme
             }
             SqlDataReader reader;
             DataTable dt = new DataTable();
-            try
-            {
-            connection.Open();
-            reader = command.ExecuteReader();
-            dt.Load(reader);
-            connection.Close();
-            reader.Close();
-            command.Dispose();
-            }
+          //  try
+           // {
+                connection.Open();
+                reader = command.ExecuteReader();
+                dt.Load(reader);
+                connection.Close();
+                reader.Close();
+                command.Dispose();
+          /*  }
             catch
             {
                 MessageBox.Show("Can not open connection");
-            }
+            }*/
             return dt;
         }
 

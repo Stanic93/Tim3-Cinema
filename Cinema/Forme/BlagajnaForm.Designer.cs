@@ -37,7 +37,7 @@
             this.gbPregled = new System.Windows.Forms.GroupBox();
             this.panelToolStrip = new System.Windows.Forms.Panel();
             this.tsbtnObrisi = new System.Windows.Forms.Button();
-            this.tsbtnIzmijein = new System.Windows.Forms.Button();
+            this.tsbtnIzmijeni = new System.Windows.Forms.Button();
             this.tsbtnDodaj = new System.Windows.Forms.Button();
             this.dgvPregled = new System.Windows.Forms.DataGridView();
             this.gbPretraga = new System.Windows.Forms.GroupBox();
@@ -182,7 +182,7 @@
             // panelToolStrip
             // 
             this.panelToolStrip.Controls.Add(this.tsbtnObrisi);
-            this.panelToolStrip.Controls.Add(this.tsbtnIzmijein);
+            this.panelToolStrip.Controls.Add(this.tsbtnIzmijeni);
             this.panelToolStrip.Controls.Add(this.tsbtnDodaj);
             this.panelToolStrip.Location = new System.Drawing.Point(3, 18);
             this.panelToolStrip.Name = "panelToolStrip";
@@ -202,18 +202,18 @@
             this.tsbtnObrisi.UseVisualStyleBackColor = true;
             this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
             // 
-            // tsbtnIzmijein
+            // tsbtnIzmijeni
             // 
-            this.tsbtnIzmijein.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
-            this.tsbtnIzmijein.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tsbtnIzmijein.FlatAppearance.BorderSize = 0;
-            this.tsbtnIzmijein.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tsbtnIzmijein.Location = new System.Drawing.Point(56, 3);
-            this.tsbtnIzmijein.Name = "tsbtnIzmijein";
-            this.tsbtnIzmijein.Size = new System.Drawing.Size(38, 23);
-            this.tsbtnIzmijein.TabIndex = 1;
-            this.tsbtnIzmijein.UseVisualStyleBackColor = true;
-            this.tsbtnIzmijein.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
+            this.tsbtnIzmijeni.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
+            this.tsbtnIzmijeni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
+            this.tsbtnIzmijeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnIzmijeni.Location = new System.Drawing.Point(56, 3);
+            this.tsbtnIzmijeni.Name = "tsbtnIzmijeni";
+            this.tsbtnIzmijeni.Size = new System.Drawing.Size(38, 23);
+            this.tsbtnIzmijeni.TabIndex = 1;
+            this.tsbtnIzmijeni.UseVisualStyleBackColor = true;
+            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmjein_Click);
             // 
             // tsbtnDodaj
             // 
@@ -807,7 +807,7 @@
         private System.Windows.Forms.PictureBox pbRepertoar;
         private System.Windows.Forms.Panel panelToolStrip;
         private System.Windows.Forms.Button tsbtnObrisi;
-        private System.Windows.Forms.Button tsbtnIzmijein;
+        private System.Windows.Forms.Button tsbtnIzmijeni;
         private System.Windows.Forms.Button tsbtnDodaj;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblSat;

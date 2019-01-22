@@ -39,11 +39,7 @@ namespace Cinema.Forme
 
         private void popuniRezervacije()
         {
-            string commandText = @"Select Distinct r.RezervacijaID,r.RezervacijaNaIme as [Naziv rezervacije]
-                                        from Karta as k
-                                        join Rezervacija as r
-	                                            on k.RezervacijaID = r.RezervacijaID
-                                        where (k.RezervacijaID is not null) and (TerminID = @TerminID) ";
+            string commandText = @"exec proc_PopuniRezervacije @TerminID ";
             List<SqlParameter> parameters = new List<SqlParameter>();
             SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
             parameter.Value = terminID;
@@ -94,13 +90,7 @@ namespace Cinema.Forme
 
         private void popuniDetaljno()
         {
-            string commandText = @"Select  k.KartaID,k.RezervacijaID,k.ProjekcijaID,k.TerminID,t.VrijemePrikazivanja,k.SjedisteID,s.BrojSjedista as [Broj sjedista], k.VrijemeIzdavanja as [Vrijeme izdavanja]
-                                    from dbo.Karta as k
-                                    join dbo.Sjediste as s
-                                    on k.SjedisteID = s.SjedisteID
-                                    join dbo.Termin as t
-                                    on k.TerminID = t.TerminID
-                                    where k.RezervacijaID = @RezervacijaID;";
+            string commandText = @"exec proc_PopuniRezervacijeDetaljno @RezervacijaID";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
