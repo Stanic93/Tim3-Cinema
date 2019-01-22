@@ -75,19 +75,20 @@ namespace Cinema.Forme
             }
             SqlDataReader reader;
             DataTable dt = new DataTable();
-            //try
-            //{
+            try
+            {
                 connection.Open();
                 reader = command.ExecuteReader();
                 dt.Load(reader);
                 connection.Close();
+                connection.Close();
                 reader.Close();
                 command.Dispose();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Can not open connection");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
             return dt;
         }
 
@@ -150,6 +151,10 @@ namespace Cinema.Forme
                 panelPretraga.Visible = false;
                 panelButton.Visible = true;
                 panelRacun.Visible = true;
+            }
+            if (dgvPregledRezervacija.SelectedRows.Count > 0)
+            {
+                lblNazivRezervacije.Text = dgvPregledRezervacija.SelectedRows[0].Cells["Naziv rezervacije"].Value.ToString();
             }
         }
 
