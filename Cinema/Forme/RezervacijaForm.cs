@@ -266,7 +266,8 @@ namespace Cinema.Forme
                 parameter.Value = txtKeyTermin.Text;
                 parameters.Add(parameter);
             }
-            Izvrsi(commandText, parameters);
+            DataTable dt = new DataTable();
+            dt = Izvrsi(commandText, parameters);
         }
 
         private void btnPotvrdi_Click(object sender, EventArgs e)
@@ -464,6 +465,7 @@ namespace Cinema.Forme
             {
                 kreirajRacun();
                 prebaciRezervacijuNaRacun();
+                dodajCijenuNaRacun();
                 obrisiTab();
                 tabControlRezervacija.Enabled = true;
                 popuniRezervacije();
@@ -539,6 +541,25 @@ namespace Cinema.Forme
             }
             txtUkupnaVrijednost.Text = "" + cijena;
             txtUkupnaVrijednost.ReadOnly = true;            
+        }
+        private void dodajCijenuNaRacun()
+        {
+            string command = "Update dbo.Racun set UkupnaCijena = @Ukupno where RacunID = @RacunID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@Ukupno", SqlDbType.Int);
+                decimal nesto = Convert.ToDecimal(txtUkupnaVrijednost.Text);
+                int broj = Convert.ToInt32(nesto);
+                parameter.Value = broj;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parameters.Add(parameter);
+            }
+            DataTable dt = new DataTable();
+            dt = Izvrsi(command, parameters);
         }
     }
 }
