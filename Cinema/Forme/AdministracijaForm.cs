@@ -283,7 +283,7 @@ namespace Cinema.Forme
                             ul.SetValue(colValue);
                             flpDetaljno.Controls.Add(ul);
                             if (state == StateEnum.Preview)
-                                ul.Zabrani();//Zakljucaj nakon sto se spojimo sa markom 
+                                ul.Zakljucaj();//Zakljucaj nakon sto se spojimo sa markom 
                         }
                         else if (item.GetCustomAttribute<RichTextBoxAttribute>() != null)
                         {
