@@ -1,5 +1,7 @@
 ﻿//using CrystalDecisions.CrystalReports.Engine;
 //using CrystalDecisions.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,7 +51,7 @@ namespace Cinema.Forme
 
         private void lbIzvjestaji_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* panelIzvjestaji.Controls.Clear();
+            panelIzvjestaji.Controls.Clear();
             CrystalReportViewer reportViewer = new CrystalReportViewer();
             panelIzvjestaji.Controls.Add(reportViewer);
             reportViewer.Dock = DockStyle.Fill;
@@ -64,7 +66,7 @@ namespace Cinema.Forme
                 MessageBox.Show(Files[lbIzvjestaji.SelectedIndex].ToString());
             }
             reportViewer.ReportSource = report;
-            reportViewer.Refresh();*/
+            reportViewer.Refresh();
         }
     }
 }
