@@ -37,8 +37,9 @@ namespace Cinema.Forme
             btnProjekcija.Click += BtnOboji_Click;
             btnZanr.Click += BtnOboji_Click;
             btnLogin.Click += BtnOboji_Click;
-            timer1.Start();
-            lblSat.Text = DateTime.Now.ToShortTimeString();// umjesto ovog tajmer dodati i startovat ga
+            //timer1.Start();
+            //lblSat.Text = DateTime.Now.ToShortTimeString();// umjesto ovog tajmer dodati i startovat ga
+            timer2.Start();
             OsnovnaPodesavanja();
 
 
@@ -754,6 +755,25 @@ namespace Cinema.Forme
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblSat.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            timer2.Interval = 1000;
+            try
+            {
+                label1.Text = DateTime.Now.ToString("ss");
+                lblSatKrug.Text = DateTime.Now.ToString("HH:mm");
+                //label2.Text = DateTime.Now.ToString("hh:mm");
+                //label3.Text = DateTime.Now.ToString("dddd");
+                lblDatum.Text = DateTime.Now.ToString("dd/M/yyyy");
+                circularProgressBar1.Value = Convert.ToInt32(label1.Text);
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

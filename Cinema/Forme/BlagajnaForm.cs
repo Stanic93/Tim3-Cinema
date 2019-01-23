@@ -41,7 +41,8 @@ namespace Cinema.Forme
             dgvPregled.RowHeadersVisible = false;
             dgvPregled.AllowUserToResizeColumns = false;
             dgvPregled.AllowUserToResizeRows = false;
-            timer1.Start();
+            //timer1.Start();
+            timer2.Start();
 
         }
         // osnovna podesavanja u rezimu repertoar
@@ -1421,6 +1422,25 @@ namespace Cinema.Forme
         private void btnExit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            timer2.Interval = 1000;
+            try
+            {
+                label1.Text = DateTime.Now.ToString("ss");
+                lblSatKrug.Text = DateTime.Now.ToString("HH:mm");
+                //label2.Text = DateTime.Now.ToString("hh:mm");
+                //label3.Text = DateTime.Now.ToString("dddd");
+                lblDatum.Text = DateTime.Now.ToString("dd/M/yyyy");
+                circularProgressBar1.Value = Convert.ToInt32(label1.Text);
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }
