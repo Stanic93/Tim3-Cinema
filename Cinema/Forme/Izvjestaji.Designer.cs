@@ -70,6 +70,7 @@
             // 
             this.btnExit.BackgroundImage = global::Cinema.Properties.Resources.x_mark;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExit.Location = new System.Drawing.Point(1119, -1);
