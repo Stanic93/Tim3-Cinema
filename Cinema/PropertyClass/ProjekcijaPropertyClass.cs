@@ -136,7 +136,7 @@ namespace Cinema.PropertyClass
             return @"Select p.ProjekcijaID,p.FilmID,f.Naziv,p.DatumPrvogPrikazivanja,p.DatumPosljednjegPrikazivanja 
                     from dbo.Projekcija p
                     join dbo.Film f on f.FilmID =p.FilmID
-                    where p.Naziv like '" + rijec + "%'";
+                    where f.Naziv like '" + rijec + "%'";
         }
         #endregion
 
