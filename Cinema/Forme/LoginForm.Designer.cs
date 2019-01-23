@@ -37,6 +37,9 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.lblKorisnickoImeProvjera = new System.Windows.Forms.Label();
+            this.lblLozinkaProvjera = new System.Windows.Forms.Label();
+            this.lblPoruka = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -48,10 +51,11 @@
             this.txtKorisnickoIme.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKorisnickoIme.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKorisnickoIme.ForeColor = System.Drawing.Color.White;
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(463, 107);
+            this.txtKorisnickoIme.Location = new System.Drawing.Point(464, 107);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(219, 31);
             this.txtKorisnickoIme.TabIndex = 1;
+            this.txtKorisnickoIme.Click += new System.EventHandler(this.txtKorisnickoIme_Click);
             this.txtKorisnickoIme.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_Enter);
             // 
             // txtLozinka
@@ -65,6 +69,7 @@
             this.txtLozinka.PasswordChar = '•';
             this.txtLozinka.Size = new System.Drawing.Size(219, 31);
             this.txtLozinka.TabIndex = 2;
+            this.txtLozinka.Click += new System.EventHandler(this.txtLozinka_Click);
             this.txtLozinka.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyUp_Enter);
             // 
             // lblKorisnickoIme
@@ -150,12 +155,41 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblKorisnickoImeProvjera
+            // 
+            this.lblKorisnickoImeProvjera.Location = new System.Drawing.Point(463, 106);
+            this.lblKorisnickoImeProvjera.Name = "lblKorisnickoImeProvjera";
+            this.lblKorisnickoImeProvjera.Size = new System.Drawing.Size(221, 33);
+            this.lblKorisnickoImeProvjera.TabIndex = 12;
+            this.lblKorisnickoImeProvjera.Text = "label2";
+            // 
+            // lblLozinkaProvjera
+            // 
+            this.lblLozinkaProvjera.Location = new System.Drawing.Point(462, 193);
+            this.lblLozinkaProvjera.Name = "lblLozinkaProvjera";
+            this.lblLozinkaProvjera.Size = new System.Drawing.Size(221, 33);
+            this.lblLozinkaProvjera.TabIndex = 13;
+            this.lblLozinkaProvjera.Text = "label2";
+            // 
+            // lblPoruka
+            // 
+            this.lblPoruka.AutoSize = true;
+            this.lblPoruka.Location = new System.Drawing.Point(469, 232);
+            this.lblPoruka.Name = "lblPoruka";
+            this.lblPoruka.Size = new System.Drawing.Size(0, 14);
+            this.lblPoruka.TabIndex = 14;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.ClientSize = new System.Drawing.Size(720, 364);
+            this.Controls.Add(this.lblPoruka);
+            this.Controls.Add(this.txtLozinka);
+            this.Controls.Add(this.lblLozinkaProvjera);
+            this.Controls.Add(this.txtKorisnickoIme);
+            this.Controls.Add(this.lblKorisnickoImeProvjera);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnNastavi);
             this.Controls.Add(this.pictureBox1);
@@ -163,8 +197,6 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblKorisnickoIme);
-            this.Controls.Add(this.txtLozinka);
-            this.Controls.Add(this.txtKorisnickoIme);
             this.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginForm";
@@ -187,5 +219,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnNastavi;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label lblKorisnickoImeProvjera;
+        private System.Windows.Forms.Label lblLozinkaProvjera;
+        private System.Windows.Forms.Label lblPoruka;
     }
 }

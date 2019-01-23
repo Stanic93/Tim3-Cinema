@@ -41,7 +41,7 @@ namespace Cinema.Forme
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select * from dbo.Login
+            command.CommandText = @"Select Login.KorisnickoIme, Login.Lozinka from dbo.Login
                                     join dbo.Zaposleni on Login.ZaposleniID = Zaposleni.ZaposleniID
                                     where KorisnickoIme= @KorisnickoIme COLLATE SQL_Latin1_General_CP1_CS_AS 
                                     and Lozinka =@Lozinka COLLATE SQL_Latin1_General_CP1_CS_AS 
@@ -66,16 +66,22 @@ namespace Cinema.Forme
             }
             catch
             {
-                MessageBox.Show("Can not open connection");
+                MessageBox.Show("Konekcija na bazu nije moguća");
             }
-
-
             if (dt.Rows.Count != 1)
             {
-                //"Nepravilno korisnicko ime ili lozinka"
-                MessageBox.Show("Nepravilno korisnicko ime ili lozinka", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                    lblLozinkaProvjera.Visible = true;
+                    lblKorisnickoImeProvjera.Visible = true;
+                    lblKorisnickoImeProvjera.BackColor = Color.Red;
+                    lblLozinkaProvjera.BackColor = Color.Red;
+                lblPoruka.ForeColor = Color.FromArgb(255, 128, 0);
+                lblPoruka.Text = "Pogresno uneseno korisnicko ime ili lozinka";
                 return;
+                 
             }
+            
+
 
             string jobtitle = "";
             foreach (DataRow row in dt.Rows)
@@ -117,8 +123,23 @@ namespace Cinema.Forme
             //novaForma.ShowDialog();
             //BlagajnaForm nov = new BlagajnaForm(zaposleniID, ImeIPrezime);
             //nov.Show();
+        }
+        private void SakrijLabele() {
+            lblKorisnickoImeProvjera.Visible = false;
+            lblLozinkaProvjera.Visible = false;
+            lblPoruka.Text = "";
+        }
+        private void txtKorisnickoIme_Click(object sender, EventArgs e)
+        {
+            SakrijLabele();
+            txtKorisnickoIme.Text = "";
+            
+        }
 
-
+        private void txtLozinka_Click(object sender, EventArgs e)
+        {
+            SakrijLabele();
+            txtLozinka.Text = "";
         }
     }
 }
