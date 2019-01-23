@@ -37,6 +37,8 @@ namespace Cinema.Forme
             btnProjekcija.Click += BtnOboji_Click;
             btnZanr.Click += BtnOboji_Click;
             btnLogin.Click += BtnOboji_Click;
+            btnZaposleni.FlatAppearance.BorderColor = Color.Orange;
+            btnZaposleni.FlatAppearance.BorderSize = 1;
             //timer1.Start();
             //lblSat.Text = DateTime.Now.ToShortTimeString();// umjesto ovog tajmer dodati i startovat ga
             timer2.Start();
@@ -68,6 +70,18 @@ namespace Cinema.Forme
             btn.FlatAppearance.BorderSize = 1;
         }
 
+        private void PonistiBoje()
+        {
+            for (int i = 4; i < panelMeni.Controls.Count; i++)
+            {
+                if (panelMeni.Controls[i].GetType() == typeof(Button))
+                {
+                    Button pom = panelMeni.Controls[i] as Button;
+                    pom.FlatAppearance.BorderColor = Color.FromArgb(52, 52, 52);
+                }
+            }
+        }
+
         public void OsnovnaPodesavanja()
         {
             dgvPrikaz.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -86,55 +100,74 @@ namespace Cinema.Forme
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
-            if (btnFilm == sender as Button)
+            if (btnFilm == sender as Button || pbFilm == sender as PictureBox)
             {
                 property = new FilmPropertyClass();
                 txtPretraga.Enabled = true;
                 txtPretraga.Text = "";
                 lblPretraga.Text = "Pretraga po nazivu filma";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnFilm.FlatAppearance.BorderColor = Color.Orange;
+                btnFilm.FlatAppearance.BorderSize = 1;
+                
             }
 
-            else if (btnLogin == sender as Button)
+            else if (btnLogin == sender as Button || pbLogin == sender as PictureBox)
             {
                 property = new LoginPropertyClass();
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnLogin.FlatAppearance.BorderColor = Color.Orange;
+                btnLogin.FlatAppearance.BorderSize = 1;
             }
-            else if (btnTermini == sender as Button)
+            else if (btnTermini == sender as Button || pbTermini == sender as PictureBox)
             {
                 property = new TerminPropertyClass();
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po vremenu prikazivanja u formatu(00:00:00)";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnTermini.FlatAppearance.BorderColor = Color.Orange;
+                btnTermini.FlatAppearance.BorderSize = 1;
             }
-            else if (btnProjekcija == sender as Button)
+            else if (btnProjekcija == sender as Button || pbProjekcija == sender as PictureBox)
             {
                 property = new ProjekcijaPropertyClass();
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po filmu";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnProjekcija.FlatAppearance.BorderColor = Color.Orange;
+                btnProjekcija.FlatAppearance.BorderSize = 1;
             }
-            else if (btnZanr == sender as Button)
+            else if (btnZanr == sender as Button || pbZanr == sender as PictureBox)
             {
                 property = new ZanrPropertyClass();
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po zanru";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnZanr.FlatAppearance.BorderColor = Color.Orange;
+                btnZanr.FlatAppearance.BorderSize = 1;
             }
 
-            else if (btnZaposleni == sender as Button)
+            else if (btnZaposleni == sender as Button || pbZaposleni == sender as PictureBox)
             {
                 property = new ZaposleniPropertyClass();
                 txtPretraga.Text = "";
                 txtPretraga.Enabled = true;
                 lblPretraga.Text = "Pretraga po imenu/prezimenu zaposlenog";
                 state = StateEnum.Preview;
+                PonistiBoje();
+                btnZaposleni.FlatAppearance.BorderColor = Color.Orange;
+                btnZaposleni.FlatAppearance.BorderSize = 1;
             }
             UcitajDGV(property);
 
@@ -405,6 +438,10 @@ namespace Cinema.Forme
         //klik na toolstrip ikonicu koja omogucava izmjenu nad trenutno selektovanim redom u data grid view-u
         private void tsbtnIzmijeni_Click(object sender, EventArgs e)
         {
+            tsbtnIzmijeni.FlatAppearance.BorderColor = Color.Orange;
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 1;
+            tsbtnAdd.FlatAppearance.BorderSize = 0;
+            gbDetaljno.Select();
             state = StateEnum.Update;
             PopulatePropertyInterface(property);
             popuniDetaljno(property, state);
@@ -417,6 +454,10 @@ namespace Cinema.Forme
         //klik na toolstrip ikonicu koja omogucava dodavanje novog reda  u trenutno odabranu tabelu
         private void tsbtnAdd_Click(object sender, EventArgs e)
         {
+            tsbtnAdd.FlatAppearance.BorderColor = Color.Orange;
+            tsbtnAdd.FlatAppearance.BorderSize = 1;
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
+            gbDetaljno.Select();
             postaviControle(property);
             state = StateEnum.Create;
             txtPretraga.Enabled = false;
@@ -427,6 +468,8 @@ namespace Cinema.Forme
         // unos promjena u bazu, bilo izmjena na nekom od redu ili dodavanje novog u tabelu
         private void btnPotvrdi_Click(object sender, EventArgs e)
         {
+            tsbtnAdd.FlatAppearance.BorderSize = 0;
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
             var properties = property.GetType().GetProperties();
 
             foreach (var item in flpDetaljno.Controls)
@@ -589,7 +632,9 @@ namespace Cinema.Forme
 
         private void tsbtnObrisi_Click(object sender, EventArgs e)
         {
-
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
+            tsbtnAdd.FlatAppearance.BorderSize = 0;
+            panelDugmici.Visible = false;
             try
             {
                 var properties = property.GetType().GetProperties();
@@ -617,7 +662,8 @@ namespace Cinema.Forme
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-
+            tsbtnAdd.FlatAppearance.BorderSize = 0;
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 0; 
             panelDugmici.Visible = false;
             state = StateEnum.Preview;
             txtPretraga.Enabled = true;

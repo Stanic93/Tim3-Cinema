@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMeni = new System.Windows.Forms.Panel();
             this.pbIzvjestaji = new System.Windows.Forms.PictureBox();
             this.btnIzvjestaji = new System.Windows.Forms.Button();
@@ -120,6 +120,7 @@
             // pbIzvjestaji
             // 
             this.pbIzvjestaji.BackColor = System.Drawing.Color.Transparent;
+            this.pbIzvjestaji.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbIzvjestaji.Image = global::Cinema.Properties.Resources.newspaper;
             this.pbIzvjestaji.Location = new System.Drawing.Point(27, 592);
             this.pbIzvjestaji.Name = "pbIzvjestaji";
@@ -127,11 +128,13 @@
             this.pbIzvjestaji.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIzvjestaji.TabIndex = 22;
             this.pbIzvjestaji.TabStop = false;
+            this.pbIzvjestaji.Click += new System.EventHandler(this.btnIzvjestaji_Click);
             this.pbIzvjestaji.MouseEnter += new System.EventHandler(this.btnIzvjestaji_MouseEnter);
             this.pbIzvjestaji.MouseLeave += new System.EventHandler(this.btnIzvjestaji_MouseLeave);
             // 
             // btnIzvjestaji
             // 
+            this.btnIzvjestaji.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIzvjestaji.FlatAppearance.BorderSize = 0;
             this.btnIzvjestaji.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnIzvjestaji.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -153,6 +156,7 @@
             // 
             this.btnLogout.BackgroundImage = global::Cinema.Properties.Resources.log_out;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Location = new System.Drawing.Point(3, 661);
@@ -165,6 +169,7 @@
             // pbLogin
             // 
             this.pbLogin.BackColor = System.Drawing.Color.Transparent;
+            this.pbLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbLogin.Image = global::Cinema.Properties.Resources.login;
             this.pbLogin.Location = new System.Drawing.Point(25, 528);
             this.pbLogin.Name = "pbLogin";
@@ -172,12 +177,14 @@
             this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogin.TabIndex = 19;
             this.pbLogin.TabStop = false;
+            this.pbLogin.Click += new System.EventHandler(this.Btn_Click);
             this.pbLogin.MouseEnter += new System.EventHandler(this.btnLogin_MouseEnter);
             this.pbLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
             // 
             // pbZanr
             // 
             this.pbZanr.BackColor = System.Drawing.Color.Transparent;
+            this.pbZanr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbZanr.Image = global::Cinema.Properties.Resources.drama;
             this.pbZanr.Location = new System.Drawing.Point(25, 459);
             this.pbZanr.Name = "pbZanr";
@@ -185,12 +192,14 @@
             this.pbZanr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbZanr.TabIndex = 18;
             this.pbZanr.TabStop = false;
+            this.pbZanr.Click += new System.EventHandler(this.Btn_Click);
             this.pbZanr.MouseEnter += new System.EventHandler(this.btnZanr_MouseEnter);
             this.pbZanr.MouseLeave += new System.EventHandler(this.btnZanr_MouseLeave);
             // 
             // pbProjekcija
             // 
             this.pbProjekcija.BackColor = System.Drawing.Color.Transparent;
+            this.pbProjekcija.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbProjekcija.Image = global::Cinema.Properties.Resources.video_camera;
             this.pbProjekcija.Location = new System.Drawing.Point(25, 390);
             this.pbProjekcija.Name = "pbProjekcija";
@@ -198,12 +207,14 @@
             this.pbProjekcija.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProjekcija.TabIndex = 17;
             this.pbProjekcija.TabStop = false;
+            this.pbProjekcija.Click += new System.EventHandler(this.Btn_Click);
             this.pbProjekcija.MouseEnter += new System.EventHandler(this.btnProjekcija_MouseEnter);
             this.pbProjekcija.MouseLeave += new System.EventHandler(this.btnProjekcija_MouseLeave);
             // 
             // pbTermini
             // 
             this.pbTermini.BackColor = System.Drawing.Color.Transparent;
+            this.pbTermini.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbTermini.Image = global::Cinema.Properties.Resources.calendar_with_a_clock_time_tools;
             this.pbTermini.Location = new System.Drawing.Point(25, 316);
             this.pbTermini.Name = "pbTermini";
@@ -211,12 +222,14 @@
             this.pbTermini.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbTermini.TabIndex = 16;
             this.pbTermini.TabStop = false;
+            this.pbTermini.Click += new System.EventHandler(this.Btn_Click);
             this.pbTermini.MouseEnter += new System.EventHandler(this.btnTermini_MouseEnter);
             this.pbTermini.MouseLeave += new System.EventHandler(this.btnTermini_MouseLeave);
             // 
             // pbZaposleni
             // 
             this.pbZaposleni.BackColor = System.Drawing.Color.Transparent;
+            this.pbZaposleni.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbZaposleni.Image = global::Cinema.Properties.Resources.employee;
             this.pbZaposleni.Location = new System.Drawing.Point(25, 178);
             this.pbZaposleni.Name = "pbZaposleni";
@@ -224,12 +237,14 @@
             this.pbZaposleni.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbZaposleni.TabIndex = 14;
             this.pbZaposleni.TabStop = false;
+            this.pbZaposleni.Click += new System.EventHandler(this.Btn_Click);
             this.pbZaposleni.MouseEnter += new System.EventHandler(this.btnZaposleni_MouseEnter);
             this.pbZaposleni.MouseLeave += new System.EventHandler(this.btnZaposleni_MouseLeave);
             // 
             // pbFilm
             // 
             this.pbFilm.BackColor = System.Drawing.Color.Transparent;
+            this.pbFilm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbFilm.Image = global::Cinema.Properties.Resources.film_roll;
             this.pbFilm.Location = new System.Drawing.Point(25, 245);
             this.pbFilm.Name = "pbFilm";
@@ -237,6 +252,7 @@
             this.pbFilm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFilm.TabIndex = 15;
             this.pbFilm.TabStop = false;
+            this.pbFilm.Click += new System.EventHandler(this.Btn_Click);
             this.pbFilm.MouseEnter += new System.EventHandler(this.btnFilm_MouseEnter);
             this.pbFilm.MouseLeave += new System.EventHandler(this.btnFilm_MouseLeave);
             // 
@@ -274,6 +290,7 @@
             // 
             // btnZaposleni
             // 
+            this.btnZaposleni.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnZaposleni.FlatAppearance.BorderSize = 0;
             this.btnZaposleni.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnZaposleni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -292,6 +309,7 @@
             // 
             // btnFilm
             // 
+            this.btnFilm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFilm.FlatAppearance.BorderSize = 0;
             this.btnFilm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnFilm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -310,6 +328,7 @@
             // 
             // btnTermini
             // 
+            this.btnTermini.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTermini.FlatAppearance.BorderSize = 0;
             this.btnTermini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnTermini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -329,6 +348,7 @@
             // 
             // btnProjekcija
             // 
+            this.btnProjekcija.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnProjekcija.FlatAppearance.BorderSize = 0;
             this.btnProjekcija.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnProjekcija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -347,6 +367,7 @@
             // 
             // btnZanr
             // 
+            this.btnZanr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnZanr.FlatAppearance.BorderSize = 0;
             this.btnZanr.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnZanr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -357,7 +378,7 @@
             this.btnZanr.Name = "btnZanr";
             this.btnZanr.Size = new System.Drawing.Size(254, 60);
             this.btnZanr.TabIndex = 4;
-            this.btnZanr.Text = "     ZANR";
+            this.btnZanr.Text = "     ŽANR";
             this.btnZanr.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnZanr.UseVisualStyleBackColor = true;
             this.btnZanr.MouseEnter += new System.EventHandler(this.btnZanr_MouseEnter);
@@ -365,6 +386,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -398,29 +420,29 @@
             // 
             this.dgvPrikaz.AllowUserToAddRows = false;
             this.dgvPrikaz.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Teal;
-            this.dgvPrikaz.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Teal;
+            this.dgvPrikaz.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPrikaz.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvPrikaz.BackgroundColor = System.Drawing.Color.White;
             this.dgvPrikaz.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPrikaz.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPrikaz.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrikaz.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPrikaz.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPrikaz.GridColor = System.Drawing.Color.Silver;
             this.dgvPrikaz.Location = new System.Drawing.Point(3, 19);
             this.dgvPrikaz.MultiSelect = false;
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dgvPrikaz.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.dgvPrikaz.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -468,6 +490,7 @@
             // 
             this.tsbtnObrisi.BackgroundImage = global::Cinema.Properties.Resources.delete;
             this.tsbtnObrisi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnObrisi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tsbtnObrisi.FlatAppearance.BorderSize = 0;
             this.tsbtnObrisi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.tsbtnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -482,6 +505,7 @@
             // 
             this.tsbtnIzmijeni.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
             this.tsbtnIzmijeni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnIzmijeni.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
             this.tsbtnIzmijeni.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.tsbtnIzmijeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -496,6 +520,7 @@
             // 
             this.tsbtnAdd.BackgroundImage = global::Cinema.Properties.Resources.add;
             this.tsbtnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tsbtnAdd.FlatAppearance.BorderSize = 0;
             this.tsbtnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.tsbtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -528,6 +553,7 @@
             // btnOdustani
             // 
             this.btnOdustani.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOdustani.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnOdustani.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOdustani.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -543,6 +569,7 @@
             // btnPotvrdi
             // 
             this.btnPotvrdi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnPotvrdi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPotvrdi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnPotvrdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPotvrdi.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
