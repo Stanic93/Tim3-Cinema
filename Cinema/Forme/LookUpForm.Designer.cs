@@ -62,6 +62,7 @@
             // 
             // btnIzaberi
             // 
+            this.btnIzaberi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIzaberi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnIzaberi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnIzaberi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -77,6 +78,7 @@
             // 
             // btnOdustani
             // 
+            this.btnOdustani.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOdustani.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnOdustani.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnOdustani.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

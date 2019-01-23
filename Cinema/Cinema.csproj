@@ -153,12 +153,6 @@
     <Compile Include="Forme\BlagajnaForm.Designer.cs">
       <DependentUpon>BlagajnaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forme\CinemaLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forme\CinemaLogin.Designer.cs">
-      <DependentUpon>CinemaLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forme\Izvjestaji.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,9 +225,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\BlagajnaForm.resx">
       <DependentUpon>BlagajnaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forme\CinemaLogin.resx">
-      <DependentUpon>CinemaLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\Izvjestaji.resx">
       <DependentUpon>Izvjestaji.cs</DependentUpon>

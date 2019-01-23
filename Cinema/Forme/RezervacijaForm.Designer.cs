@@ -97,6 +97,7 @@
             // 
             this.tabControlRezervacija.Controls.Add(this.tabPageRezervacija);
             this.tabControlRezervacija.Controls.Add(this.tabPageRezervacijaDetaljno);
+            this.tabControlRezervacija.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControlRezervacija.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControlRezervacija.Location = new System.Drawing.Point(17, 31);
             this.tabControlRezervacija.Name = "tabControlRezervacija";
