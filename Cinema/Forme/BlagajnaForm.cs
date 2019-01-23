@@ -56,6 +56,7 @@ namespace Cinema.Forme
             dtpDatumProdukcije.Visible = true;
             lblDatumProdukcije.Visible = true;
             btnRezervacija.Enabled = false;
+            btnVratiNaKartu.Enabled = true;
             btnDodajRezervaciju.Visible = false;
             btnNovaKarta.Text = "Karta";
             btnRezervacija.Text = "Rezervacija";
@@ -1058,8 +1059,7 @@ namespace Cinema.Forme
             setujRezervacijaId();
             dtpDatumProdukcije.Visible = false;
             lblDatumProdukcije.Visible = false;
-
-            btnVratiNaKartu.Enabled = true;
+            btnVratiNaKartu.Enabled = false ;
         }
 
         private static DialogResult ShowInputDialog(ref string input)

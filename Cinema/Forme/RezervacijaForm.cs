@@ -473,6 +473,10 @@ namespace Cinema.Forme
                 btnPrebaciNaRacun.Text = "Stampaj racun";
                 stateTab = StateTab.Racun;
                 IzracunajSumuRacuna(dgv);
+                formatiraj(dgv);
+                dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgv.Dock = DockStyle.Fill;
+                dgv.BackgroundColor = Color.White;
             }
             else if (stateTab == StateTab.Racun)
             {
@@ -482,6 +486,17 @@ namespace Cinema.Forme
                 obrisiTab();
                 tabControlRezervacija.Enabled = true;
                 popuniRezervacije();
+            }
+        }
+        
+        private void formatiraj(DataGridView dgv)
+        {
+            for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    dgv.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 223, 128);
+                }
             }
         }
 
