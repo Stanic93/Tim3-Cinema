@@ -608,11 +608,13 @@ namespace Cinema.Forme
                 }
             }
 
+
             if (state == StateEnum.Create)
             {
                 if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da dodate novi red?", "Poruka!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
                 {
+                    if(ProvjeriTermin(property))
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
                 }
                 else state = StateEnum.Preview;
@@ -622,6 +624,7 @@ namespace Cinema.Forme
                 if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da izmjenite odabrani red?", "Poruka!",
             MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
                 {
+                    if(ProvjeriTermin(property))
                     SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(), property.GetUpdateParameters().ToArray());
                 }
                 else state = StateEnum.Preview;
@@ -635,6 +638,76 @@ namespace Cinema.Forme
 
         }
 
+        private bool ProvjeriTermin(PropertyInterface property)
+        {
+            if (property.GetType() != typeof(TerminPropertyClass))
+                return false;
+
+            if (property.GetType() == typeof(TerminPropertyClass))
+            {
+                TerminPropertyClass pom = property as TerminPropertyClass;
+                if (pom.VrijemePrikazivanja > new TimeSpan(22, 0, 0))
+                {
+                    MessageBox.Show("Ne mozete postaviti termin nakon 22:00h !");
+                    return false;
+                }
+                else if (pom.VrijemePrikazivanja < new TimeSpan(10, 0, 0))
+                {
+                    MessageBox.Show("Ne mozete postaviti termin pre 10:00h !");
+                    return false;
+                }
+                //query za provjeru da li postoji film koji je vec u toj sali u ovom terminu 
+                //i da li film koji mi postavljamo zavrsava bar 15min pre sledeceg postavljenog termina u toj sali
+                string queryProvjera = "select f.Naziv,f.DuzinaTrajanja,t.DatumPrikazivanja, t.VrijemePrikazivanja, " +
+                                    "Dateadd(mi, Datepart(hour, f.DuzinaTrajanja) * 60 + datepart(minute, f.DuzinaTrajanja), t.VrijemePrikazivanja) " +
+                                    "from Termin t " +
+                                    "join Projekcija p on p.ProjekcijaID = t.ProjekcijaID " +
+                                    "join Film f on f.FilmID = p.FilmID " +
+                                    "WHERE(@DatumPrikazivanja = t.DatumPrikazivanja and @SalaID = t.SalaID) AND " +
+                                        "(@VrijemePrikazivanja BETWEEN t.VrijemePrikazivanja " +
+                                    "AND Dateadd(mi, Datepart(hour, f.DuzinaTrajanja) * 60 + datepart(minute, f.DuzinaTrajanja)+ 15, t.VrijemePrikazivanja) " +
+                                    "OR Dateadd(mi, Datepart(hour, (select f1.DuzinaTrajanja from Film f1 " +
+                                                                        " join Projekcija p1 on p1.FilmID = f1.FilmID " +
+                                                                        "where p1.ProjekcijaID = @ProjekcijaID)) * 60 + " +
+                                    "datepart(minute, (select f1.DuzinaTrajanja from Film f1 " +
+                                                        "join Projekcija p1 on p1.FilmID = f1.FilmID " +
+                                                        " where p1.ProjekcijaID = @ProjekcijaID)), @VrijemePrikazivanja) between " +
+                                    "t.VrijemePrikazivanja AND Dateadd(mi, Datepart(hour, f.DuzinaTrajanja) * 60 + datepart(minute, f.DuzinaTrajanja) +15, t.VrijemePrikazivanja))";
+
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                {
+                    SqlParameter parameter = new SqlParameter("@DatumPrikazivanja", System.Data.SqlDbType.Date);
+                    parameter.Value = pom.DatumPrikazivanja;
+                    parameters.Add(parameter);
+                }
+                {
+                    SqlParameter parameter = new SqlParameter("@SalaID", System.Data.SqlDbType.SmallInt);
+                    parameter.Value = pom.SalaID;
+                    parameters.Add(parameter);
+                }
+                {
+                    SqlParameter parameter = new SqlParameter("@VrijemePrikazivanja", System.Data.SqlDbType.Time);
+                    parameter.Value = pom.VrijemePrikazivanja;
+                    parameters.Add(parameter);
+                }
+                {
+                    SqlParameter parameter = new SqlParameter("@ProjekcijaID", System.Data.SqlDbType.Int);
+                    parameter.Value = pom.ProjekcijaID;
+                    parameters.Add(parameter);
+                }
+                DataTable dt = new DataTable();
+                SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, queryProvjera, parameters.ToArray());
+
+                dt.Load(reader);
+                reader.Close();
+                if (dt.Rows.Count > 0)// u slucaju da je izvrseni query vratio jedan ili vise redova to znaci da se nas termin kosi sa nekim vec postojecim 
+                {
+                    MessageBox.Show("Termin koji ste pokusali dodati je zauzet!");
+                    return false;
+                }
+            }
+            return true;
+        }
         private void tsbtnObrisi_Click(object sender, EventArgs e)
         {
             tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
