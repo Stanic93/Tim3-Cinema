@@ -53,6 +53,10 @@ namespace Cinema.Forme
             dgvPregled.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPregled.DefaultCellStyle.SelectionBackColor = Color.Orange;
             state = State.Idle;
+            gbPregled.Text = "Repertoar";
+            gbPretraga.Text = "Pretraga";
+            gbDetaljno.Text = "Informacije o filmu";
+            gbKarta.Text = "Kreiraj";
             dtpDatumProdukcije.Visible = true;
             lblDatumProdukcije.Visible = true;
             btnRezervacija.Enabled = false;
@@ -362,6 +366,10 @@ namespace Cinema.Forme
             {
                 activeTab = ActiveTab.Racun;
                 btnNovaKarta.Text = "Stampaj";
+                gbPregled.Text = "Karte";
+                gbPretraga.Text = "Info";
+                gbDetaljno.Text = "Karta";
+                gbKarta.Text = "Nastavi";
                 panelToolStrip.Visible = true;
                 flpDetaljno.Controls.Clear();
                 dgvPregled.DataSource = null;
@@ -407,6 +415,10 @@ namespace Cinema.Forme
                     btnTabRepertoar.Enabled = false;
                     btnRezervacija.Text = "Odustani";
                     btnNovaKarta.Text = "Pregled racuna";
+                    gbPregled.Text = "Termini";
+                    gbPretraga.Text = "Info";
+                    gbDetaljno.Text = "Dodaj kartu";
+                    gbKarta.Text = "Nastavi";
                     btnTabKarta.Enabled = true;
                     btnTabRacun.Enabled = false;
                     btnTabRezervacija.Enabled = false;
@@ -426,6 +438,10 @@ namespace Cinema.Forme
                     btnTabRezervacija.Enabled = true;
                     btnRezervacija.Text = "Odustani";
                     btnNovaKarta.Text = "Potvrdi rezervaciju";
+                    gbPregled.Text = "Termini";
+                    gbPretraga.Text = "Info";
+                    gbDetaljno.Text = "Dodaj kartu";
+                    gbKarta.Text = "Nastavi";
                     btnNovaKarta.Enabled = false;
                     btnVratiNaKartu.Text = "Pregled rezervacija";
                     btnVratiNaKartu.Visible = true;
@@ -1008,14 +1024,6 @@ namespace Cinema.Forme
             gbPregled.Enabled = true;
             panelRacun.Enabled = true;
             gbKarta.Enabled = true;
-            if (activeTab == ActiveTab.Rezervacija)
-            {
-                gbPretraga.Enabled = false;
-            }
-            else
-            {
-                gbPretraga.Enabled = true;
-            }
             panelPregledRacuna.Enabled = true;
         }
 
@@ -1263,6 +1271,11 @@ namespace Cinema.Forme
             {
                 return;
             }
+        }
+
+        private void btnPrikaziSve_Click(object sender, EventArgs e)
+        {
+            txtNaziv.Text = "";
         }
     }
 }
