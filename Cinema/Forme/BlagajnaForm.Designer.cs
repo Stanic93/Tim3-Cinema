@@ -44,7 +44,6 @@
             this.btnDodajRezervaciju = new System.Windows.Forms.Button();
             this.btnVratiNaKartu = new System.Windows.Forms.Button();
             this.panelPretraga = new System.Windows.Forms.Panel();
-            this.btnPrikaziSve = new System.Windows.Forms.Button();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblNazivFilma = new System.Windows.Forms.Label();
@@ -75,13 +74,13 @@
             this.pbRepertoar = new System.Windows.Forms.PictureBox();
             this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDatum = new System.Windows.Forms.Label();
+            this.lblSatKrug = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.lblSat = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblSatKrug = new System.Windows.Forms.Label();
-            this.lblDatum = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.gbKarta.SuspendLayout();
             this.gbPregled.SuspendLayout();
@@ -304,27 +303,12 @@
             // 
             // panelPretraga
             // 
-            this.panelPretraga.Controls.Add(this.btnPrikaziSve);
             this.panelPretraga.Controls.Add(this.lblNaziv);
             this.panelPretraga.Controls.Add(this.txtNaziv);
             this.panelPretraga.Location = new System.Drawing.Point(108, 12);
             this.panelPretraga.Name = "panelPretraga";
             this.panelPretraga.Size = new System.Drawing.Size(372, 74);
             this.panelPretraga.TabIndex = 10;
-            // 
-            // btnPrikaziSve
-            // 
-            this.btnPrikaziSve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.btnPrikaziSve.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrikaziSve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnPrikaziSve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrikaziSve.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrikaziSve.Location = new System.Drawing.Point(227, 26);
-            this.btnPrikaziSve.Name = "btnPrikaziSve";
-            this.btnPrikaziSve.Size = new System.Drawing.Size(142, 27);
-            this.btnPrikaziSve.TabIndex = 7;
-            this.btnPrikaziSve.Text = "Prikazi sve";
-            this.btnPrikaziSve.UseVisualStyleBackColor = false;
             // 
             // lblNaziv
             // 
@@ -688,29 +672,36 @@
             this.panel2.Size = new System.Drawing.Size(910, 106);
             this.panel2.TabIndex = 13;
             // 
-            // lblSat
+            // lblDatum
             // 
-            this.lblSat.AutoSize = true;
-            this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSat.Location = new System.Drawing.Point(795, 70);
-            this.lblSat.Name = "lblSat";
-            this.lblSat.Size = new System.Drawing.Size(0, 28);
-            this.lblSat.TabIndex = 12;
+            this.lblDatum.AutoSize = true;
+            this.lblDatum.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblDatum.Location = new System.Drawing.Point(811, 64);
+            this.lblDatum.Name = "lblDatum";
+            this.lblDatum.Size = new System.Drawing.Size(45, 17);
+            this.lblDatum.TabIndex = 16;
+            this.lblDatum.Text = "label3";
             // 
-            // pictureBox1
+            // lblSatKrug
             // 
-            this.pictureBox1.Image = global::Cinema.Properties.Resources.logo_cine_23_2147503279__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(20, -14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(178, 129);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.lblSatKrug.AutoSize = true;
+            this.lblSatKrug.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSatKrug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSatKrug.Location = new System.Drawing.Point(804, 32);
+            this.lblSatKrug.Name = "lblSatKrug";
+            this.lblSatKrug.Size = new System.Drawing.Size(98, 33);
+            this.lblSatKrug.TabIndex = 15;
+            this.lblSatKrug.Text = "label2";
             // 
-            // timer1
+            // label1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.label1.Location = new System.Drawing.Point(827, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 14;
             // 
             // circularProgressBar1
             // 
@@ -746,36 +737,29 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 60;
             // 
-            // label1
+            // lblSat
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.label1.Location = new System.Drawing.Point(827, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 14;
+            this.lblSat.AutoSize = true;
+            this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSat.Location = new System.Drawing.Point(795, 70);
+            this.lblSat.Name = "lblSat";
+            this.lblSat.Size = new System.Drawing.Size(0, 28);
+            this.lblSat.TabIndex = 12;
             // 
-            // lblSatKrug
+            // pictureBox1
             // 
-            this.lblSatKrug.AutoSize = true;
-            this.lblSatKrug.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSatKrug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSatKrug.Location = new System.Drawing.Point(804, 32);
-            this.lblSatKrug.Name = "lblSatKrug";
-            this.lblSatKrug.Size = new System.Drawing.Size(98, 33);
-            this.lblSatKrug.TabIndex = 15;
-            this.lblSatKrug.Text = "label2";
+            this.pictureBox1.Image = global::Cinema.Properties.Resources.logo_cine_23_2147503279__1_;
+            this.pictureBox1.Location = new System.Drawing.Point(20, -14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(178, 129);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
-            // lblDatum
+            // timer1
             // 
-            this.lblDatum.AutoSize = true;
-            this.lblDatum.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDatum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblDatum.Location = new System.Drawing.Point(811, 64);
-            this.lblDatum.Name = "lblDatum";
-            this.lblDatum.Size = new System.Drawing.Size(45, 17);
-            this.lblDatum.TabIndex = 16;
-            this.lblDatum.Text = "label3";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
@@ -836,7 +820,6 @@
         private System.Windows.Forms.GroupBox gbPretraga;
         private System.Windows.Forms.GroupBox gbDetaljno;
         private System.Windows.Forms.FlowLayoutPanel flpDetaljno;
-        private System.Windows.Forms.Button btnPrikaziSve;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.Panel panelRacun;
