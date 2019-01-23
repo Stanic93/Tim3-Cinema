@@ -41,7 +41,7 @@ namespace Cinema.Forme
             string connectionString = SqlHelper.GetConnectionString();
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand();
-            command.CommandText = @"Select Login.KorisnickoIme, Login.Lozinka from dbo.Login
+            command.CommandText = @"Select * from dbo.Login
                                     join dbo.Zaposleni on Login.ZaposleniID = Zaposleni.ZaposleniID
                                     where KorisnickoIme= @KorisnickoIme COLLATE SQL_Latin1_General_CP1_CS_AS 
                                     and Lozinka =@Lozinka COLLATE SQL_Latin1_General_CP1_CS_AS 
