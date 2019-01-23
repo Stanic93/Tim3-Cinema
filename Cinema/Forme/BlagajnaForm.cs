@@ -35,7 +35,7 @@ namespace Cinema.Forme
             this.zaposleniID = zaposleniID;
             FullName = imeIprezime;
             lblKorisnickoIme.Text = FullName;
-            lblRadnik.Visible = false;
+            lblRadnik.Visible = true;
             dgvPregled.MultiSelect = false;
             dgvPregled.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvPregled.RowHeadersVisible = false;
@@ -1411,14 +1411,16 @@ namespace Cinema.Forme
 
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

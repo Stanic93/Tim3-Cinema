@@ -33,6 +33,10 @@
             this.lblStatusPrikaza = new System.Windows.Forms.Label();
             this.dgvPregledRezervacija = new System.Windows.Forms.DataGridView();
             this.tabPageRezervacijaDetaljno = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tsbtnObrisi = new System.Windows.Forms.Button();
+            this.tsbtnIzmijeni = new System.Windows.Forms.Button();
+            this.tsbtnDodaj = new System.Windows.Forms.Button();
             this.dgvDetaljnoRezervacija = new System.Windows.Forms.DataGridView();
             this.lblPretraga = new System.Windows.Forms.Label();
             this.txtPretraga = new System.Windows.Forms.TextBox();
@@ -66,30 +70,26 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
             this.panelNazivRezervacije = new System.Windows.Forms.Panel();
-            this.lblNazivRezervacije = new System.Windows.Forms.Label();
-            this.lblRezervacija = new System.Windows.Forms.Label();
             this.panelRacun = new System.Windows.Forms.Panel();
             this.txtZaposleni = new System.Windows.Forms.TextBox();
             this.lblZaposleni = new System.Windows.Forms.Label();
             this.txtUkupnaVrijednost = new System.Windows.Forms.TextBox();
             this.lblVrijednostRacuna = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tsbtnDodaj = new System.Windows.Forms.Button();
-            this.tsbtnIzmijeni = new System.Windows.Forms.Button();
-            this.tsbtnObrisi = new System.Windows.Forms.Button();
+            this.lblNazivRezervacije = new System.Windows.Forms.Label();
+            this.lblRezervacija = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.panelOkvir = new System.Windows.Forms.Panel();
             this.tabControlRezervacija.SuspendLayout();
             this.tabPageRezervacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregledRezervacija)).BeginInit();
             this.tabPageRezervacijaDetaljno.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljnoRezervacija)).BeginInit();
             this.panelPretraga.SuspendLayout();
             this.panelButton.SuspendLayout();
             this.panelKarta.SuspendLayout();
             this.panelNazivRezervacije.SuspendLayout();
             this.panelRacun.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panelOkvir.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,6 +153,59 @@
             this.tabPageRezervacijaDetaljno.TabIndex = 1;
             this.tabPageRezervacijaDetaljno.Text = "Detaljno";
             this.tabPageRezervacijaDetaljno.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.panel1.Controls.Add(this.tsbtnObrisi);
+            this.panel1.Controls.Add(this.tsbtnIzmijeni);
+            this.panel1.Controls.Add(this.tsbtnDodaj);
+            this.panel1.Location = new System.Drawing.Point(-9, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(659, 29);
+            this.panel1.TabIndex = 2;
+            // 
+            // tsbtnObrisi
+            // 
+            this.tsbtnObrisi.BackgroundImage = global::Cinema.Properties.Resources.delete;
+            this.tsbtnObrisi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnObrisi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tsbtnObrisi.FlatAppearance.BorderSize = 0;
+            this.tsbtnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnObrisi.Location = new System.Drawing.Point(86, 4);
+            this.tsbtnObrisi.Name = "tsbtnObrisi";
+            this.tsbtnObrisi.Size = new System.Drawing.Size(31, 22);
+            this.tsbtnObrisi.TabIndex = 2;
+            this.tsbtnObrisi.UseVisualStyleBackColor = true;
+            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
+            // 
+            // tsbtnIzmijeni
+            // 
+            this.tsbtnIzmijeni.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
+            this.tsbtnIzmijeni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnIzmijeni.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
+            this.tsbtnIzmijeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnIzmijeni.Location = new System.Drawing.Point(49, 4);
+            this.tsbtnIzmijeni.Name = "tsbtnIzmijeni";
+            this.tsbtnIzmijeni.Size = new System.Drawing.Size(31, 22);
+            this.tsbtnIzmijeni.TabIndex = 1;
+            this.tsbtnIzmijeni.UseVisualStyleBackColor = true;
+            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmijeni_Click);
+            // 
+            // tsbtnDodaj
+            // 
+            this.tsbtnDodaj.BackgroundImage = global::Cinema.Properties.Resources.add;
+            this.tsbtnDodaj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tsbtnDodaj.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tsbtnDodaj.FlatAppearance.BorderSize = 0;
+            this.tsbtnDodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tsbtnDodaj.Location = new System.Drawing.Point(11, 4);
+            this.tsbtnDodaj.Name = "tsbtnDodaj";
+            this.tsbtnDodaj.Size = new System.Drawing.Size(31, 22);
+            this.tsbtnDodaj.TabIndex = 0;
+            this.tsbtnDodaj.UseVisualStyleBackColor = true;
+            this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
             // 
             // dgvDetaljnoRezervacija
             // 
@@ -556,28 +609,6 @@
             this.panelNazivRezervacije.TabIndex = 9;
             this.panelNazivRezervacije.Visible = false;
             // 
-            // lblNazivRezervacije
-            // 
-            this.lblNazivRezervacije.AutoSize = true;
-            this.lblNazivRezervacije.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNazivRezervacije.ForeColor = System.Drawing.Color.White;
-            this.lblNazivRezervacije.Location = new System.Drawing.Point(82, 9);
-            this.lblNazivRezervacije.Name = "lblNazivRezervacije";
-            this.lblNazivRezervacije.Size = new System.Drawing.Size(45, 17);
-            this.lblNazivRezervacije.TabIndex = 10;
-            this.lblNazivRezervacije.Text = "label1";
-            // 
-            // lblRezervacija
-            // 
-            this.lblRezervacija.AutoSize = true;
-            this.lblRezervacija.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRezervacija.ForeColor = System.Drawing.Color.White;
-            this.lblRezervacija.Location = new System.Drawing.Point(10, 9);
-            this.lblRezervacija.Name = "lblRezervacija";
-            this.lblRezervacija.Size = new System.Drawing.Size(81, 17);
-            this.lblRezervacija.TabIndex = 10;
-            this.lblRezervacija.Text = "Rezervacija:";
-            // 
             // panelRacun
             // 
             this.panelRacun.Controls.Add(this.txtZaposleni);
@@ -630,55 +661,27 @@
             this.lblVrijednostRacuna.TabIndex = 0;
             this.lblVrijednostRacuna.Text = "Ukupna cijena ";
             // 
-            // panel1
+            // lblNazivRezervacije
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.panel1.Controls.Add(this.tsbtnObrisi);
-            this.panel1.Controls.Add(this.tsbtnIzmijeni);
-            this.panel1.Controls.Add(this.tsbtnDodaj);
-            this.panel1.Location = new System.Drawing.Point(-9, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(659, 29);
-            this.panel1.TabIndex = 2;
+            this.lblNazivRezervacije.AutoSize = true;
+            this.lblNazivRezervacije.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNazivRezervacije.ForeColor = System.Drawing.Color.White;
+            this.lblNazivRezervacije.Location = new System.Drawing.Point(82, 9);
+            this.lblNazivRezervacije.Name = "lblNazivRezervacije";
+            this.lblNazivRezervacije.Size = new System.Drawing.Size(45, 17);
+            this.lblNazivRezervacije.TabIndex = 10;
+            this.lblNazivRezervacije.Text = "label1";
             // 
-            // tsbtnDodaj
+            // lblRezervacija
             // 
-            this.tsbtnDodaj.BackgroundImage = global::Cinema.Properties.Resources.add;
-            this.tsbtnDodaj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tsbtnDodaj.FlatAppearance.BorderSize = 0;
-            this.tsbtnDodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tsbtnDodaj.Location = new System.Drawing.Point(11, 4);
-            this.tsbtnDodaj.Name = "tsbtnDodaj";
-            this.tsbtnDodaj.Size = new System.Drawing.Size(31, 22);
-            this.tsbtnDodaj.TabIndex = 0;
-            this.tsbtnDodaj.UseVisualStyleBackColor = true;
-            this.tsbtnDodaj.Click += new System.EventHandler(this.tsbtnDodaj_Click);
-            // 
-            // tsbtnIzmijeni
-            // 
-            this.tsbtnIzmijeni.BackgroundImage = global::Cinema.Properties.Resources.pencil_edit_button;
-            this.tsbtnIzmijeni.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
-            this.tsbtnIzmijeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tsbtnIzmijeni.Location = new System.Drawing.Point(49, 4);
-            this.tsbtnIzmijeni.Name = "tsbtnIzmijeni";
-            this.tsbtnIzmijeni.Size = new System.Drawing.Size(31, 22);
-            this.tsbtnIzmijeni.TabIndex = 1;
-            this.tsbtnIzmijeni.UseVisualStyleBackColor = true;
-            this.tsbtnIzmijeni.Click += new System.EventHandler(this.tsbtnIzmijeni_Click);
-            // 
-            // tsbtnObrisi
-            // 
-            this.tsbtnObrisi.BackgroundImage = global::Cinema.Properties.Resources.delete;
-            this.tsbtnObrisi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.tsbtnObrisi.FlatAppearance.BorderSize = 0;
-            this.tsbtnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tsbtnObrisi.Location = new System.Drawing.Point(86, 4);
-            this.tsbtnObrisi.Name = "tsbtnObrisi";
-            this.tsbtnObrisi.Size = new System.Drawing.Size(31, 22);
-            this.tsbtnObrisi.TabIndex = 2;
-            this.tsbtnObrisi.UseVisualStyleBackColor = true;
-            this.tsbtnObrisi.Click += new System.EventHandler(this.tsbtnObrisi_Click);
+            this.lblRezervacija.AutoSize = true;
+            this.lblRezervacija.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRezervacija.ForeColor = System.Drawing.Color.White;
+            this.lblRezervacija.Location = new System.Drawing.Point(10, 9);
+            this.lblRezervacija.Name = "lblRezervacija";
+            this.lblRezervacija.Size = new System.Drawing.Size(81, 17);
+            this.lblRezervacija.TabIndex = 10;
+            this.lblRezervacija.Text = "Rezervacija:";
             // 
             // btnExit
             // 
@@ -702,6 +705,7 @@
             this.panelOkvir.Controls.Add(this.panelButton);
             this.panelOkvir.Controls.Add(this.panelPretraga);
             this.panelOkvir.Controls.Add(this.tabControlRezervacija);
+            this.panelOkvir.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelOkvir.Location = new System.Drawing.Point(0, 0);
             this.panelOkvir.Name = "panelOkvir";
             this.panelOkvir.Size = new System.Drawing.Size(852, 396);
@@ -716,6 +720,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.panelNazivRezervacije);
             this.Controls.Add(this.panelOkvir);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RezervacijaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -725,6 +730,7 @@
             this.tabPageRezervacija.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPregledRezervacija)).EndInit();
             this.tabPageRezervacijaDetaljno.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljnoRezervacija)).EndInit();
             this.panelPretraga.ResumeLayout(false);
             this.panelPretraga.PerformLayout();
@@ -735,7 +741,6 @@
             this.panelNazivRezervacije.PerformLayout();
             this.panelRacun.ResumeLayout(false);
             this.panelRacun.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.panelOkvir.ResumeLayout(false);
             this.panelOkvir.PerformLayout();
             this.ResumeLayout(false);

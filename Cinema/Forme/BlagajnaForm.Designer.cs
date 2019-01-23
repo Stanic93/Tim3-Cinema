@@ -75,7 +75,6 @@
             this.pbRepertoar = new System.Windows.Forms.PictureBox();
             this.pBoxAvatar = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
             this.lblSat = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -561,12 +560,12 @@
             // 
             this.lblRadnik.AutoSize = true;
             this.lblRadnik.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRadnik.ForeColor = System.Drawing.Color.White;
+            this.lblRadnik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblRadnik.Location = new System.Drawing.Point(73, 134);
             this.lblRadnik.Name = "lblRadnik";
-            this.lblRadnik.Size = new System.Drawing.Size(52, 17);
+            this.lblRadnik.Size = new System.Drawing.Size(66, 17);
             this.lblRadnik.TabIndex = 6;
-            this.lblRadnik.Text = "Radnik";
+            this.lblRadnik.Text = "Blagajnik";
             // 
             // btnTabRezervacija
             // 
@@ -674,7 +673,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.lblSat);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.lblStatusSale);
@@ -682,19 +680,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(910, 106);
             this.panel2.TabIndex = 13;
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackgroundImage = global::Cinema.Properties.Resources.x_mark;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Location = new System.Drawing.Point(871, -1);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(30, 26);
-            this.btnExit.TabIndex = 13;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblSat
             // 
@@ -815,7 +800,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblSat;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnLogout;
     }
 }

@@ -64,7 +64,6 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnExit = new System.Windows.Forms.Button();
             this.lblSat = new System.Windows.Forms.Label();
             this.lblPretragaFix = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
@@ -554,7 +553,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.lblSat);
             this.panel1.Controls.Add(this.lblPretragaFix);
             this.panel1.Controls.Add(this.lblPretraga);
@@ -564,19 +562,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(893, 106);
             this.panel1.TabIndex = 10;
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackgroundImage = global::Cinema.Properties.Resources.x_mark;
-            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExit.Location = new System.Drawing.Point(861, 0);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(32, 32);
-            this.btnExit.TabIndex = 4;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblSat
             // 
@@ -682,7 +667,6 @@
         private System.Windows.Forms.Button tsbtnIzmijeni;
         private System.Windows.Forms.Button tsbtnAdd;
         private System.Windows.Forms.Label lblSat;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.PictureBox pbIzvjestaji;
         private System.Windows.Forms.Button btnIzvjestaji;

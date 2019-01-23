@@ -738,10 +738,7 @@ namespace Cinema.Forme
 
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
 
         private void btnLogout_Click(object sender, EventArgs e)
         {

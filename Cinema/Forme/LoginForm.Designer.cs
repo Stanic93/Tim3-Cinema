@@ -92,6 +92,7 @@
             // btnNastavi
             // 
             this.btnNastavi.BackColor = System.Drawing.Color.DimGray;
+            this.btnNastavi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNastavi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnNastavi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnNastavi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
