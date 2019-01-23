@@ -37,8 +37,7 @@ namespace Cinema.PropertyClass
                 projekcijaID = value;
             }
         }
-
-        [MandatoryData]
+        
         [SqlName("Naziv")]
         [DisplayName("Naziv filma")]
 
@@ -108,9 +107,9 @@ namespace Cinema.PropertyClass
         #region queries
         public string GetSelectQuery()
         {
-            return @"Select ProjekcijaID,dbo.Projekcija.FilmID,Naziv,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja 
-                FROM dbo.Projekcija
-                JOIN dbo.Film  ON dbo.Projekcija.FilmID = dbo.Film.FilmID";
+            return @"Select p.ProjekcijaID,p.FilmID,f.Naziv,p.DatumPrvogPrikazivanja,p.DatumPosljednjegPrikazivanja 
+                FROM dbo.Projekcija p 
+                JOIN dbo.Film f ON p.FilmID = f.FilmID";
         }
         public string GetDeleteQuery()
         {
@@ -118,7 +117,7 @@ namespace Cinema.PropertyClass
         }
         public string GetInsertQuery()
         {
-            return @"Insert into dbo.Projekcija (FilmID,CijenaID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja) values (@FilmID,@CijenaID,@DatumPrvogPrikazivanja,@DatumPosljednjegPrikazivanja)";
+            return @"Insert into dbo.Projekcija (FilmID,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja) values (@FilmID,@DatumPrvogPrikazivanja,@DatumPosljednjegPrikazivanja)";
         }
         public string GetUpdateQuery()
         {
@@ -134,10 +133,10 @@ namespace Cinema.PropertyClass
         }
         public string GetSearchQuery(string rijec)
         {
-            return @"Select ProjekcijaID,dbo.Projekcija.FilmID,Naziv,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja 
-                    from dbo.Projekcija
-                    join dbo.Film on dbo.Film.FilmID =dbo.Projekcija.FilmID
-                    where dbo.Film.Naziv like '" + rijec + "%'";
+            return @"Select p.ProjekcijaID,p.FilmID,f.Naziv,p.DatumPrvogPrikazivanja,p.DatumPosljednjegPrikazivanja 
+                    from dbo.Projekcija p
+                    join dbo.Film f on f.FilmID =p.FilmID
+                    where p.Naziv like '" + rijec + "%'";
         }
         #endregion
 

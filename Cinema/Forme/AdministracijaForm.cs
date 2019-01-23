@@ -80,6 +80,8 @@ namespace Cinema.Forme
                     pom.FlatAppearance.BorderColor = Color.FromArgb(52, 52, 52);
                 }
             }
+            tsbtnAdd.FlatAppearance.BorderSize = 0;
+            tsbtnIzmijeni.FlatAppearance.BorderSize = 0;
         }
 
         public void OsnovnaPodesavanja()
@@ -100,6 +102,7 @@ namespace Cinema.Forme
         //ucitava dataGridView tabelom zavisno od tog na koji od menija je kliknuto
         private void Btn_Click(object sender, EventArgs e)
         {
+            
             if (btnFilm == sender as Button || pbFilm == sender as PictureBox)
             {
                 property = new FilmPropertyClass();
@@ -224,13 +227,15 @@ namespace Cinema.Forme
                 else //if (item.GetCustomAttribute<SqlNameAttribute>() != null)
                 {
                     TextBoxControl uc = new TextBoxControl();
-                    if (item.GetCustomAttribute<PrimaryKeyAttribute>() != null)
+                    if ((item.GetCustomAttribute<PrimaryKeyAttribute>() != null)||
+                        (property.GetType() == typeof(ProjekcijaPropertyClass) && item.GetCustomAttribute<DisplayNameAttribute>().DisplayName == "Naziv filma"))
                     {
                         continue;
                     }
                     if (item.GetCustomAttribute<TimeAttribute>() != null)
                         uc.SetTextBox("00:00:00");
                     uc.Name = item.Name;
+                    
                     uc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
                     flpDetaljno.Controls.Add(uc);
                 }
