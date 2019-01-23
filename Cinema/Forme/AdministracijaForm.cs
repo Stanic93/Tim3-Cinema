@@ -312,13 +312,7 @@ namespace Cinema.Forme
                                 colValue = dt1.Rows[0][0].ToString();
 
                             }
-                            else try
-                                {
-                                    colValue = dt.Rows[0][1].ToString();
-                                }
-                                catch
-                                {
-                                }
+                            else try { colValue = dt.Rows[0][1].ToString();}catch {  }
 
                             ul.SetValue(colValue);
                             flpDetaljno.Controls.Add(ul);
@@ -485,7 +479,6 @@ namespace Cinema.Forme
 
                     if (input.Name == "DuzinaTrajanja" || input.Name == "VrijemePrikazivanja")
                     {
-
                         TimeSpan pom = new TimeSpan(0, 0, 0);
                         if (TimeSpan.TryParse(input.GetTextBox(), out pom))
                         {
@@ -499,14 +492,12 @@ namespace Cinema.Forme
                             input.BackColor = Color.Red;
                             return;
                         }
-                        if (input.Name == "Lozinka" && input.GetTextBox().Length <= 6)
-                        {
-                            MessageBox.Show("Lozinka mora biti bar 6  karatktera duga!");
-                            return;
-                        }
                     }
-
-
+                    else if (input.Name == "Lozinka" && input.GetTextBox().Length <= 6)
+                    {
+                        MessageBox.Show("Lozinka mora biti bar 6  karatktera duga!");
+                        return;
+                    }
                     else
                     {
                         PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
@@ -524,15 +515,12 @@ namespace Cinema.Forme
                             MessageBox.Show("Polje pol mora biti jedan karakter (M ili Ž)");
                             return;
                         }
-
                         else
                         {
                             myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                             input.BackColor = Color.FromArgb(38, 38, 38);
                         }
-
                     }
-
                 }
 
                 //Marko J. Pokusaji rjesavanja dopune svih polja prilikom unosa i updatea
@@ -614,8 +602,43 @@ namespace Cinema.Forme
                 if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da dodate novi red?", "Poruka!",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
                 {
-                    if(ProvjeriTermin(property))
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(), property.GetInsertParameters().ToArray());
+                    if (property.GetType() == typeof(TerminPropertyClass))
+                    {
+                        if (ProvjeriTermin(property))
+                        {
+                            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(),
+                                  property.GetInsertParameters().ToArray());
+                            MessageBox.Show("Termin dodan!");
+                        }
+                        
+                    }
+                    else if (property.GetType() == typeof(LoginPropertyClass))
+                    {
+                        LoginPropertyClass pom = property as LoginPropertyClass;
+                        string queryProvjera = "Select * from Login where korisnickoime=@KorisnickoIme ";
+
+                        List<SqlParameter> parameters = new List<SqlParameter>();
+                        {
+                            SqlParameter parameter = new SqlParameter("@KorisnickoIme", System.Data.SqlDbType.NVarChar);
+                            parameter.Value = pom.KorisnickoIme;
+                            parameters.Add(parameter);
+                        }
+                       
+                        DataTable dt = new DataTable();
+                        SqlDataReader reader = SqlHelper.ExecuteReader(SqlHelper.GetConnectionString(), CommandType.Text, queryProvjera, parameters.ToArray());
+
+                        dt.Load(reader);
+                        reader.Close();
+                        if (dt.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Korisnicko ime koje ste unijeli se vec koristi!");
+                            return ;
+                        }
+                    }
+                    else
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(),
+                                  property.GetInsertParameters().ToArray());
+                    state = StateEnum.Preview;
                 }
                 else state = StateEnum.Preview;
             }
@@ -624,8 +647,15 @@ namespace Cinema.Forme
                 if (DialogResult.Yes == (MessageBox.Show("Da li ste sigurni da zelite da izmjenite odabrani red?", "Poruka!",
             MessageBoxButtons.YesNo, MessageBoxIcon.Information)))
                 {
-                    if(ProvjeriTermin(property))
-                    SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(), property.GetUpdateParameters().ToArray());
+                    if (property.GetType() == typeof(TerminPropertyClass))
+                    {
+                        if (ProvjeriTermin(property))
+                            SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(),
+                                property.GetUpdateParameters().ToArray());
+                    }
+                    else SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetUpdateQuery(),
+                               property.GetUpdateParameters().ToArray());
+                    state = StateEnum.Preview;
                 }
                 else state = StateEnum.Preview;
             }
@@ -758,9 +788,6 @@ namespace Cinema.Forme
             reader.Close();
             dgvPrikaz.DataSource = dt;
         }
-
-       
-
         #region promjena_boje_na_hover
 
         private void btnZaposleni_MouseEnter(object sender, EventArgs e)
@@ -850,7 +877,7 @@ namespace Cinema.Forme
         }
 
         #endregion
-
+        //svaki drugi red obojen
         private void dgvPrikaz_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             for (int i = 0; i < dgvPrikaz.Rows.Count; i++)
@@ -862,8 +889,6 @@ namespace Cinema.Forme
             }
 
         }
-
-        
 
         private void btnLogout_Click(object sender, EventArgs e)
         {

@@ -47,6 +47,11 @@ namespace Cinema.Forme
                     }
                 }
             }
+            if (Files.Count == 0)
+            {
+                lbIzvjestaji.Text = "Lista je prazna,u odabranom folderu nema .rpt fajlova.";
+                MessageBox.Show("Odabrani folder ne sadrzi ni jedan Crystal reports izvjestaj!", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void lbIzvjestaji_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +68,7 @@ namespace Cinema.Forme
             }
             catch(Exception r) {
                 MessageBox.Show(r.Message);
-                MessageBox.Show(Files[lbIzvjestaji.SelectedIndex].ToString());
+                MessageBox.Show("Putanja fajla: "+Files[lbIzvjestaji.SelectedIndex].ToString());
             }
             reportViewer.ReportSource = report;
             reportViewer.Refresh();
