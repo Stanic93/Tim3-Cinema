@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMeni = new System.Windows.Forms.Panel();
             this.pbIzvjestaji = new System.Windows.Forms.PictureBox();
             this.btnIzvjestaji = new System.Windows.Forms.Button();
@@ -64,15 +64,15 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnPotvrdi = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDatum = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSatKrug = new System.Windows.Forms.Label();
+            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.lblSat = new System.Windows.Forms.Label();
             this.lblPretragaFix = new System.Windows.Forms.Label();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.lblSatKrug = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblDatum = new System.Windows.Forms.Label();
             this.panelMeni.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIzvjestaji)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
@@ -398,29 +398,29 @@
             // 
             this.dgvPrikaz.AllowUserToAddRows = false;
             this.dgvPrikaz.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Teal;
-            this.dgvPrikaz.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Teal;
+            this.dgvPrikaz.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPrikaz.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvPrikaz.BackgroundColor = System.Drawing.Color.White;
             this.dgvPrikaz.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPrikaz.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPrikaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPrikaz.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPrikaz.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPrikaz.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPrikaz.GridColor = System.Drawing.Color.Silver;
             this.dgvPrikaz.Location = new System.Drawing.Point(3, 19);
             this.dgvPrikaz.MultiSelect = false;
             this.dgvPrikaz.Name = "dgvPrikaz";
             this.dgvPrikaz.ReadOnly = true;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dgvPrikaz.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.dgvPrikaz.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dgvPrikaz.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -572,40 +572,37 @@
             this.panel1.Size = new System.Drawing.Size(893, 106);
             this.panel1.TabIndex = 10;
             // 
-            // lblSat
+            // lblDatum
             // 
-            this.lblSat.AutoSize = true;
-            this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSat.Location = new System.Drawing.Point(795, 70);
-            this.lblSat.Name = "lblSat";
-            this.lblSat.Size = new System.Drawing.Size(0, 28);
-            this.lblSat.TabIndex = 3;
+            this.lblDatum.AutoSize = true;
+            this.lblDatum.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblDatum.Location = new System.Drawing.Point(804, 64);
+            this.lblDatum.Name = "lblDatum";
+            this.lblDatum.Size = new System.Drawing.Size(47, 17);
+            this.lblDatum.TabIndex = 7;
+            this.lblDatum.Text = "label2";
             // 
-            // lblPretragaFix
+            // label1
             // 
-            this.lblPretragaFix.AutoSize = true;
-            this.lblPretragaFix.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPretragaFix.ForeColor = System.Drawing.Color.White;
-            this.lblPretragaFix.Location = new System.Drawing.Point(198, 9);
-            this.lblPretragaFix.Name = "lblPretragaFix";
-            this.lblPretragaFix.Size = new System.Drawing.Size(83, 21);
-            this.lblPretragaFix.TabIndex = 2;
-            this.lblPretragaFix.Text = "Pretraga:";
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.label1.Location = new System.Drawing.Point(824, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
             // 
-            // pbLogo
+            // lblSatKrug
             // 
-            this.pbLogo.Image = global::Cinema.Properties.Resources.logo_cine_23_2147503279__1_1;
-            this.pbLogo.Location = new System.Drawing.Point(7, 0);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(185, 106);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.lblSatKrug.AutoSize = true;
+            this.lblSatKrug.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSatKrug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSatKrug.Location = new System.Drawing.Point(796, 32);
+            this.lblSatKrug.Name = "lblSatKrug";
+            this.lblSatKrug.Size = new System.Drawing.Size(98, 33);
+            this.lblSatKrug.TabIndex = 5;
+            this.lblSatKrug.Text = "label1";
             // 
             // circularProgressBar1
             // 
@@ -641,41 +638,44 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 60;
             // 
-            // lblSatKrug
+            // lblSat
             // 
-            this.lblSatKrug.AutoSize = true;
-            this.lblSatKrug.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSatKrug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblSatKrug.Location = new System.Drawing.Point(797, 32);
-            this.lblSatKrug.Name = "lblSatKrug";
-            this.lblSatKrug.Size = new System.Drawing.Size(98, 33);
-            this.lblSatKrug.TabIndex = 5;
-            this.lblSatKrug.Text = "label1";
+            this.lblSat.AutoSize = true;
+            this.lblSat.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblSat.Location = new System.Drawing.Point(795, 70);
+            this.lblSat.Name = "lblSat";
+            this.lblSat.Size = new System.Drawing.Size(0, 28);
+            this.lblSat.TabIndex = 3;
+            // 
+            // lblPretragaFix
+            // 
+            this.lblPretragaFix.AutoSize = true;
+            this.lblPretragaFix.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPretragaFix.ForeColor = System.Drawing.Color.White;
+            this.lblPretragaFix.Location = new System.Drawing.Point(198, 9);
+            this.lblPretragaFix.Name = "lblPretragaFix";
+            this.lblPretragaFix.Size = new System.Drawing.Size(83, 21);
+            this.lblPretragaFix.TabIndex = 2;
+            this.lblPretragaFix.Text = "Pretraga:";
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Image = global::Cinema.Properties.Resources.logo_cine_23_2147503279__1_1;
+            this.pbLogo.Location = new System.Drawing.Point(7, 0);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(185, 106);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.label1.Location = new System.Drawing.Point(824, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
-            // 
-            // lblDatum
-            // 
-            this.lblDatum.AutoSize = true;
-            this.lblDatum.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDatum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblDatum.Location = new System.Drawing.Point(805, 66);
-            this.lblDatum.Name = "lblDatum";
-            this.lblDatum.Size = new System.Drawing.Size(47, 17);
-            this.lblDatum.TabIndex = 7;
-            this.lblDatum.Text = "label2";
             // 
             // AdministracijaForm
             // 
