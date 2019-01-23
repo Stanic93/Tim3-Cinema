@@ -15,7 +15,7 @@ namespace Cinema.Forme
 {
     public partial class Izvjestaji : Form
     {
-        string[] Files;
+        List<string> Files;
         public Izvjestaji()
         {
             InitializeComponent();
@@ -29,16 +29,20 @@ namespace Cinema.Forme
 
         private void btnUcitaj_Click(object sender, EventArgs e)
         {
+            Files = new List<string>();
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 lbIzvjestaji.Items.Clear();
-                Files = Directory.GetFiles(fbd.SelectedPath);
-
-                foreach (string file in Files)
+                string[] pom = Directory.GetFiles(fbd.SelectedPath);
+                int i = 0;
+                foreach (string file in pom)
                 {
                     if (Path.GetFileName(file).Contains(".rpt"))
-                    lbIzvjestaji.Items.Add(Path.GetFileName(file));
+                    {
+                        lbIzvjestaji.Items.Add(Path.GetFileName(file));
+                        Files.Add(file);
+                    }
                 }
             }
         }
@@ -50,8 +54,15 @@ namespace Cinema.Forme
             panelIzvjestaji.Controls.Add(reportViewer);
             reportViewer.Dock = DockStyle.Fill;
             ReportDocument report = new ReportDocument();
-            report.Load(@"" + Files[lbIzvjestaji.SelectedIndex]);
-            report.SetDatabaseLogon("test_admin", "T3st@dm1n");
+            try
+            {
+                report.Load(@"" + Files.ElementAt(lbIzvjestaji.SelectedIndex));
+                report.SetDatabaseLogon("test_admin", "T3st@dm1n");
+            }
+            catch(Exception r) {
+                MessageBox.Show(r.Message);
+                MessageBox.Show(Files[lbIzvjestaji.SelectedIndex].ToString());
+            }
             reportViewer.ReportSource = report;
             reportViewer.Refresh();
         }
