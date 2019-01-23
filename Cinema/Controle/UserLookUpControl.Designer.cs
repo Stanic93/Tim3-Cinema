@@ -48,6 +48,7 @@
             // 
             this.txtKeyValue.Location = new System.Drawing.Point(63, 3);
             this.txtKeyValue.Name = "txtKeyValue";
+            this.txtKeyValue.ReadOnly = true;
             this.txtKeyValue.Size = new System.Drawing.Size(37, 20);
             this.txtKeyValue.TabIndex = 1;
             // 
@@ -72,6 +73,7 @@
             // 
             this.txtValue.Location = new System.Drawing.Point(147, 4);
             this.txtValue.Name = "txtValue";
+            this.txtValue.ReadOnly = true;
             this.txtValue.Size = new System.Drawing.Size(87, 20);
             this.txtValue.TabIndex = 3;
             // 

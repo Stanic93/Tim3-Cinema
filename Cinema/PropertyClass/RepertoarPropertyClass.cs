@@ -167,7 +167,7 @@ namespace Cinema.PropertyClass
         }
         public string GetSelectQuery()
         {
-            return @"Select FilmID,Film,Zanr,DuzinaTrajanja,Opis,Reziser,Aktivan,Godina,DatumPrvogPrikazivanja,DatumPosljednjegPrikazivanja from dbo.vRepertoar";
+            return @"exec proc_PregledAktivnihFilmova";
         }
         public string GetUpdateQuery()
         {

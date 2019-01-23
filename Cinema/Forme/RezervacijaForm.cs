@@ -53,11 +53,7 @@ namespace Cinema.Forme
 
         private void popuniRezervacije()
         {
-            string commandText = @"Select Distinct r.RezervacijaID,r.RezervacijaNaIme as [Naziv rezervacije]
-                                        from Karta as k
-                                        join Rezervacija as r
-	                                            on k.RezervacijaID = r.RezervacijaID
-                                        where (k.RezervacijaID is not null) and (TerminID = @TerminID) ";
+            string commandText = @"exec proc_PopuniRezervacije @TerminID ";
             List<SqlParameter> parameters = new List<SqlParameter>();
             SqlParameter parameter = new SqlParameter("@TerminID", SqlDbType.SmallInt);
             parameter.Value = terminID;
@@ -89,31 +85,25 @@ namespace Cinema.Forme
             }
             SqlDataReader reader;
             DataTable dt = new DataTable();
-            //try
-            //{
+            try
+            {
                 connection.Open();
                 reader = command.ExecuteReader();
                 dt.Load(reader);
                 connection.Close();
                 reader.Close();
                 command.Dispose();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Can not open connection");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Can not open connection");
+            }
             return dt;
         }
 
         private void popuniDetaljno()
         {
-            string commandText = @"Select  k.KartaID,k.RezervacijaID,k.ProjekcijaID,k.TerminID,t.VrijemePrikazivanja,k.SjedisteID,s.BrojSjedista as [Broj sjedista], k.VrijemeIzdavanja as [Vrijeme izdavanja]
-                                    from dbo.Karta as k
-                                    join dbo.Sjediste as s
-                                    on k.SjedisteID = s.SjedisteID
-                                    join dbo.Termin as t
-                                    on k.TerminID = t.TerminID
-                                    where k.RezervacijaID = @RezervacijaID;";
+            string commandText = @"exec proc_PopuniRezervacijeDetaljno @RezervacijaID";
             List<SqlParameter> parameters = new List<SqlParameter>();
             {
                 SqlParameter parameter = new SqlParameter("@RezervacijaID", SqlDbType.SmallInt);
@@ -164,6 +154,10 @@ namespace Cinema.Forme
                 panelPretraga.Visible = false;
                 panelButton.Visible = true;
                 panelRacun.Visible = true;
+            }
+            if (dgvPregledRezervacija.SelectedRows.Count > 0)
+            {
+                lblNazivRezervacije.Text = dgvPregledRezervacija.SelectedRows[0].Cells["Naziv rezervacije"].Value.ToString();
             }
         }
 
@@ -285,7 +279,8 @@ namespace Cinema.Forme
                 parameter.Value = txtKeyTermin.Text;
                 parameters.Add(parameter);
             }
-            Izvrsi(commandText, parameters);
+            DataTable dt = new DataTable();
+            dt = Izvrsi(commandText, parameters);
         }
 
         private void btnPotvrdi_Click(object sender, EventArgs e)
@@ -483,6 +478,7 @@ namespace Cinema.Forme
             {
                 kreirajRacun();
                 prebaciRezervacijuNaRacun();
+                dodajCijenuNaRacun();
                 obrisiTab();
                 tabControlRezervacija.Enabled = true;
                 popuniRezervacije();
@@ -558,6 +554,25 @@ namespace Cinema.Forme
             }
             txtUkupnaVrijednost.Text = "" + cijena;
             txtUkupnaVrijednost.ReadOnly = true;            
+        }
+        private void dodajCijenuNaRacun()
+        {
+            string command = "Update dbo.Racun set UkupnaCijena = @Ukupno where RacunID = @RacunID";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            {
+                SqlParameter parameter = new SqlParameter("@Ukupno", SqlDbType.Int);
+                decimal nesto = Convert.ToDecimal(txtUkupnaVrijednost.Text);
+                int broj = Convert.ToInt32(nesto);
+                parameter.Value = broj;
+                parameters.Add(parameter);
+            }
+            {
+                SqlParameter parameter = new SqlParameter("RacunID", SqlDbType.SmallInt);
+                parameter.Value = racunID;
+                parameters.Add(parameter);
+            }
+            DataTable dt = new DataTable();
+            dt = Izvrsi(command, parameters);
         }
 
         private void dgvPregledRezervacija_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
