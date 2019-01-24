@@ -44,6 +44,7 @@
             this.btnDodajRezervaciju = new System.Windows.Forms.Button();
             this.btnVratiNaKartu = new System.Windows.Forms.Button();
             this.panelPretraga = new System.Windows.Forms.Panel();
+            this.btnPrikaziSve = new System.Windows.Forms.Button();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblNazivFilma = new System.Windows.Forms.Label();
@@ -303,12 +304,28 @@
             // 
             // panelPretraga
             // 
+            this.panelPretraga.Controls.Add(this.btnPrikaziSve);
             this.panelPretraga.Controls.Add(this.lblNaziv);
             this.panelPretraga.Controls.Add(this.txtNaziv);
             this.panelPretraga.Location = new System.Drawing.Point(108, 12);
             this.panelPretraga.Name = "panelPretraga";
             this.panelPretraga.Size = new System.Drawing.Size(372, 74);
             this.panelPretraga.TabIndex = 10;
+            // 
+            // btnPrikaziSve
+            // 
+            this.btnPrikaziSve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.btnPrikaziSve.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrikaziSve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnPrikaziSve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrikaziSve.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrikaziSve.Location = new System.Drawing.Point(227, 26);
+            this.btnPrikaziSve.Name = "btnPrikaziSve";
+            this.btnPrikaziSve.Size = new System.Drawing.Size(142, 27);
+            this.btnPrikaziSve.TabIndex = 7;
+            this.btnPrikaziSve.Text = "Prikazi sve";
+            this.btnPrikaziSve.UseVisualStyleBackColor = false;
+            this.btnPrikaziSve.Click += new System.EventHandler(this.btnPrikaziSve_Click);
             // 
             // lblNaziv
             // 
@@ -598,7 +615,6 @@
             // 
             this.btnLogout.BackgroundImage = global::Cinema.Properties.Resources.log_out;
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Location = new System.Drawing.Point(0, 615);
@@ -821,6 +837,7 @@
         private System.Windows.Forms.GroupBox gbPretraga;
         private System.Windows.Forms.GroupBox gbDetaljno;
         private System.Windows.Forms.FlowLayoutPanel flpDetaljno;
+        private System.Windows.Forms.Button btnPrikaziSve;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.Panel panelRacun;

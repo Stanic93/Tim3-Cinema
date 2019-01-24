@@ -601,7 +601,6 @@
             // 
             // panelNazivRezervacije
             // 
-            this.panelNazivRezervacije.Controls.Add(this.panelRacun);
             this.panelNazivRezervacije.Controls.Add(this.lblNazivRezervacije);
             this.panelNazivRezervacije.Controls.Add(this.lblRezervacija);
             this.panelNazivRezervacije.Location = new System.Drawing.Point(675, 56);
@@ -616,7 +615,7 @@
             this.panelRacun.Controls.Add(this.lblZaposleni);
             this.panelRacun.Controls.Add(this.txtUkupnaVrijednost);
             this.panelRacun.Controls.Add(this.lblVrijednostRacuna);
-            this.panelRacun.Location = new System.Drawing.Point(3, 3);
+            this.panelRacun.Location = new System.Drawing.Point(673, 55);
             this.panelRacun.Name = "panelRacun";
             this.panelRacun.Size = new System.Drawing.Size(171, 117);
             this.panelRacun.TabIndex = 11;
@@ -700,6 +699,7 @@
             // panelOkvir
             // 
             this.panelOkvir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelOkvir.Controls.Add(this.panelRacun);
             this.panelOkvir.Controls.Add(this.panelKarta);
             this.panelOkvir.Controls.Add(this.lblTermin);
             this.panelOkvir.Controls.Add(this.lblNazivFilma);
