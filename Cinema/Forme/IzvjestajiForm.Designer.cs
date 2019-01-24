@@ -43,7 +43,7 @@
             this.lbIzvjestaji.Name = "lbIzvjestaji";
             this.lbIzvjestaji.Size = new System.Drawing.Size(178, 563);
             this.lbIzvjestaji.TabIndex = 0;
-            this.lbIzvjestaji.SelectedIndexChanged += new System.EventHandler(this.lbIzvjestaji_SelectedIndexChanged);
+            this.lbIzvjestaji.Click += new System.EventHandler(this.lbIzvjestaji_Click);
             // 
             // btnUcitaj
             // 

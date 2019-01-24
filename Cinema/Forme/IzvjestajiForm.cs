@@ -35,7 +35,7 @@ namespace Cinema.Forme
             try
             {
                 report.Load(Application.StartupPath+"/CinemaReports/RacunReport_NS.rpt");
-                report.SetDatabaseLogon("test_admin", "T3st@dm1n");
+                report.SetDatabaseLogon("bioskop_admin", "bioskop.123");
                 report.SetParameterValue("@racunID", RacunID);
             }
             catch (Exception r)
@@ -77,24 +77,35 @@ namespace Cinema.Forme
             }
         }
 
-        private void lbIzvjestaji_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbIzvjestaji_Click(object sender, EventArgs e)
         {
-            panelIzvjestaji.Controls.Clear();
-            CrystalReportViewer reportViewer = new CrystalReportViewer();
-            panelIzvjestaji.Controls.Add(reportViewer);
-            reportViewer.Dock = DockStyle.Fill;
-            ReportDocument report = new ReportDocument();
             try
             {
-                report.Load(@"" + Files.ElementAt(lbIzvjestaji.SelectedIndex));
-                report.SetDatabaseLogon("test_admin", "T3st@dm1n");
+                if (lbIzvjestaji.SelectedIndex != null)
+                {
+                    panelIzvjestaji.Controls.Clear();
+                    CrystalReportViewer reportViewer = new CrystalReportViewer();
+                    panelIzvjestaji.Controls.Add(reportViewer);
+                    reportViewer.Dock = DockStyle.Fill;
+                    ReportDocument report = new ReportDocument();
+                    try
+                    {
+                        report.Load(@"" + Files.ElementAt(lbIzvjestaji.SelectedIndex));
+                        report.SetDatabaseLogon("bioskop_admin", "bioskop.123");
+                    }
+                    catch (Exception r)
+                    {
+                        MessageBox.Show(r.Message);
+                        MessageBox.Show("Putanja fajla: " + Files[lbIzvjestaji.SelectedIndex].ToString());
+                    }
+                    reportViewer.ReportSource = report;
+                    reportViewer.Refresh();
+                }
             }
-            catch(Exception r) {
-                MessageBox.Show(r.Message);
-                MessageBox.Show("Putanja fajla: "+Files[lbIzvjestaji.SelectedIndex].ToString());
+            catch 
+            {
+                MessageBox.Show("Nije selektovan nijedan izvjestaj! ");
             }
-            reportViewer.ReportSource = report;
-            reportViewer.Refresh();
         }
     }
 }
