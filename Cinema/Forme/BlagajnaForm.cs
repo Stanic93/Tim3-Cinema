@@ -57,6 +57,8 @@ namespace Cinema.Forme
             gbPretraga.Text = "Pretraga";
             gbDetaljno.Text = "Informacije o filmu";
             gbKarta.Text = "Kreiraj";
+            gbPregled.Enabled = true;
+            gbDetaljno.Enabled = true;
             dtpDatumProdukcije.Visible = true;
             lblDatumProdukcije.Visible = true;
             btnRezervacija.Enabled = false;
@@ -1015,7 +1017,6 @@ namespace Cinema.Forme
             gbPregled.Enabled = false;
             panelRacun.Enabled = false;
             gbKarta.Enabled = false;
-            gbPretraga.Enabled = false;
         }
 
         private void btnOdustaniRacun_Click(object sender, EventArgs e)
@@ -1071,6 +1072,8 @@ namespace Cinema.Forme
             dtpDatumProdukcije.Visible = false;
             lblDatumProdukcije.Visible = false;
             btnVratiNaKartu.Enabled = false ;
+            gbPregled.Enabled = false;
+            gbDetaljno.Enabled = true;
         }
 
         private static DialogResult ShowInputDialog(ref string input)
