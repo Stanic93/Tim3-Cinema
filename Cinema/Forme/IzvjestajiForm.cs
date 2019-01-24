@@ -41,7 +41,7 @@ namespace Cinema.Forme
             catch (Exception r)
             {
                 MessageBox.Show(r.Message);
-                MessageBox.Show("Putanja fajla: " +Application.StartupPath);
+                MessageBox.Show("Baza nije verifikovana, provjerite svoju ODBC konekciju");
             }
             reportViewer.ReportSource = report;
             reportViewer.Refresh();
