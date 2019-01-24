@@ -332,13 +332,15 @@ namespace Cinema.Forme
                         }
                         else if (item.GetCustomAttribute<DateTimeAttribute>() != null)
                         {
-                            DateTimeControl dc = new DateTimeControl();
-                            dc.SetVrijednost(item.GetValue(property).ToString());
-                            dc.Name = item.Name;
-                            dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
-                            flpDetaljno.Controls.Add(dc);
-                            if (state == StateEnum.Preview)
-                                dc.Zabrani();
+                            
+                                DateTimeControl dc = new DateTimeControl();
+                                dc.SetVrijednost(item.GetValue(property).ToString());
+                                dc.Name = item.Name;
+                                dc.SetLabel(item.GetCustomAttributes<DisplayNameAttribute>().FirstOrDefault().DisplayName);
+                                flpDetaljno.Controls.Add(dc);
+                                if (state == StateEnum.Preview)
+                                    dc.Zabrani();
+                            
                         }
                         else if (item.GetCustomAttribute<CheckBoxAttribute>() != null)
                         {
@@ -476,54 +478,83 @@ namespace Cinema.Forme
                 if (item.GetType() == typeof(TextBoxControl))
                 {
                     TextBoxControl input = item as TextBoxControl;
-
-                    if (input.Name == "DuzinaTrajanja" || input.Name == "VrijemePrikazivanja")
+                    PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
+                    string value = input.GetTextBox();
+                    if (myProperty.GetCustomAttribute<TimeAttribute>()!=null)
                     {
                         TimeSpan pom = new TimeSpan(0, 0, 0);
+                        
                         if (TimeSpan.TryParse(input.GetTextBox(), out pom))
                         {
-                            TimeSpan valueT = TimeSpan.ParseExact(input.GetTextBox(), "c", null);
+                            bool ok = false;
                             PropertyInfo myPropertyT = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                            myPropertyT.SetValue(property, Convert.ChangeType(valueT, myPropertyT.PropertyType));
+                            
+                            string format = "HH:mm:ss";
+                            System.Globalization.CultureInfo provider = System.Globalization.CultureInfo.InvariantCulture;
+
+                            DateTime dt = DateTime.ParseExact("00:20:00", format, provider);
+                            DateTime valueDT = dt;
+                            try
+                            {
+
+                                valueDT = DateTime.ParseExact(value, format, provider); 
+                                if (valueDT.Hour != null)
+                                {
+                                    ok = true;
+                                }
+                            }
+                            catch (Exception r)
+                            {
+                                // ok = false; inicializovano je na false pa ne mora postavljat
+                            }
+                           
+                            
+                            if (ok == false )
+                            {
+                                MessageBox.Show("Vrijeme nije u ispravnom formatu! Format za unos vremena je HH:mm:ss.");
+                                input.BackColor = Color.Red;
+                                return;
+                            }
+                            else if(valueDT.Minute < 5 && valueDT.Hour == 0)
+                            {
+                                MessageBox.Show("Duzina trajanja mora biti minimalno 5 minuta!");
+                                input.BackColor = Color.Red;
+                                return;
+                            }
+                            else if (ok )
+                            {
+                                TimeSpan valueT = new TimeSpan(valueDT.Hour, valueDT.Minute, valueDT.Second);
+                                myPropertyT.SetValue(property, Convert.ChangeType(valueT, myPropertyT.PropertyType));
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Vrijeme nije u ispravnom formatu!" + input.GetTextBox());
-                            input.BackColor = Color.Red;
-                            return;
-                        }
+                        
                     }
-                    else if (input.Name == "Lozinka" && input.GetTextBox().Length <= 6)
+                    else if (input.Name == "Lozinka" && input.GetTextBox().Length < 6)
                     {
                         MessageBox.Show("Lozinka mora biti bar 6  karatktera duga!");
                         return;
                     }
+                    else if (input.Name == "Pol" && (value != "M" && value != "Ž"))
+                    {
+                        MessageBox.Show("Polje pol mora biti jedan karakter (M ili Ž)");
+                        input.BackColor = Color.Red;
+                          return;
+                    }
                     else
                     {
-                        PropertyInfo myProperty = properties.Where(x => input.Name == x.Name).FirstOrDefault();
-                        string value = input.GetTextBox();
                         if (value.Trim() == "" && myProperty.GetCustomAttribute<MandatoryDataAttribute>() != null)
                         {
                             MessageBox.Show("Polje " + input.Name + " je obavezno, popunite ga! ");
                             input.BackColor = Color.Red;
                             return;
                         }
-                        if (input.Name == "Pol" && (value == "M" || value == "Ž"))
-                            continue;
-                        else if (input.Name == "Pol" && (value != "M" || value != "Ž"))
-                        {
-                            MessageBox.Show("Polje pol mora biti jedan karakter (M ili Ž)");
-                            return;
-                        }
-                        else
-                        {
-                            myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
+                        
+                        myProperty.SetValue(property, Convert.ChangeType(value, myProperty.PropertyType));
                             input.BackColor = Color.FromArgb(38, 38, 38);
-                        }
+                        
                     }
                 }
-
-                //Marko J. Pokusaji rjesavanja dopune svih polja prilikom unosa i updatea
+                
                 else if (item.GetType() == typeof(RichTextBoxControl))
                 {
                     RichTextBoxControl input = item as RichTextBoxControl;
@@ -615,7 +646,7 @@ namespace Cinema.Forme
                     else if (property.GetType() == typeof(LoginPropertyClass))
                     {
                         LoginPropertyClass pom = property as LoginPropertyClass;
-                        string queryProvjera = "Select * from Login where korisnickoime=@KorisnickoIme ";
+                        string queryProvjera = "Select * from dbo.Login where KorisnickoIme=@KorisnickoIme ";
 
                         List<SqlParameter> parameters = new List<SqlParameter>();
                         {
@@ -634,6 +665,8 @@ namespace Cinema.Forme
                             MessageBox.Show("Korisnicko ime koje ste unijeli se vec koristi!");
                             return ;
                         }
+                        SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(),
+                                  property.GetInsertParameters().ToArray());
                     }
                     else
                         SqlHelper.ExecuteNonQuery(SqlHelper.GetConnectionString(), CommandType.Text, property.GetInsertQuery(),

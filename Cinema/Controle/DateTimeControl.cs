@@ -17,6 +17,7 @@ namespace Cinema.Controle
             InitializeComponent();
             lblNaziv.ForeColor = Color.White;
             lblNaziv.BackColor = Color.Transparent;
+            //dtpVrijednost.Format = DateTimePickerFormat.Custom;
         }
         public void SetLabel(string value)
         {
