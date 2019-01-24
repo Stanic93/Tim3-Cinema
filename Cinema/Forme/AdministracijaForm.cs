@@ -930,7 +930,7 @@ namespace Cinema.Forme
 
         private void btnIzvjestaji_Click(object sender, EventArgs e)
         {
-            Izvjestaji forma = new Izvjestaji();
+            IzvjestajiForm forma = new IzvjestajiForm();
             forma.ShowDialog();
         }
 

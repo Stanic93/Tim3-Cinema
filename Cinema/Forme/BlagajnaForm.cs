@@ -504,6 +504,9 @@ namespace Cinema.Forme
                 dodajCijenuNaRacun();
                 state = State.Idle;
                 OsnovnaPodesavanja();
+                IzvjestajiForm izvjestaji = new IzvjestajiForm(racunID);
+                izvjestaji.Show();
+
             }
             else if (btnNovaKarta.Text == "Potvrdi rezervaciju")
             {

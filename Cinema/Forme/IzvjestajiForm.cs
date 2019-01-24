@@ -1,5 +1,4 @@
-﻿//using CrystalDecisions.CrystalReports.Engine;
-//using CrystalDecisions.Windows.Forms;
+﻿
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
 using System;
@@ -15,15 +14,39 @@ using System.Windows.Forms;
 
 namespace Cinema.Forme
 {
-    public partial class Izvjestaji : Form
+    public partial class IzvjestajiForm : Form
     {
         List<string> Files;
-        public Izvjestaji()
+        public IzvjestajiForm()
         {
             InitializeComponent();
             panelIzvjestaji.BackColor = Color.White;
         }
+        public IzvjestajiForm(int RacunID)
+        {
+            InitializeComponent();
+            panelIzvjestaji.BackColor = Color.White;
+            panelUcitajIzvjestaje.Visible = false;
+            panelIzvjestaji.Dock = DockStyle.Fill;
+            CrystalReportViewer reportViewer = new CrystalReportViewer();
+            panelIzvjestaji.Controls.Add(reportViewer);
+            reportViewer.Dock = DockStyle.Fill;
+            ReportDocument report = new ReportDocument();
+            try
+            {
+                report.Load(Application.StartupPath+"/CinemaReports/RacunReport_NS.rpt");
+                report.SetDatabaseLogon("test_admin", "T3st@dm1n");
+                report.SetParameterValue("@racunID", RacunID);
+            }
+            catch (Exception r)
+            {
+                MessageBox.Show(r.Message);
+                MessageBox.Show("Putanja fajla: " +Application.StartupPath);
+            }
+            reportViewer.ReportSource = report;
+            reportViewer.Refresh();
 
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
